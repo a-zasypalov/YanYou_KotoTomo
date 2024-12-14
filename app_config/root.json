@@ -28,7 +28,6 @@
           "source_language": "en",
           "courses": [
             {
-              "type": "alphabet",
               "id": "kana_en",
               "course_name": "Course name",
               "decks": [
@@ -47,7 +46,6 @@
               ]
             },
             {
-              "type": "alphabet",
               "id": "jlpt5_en",
               "course_name": "Course name",
               "required_decks": [
