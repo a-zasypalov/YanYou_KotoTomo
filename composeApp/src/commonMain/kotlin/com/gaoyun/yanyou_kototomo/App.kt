@@ -24,7 +24,7 @@ fun App() {
             Button(onClick = viewModel::getRootComponent) {
                 Text("Click me!")
             }
-            Text("Root: $state")
+            Text("Root: ${state.value}")
         }
     }
 }
