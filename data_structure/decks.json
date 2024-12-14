@@ -11,6 +11,7 @@
               "course_name": "Course name",
               "decks": [
                 {
+                  "type": "normal",
                   "id": "hsk1_1_en",
                   "name": "Deck name"
                 }
@@ -32,11 +33,13 @@
               "course_name": "Course name",
               "decks": [
                 {
+                  "type": "alphabet",
                   "id": "kana_en",
                   "alphabet": "hiragana",
                   "name": "Deck name"
                 },
                 {
+                  "type": "alphabet",
                   "id": "kana_en",
                   "alphabet": "katakana",
                   "name": "Deck name"
@@ -52,6 +55,7 @@
               ],
               "decks": [
                 {
+                  "type": "normal",
                   "id": "jlpt5_1_en",
                   "name": "Deck name"
                 }
