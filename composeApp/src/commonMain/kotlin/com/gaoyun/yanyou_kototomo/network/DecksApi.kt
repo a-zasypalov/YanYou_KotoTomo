@@ -16,9 +16,13 @@ class DecksApi(private val client: HttpClient) {
         return Json.decodeFromString(responseString)
     }
 
-    internal suspend fun getDeck(sourceLanguage: String, courseChapterId: String): DeckDTO {
+    internal suspend fun getDeck(
+        learningLanguageId: String,
+        sourceLanguage: String,
+        deckId: String
+    ): DeckDTO {
         val responseString: String = client.requestAndCatch {
-            get("${YanYouKotoTomoApi.GITHUB_ENDPOINT}/app_config/${sourceLanguage}/${courseChapterId}.json").body()
+            get("${YanYouKotoTomoApi.GITHUB_ENDPOINT}/app_config/cards/${learningLanguageId}/${sourceLanguage}/${deckId}.json").body()
         }
         return Json.decodeFromString(responseString)
     }

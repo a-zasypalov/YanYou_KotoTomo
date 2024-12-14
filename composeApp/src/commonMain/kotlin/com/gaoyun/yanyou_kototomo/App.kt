@@ -22,7 +22,16 @@ fun App() {
 
         Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             Button(onClick = viewModel::getRootComponent) {
-                Text("Click me!")
+                Text("Root")
+            }
+            Button(onClick = viewModel::getDeckCn) {
+                Text("Deck Cn")
+            }
+            Button(onClick = viewModel::getDeckKana) {
+                Text("Deck Kana")
+            }
+            Button(onClick = viewModel::getDeckJlpt) {
+                Text("Deck JLPT")
             }
             Text("Root: ${state.value}")
         }
