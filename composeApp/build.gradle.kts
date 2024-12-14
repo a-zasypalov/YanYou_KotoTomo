@@ -1,7 +1,6 @@
 import org.gradle.kotlin.dsl.android
 import org.gradle.kotlin.dsl.compose
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.implementation
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -61,6 +60,10 @@ kotlin {
             implementation(libs.ktor.logging)
             implementation(libs.ktor.cio)
             implementation(libs.ktor.contentnegotiation)
+
+            implementation(libs.precompose)
+            implementation(libs.precompose.viewmodel)
+            implementation(libs.precompose.koin)
         }
     }
 }
