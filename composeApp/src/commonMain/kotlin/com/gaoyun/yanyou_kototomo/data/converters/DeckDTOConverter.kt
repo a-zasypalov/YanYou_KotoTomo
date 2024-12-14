@@ -13,7 +13,7 @@ fun DeckDTO.toLocal(name: String): Deck {
     )
 }
 
-fun DeckDTO.toLocal(
+fun DeckDTO.toLocalWithKana(
     name: String,
     kanaCards: List<CardDTO.KanaCardDTO>
 ): Deck {
@@ -24,7 +24,7 @@ fun DeckDTO.toLocal(
     )
 }
 
-fun DeckDTO.toLocal(
+fun DeckDTO.toLocalWithWords(
     name: String,
     wordsCards: List<CardDTO.WordCardDTO>,
 ): Deck {
@@ -35,7 +35,7 @@ fun DeckDTO.toLocal(
     )
 }
 
-fun DeckDTO.toLocal(
+fun DeckDTO.toLocalWithKanaAndWords(
     name: String,
     kanaCards: List<CardDTO.KanaCardDTO>,
     wordsCards: List<CardDTO.WordCardDTO>,
