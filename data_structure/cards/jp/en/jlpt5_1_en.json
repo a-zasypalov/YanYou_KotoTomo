@@ -1,0 +1,24 @@
+{
+  "deck_id": "jlpt5_1_en",
+  "cards": [
+    {
+      "type": "kanji",
+      "id": "jlpt5_1_en_1",
+      "character": "山",
+      "transcription": "shān",
+      "reading": {
+        "on": [
+          "hiragana1",
+          "katakana1"
+        ],
+        "kun": [
+          "katakana1",
+          "hiragana1"
+        ]
+      },
+      "translation": "Mountain",
+      "additional_info": "Common Kanji character for 'mountain'.",
+      "speech_part": "noun"
+    }
+  ]
+}
