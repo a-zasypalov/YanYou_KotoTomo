@@ -31,7 +31,7 @@ sealed interface Card {
         override val id: AlphabetCardId,
         override val front: String,
         override val transcription: String,
-        val alphabet: String,
+        val alphabet: AlphabetType,
         val mirror: Mirror
     ) : Card {
         data class Mirror(

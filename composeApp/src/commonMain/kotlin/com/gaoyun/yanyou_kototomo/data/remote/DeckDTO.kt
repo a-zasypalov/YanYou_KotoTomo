@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class DeckDTO(
-    @SerialName("id")
+    @SerialName("deck_id")
     val id: String,
     @SerialName("cards")
     val cards: List<CardDTO>

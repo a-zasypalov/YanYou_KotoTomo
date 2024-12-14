@@ -4,18 +4,6 @@ import com.gaoyun.yanyou_kototomo.data.local.Card
 import com.gaoyun.yanyou_kototomo.data.local.CardId
 import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
 
-fun CardDTO.toLocal(
-    wordsCards: List<CardDTO.WordCardDTO> = listOf(),
-    kanaCards: List<CardDTO.KanaCardDTO> = listOf()
-): Card {
-    return when (this) {
-        is CardDTO.PhraseCardDTO -> toLocal(wordsCards)
-        is CardDTO.WordCardDTO -> toLocal()
-        is CardDTO.KanaCardDTO -> toLocal()
-        is CardDTO.KanjiCardDTO -> toLocal(kanaCards)
-    }
-}
-
 fun CardDTO.PhraseCardDTO.toLocal(availableWords: List<CardDTO.WordCardDTO>): Card {
     return Card.PhraseCard(
         id = CardId.PhraseCardId(this.id),
@@ -40,15 +28,16 @@ fun CardDTO.WordCardDTO.toLocal(): Card.WordCard {
     )
 }
 
-fun CardDTO.KanaCardDTO.toLocal(): Card.KanaCard {
+fun CardDTO.KanaCardDTO.toLocal(kanaCards: List<CardDTO.KanaCardDTO>): Card.KanaCard {
     return Card.KanaCard(
         id = CardId.AlphabetCardId(this.id),
         front = this.character,
         transcription = this.transcription,
-        alphabet = this.alphabet,
+        alphabet = this.alphabet.toAlphabet() ?: error("Wrong alphabet for card $id"),
         mirror = Card.KanaCard.Mirror(
             id = CardId.AlphabetCardId(this.mirror),
-            front = this.character
+            front = kanaCards.find { it.id == this.mirror }?.character
+                ?: error("No mirror kana for card $id")
         )
     )
 }
@@ -60,10 +49,10 @@ fun CardDTO.KanjiCardDTO.toLocal(kanaCards: List<CardDTO.KanaCardDTO>): Card.Kan
         transcription = this.transcription,
         reading = Card.KanjiCard.Reading(
             on = this.reading.on.mapNotNull { kanaId ->
-                kanaCards.find { it.id == kanaId }?.toLocal()
+                kanaCards.find { it.id == kanaId }?.toLocal(kanaCards)
             },
             kun = this.reading.kun.mapNotNull { kanaId ->
-                kanaCards.find { it.id == kanaId }?.toLocal()
+                kanaCards.find { it.id == kanaId }?.toLocal(kanaCards)
             },
         ),
         translation = this.translation,
