@@ -49,6 +49,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
 
             implementation(libs.kotlin.serialization.core)
+            implementation(libs.kotlin.datetime)
             implementation(libs.koin.core)
 
             implementation(libs.ktor.client.core)

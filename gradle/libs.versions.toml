@@ -12,6 +12,7 @@ ktor = "3.0.2"
 koin = "4.0.0"
 koin-extension = "3.0.2"
 precompose = "1.6.2"
+kotlinDatetime = "0.6.1"
 
 [libraries]
 #Android
@@ -20,6 +21,7 @@ androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", nam
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 #Kotlin
 kotlin-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinSerialization" }
+kotlin-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinDatetime" }
 # Ktor
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-ios = { module = "io.ktor:ktor-client-ios", version.ref = "ktor" }
