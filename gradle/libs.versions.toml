@@ -12,8 +12,9 @@ compose-multiplatform = "1.7.1"
 kotlin = "2.1.0"
 kotlinSerialization = "1.7.3"
 ktor = "3.0.2"
-koin = "3.5.6"
+koin = "4.0.0"
 koin-extension = "3.0.2"
+precompose = "1.6.0"
 
 [libraries]
 #Android
@@ -35,11 +36,14 @@ ktor-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-contentnegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 # Koin
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
-koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx = { module = "io.insert-koin:koin-android-ext", version.ref = "koin-extension" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 koin-workmanager = { module = "io.insert-koin:koin-androidx-workmanager", version.ref = "koin" }
+# Precompose
+precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
+precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
+precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "precompose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
