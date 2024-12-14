@@ -32,7 +32,7 @@ data class CourseDTO(
     @SerialName("course_name")
     val courseName: String,
     @SerialName("decks")
-    val decks: List<CourseDeckDTO.Normal>,
+    val decks: List<CourseDeckDTO>,
     @SerialName("required_decks")
     val requiredDecks: List<String>? = null,
 )
