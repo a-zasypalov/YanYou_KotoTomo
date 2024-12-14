@@ -1,0 +1,63 @@
+{
+  "languages": [
+    {
+      "id": "chinese",
+      "first_languages": [
+        {
+          "first_language": "en",
+          "courses": [
+            {
+              "id": "hsk1_en",
+              "course_name": "Course name",
+              "decks": [
+                {
+                  "id": "hsk1_1_en",
+                  "name": "Deck name"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "japanese",
+      "first_languages": [
+        {
+          "first_language": "en",
+          "courses": [
+            {
+              "id": "kana_en",
+              "course_name": "Course name",
+              "decks": [
+                {
+                  "id": "kana_en",
+                  "alphabet": "hiragana",
+                  "name": "Deck name"
+                },
+                {
+                  "id": "kana_en",
+                  "alphabet": "katakana",
+                  "name": "Deck name"
+                }
+              ]
+            },
+            {
+              "id": "jlpt5_en",
+              "course_name": "Course name",
+              "required_decks": [
+                "kana_en"
+              ],
+              "decks": [
+                {
+                  "id": "jlpt5_1_en",
+                  "name": "Deck name"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
