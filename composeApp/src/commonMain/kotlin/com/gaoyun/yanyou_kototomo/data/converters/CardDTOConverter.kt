@@ -19,7 +19,7 @@ fun CardDTO.toLocal(
 fun CardDTO.PhraseCardDTO.toLocal(availableWords: List<CardDTO.WordCardDTO>): Card {
     return Card.PhraseCard(
         id = CardId.PhraseCardId(this.id),
-        front = this.front,
+        front = this.character,
         transcription = this.transcription,
         translation = this.translation,
         additionalInfo = this.additionalInfo,
@@ -32,7 +32,7 @@ fun CardDTO.PhraseCardDTO.toLocal(availableWords: List<CardDTO.WordCardDTO>): Ca
 fun CardDTO.WordCardDTO.toLocal(): Card.WordCard {
     return Card.WordCard(
         id = CardId.WordCardId(this.id),
-        front = this.front,
+        front = this.character,
         transcription = this.transcription,
         translation = this.translation,
         additionalInfo = this.additionalInfo,
@@ -43,12 +43,12 @@ fun CardDTO.WordCardDTO.toLocal(): Card.WordCard {
 fun CardDTO.KanaCardDTO.toLocal(): Card.KanaCard {
     return Card.KanaCard(
         id = CardId.AlphabetCardId(this.id),
-        front = this.front,
+        front = this.character,
         transcription = this.transcription,
         alphabet = this.alphabet,
         mirror = Card.KanaCard.Mirror(
             id = CardId.AlphabetCardId(this.mirror),
-            front = this.front
+            front = this.character
         )
     )
 }
@@ -56,7 +56,7 @@ fun CardDTO.KanaCardDTO.toLocal(): Card.KanaCard {
 fun CardDTO.KanjiCardDTO.toLocal(kanaCards: List<CardDTO.KanaCardDTO>): Card.KanjiCard {
     return Card.KanjiCard(
         id = CardId.WordCardId(this.id),
-        front = this.front,
+        front = this.character,
         transcription = this.transcription,
         reading = Card.KanjiCard.Reading(
             on = this.reading.on.mapNotNull { kanaId ->

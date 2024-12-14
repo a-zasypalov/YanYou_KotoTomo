@@ -1,6 +1,5 @@
 package com.gaoyun.yanyou_kototomo.data.converters
 
-import com.gaoyun.yanyou_kototomo.data.local.AlphabetType
 import com.gaoyun.yanyou_kototomo.data.local.Course
 import com.gaoyun.yanyou_kototomo.data.local.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
@@ -36,33 +35,27 @@ fun SourceLanguageDTO.toLocal(): SourceLanguage {
 }
 
 fun CourseDTO.toLocal(): Course {
-    return when (this) {
-        is CourseDTO.Normal -> Course.Normal(
-            id = CourseId(this.id),
-            courseName = this.courseName,
-            decks = this.decks.map { it.toLocal() },
-            requiredDecks = requiredDecks?.mapNotNull { DeckId(it) }
-        )
-
-        is CourseDTO.Alphabet -> {
-            val alphabet = when (this.courseName.lowercase()) {
-                "hiragana" -> AlphabetType.Hiragana
-                "katakana" -> AlphabetType.Katakana
-                else -> throw IllegalArgumentException("Unknown alphabet type for courseName: ${this.courseName}")
-            }
-            Course.Alphabet(
-                id = CourseId(this.id),
-                courseName = this.courseName,
-                decks = this.decks.map { it.toLocal() },
-                alphabet = alphabet
-            )
-        }
-    }
+    return Course(
+        id = CourseId(this.id),
+        courseName = this.courseName,
+        decks = this.decks.map { it.toLocal() },
+        requiredDecks = requiredDecks?.mapNotNull { DeckId(it) }
+    )
 }
 
 fun CourseDeckDTO.toLocal(): CourseDeck {
-    return CourseDeck(
-        id = DeckId(this.id),
-        name = this.name,
-    )
+    return when (this) {
+        is CourseDeckDTO.Normal -> CourseDeck.Normal(
+            id = DeckId(this.id),
+            name = this.name,
+        )
+
+        is CourseDeckDTO.Alphabet -> {
+            CourseDeck.Alphabet(
+                id = DeckId(this.id),
+                name = this.name,
+                alphabet = alphabet.toAlphabet() ?: error("Wrong alphabet for $name, id:$id")
+            )
+        }
+    }
 }

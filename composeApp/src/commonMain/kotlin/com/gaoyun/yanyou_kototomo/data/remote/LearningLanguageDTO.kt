@@ -1,48 +1,65 @@
 package com.gaoyun.yanyou_kototomo.data.remote
 
-import com.gaoyun.yanyou_kototomo.data.local.AlphabetType
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class RootStructureDTO(
+    @SerialName("languages")
     val languages: List<LearningLanguageDTO>
 )
 
 @Serializable
 data class LearningLanguageDTO(
+    @SerialName("id")
     val id: String,
+    @SerialName("source_languages")
     val sourceLanguages: List<SourceLanguageDTO>
 )
 
 @Serializable
 data class SourceLanguageDTO(
+    @SerialName("source_language")
     val sourceLanguage: String,
+    @SerialName("courses")
     val courses: List<CourseDTO>
 )
 
 @Serializable
-sealed interface CourseDTO {
-    val id: String
-    val courseName: String
-    val decks: List<CourseDeckDTO>
-
-    data class Normal(
-        override val id: String,
-        override val courseName: String,
-        override val decks: List<CourseDeckDTO>,
-        val requiredDecks: List<String>? = null,
-    ) : CourseDTO
-
-    data class Alphabet(
-        override val id: String,
-        override val courseName: String,
-        override val decks: List<CourseDeckDTO>,
-        val alphabet: AlphabetType
-    ) : CourseDTO
-}
+data class CourseDTO(
+    @SerialName("id")
+    val id: String,
+    @SerialName("course_name")
+    val courseName: String,
+    @SerialName("decks")
+    val decks: List<CourseDeckDTO.Normal>,
+    @SerialName("required_decks")
+    val requiredDecks: List<String>? = null,
+)
 
 @Serializable
-data class CourseDeckDTO(
-    val id: String,
-    val name: String,
-)
+sealed interface CourseDeckDTO {
+    @SerialName("id")
+    val id: String
+
+    @SerialName("name")
+    val name: String
+
+    @SerialName("normal")
+    data class Normal(
+        @SerialName("id")
+        override val id: String,
+        @SerialName("name")
+        override val name: String
+    ) : CourseDeckDTO
+
+    @SerialName("alphabet")
+    data class Alphabet(
+        @SerialName("id")
+        override val id: String,
+        @SerialName("name")
+        override val name: String,
+        @SerialName("alphabet")
+        val alphabet: String
+    ) : CourseDeckDTO
+}
