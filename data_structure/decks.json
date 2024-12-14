@@ -2,9 +2,9 @@
   "languages": [
     {
       "id": "chinese",
-      "first_languages": [
+      "source_languages": [
         {
-          "first_language": "en",
+          "source_language": "en",
           "courses": [
             {
               "id": "hsk1_en",
@@ -22,11 +22,12 @@
     },
     {
       "id": "japanese",
-      "first_languages": [
+      "source_languages": [
         {
-          "first_language": "en",
+          "source_language": "en",
           "courses": [
             {
+              "type": "alphabet",
               "id": "kana_en",
               "course_name": "Course name",
               "decks": [
@@ -43,6 +44,7 @@
               ]
             },
             {
+              "type": "alphabet",
               "id": "jlpt5_en",
               "course_name": "Course name",
               "required_decks": [
