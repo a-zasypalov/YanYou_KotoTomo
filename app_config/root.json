@@ -13,7 +13,8 @@
                 {
                   "type": "normal",
                   "id": "hsk1_1_en",
-                  "name": "Deck name"
+                  "name": "Deck name",
+                  "version": 1
                 }
               ]
             }
@@ -35,13 +36,15 @@
                   "type": "alphabet",
                   "id": "kana_en",
                   "alphabet": "hiragana",
-                  "name": "Deck name"
+                  "name": "Deck name",
+                  "version": 1
                 },
                 {
                   "type": "alphabet",
                   "id": "kana_en",
                   "alphabet": "katakana",
-                  "name": "Deck name"
+                  "name": "Deck name",
+                  "version": 1
                 }
               ]
             },
@@ -55,7 +58,8 @@
                 {
                   "type": "normal",
                   "id": "jlpt5_1_en",
-                  "name": "Deck name"
+                  "name": "Deck name",
+                  "version": 1
                 }
               ]
             }
