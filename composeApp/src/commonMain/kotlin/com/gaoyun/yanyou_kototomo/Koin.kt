@@ -11,7 +11,7 @@ import com.gaoyun.yanyou_kototomo.network.PlatformHttpClient
 import com.gaoyun.yanyou_kototomo.repository.CoursesRootComponentRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckUpdateRepository
-import com.gaoyun.yanyou_kototomo.ui.HomeViewModel
+import com.gaoyun.yanyou_kototomo.ui.home.HomeViewModel
 import com.gaoyun.yanyoukototomo.data.persistence.CardsPersisted
 import com.gaoyun.yanyoukototomo.data.persistence.CoursesPersisted
 import com.squareup.sqldelight.ColumnAdapter

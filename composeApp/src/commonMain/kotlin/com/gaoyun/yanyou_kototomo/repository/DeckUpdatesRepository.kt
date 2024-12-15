@@ -6,8 +6,8 @@ import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.data.remote.DeckUpdateDTO
 import com.gaoyun.yanyou_kototomo.network.DecksApi
-import com.gaoyun.yanyou_kototomo.utli.localDateTimeNow
-import com.gaoyun.yanyou_kototomo.utli.now
+import com.gaoyun.yanyou_kototomo.util.localDateTimeNow
+import com.gaoyun.yanyou_kototomo.util.now
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime

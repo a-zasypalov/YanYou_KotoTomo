@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.utli
+package com.gaoyun.yanyou_kototomo.util
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
