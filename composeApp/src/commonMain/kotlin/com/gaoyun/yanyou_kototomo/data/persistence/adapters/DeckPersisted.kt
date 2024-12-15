@@ -53,5 +53,9 @@ fun List<CardsPersisted>.convertCardsToDTO(deckId: String): DeckDTO {
             else -> throw IllegalArgumentException("Unknown card type: ${card.type}")
         }
     }
-    return DeckDTO(id = deckId, cards = cardDTOs)
+    return DeckDTO(
+        id = deckId,
+        cards = cardDTOs,
+        version = this.firstOrNull()?.version?.toInt() ?: 0
+    )
 }

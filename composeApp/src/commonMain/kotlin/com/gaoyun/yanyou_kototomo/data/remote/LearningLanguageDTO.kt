@@ -50,13 +50,18 @@ sealed interface CourseDeckDTO {
     @SerialName("name")
     val name: String
 
+    @SerialName("version")
+    val version: Int
+
     @Serializable
     @SerialName(COURSE_DECK_NORMAL)
     data class Normal(
         @SerialName("id")
         override val id: String,
         @SerialName("name")
-        override val name: String
+        override val name: String,
+        @SerialName("version")
+        override val version: Int
     ) : CourseDeckDTO
 
     @Serializable
@@ -67,6 +72,8 @@ sealed interface CourseDeckDTO {
         @SerialName("name")
         override val name: String,
         @SerialName("alphabet")
-        val alphabet: String
+        val alphabet: String,
+        @SerialName("version")
+        override val version: Int
     ) : CourseDeckDTO
 }

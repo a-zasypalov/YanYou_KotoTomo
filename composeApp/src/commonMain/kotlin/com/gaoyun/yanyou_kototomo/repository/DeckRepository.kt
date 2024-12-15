@@ -1,5 +1,6 @@
 package com.gaoyun.yanyou_kototomo.repository
 
+import com.gaoyun.yanyou_kototomo.data.local.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
@@ -10,16 +11,46 @@ import com.gaoyun.yanyou_kototomo.network.DecksApi
 
 class DeckRepository(
     private val api: DecksApi,
-    private val db: YanYouKotoTomoDatabase
+    private val db: YanYouKotoTomoDatabase,
+    private val deckUpdateRepository: DeckUpdateRepository
 ) {
+    suspend fun getDeck(
+        learningLanguage: LanguageId,
+        sourceLanguage: LanguageId,
+        deckId: DeckId,
+    ): DeckDTO {
+        val cache = getDeckFromCache(deckId)?.let {
+            if (deckUpdateRepository.shouldRefreshDeck(deckId, it.version)) it else null
+        }
+
+        return cache ?: fetchDeck(
+            learningLanguage = learningLanguage,
+            sourceLanguage = sourceLanguage,
+            deckId = deckId,
+        )
+    }
 
     suspend fun getDeck(
         learningLanguage: LanguageId,
         sourceLanguage: LanguageId,
-        deckId: DeckId
+        deck: CourseDeck,
     ): DeckDTO {
-        val cache = getDeckFromCache(deckId)
-        return cache ?: api.getDeck(
+        val shouldRefresh = deckUpdateRepository.shouldRefreshDeck(deck.id, deck.version)
+        val cache = if (!shouldRefresh) getDeckFromCache(deck.id) else null
+
+        return cache ?: fetchDeck(
+            learningLanguage = learningLanguage,
+            sourceLanguage = sourceLanguage,
+            deckId = deck.id,
+        )
+    }
+
+    private suspend fun fetchDeck(
+        learningLanguage: LanguageId,
+        sourceLanguage: LanguageId,
+        deckId: DeckId,
+    ): DeckDTO {
+        return api.getDeck(
             learningLanguage.identifier,
             sourceLanguage.identifier,
             deckId.identifier
@@ -49,6 +80,7 @@ class DeckRepository(
                     db.decksQueries.insertCard(
                         type = CardDTO.CARD_TYPE_WORD,
                         id = card.id,
+                        version = deckDTO.version.toLong(),
                         deck_id = deckId.identifier,
                         character = card.character,
                         transcription = card.transcription,
@@ -67,6 +99,7 @@ class DeckRepository(
                     db.decksQueries.insertCard(
                         type = CardDTO.CARD_TYPE_PHRASE,
                         id = card.id,
+                        version = deckDTO.version.toLong(),
                         deck_id = deckId.identifier,
                         character = card.character,
                         transcription = card.transcription,
@@ -85,6 +118,7 @@ class DeckRepository(
                     db.decksQueries.insertCard(
                         type = CardDTO.CARD_TYPE_KANA,
                         id = card.id,
+                        version = deckDTO.version.toLong(),
                         deck_id = deckId.identifier,
                         character = card.character,
                         transcription = card.transcription,
@@ -103,6 +137,7 @@ class DeckRepository(
                     db.decksQueries.insertCard(
                         type = CardDTO.CARD_TYPE_KANJI,
                         id = card.id,
+                        version = deckDTO.version.toLong(),
                         deck_id = deckId.identifier,
                         character = card.character,
                         transcription = card.transcription,

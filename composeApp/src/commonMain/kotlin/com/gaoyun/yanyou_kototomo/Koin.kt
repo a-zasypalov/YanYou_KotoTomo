@@ -1,6 +1,7 @@
 package com.gaoyun.yanyou_kototomo
 
 import com.gaoyun.yanyou_kototomo.data.persistence.DriverFactory
+import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.data.persistence.platformModule
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
@@ -9,6 +10,7 @@ import com.gaoyun.yanyou_kototomo.network.DecksApi
 import com.gaoyun.yanyou_kototomo.network.PlatformHttpClient
 import com.gaoyun.yanyou_kototomo.repository.CoursesRootComponentRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckRepository
+import com.gaoyun.yanyou_kototomo.repository.DeckUpdateRepository
 import com.gaoyun.yanyou_kototomo.ui.HomeViewModel
 import com.gaoyun.yanyoukototomo.data.persistence.CardsPersisted
 import com.gaoyun.yanyoukototomo.data.persistence.CoursesPersisted
@@ -35,8 +37,9 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    single { CoursesRootComponentRepository(get(), get()) }
-    single { DeckRepository(get(), get()) }
+    single { CoursesRootComponentRepository(get(), get(), get(), get()) }
+    single { DeckRepository(get(), get(), get()) }
+    single { DeckUpdateRepository(get(), get()) }
 }
 
 val useCaseModule = module {
@@ -49,6 +52,7 @@ val viewModelModule = module {
 }
 
 val dbModule = module {
+    single { Preferences() }
     single { get<DriverFactory>().createDriver() }
     single<ColumnAdapter<List<String>, String>> {
         object : ColumnAdapter<List<String>, String> {

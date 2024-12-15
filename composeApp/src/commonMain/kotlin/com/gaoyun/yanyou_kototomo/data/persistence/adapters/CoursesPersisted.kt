@@ -29,7 +29,8 @@ fun List<GetRootData>.mapToRootStructureDTO(): RootStructureDTO? {
                                                 id = deckRow.deck_id
                                                     ?: error("Deck ID cannot be null"),
                                                 name = deckRow.deck_name
-                                                    ?: error("Deck name cannot be null")
+                                                    ?: error("Deck name cannot be null"),
+                                                version = deckRow.version?.toInt() ?: 0
                                             )
 
                                             CourseDeckDTO.COURSE_DECK_ALPHABET -> CourseDeckDTO.Alphabet(
@@ -38,7 +39,8 @@ fun List<GetRootData>.mapToRootStructureDTO(): RootStructureDTO? {
                                                 name = deckRow.deck_name
                                                     ?: error("Deck name cannot be null"),
                                                 alphabet = deckRow.alphabet
-                                                    ?: error("Alphabet cannot be null for alphabet deck")
+                                                    ?: error("Alphabet cannot be null for alphabet deck"),
+                                                version = deckRow.version?.toInt() ?: 0
                                             )
 
                                             else -> null // Ignore unknown deck types
