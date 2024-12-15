@@ -2,6 +2,7 @@ package com.gaoyun.yanyou_kototomo
 
 import com.gaoyun.yanyou_kototomo.data.persistence.DriverFactory
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
+import com.gaoyun.yanyou_kototomo.data.persistence.platformModule
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.network.DecksApi
@@ -18,7 +19,14 @@ import org.koin.dsl.module
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
     appDeclaration()
-    modules(networkModule, repositoryModule, useCaseModule, viewModelModule, dbModule)
+    modules(
+        platformModule(),
+        networkModule,
+        repositoryModule,
+        useCaseModule,
+        viewModelModule,
+        dbModule
+    )
 }
 
 val networkModule = module {
@@ -42,7 +50,7 @@ val viewModelModule = module {
 
 val dbModule = module {
     single { get<DriverFactory>().createDriver() }
-    single {
+    single<ColumnAdapter<List<String>, String>> {
         object : ColumnAdapter<List<String>, String> {
             override fun decode(databaseValue: String): List<String> =
                 if (databaseValue.isEmpty()) emptyList() else databaseValue.split(",")

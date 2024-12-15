@@ -39,6 +39,11 @@ data class CourseDTO(
 
 @Serializable
 sealed interface CourseDeckDTO {
+    companion object {
+        const val COURSE_DECK_NORMAL = "normal"
+        const val COURSE_DECK_ALPHABET = "alphabet"
+    }
+
     @SerialName("id")
     val id: String
 
@@ -46,7 +51,7 @@ sealed interface CourseDeckDTO {
     val name: String
 
     @Serializable
-    @SerialName("normal")
+    @SerialName(COURSE_DECK_NORMAL)
     data class Normal(
         @SerialName("id")
         override val id: String,
@@ -55,7 +60,7 @@ sealed interface CourseDeckDTO {
     ) : CourseDeckDTO
 
     @Serializable
-    @SerialName("alphabet")
+    @SerialName(COURSE_DECK_ALPHABET)
     data class Alphabet(
         @SerialName("id")
         override val id: String,

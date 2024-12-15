@@ -22,10 +22,10 @@ CREATE TABLE CardsPersisted (
 );
 
 insertDeck:
-INSERT INTO DecksPersisted (id) VALUES (?);
+INSERT OR REPLACE INTO DecksPersisted (id) VALUES (?);
 
 insertCard:
-INSERT INTO CardsPersisted (
+INSERT OR REPLACE INTO CardsPersisted (
     id, deck_id, character, transcription, type, translation, additional_info, speech_part, words, alphabet, mirror, reading_on, reading_kun
 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 

@@ -1,7 +1,7 @@
 {
   "languages": [
     {
-      "id": "chinese",
+      "id": "cn",
       "source_languages": [
         {
           "source_language": "en",
@@ -22,7 +22,7 @@
       ]
     },
     {
-      "id": "japanese",
+      "id": "jp",
       "source_languages": [
         {
           "source_language": "en",
