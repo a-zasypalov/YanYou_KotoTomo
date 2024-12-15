@@ -1,17 +1,17 @@
 {
-  "courses_updated": "2024-12-14",
+  "courses_updated": "2024-12-14T12:00",
   "updates": [
     {
       "deck_id": "hsk1_1_en",
-      "updated": "2024-12-14"
+      "updated": "2024-12-14T12:00"
     },
     {
       "deck_id": "kana_en",
-      "updated": "2024-12-14"
+      "updated": "2024-12-14T12:00"
     },
     {
       "deck_id": "jlpt5_1_en",
-      "updated": "2024-12-14"
+      "updated": "2024-12-14T12:00"
     }
   ]
 }
