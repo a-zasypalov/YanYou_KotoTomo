@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui.theme
+package com.gaoyun.yanyou_kototomo.ui.base.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

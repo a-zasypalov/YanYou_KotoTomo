@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui
+package com.gaoyun.yanyou_kototomo.ui.home
 
 import com.gaoyun.yanyou_kototomo.data.local.AlphabetType
 import com.gaoyun.yanyou_kototomo.data.local.CourseDeck
@@ -6,17 +6,17 @@ import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
+import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import moe.tlaster.precompose.viewmodel.ViewModel
 import moe.tlaster.precompose.viewmodel.viewModelScope
 
 class HomeViewModel(
     private val getCoursesRoot: GetCoursesRoot,
     private val getDeck: GetDeck
-) : ViewModel() {
+) : BaseViewModel() {
 
-    val viewState = MutableStateFlow("")
+    override val viewState = MutableStateFlow("")
 
     fun getRootComponent() = viewModelScope.launch {
         val result = getCoursesRoot()

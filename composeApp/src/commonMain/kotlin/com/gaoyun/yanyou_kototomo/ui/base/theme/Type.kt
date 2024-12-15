@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui.theme
+package com.gaoyun.yanyou_kototomo.ui.base.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable

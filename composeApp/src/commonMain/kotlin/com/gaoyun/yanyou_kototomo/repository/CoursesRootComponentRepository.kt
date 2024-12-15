@@ -8,7 +8,7 @@ import com.gaoyun.yanyou_kototomo.data.persistence.adapters.typeToString
 import com.gaoyun.yanyou_kototomo.data.remote.CourseDeckDTO
 import com.gaoyun.yanyou_kototomo.data.remote.RootStructureDTO
 import com.gaoyun.yanyou_kototomo.network.DecksApi
-import com.gaoyun.yanyou_kototomo.utli.localDateTimeNow
+import com.gaoyun.yanyou_kototomo.util.localDateTimeNow
 
 class CoursesRootComponentRepository(
     private val api: DecksApi,

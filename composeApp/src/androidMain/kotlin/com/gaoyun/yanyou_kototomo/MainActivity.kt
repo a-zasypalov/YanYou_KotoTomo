@@ -5,19 +5,15 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.gaoyun.yanyou_kototomo.ui.theme.AppTheme
-import moe.tlaster.precompose.PreComposeApp
+import androidx.core.view.WindowCompat
+import com.gaoyun.yanyou_kototomo.ui.App
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
-            PreComposeApp {
-                AppTheme {
-                    App()
-                }
-            }
+            App()
         }
     }
 }
