@@ -1,6 +1,6 @@
 package com.gaoyun.yanyou_kototomo.domain
 
-import com.gaoyun.yanyou_kototomo.data.converters.toLocal
+import com.gaoyun.yanyou_kototomo.data.remote.converters.toLocal
 import com.gaoyun.yanyou_kototomo.data.local.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.Deck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId

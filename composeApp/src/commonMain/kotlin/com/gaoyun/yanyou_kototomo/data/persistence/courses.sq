@@ -1,0 +1,48 @@
+import kotlin.String;
+import kotlin.collections.List;
+
+-- Table for storing languages
+CREATE TABLE LanguagesPersisted (
+    id TEXT PRIMARY KEY NOT NULL
+);
+
+-- Table for storing source languages for each learning language
+CREATE TABLE SourceLanguagesPersisted (
+    id TEXT NOT NULL, -- Foreign key for Languages table
+    source_language TEXT NOT NULL,
+    PRIMARY KEY (id, source_language),
+    FOREIGN KEY (id) REFERENCES LanguagesPersisted(id) ON DELETE CASCADE
+);
+
+-- Table for storing courses
+CREATE TABLE CoursesPersisted (
+    id TEXT PRIMARY KEY NOT NULL,
+    source_language_id TEXT NOT NULL,
+    course_name TEXT NOT NULL,
+    required_decks TEXT AS List<String>, -- JSON array of required deck IDs
+    FOREIGN KEY (source_language_id) REFERENCES SourceLanguagesPersisted(source_language) ON DELETE CASCADE
+);
+
+-- Table for storing decks (normal or alphabet)
+CREATE TABLE CourseDecksPersisted (
+    id TEXT PRIMARY KEY NOT NULL,
+    course_id TEXT NOT NULL,
+    name TEXT NOT NULL,
+    type TEXT NOT NULL, -- "normal" or "alphabet"
+    alphabet TEXT, -- Nullable, specific to "alphabet" type
+    FOREIGN KEY (course_id) REFERENCES CoursesPersisted(id) ON DELETE CASCADE
+);
+
+insertLanguage:
+INSERT INTO LanguagesPersisted (id) VALUES (?);
+
+insertSourceLanguage:
+INSERT INTO SourceLanguagesPersisted (id, source_language) VALUES (?, ?);
+
+insertCourse:
+INSERT INTO CoursesPersisted (id, source_language_id, course_name, required_decks)
+VALUES (?, ?, ?, ?);
+
+insertCourseDeck:
+INSERT INTO CourseDecksPersisted (id, course_id, name, type, alphabet)
+VALUES (?, ?, ?, ?, ?);

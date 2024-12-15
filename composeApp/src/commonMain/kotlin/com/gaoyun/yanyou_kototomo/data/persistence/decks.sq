@@ -1,0 +1,36 @@
+import kotlin.String;
+import kotlin.collections.List;
+
+CREATE TABLE DecksPersisted (
+    id TEXT PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE CardsPersisted (
+    id TEXT PRIMARY KEY NOT NULL,
+    deck_id TEXT NOT NULL REFERENCES DecksPersisted(id) ON DELETE CASCADE,
+    character TEXT NOT NULL,
+    transcription TEXT NOT NULL,
+    type TEXT NOT NULL, -- Polymorphic type: "word", "phrase", "kana", or "kanji"
+    translation TEXT, -- Nullable for some card types
+    additional_info TEXT, -- Nullable
+    speech_part TEXT, -- Used for WordCard and KanjiCard
+    words TEXT AS List<String>, -- Comma-separated list for PhraseCard
+    alphabet TEXT, -- Used for KanaCard
+    mirror TEXT, -- Used for KanaCard
+    reading_on TEXT AS List<String>, -- JSON array for KanjiCard
+    reading_kun TEXT AS List<String> -- JSON array for KanjiCard
+);
+
+insertDeck:
+INSERT INTO DecksPersisted (id) VALUES (?);
+
+insertCard:
+INSERT INTO CardsPersisted (
+    id, deck_id, character, transcription, type, translation, additional_info, speech_part, words, alphabet, mirror, reading_on, reading_kun
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+
+getCardsForDeck:
+SELECT * FROM CardsPersisted WHERE deck_id = ?;
+
+getCard:
+SELECT * FROM CardsPersisted WHERE id = ?;

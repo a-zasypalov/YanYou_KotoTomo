@@ -13,6 +13,7 @@ koin = "4.0.0"
 koin-extension = "3.0.2"
 precompose = "1.6.2"
 kotlinDatetime = "0.6.1"
+sqldelight = "1.5.5"
 
 [libraries]
 #Android
@@ -36,6 +37,10 @@ koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx = { module = "io.insert-koin:koin-android-ext", version.ref = "koin-extension" }
 koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 koin-workmanager = { module = "io.insert-koin:koin-androidx-workmanager", version.ref = "koin" }
+# Sqldelight
+sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight" }
+sqldelight-androidDriver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight" }
+sqldelight-nativeDriver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight" }
 # Precompose
 precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
 precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
@@ -48,3 +53,4 @@ composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-mu
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+sqldelight = { id = "com.squareup.sqldelight", version.ref = "sqldelight" }

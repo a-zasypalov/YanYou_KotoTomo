@@ -1,6 +1,6 @@
 package com.gaoyun.yanyou_kototomo.domain
 
-import com.gaoyun.yanyou_kototomo.data.converters.toLocal
+import com.gaoyun.yanyou_kototomo.data.remote.converters.toLocal
 import com.gaoyun.yanyou_kototomo.data.local.RootStructure
 import com.gaoyun.yanyou_kototomo.repository.CoursesRootComponentRepository
 import kotlinx.coroutines.flow.Flow
