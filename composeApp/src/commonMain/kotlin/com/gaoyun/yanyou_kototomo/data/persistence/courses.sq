@@ -30,6 +30,7 @@ CREATE TABLE CourseDecksPersisted (
     id TEXT PRIMARY KEY NOT NULL,
     course_id TEXT NOT NULL,
     name TEXT NOT NULL,
+    version INTEGER NOT NULL,
     type TEXT NOT NULL, -- "normal" or "alphabet"
     alphabet TEXT, -- Nullable, specific to "alphabet" type
     FOREIGN KEY (course_id) REFERENCES CoursesPersisted(id) ON DELETE CASCADE
@@ -46,8 +47,8 @@ INSERT OR REPLACE INTO CoursesPersisted (id, source_language_id, language_id, co
 VALUES (?, ?, ?, ?, ?);
 
 insertCourseDeck:
-INSERT OR REPLACE INTO CourseDecksPersisted (id, course_id, name, type, alphabet)
-VALUES (?, ?, ?, ?, ?);
+INSERT OR REPLACE INTO CourseDecksPersisted (id, course_id, name, version, type, alphabet)
+VALUES (?, ?, ?, ?, ?, ?);
 
 getRootData:
 SELECT
@@ -59,7 +60,8 @@ SELECT
     cdp.id AS deck_id,
     cdp.name AS deck_name,
     cdp.type AS deck_type,
-    cdp.alphabet AS alphabet
+    cdp.alphabet AS alphabet,
+    cdp.version AS version
 FROM LanguagesPersisted lp
 LEFT JOIN SourceLanguagesPersisted slp ON lp.id = slp.id
 LEFT JOIN CoursesPersisted cp ON slp.source_language = cp.source_language_id

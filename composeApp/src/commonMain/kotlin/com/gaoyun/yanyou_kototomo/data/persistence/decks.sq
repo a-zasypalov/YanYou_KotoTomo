@@ -7,6 +7,7 @@ CREATE TABLE DecksPersisted (
 
 CREATE TABLE CardsPersisted (
     id TEXT PRIMARY KEY NOT NULL,
+    version INTEGER NOT NULL,
     deck_id TEXT NOT NULL REFERENCES DecksPersisted(id) ON DELETE CASCADE,
     character TEXT NOT NULL,
     transcription TEXT NOT NULL,
@@ -26,8 +27,8 @@ INSERT OR REPLACE INTO DecksPersisted (id) VALUES (?);
 
 insertCard:
 INSERT OR REPLACE INTO CardsPersisted (
-    id, deck_id, character, transcription, type, translation, additional_info, speech_part, words, alphabet, mirror, reading_on, reading_kun
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+    id, version, deck_id, character, transcription, type, translation, additional_info, speech_part, words, alphabet, mirror, reading_on, reading_kun
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 
 getCardsForDeck:
 SELECT * FROM CardsPersisted WHERE deck_id = ?;

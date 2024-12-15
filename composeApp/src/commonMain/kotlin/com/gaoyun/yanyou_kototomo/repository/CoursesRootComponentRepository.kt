@@ -1,20 +1,32 @@
 package com.gaoyun.yanyou_kototomo.repository
 
+import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
+import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.data.persistence.adapters.mapToRootStructureDTO
 import com.gaoyun.yanyou_kototomo.data.persistence.adapters.typeToString
 import com.gaoyun.yanyou_kototomo.data.remote.CourseDeckDTO
 import com.gaoyun.yanyou_kototomo.data.remote.RootStructureDTO
 import com.gaoyun.yanyou_kototomo.network.DecksApi
+import com.gaoyun.yanyou_kototomo.utli.localDateTimeNow
 
 class CoursesRootComponentRepository(
     private val api: DecksApi,
-    private val db: YanYouKotoTomoDatabase
+    private val db: YanYouKotoTomoDatabase,
+    private val prefs: Preferences,
+    private val deckUpdateRepository: DeckUpdateRepository
 ) {
 
     suspend fun getCoursesRoot(): RootStructureDTO {
-        val cache = getCoursesFromCache()
-        return cache ?: api.getCoursesRootComponent().also { cacheCourses(it) }
+        val shouldRefresh = deckUpdateRepository.shouldRefreshCourses()
+        val cache = if (!shouldRefresh) getCoursesFromCache() else null
+        return cache ?: api.getCoursesRootComponent().also {
+            prefs.setString(
+                PreferencesKeys.UPDATES_COURSES_REFRESHED,
+                localDateTimeNow().toString()
+            )
+            cacheCourses(it)
+        }
     }
 
     private fun getCoursesFromCache(): RootStructureDTO? = runCatching {
@@ -47,9 +59,10 @@ class CoursesRootComponentRepository(
                         db.coursesQueries.insertCourseDeck(
                             id = deck.id,
                             name = deck.name,
+                            version = deck.version.toLong(),
                             course_id = course.id,
                             type = deck.typeToString(),
-                            alphabet = (deck as? CourseDeckDTO.Alphabet)?.alphabet
+                            alphabet = (deck as? CourseDeckDTO.Alphabet)?.alphabet,
                         )
                     }
                 }

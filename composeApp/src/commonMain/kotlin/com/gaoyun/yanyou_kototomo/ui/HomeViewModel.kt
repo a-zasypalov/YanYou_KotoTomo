@@ -30,6 +30,7 @@ class HomeViewModel(
             deck = CourseDeck.Normal(
                 id = DeckId("hsk1_1_en"),
                 name = "HSK1 Chapter 1",
+                version = 1
             ),
             requiredDecks = listOf()
         )
@@ -43,7 +44,8 @@ class HomeViewModel(
             deck = CourseDeck.Alphabet(
                 id = DeckId("kana_en"),
                 name = "Hiragana",
-                alphabet = AlphabetType.Hiragana
+                alphabet = AlphabetType.Hiragana,
+                version = 1,
             ),
             requiredDecks = listOf()
         )
@@ -57,6 +59,7 @@ class HomeViewModel(
             deck = CourseDeck.Normal(
                 id = DeckId("jlpt5_1_en"),
                 name = "JLPT 5 Chapter 1",
+                version = 1,
             ),
             requiredDecks = listOf(DeckId("kana_en"))
         )
