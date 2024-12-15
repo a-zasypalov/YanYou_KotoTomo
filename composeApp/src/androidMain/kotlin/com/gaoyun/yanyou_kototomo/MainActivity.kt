@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.gaoyun.yanyou_kototomo.ui.theme.AppTheme
 import moe.tlaster.precompose.PreComposeApp
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +14,9 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             PreComposeApp {
-                App()
+                AppTheme {
+                    App()
+                }
             }
         }
     }
