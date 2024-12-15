@@ -36,7 +36,7 @@ val networkModule = module {
 
 val repositoryModule = module {
     single { CoursesRootComponentRepository(get(), get()) }
-    single { DeckRepository(get()) }
+    single { DeckRepository(get(), get()) }
 }
 
 val useCaseModule = module {

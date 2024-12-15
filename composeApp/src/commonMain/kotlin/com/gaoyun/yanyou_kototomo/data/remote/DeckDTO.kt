@@ -13,6 +13,13 @@ data class DeckDTO(
 
 @Serializable
 sealed interface CardDTO {
+    companion object {
+        const val CARD_TYPE_WORD = "word"
+        const val CARD_TYPE_PHRASE = "phrase"
+        const val CARD_TYPE_KANA = "kana"
+        const val CARD_TYPE_KANJI = "kanji"
+    }
+
     @SerialName("id")
     val id: String
 
@@ -23,7 +30,7 @@ sealed interface CardDTO {
     val transcription: String
 
     @Serializable
-    @SerialName("word")
+    @SerialName(CARD_TYPE_WORD)
     data class WordCardDTO(
         @SerialName("id")
         override val id: String,
@@ -40,7 +47,7 @@ sealed interface CardDTO {
     ) : CardDTO
 
     @Serializable
-    @SerialName("phrase")
+    @SerialName(CARD_TYPE_PHRASE)
     data class PhraseCardDTO(
         @SerialName("id")
         override val id: String,
@@ -57,7 +64,7 @@ sealed interface CardDTO {
     ) : CardDTO
 
     @Serializable
-    @SerialName("kana")
+    @SerialName(CARD_TYPE_KANA)
     data class KanaCardDTO(
         @SerialName("id")
         override val id: String,
@@ -72,7 +79,7 @@ sealed interface CardDTO {
     ) : CardDTO
 
     @Serializable
-    @SerialName("kanji")
+    @SerialName(CARD_TYPE_KANJI)
     data class KanjiCardDTO(
         @SerialName("id")
         override val id: String,

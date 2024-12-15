@@ -34,3 +34,7 @@ SELECT * FROM CardsPersisted WHERE deck_id = ?;
 
 getCard:
 SELECT * FROM CardsPersisted WHERE id = ?;
+
+clearDeckCache:
+DELETE FROM DecksPersisted
+WHERE id = :deck_id;
