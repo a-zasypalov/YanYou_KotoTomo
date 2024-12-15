@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.data.converters
+package com.gaoyun.yanyou_kototomo.data.remote.converters
 
 import com.gaoyun.yanyou_kototomo.data.local.AlphabetType
 

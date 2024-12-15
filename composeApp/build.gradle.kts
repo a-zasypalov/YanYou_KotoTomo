@@ -7,7 +7,18 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.sqldelight)
     alias(libs.plugins.kotlin.serialization)
+}
+
+sqldelight {
+    database("YanYouKotoTomoDatabase") {
+        packageName = "com.gaoyun.yanyou_kototomo.data.persistence"
+        sourceFolders = listOf("kotlin")
+        dialect = "sqlite:3.24"
+        version = 1
+    }
+    linkSqlite = true
 }
 
 kotlin {
@@ -24,18 +35,27 @@ kotlin {
         }
     }
 
+    targets.all {
+        compilations.all {
+            compilerOptions.configure {
+                freeCompilerArgs.add("-Xexpect-actual-classes")
+            }
+        }
+    }
+
     jvmToolchain(17)
 
     sourceSets {
-
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
             implementation(libs.koin.androidx)
+            implementation(libs.sqldelight.androidDriver)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.ios)
+            implementation(libs.sqldelight.nativeDriver)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -51,6 +71,7 @@ kotlin {
             implementation(libs.kotlin.serialization.core)
             implementation(libs.kotlin.datetime)
             implementation(libs.koin.core)
+            implementation(libs.sqldelight.runtime)
 
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.serialization)

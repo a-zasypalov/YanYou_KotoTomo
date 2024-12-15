@@ -1,5 +1,7 @@
 package com.gaoyun.yanyou_kototomo
 
+import com.gaoyun.yanyou_kototomo.data.persistence.DriverFactory
+import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.network.DecksApi
@@ -7,13 +9,16 @@ import com.gaoyun.yanyou_kototomo.network.PlatformHttpClient
 import com.gaoyun.yanyou_kototomo.repository.CoursesRootComponentRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckRepository
 import com.gaoyun.yanyou_kototomo.ui.HomeViewModel
+import com.gaoyun.yanyoukototomo.data.persistence.CardsPersisted
+import com.gaoyun.yanyoukototomo.data.persistence.CoursesPersisted
+import com.squareup.sqldelight.ColumnAdapter
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
     appDeclaration()
-    modules(networkModule, repositoryModule, useCaseModule, viewModelModule)
+    modules(networkModule, repositoryModule, useCaseModule, viewModelModule, dbModule)
 }
 
 val networkModule = module {
@@ -22,7 +27,7 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    single { CoursesRootComponentRepository(get()) }
+    single { CoursesRootComponentRepository(get(), get()) }
     single { DeckRepository(get()) }
 }
 
@@ -33,4 +38,29 @@ val useCaseModule = module {
 
 val viewModelModule = module {
     factory { HomeViewModel(get(), get()) }
+}
+
+val dbModule = module {
+    single { get<DriverFactory>().createDriver() }
+    single {
+        object : ColumnAdapter<List<String>, String> {
+            override fun decode(databaseValue: String): List<String> =
+                if (databaseValue.isEmpty()) emptyList() else databaseValue.split(",")
+
+            override fun encode(value: List<String>): String = value.joinToString(",")
+        }
+    }
+    single {
+        YanYouKotoTomoDatabase(
+            driver = get(),
+            CardsPersistedAdapter = CardsPersisted.Adapter(
+                wordsAdapter = get(),
+                reading_onAdapter = get(),
+                reading_kunAdapter = get()
+            ),
+            CoursesPersistedAdapter = CoursesPersisted.Adapter(
+                required_decksAdapter = get()
+            )
+        )
+    }
 }
