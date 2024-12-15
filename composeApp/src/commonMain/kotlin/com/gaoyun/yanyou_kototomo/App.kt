@@ -3,7 +3,6 @@ package com.gaoyun.yanyou_kototomo
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -15,25 +14,23 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
-        val viewModel = koinViewModel(vmClass = HomeViewModel::class)
+    val viewModel = koinViewModel(vmClass = HomeViewModel::class)
 
-        val state = viewModel.viewState.collectAsState()
+    val state = viewModel.viewState.collectAsState()
 
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            Button(onClick = viewModel::getRootComponent) {
-                Text("Root")
-            }
-            Button(onClick = viewModel::getDeckCn) {
-                Text("Deck Cn")
-            }
-            Button(onClick = viewModel::getDeckKana) {
-                Text("Deck Kana")
-            }
-            Button(onClick = viewModel::getDeckJlpt) {
-                Text("Deck JLPT")
-            }
-            Text("Root: ${state.value}")
+    Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+        Button(onClick = viewModel::getRootComponent) {
+            Text("Root")
         }
+        Button(onClick = viewModel::getDeckCn) {
+            Text("Deck Cn")
+        }
+        Button(onClick = viewModel::getDeckKana) {
+            Text("Deck Kana")
+        }
+        Button(onClick = viewModel::getDeckJlpt) {
+            Text("Deck JLPT")
+        }
+        Text("Root: ${state.value}")
     }
 }
