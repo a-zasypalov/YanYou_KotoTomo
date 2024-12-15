@@ -18,9 +18,11 @@ CREATE TABLE SourceLanguagesPersisted (
 CREATE TABLE CoursesPersisted (
     id TEXT PRIMARY KEY NOT NULL,
     source_language_id TEXT NOT NULL,
+    language_id TEXT NOT NULL,
     course_name TEXT NOT NULL,
     required_decks TEXT AS List<String>, -- JSON array of required deck IDs
-    FOREIGN KEY (source_language_id) REFERENCES SourceLanguagesPersisted(source_language) ON DELETE CASCADE
+    FOREIGN KEY (source_language_id) REFERENCES SourceLanguagesPersisted(source_language) ON DELETE CASCADE,
+    FOREIGN KEY (language_id) REFERENCES SourceLanguagesPersisted(id) ON DELETE CASCADE
 );
 
 -- Table for storing decks (normal or alphabet)
@@ -34,15 +36,38 @@ CREATE TABLE CourseDecksPersisted (
 );
 
 insertLanguage:
-INSERT INTO LanguagesPersisted (id) VALUES (?);
+INSERT OR REPLACE INTO LanguagesPersisted (id) VALUES (?);
 
 insertSourceLanguage:
-INSERT INTO SourceLanguagesPersisted (id, source_language) VALUES (?, ?);
+INSERT OR REPLACE INTO SourceLanguagesPersisted (id, source_language) VALUES (?, ?);
 
 insertCourse:
-INSERT INTO CoursesPersisted (id, source_language_id, course_name, required_decks)
-VALUES (?, ?, ?, ?);
+INSERT OR REPLACE INTO CoursesPersisted (id, source_language_id, language_id, course_name, required_decks)
+VALUES (?, ?, ?, ?, ?);
 
 insertCourseDeck:
-INSERT INTO CourseDecksPersisted (id, course_id, name, type, alphabet)
+INSERT OR REPLACE INTO CourseDecksPersisted (id, course_id, name, type, alphabet)
 VALUES (?, ?, ?, ?, ?);
+
+getRootData:
+SELECT
+    lp.id AS language_id,
+    slp.source_language AS source_language,
+    cp.id AS course_id,
+    cp.course_name AS course_name,
+    cp.required_decks AS required_decks,
+    cdp.id AS deck_id,
+    cdp.name AS deck_name,
+    cdp.type AS deck_type,
+    cdp.alphabet AS alphabet
+FROM LanguagesPersisted lp
+LEFT JOIN SourceLanguagesPersisted slp ON lp.id = slp.id
+LEFT JOIN CoursesPersisted cp ON slp.source_language = cp.source_language_id
+LEFT JOIN CourseDecksPersisted cdp ON cp.id = cdp.course_id
+WHERE slp.id = cp.language_id;
+
+clearCache:
+DELETE FROM LanguagesPersisted;
+DELETE FROM SourceLanguagesPersisted;
+DELETE FROM CoursesPersisted;
+DELETE FROM CourseDecksPersisted;
