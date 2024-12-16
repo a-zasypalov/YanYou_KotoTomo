@@ -6,7 +6,11 @@
       "version": 1
     },
     {
-      "deck_id": "kana_en",
+      "deck_id": "hiragana_en",
+      "version": 1
+    },
+    {
+      "deck_id": "katakana_en",
       "version": 1
     },
     {

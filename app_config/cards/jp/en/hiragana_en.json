@@ -1,5 +1,5 @@
 {
-  "deck_id": "kana_en",
+  "deck_id": "hiragana_en",
   "version": 1,
   "cards": [
     {
@@ -12,11 +12,11 @@
     },
     {
       "type": "kana",
-      "alphabet": "katakana",
-      "id": "katakana1",
-      "character": "ア",
-      "transcription": "a",
-      "mirror": "hiragana1"
+      "alphabet": "hiragana",
+      "id": "hiragana2",
+      "character": "お",
+      "transcription": "o",
+      "mirror": "katakana2"
     }
   ]
 }

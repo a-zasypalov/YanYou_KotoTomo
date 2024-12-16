@@ -1,0 +1,22 @@
+{
+  "deck_id": "katakana_en",
+  "version": 1,
+  "cards": [
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana1",
+      "character": "ア",
+      "transcription": "a",
+      "mirror": "hiragana1"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana2",
+      "character": "オ",
+      "transcription": "o",
+      "mirror": "hiragana2"
+    }
+  ]
+}
