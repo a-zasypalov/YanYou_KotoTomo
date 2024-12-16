@@ -17,10 +17,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.ui.AppRoutes.COURSES_ROUTE
+import com.gaoyun.yanyou_kototomo.ui.AppRoutes.COURSE_DECKS_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.AppRoutes.HOME_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.NavigatorAction
 import com.gaoyun.yanyou_kototomo.ui.base.theme.AppTheme
+import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksScreen
 import com.gaoyun.yanyou_kototomo.ui.courses.CoursesScreen
 import com.gaoyun.yanyou_kototomo.ui.home.HomeScreen
 import com.gaoyun.yanyou_kototomo.util.Platform
@@ -31,6 +34,7 @@ import moe.tlaster.precompose.koin.koinViewModel
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.PopUpTo
 import moe.tlaster.precompose.navigation.SwipeProperties
+import moe.tlaster.precompose.navigation.path
 import moe.tlaster.precompose.navigation.rememberNavigator
 import moe.tlaster.precompose.navigation.transition.NavTransition
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -116,7 +120,15 @@ fun App() {
                         HomeScreen(viewModel::navigate)
                     }
                     scene(COURSES_ROUTE) {
-                        CoursesScreen()
+                        CoursesScreen(viewModel::navigate)
+                    }
+                    scene(COURSE_DECKS_ROUTE) {
+                        it.path<String>(AppRoutes.Arg.COURSE_ID)?.let { courseId ->
+                            CourseDecksScreen(
+                                courseId = CourseId(courseId),
+                                navigate = viewModel::navigate
+                            )
+                        }
                     }
                 }
             }

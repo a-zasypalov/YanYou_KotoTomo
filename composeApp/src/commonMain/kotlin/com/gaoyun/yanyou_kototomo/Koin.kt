@@ -13,6 +13,8 @@ import com.gaoyun.yanyou_kototomo.repository.DeckRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckUpdateRepository
 import com.gaoyun.yanyou_kototomo.ui.AppViewModel
 import com.gaoyun.yanyou_kototomo.ui.base.AppNavigator
+import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksViewModel
+import com.gaoyun.yanyou_kototomo.ui.courses.CoursesViewModel
 import com.gaoyun.yanyou_kototomo.ui.home.HomeViewModel
 import com.gaoyun.yanyoukototomo.data.persistence.CardsPersisted
 import com.gaoyun.yanyoukototomo.data.persistence.CoursesPersisted
@@ -53,6 +55,8 @@ val viewModelModule = module {
     single { AppNavigator() }
     factory { AppViewModel(get()) }
     factory { HomeViewModel(get(), get()) }
+    factory { CoursesViewModel(get()) }
+    factory { CourseDecksViewModel(get()) }
 }
 
 val dbModule = module {

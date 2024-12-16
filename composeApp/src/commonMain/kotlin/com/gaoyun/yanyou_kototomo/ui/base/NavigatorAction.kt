@@ -1,7 +1,7 @@
 package com.gaoyun.yanyou_kototomo.ui.base
 
+import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.ui.AppRoutes
-import com.gaoyun.yanyou_kototomo.ui.home.ToCourses
 import org.koin.core.component.KoinComponent
 
 sealed class NavigatorAction {
@@ -15,7 +15,11 @@ object BackNavigationEffect : NavigationSideEffect
 
 class AppNavigator() : KoinComponent {
     fun navigate(call: NavigationSideEffect): NavigatorAction? = when (call) {
-        ToCourses -> NavigatorAction.NavigateTo(AppRoutes.COURSES_ROUTE)
+        is ToCourses -> NavigatorAction.NavigateTo(AppRoutes.COURSES_ROUTE)
+        is ToCourse -> NavigatorAction.NavigateTo(AppRoutes.COURSE_DECKS_ROUTE(call.id))
         else -> null
     }
 }
+
+object ToCourses : NavigationSideEffect
+class ToCourse(val id: CourseId): NavigationSideEffect
