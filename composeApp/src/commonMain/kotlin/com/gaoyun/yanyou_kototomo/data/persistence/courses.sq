@@ -68,6 +68,20 @@ LEFT JOIN CoursesPersisted cp ON slp.source_language = cp.source_language_id
 LEFT JOIN CourseDecksPersisted cdp ON cp.id = cdp.course_id
 WHERE slp.id = cp.language_id;
 
+getCourse:
+SELECT
+    CoursesPersisted.id AS course_id,
+    CoursesPersisted.course_name,
+    CoursesPersisted.required_decks,
+    CourseDecksPersisted.id AS deck_id,
+    CourseDecksPersisted.name AS deck_name,
+    CourseDecksPersisted.version AS deck_version,
+    CourseDecksPersisted.type AS deck_type,
+    CourseDecksPersisted.alphabet AS deck_alphabet
+FROM CoursesPersisted
+LEFT JOIN CourseDecksPersisted ON CoursesPersisted.id = CourseDecksPersisted.course_id
+WHERE CoursesPersisted.id = :courseId;
+
 clearCache:
 DELETE FROM LanguagesPersisted;
 DELETE FROM SourceLanguagesPersisted;

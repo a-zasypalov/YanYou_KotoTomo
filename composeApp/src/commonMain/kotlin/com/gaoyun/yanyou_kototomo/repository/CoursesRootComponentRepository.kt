@@ -1,10 +1,13 @@
 package com.gaoyun.yanyou_kototomo.repository
 
+import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
 import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.data.persistence.adapters.mapToRootStructureDTO
+import com.gaoyun.yanyou_kototomo.data.persistence.adapters.toDTO
 import com.gaoyun.yanyou_kototomo.data.persistence.adapters.typeToString
+import com.gaoyun.yanyou_kototomo.data.remote.CourseDTO
 import com.gaoyun.yanyou_kototomo.data.remote.CourseDeckDTO
 import com.gaoyun.yanyou_kototomo.data.remote.RootStructureDTO
 import com.gaoyun.yanyou_kototomo.network.DecksApi
@@ -20,7 +23,19 @@ class CoursesRootComponentRepository(
     suspend fun getCoursesRoot(): RootStructureDTO {
         val shouldRefresh = deckUpdateRepository.shouldRefreshCourses()
         val cache = if (!shouldRefresh) getCoursesFromCache() else null
-        return cache ?: api.getCoursesRootComponent().also {
+        return cache ?: fetchCoursesFromApi()
+    }
+
+    suspend fun getCourse(courseId: CourseId): CourseDTO {
+        val shouldRefresh = deckUpdateRepository.shouldRefreshCourses()
+        val cache = if (!shouldRefresh) {
+            db.coursesQueries.getCourse(courseId.identifier).executeAsList().toDTO()
+        } else null
+        return cache ?: fetchCoursesFromApi().let { getCourse(courseId) }
+    }
+
+    private suspend fun fetchCoursesFromApi(): RootStructureDTO {
+        return api.getCoursesRootComponent().also {
             prefs.setString(
                 PreferencesKeys.UPDATES_COURSES_REFRESHED,
                 localDateTimeNow().toString()

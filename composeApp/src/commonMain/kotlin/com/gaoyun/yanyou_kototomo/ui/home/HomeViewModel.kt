@@ -4,6 +4,7 @@ import com.gaoyun.yanyou_kototomo.data.local.AlphabetType
 import com.gaoyun.yanyou_kototomo.data.local.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
+import com.gaoyun.yanyou_kototomo.data.local.RootStructure
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
@@ -16,11 +17,11 @@ class HomeViewModel(
     private val getDeck: GetDeck
 ) : BaseViewModel() {
 
-    override val viewState = MutableStateFlow("")
+    override val viewState = MutableStateFlow<RootStructure?>(null)
 
     fun getRootComponent() = viewModelScope.launch {
-        val result = getCoursesRoot()
-        viewState.value = result.toString()
+        val result = getCoursesRoot.getCourses()
+        viewState.value = result
     }
 
     fun getDeckCn() = viewModelScope.launch {
@@ -34,7 +35,7 @@ class HomeViewModel(
             ),
             requiredDecks = listOf()
         )
-        viewState.value = result.toString()
+//        viewState.value = result.toString()
     }
 
     fun getDeckKana() = viewModelScope.launch {
@@ -49,7 +50,7 @@ class HomeViewModel(
             ),
             requiredDecks = listOf()
         )
-        viewState.value = result.toString()
+//        viewState.value = result.toString()
     }
 
     fun getDeckJlpt() = viewModelScope.launch {
@@ -63,7 +64,7 @@ class HomeViewModel(
             ),
             requiredDecks = listOf(DeckId("kana_en"))
         )
-        viewState.value = result.toString()
+//        viewState.value = result.toString()
     }
 
 }
