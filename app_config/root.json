@@ -8,12 +8,12 @@
           "courses": [
             {
               "id": "hsk1_en",
-              "course_name": "Course name",
+              "course_name": "HSK1",
               "decks": [
                 {
                   "type": "normal",
                   "id": "hsk1_1_en",
-                  "name": "Deck name",
+                  "name": "HSK1 Chapter 1",
                   "version": 1
                 }
               ]
@@ -30,7 +30,7 @@
           "courses": [
             {
               "id": "kana_en",
-              "course_name": "Course name",
+              "course_name": "Kana",
               "required_decks": [
                 "hiragana_en",
                 "katakana_en"
@@ -40,21 +40,21 @@
                   "type": "alphabet",
                   "id": "hiragana_en",
                   "alphabet": "hiragana",
-                  "name": "Deck name",
+                  "name": "Hiragana",
                   "version": 1
                 },
                 {
                   "type": "alphabet",
                   "id": "katakana_en",
                   "alphabet": "katakana",
-                  "name": "Deck name",
+                  "name": "Katakana",
                   "version": 1
                 }
               ]
             },
             {
               "id": "jlpt5_en",
-              "course_name": "Course name",
+              "course_name": "JLPT5",
               "required_decks": [
                 "hiragana_en",
                 "katakana_en"
@@ -63,7 +63,7 @@
                 {
                   "type": "normal",
                   "id": "jlpt5_1_en",
-                  "name": "Deck name",
+                  "name": "JLPT5 Chapter 1",
                   "version": 1
                 }
               ]

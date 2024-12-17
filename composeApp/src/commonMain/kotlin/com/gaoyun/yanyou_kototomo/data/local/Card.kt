@@ -15,7 +15,7 @@ sealed interface Card {
         override val transcription: String,
         val translation: String,
         val additionalInfo: String?,
-        val words: List<WordCard>
+        val words: List<WordCard>,
     ) : Card
 
     data class WordCard(
@@ -24,7 +24,7 @@ sealed interface Card {
         override val transcription: String,
         val translation: String,
         val additionalInfo: String?,
-        val speechPart: String
+        val speechPart: String,
     ) : Card
 
     data class KanaCard(
@@ -32,11 +32,11 @@ sealed interface Card {
         override val front: String,
         override val transcription: String,
         val alphabet: AlphabetType,
-        val mirror: Mirror
+        val mirror: Mirror,
     ) : Card {
         data class Mirror(
             val id: AlphabetCardId,
-            val front: String
+            val front: String,
         )
     }
 
@@ -45,13 +45,13 @@ sealed interface Card {
         override val front: String,
         override val transcription: String,
         val reading: Reading,
-        val translation: String?,
+        val translation: String,
         val additionalInfo: String?,
-        val speechPart: String
+        val speechPart: String,
     ) : Card {
         data class Reading(
             val on: List<KanaCard>,
-            val kun: List<KanaCard>
+            val kun: List<KanaCard>,
         )
     }
 }
