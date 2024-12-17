@@ -17,17 +17,17 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.RootStructure
+import com.gaoyun.yanyou_kototomo.ui.CourseScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.base.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.NavigationSideEffect
-import com.gaoyun.yanyou_kototomo.ui.base.PreviewBase
+import com.gaoyun.yanyou_kototomo.ui.base.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.ToCourse
 import moe.tlaster.precompose.koin.koinViewModel
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun CoursesScreen(
-    navigate: (NavigationSideEffect) -> Unit
+    navigate: (NavigationSideEffect) -> Unit,
 ) {
     val viewModel = koinViewModel(vmClass = CoursesViewModel::class)
 
@@ -35,14 +35,19 @@ fun CoursesScreen(
         viewModel.getRootComponent()
     }
 
-    CoursesScreenContent(
-        content = viewModel.viewState.collectAsState().value,
-        toCourse = { navigate(ToCourse(it)) }
-    )
+    SurfaceScaffold(backHandler = { navigate(BackNavigationEffect) }) {
+        CoursesScreenContent(
+            content = viewModel.viewState.collectAsState().value,
+            toCourse = { args -> navigate(ToCourse(args)) }
+        )
+    }
 }
 
 @Composable
-private fun CoursesScreenContent(content: RootStructure?, toCourse: (CourseId) -> Unit) {
+private fun CoursesScreenContent(
+    content: RootStructure?,
+    toCourse: (CourseScreenArgs) -> Unit,
+) {
     LazyColumn(Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
         item {
             Text(
@@ -60,7 +65,7 @@ private fun CoursesScreenContent(content: RootStructure?, toCourse: (CourseId) -
             language.sourceLanguages.forEach { sourceLanguage ->
                 item {
                     Text(
-                        text = sourceLanguage.sourceLanguage.identifier,
+                        text = sourceLanguage.id.identifier,
                         style = MaterialTheme.typography.titleLarge
                     )
                 }
@@ -69,7 +74,15 @@ private fun CoursesScreenContent(content: RootStructure?, toCourse: (CourseId) -
                         ElevatedCard(
                             modifier = Modifier.fillMaxWidth()
                                 .padding(bottom = 16.dp)
-                                .clickable { toCourse(course.id) },
+                                .clickable {
+                                    toCourse(
+                                        CourseScreenArgs(
+                                            learningLanguageId = language.id,
+                                            sourceLanguageId = sourceLanguage.id,
+                                            courseId = course.id
+                                        )
+                                    )
+                                },
                             elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp)
                         ) {
                             Text(
@@ -93,13 +106,5 @@ private fun CoursesScreenContent(content: RootStructure?, toCourse: (CourseId) -
         } ?: item {
             CircularProgressIndicator()
         }
-    }
-}
-
-@Preview
-@Composable
-fun CoursesScreenContentPreview() {
-    PreviewBase {
-        CoursesScreenContent(null, {})
     }
 }

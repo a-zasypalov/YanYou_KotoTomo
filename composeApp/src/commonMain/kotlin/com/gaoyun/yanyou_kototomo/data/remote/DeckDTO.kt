@@ -10,7 +10,7 @@ data class DeckDTO(
     @SerialName("version")
     val version: Int,
     @SerialName("cards")
-    val cards: List<CardDTO>
+    val cards: List<CardDTO>,
 )
 
 @Serializable
@@ -45,7 +45,7 @@ sealed interface CardDTO {
         @SerialName("additional_info")
         val additionalInfo: String?,
         @SerialName("speech_part")
-        val speechPart: String
+        val speechPart: String,
     ) : CardDTO
 
     @Serializable
@@ -62,7 +62,7 @@ sealed interface CardDTO {
         @SerialName("additional_info")
         val additionalInfo: String?,
         @SerialName("words")
-        val words: List<String>
+        val words: List<String>,
     ) : CardDTO
 
     @Serializable
@@ -77,7 +77,7 @@ sealed interface CardDTO {
         @SerialName("alphabet")
         val alphabet: String,
         @SerialName("mirror")
-        val mirror: String
+        val mirror: String,
     ) : CardDTO
 
     @Serializable
@@ -92,11 +92,11 @@ sealed interface CardDTO {
         @SerialName("reading")
         val reading: ReadingDTO,
         @SerialName("translation")
-        val translation: String?,
+        val translation: String,
         @SerialName("additional_info")
         val additionalInfo: String?,
         @SerialName("speech_part")
-        val speechPart: String
+        val speechPart: String,
     ) : CardDTO {
 
         @Serializable
@@ -104,7 +104,7 @@ sealed interface CardDTO {
             @SerialName("on")
             val on: List<String>,
             @SerialName("kun")
-            val kun: List<String>
+            val kun: List<String>,
         )
     }
 }

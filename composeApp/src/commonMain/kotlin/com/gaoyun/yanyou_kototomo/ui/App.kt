@@ -17,14 +17,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.ui.AppRoutes.COURSES_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.AppRoutes.COURSE_DECKS_ROUTE
+import com.gaoyun.yanyou_kototomo.ui.AppRoutes.DECK_OVERVIEW_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.AppRoutes.HOME_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.NavigatorAction
 import com.gaoyun.yanyou_kototomo.ui.base.theme.AppTheme
 import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksScreen
 import com.gaoyun.yanyou_kototomo.ui.courses.CoursesScreen
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewScreen
 import com.gaoyun.yanyou_kototomo.ui.home.HomeScreen
 import com.gaoyun.yanyou_kototomo.util.Platform
 import com.gaoyun.yanyou_kototomo.util.PlatformNames
@@ -34,7 +35,6 @@ import moe.tlaster.precompose.koin.koinViewModel
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.PopUpTo
 import moe.tlaster.precompose.navigation.SwipeProperties
-import moe.tlaster.precompose.navigation.path
 import moe.tlaster.precompose.navigation.rememberNavigator
 import moe.tlaster.precompose.navigation.transition.NavTransition
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -79,42 +79,40 @@ fun App() {
                             velocityThreshold = { 0.dp.toPx() }
                         )
                     } else null,
-                    navTransition = if (Platform.name == PlatformNames.IOS) {
-                        remember {
-                            NavTransition(
-                                createTransition = fadeIn() + slideInHorizontally(
-                                    animationSpec = spring(
-                                        stiffness = Spring.StiffnessMediumLow,
-                                        visibilityThreshold = IntOffset.VisibilityThreshold
-                                    ),
-                                    initialOffsetX = { it }
+                    navTransition = remember {
+                        NavTransition(
+                            createTransition = fadeIn() + slideInHorizontally(
+                                animationSpec = spring(
+                                    stiffness = Spring.StiffnessMediumLow,
+                                    visibilityThreshold = IntOffset.VisibilityThreshold
                                 ),
-                                destroyTransition = fadeOut(targetAlpha = 0.5f) + slideOutHorizontally(
-                                    animationSpec = spring(
-                                        stiffness = Spring.StiffnessMediumLow,
-                                        visibilityThreshold = IntOffset.VisibilityThreshold
-                                    ),
-                                    targetOffsetX = { it }
+                                initialOffsetX = { it }
+                            ),
+                            destroyTransition = fadeOut(targetAlpha = 0f) + slideOutHorizontally(
+                                animationSpec = spring(
+                                    stiffness = Spring.StiffnessMediumLow,
+                                    visibilityThreshold = IntOffset.VisibilityThreshold
                                 ),
-                                pauseTransition = fadeOut(targetAlpha = 0.5f) + slideOutHorizontally(
-                                    animationSpec = spring(
-                                        stiffness = Spring.StiffnessMediumLow,
-                                        visibilityThreshold = IntOffset.VisibilityThreshold
-                                    ),
-                                    targetOffsetX = { -it / 2 }
+                                targetOffsetX = { it }
+                            ),
+                            pauseTransition = fadeOut(targetAlpha = 0f) + slideOutHorizontally(
+                                animationSpec = spring(
+                                    stiffness = Spring.StiffnessMediumLow,
+                                    visibilityThreshold = IntOffset.VisibilityThreshold
                                 ),
-                                resumeTransition = fadeIn() + slideInHorizontally(
-                                    animationSpec = spring(
+                                targetOffsetX = { -it / 2 }
+                            ),
+                            resumeTransition = fadeIn() + slideInHorizontally(
+                                animationSpec = spring(
 
-                                        stiffness = Spring.StiffnessMediumLow,
-                                        visibilityThreshold = IntOffset.VisibilityThreshold
-                                    ),
-                                    initialOffsetX = { -it / 2 }
+                                    stiffness = Spring.StiffnessMediumLow,
+                                    visibilityThreshold = IntOffset.VisibilityThreshold
                                 ),
-                                exitTargetContentZIndex = 1f
-                            )
-                        }
-                    } else NavTransition()
+                                initialOffsetX = { -it / 2 }
+                            ),
+                            exitTargetContentZIndex = 1f
+                        )
+                    }
                 ) {
                     scene(HOME_ROUTE) {
                         HomeScreen(viewModel::navigate)
@@ -123,11 +121,13 @@ fun App() {
                         CoursesScreen(viewModel::navigate)
                     }
                     scene(COURSE_DECKS_ROUTE) {
-                        it.path<String>(AppRoutes.Arg.COURSE_ID)?.let { courseId ->
-                            CourseDecksScreen(
-                                courseId = CourseId(courseId),
-                                navigate = viewModel::navigate
-                            )
+                        it.courseScreenArgs()?.let { safeArgs ->
+                            CourseDecksScreen(args = safeArgs, navigate = viewModel::navigate)
+                        }
+                    }
+                    scene(DECK_OVERVIEW_ROUTE) {
+                        it.deckOverviewScreenArgs()?.let { safeArgs ->
+                            DeckOverviewScreen(args = safeArgs, navigate = viewModel::navigate)
                         }
                     }
                 }

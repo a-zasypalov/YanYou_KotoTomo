@@ -44,7 +44,7 @@ fun List<CardsPersisted>.convertCardsToDTO(deckId: String): DeckDTO {
                     character = card.character,
                     transcription = card.transcription,
                     reading = reading,
-                    translation = card.translation,
+                    translation = card.translation ?: error("Translation must be not null"),
                     additionalInfo = card.additional_info,
                     speechPart = card.speech_part ?: error("Speech part must be not null")
                 )

@@ -7,16 +7,14 @@ import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toLocal
 import com.gaoyun.yanyou_kototomo.repository.DeckRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 
 class GetDeck(private val repository: DeckRepository) {
-    suspend operator fun invoke(
+    suspend fun getDeck(
         learningLanguage: LanguageId,
         sourceLanguage: LanguageId,
         deck: CourseDeck,
         requiredDecks: List<DeckId> = listOf()
-    ): Flow<Deck> {
+    ): Deck {
         val deckResponse = repository.getDeck(learningLanguage, sourceLanguage, deck)
         val deckWords = deckResponse.cards.filterIsInstance<CardDTO.WordCardDTO>()
         val deckKana = deckResponse.cards.filterIsInstance<CardDTO.KanaCardDTO>()
@@ -34,7 +32,7 @@ class GetDeck(private val repository: DeckRepository) {
             }
         }
 
-        return flowOf(deckResponse.toLocal(deck.name, cards))
+        return deckResponse.toLocal(deck.name, cards)
     }
 
     private suspend fun getRequiredCards(

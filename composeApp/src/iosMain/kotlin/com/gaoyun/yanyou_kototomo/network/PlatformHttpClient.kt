@@ -2,6 +2,7 @@ package com.gaoyun.yanyou_kototomo.network
 
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.darwin.Darwin
+import io.ktor.client.plugins.compression.ContentEncoding
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.DEFAULT
 import io.ktor.client.plugins.logging.LogLevel
@@ -18,6 +19,10 @@ actual object PlatformHttpClient {
             }
             install(ContentNegotiation) {
                 json()
+            }
+            install(ContentEncoding) {
+                gzip()
+                deflate()
             }
         }
 }

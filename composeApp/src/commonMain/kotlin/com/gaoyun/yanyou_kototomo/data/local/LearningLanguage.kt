@@ -10,6 +10,6 @@ data class LearningLanguage(
 )
 
 data class SourceLanguage(
-    val sourceLanguage: LanguageId,
+    val id: LanguageId,
     val courses: List<Course>
 )

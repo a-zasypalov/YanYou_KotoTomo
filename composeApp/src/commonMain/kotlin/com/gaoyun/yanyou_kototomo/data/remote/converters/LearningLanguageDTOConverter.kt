@@ -29,7 +29,7 @@ fun LearningLanguageDTO.toLocal(): LearningLanguage {
 
 fun SourceLanguageDTO.toLocal(): SourceLanguage {
     return SourceLanguage(
-        sourceLanguage = LanguageId(this.sourceLanguage),
+        id = LanguageId(this.sourceLanguage),
         courses = this.courses.map { it.toLocal() }
     )
 }

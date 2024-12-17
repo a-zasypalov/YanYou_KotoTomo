@@ -66,6 +66,7 @@ kotlin {
             implementation(compose.animation)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(compose.materialIconsExtended)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
 
@@ -80,6 +81,7 @@ kotlin {
             implementation(libs.ktor.logging)
             implementation(libs.ktor.cio)
             implementation(libs.ktor.contentnegotiation)
+            implementation(libs.ktor.contentencoding)
 
             implementation(libs.precompose)
             implementation(libs.precompose.viewmodel)
