@@ -11,11 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -33,6 +30,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.FontSizeRange
 import com.gaoyun.yanyou_kototomo.ui.base.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.ui.base.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.ToDeckPlayer
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.details.CardDetailsView
@@ -138,24 +136,14 @@ private fun DeckOverviewContent(
             }
         }
 
-        ElevatedButton(
+        PrimaryElevatedButton(
+            text = "Start learning",
             onClick = onPlayDeckClick,
-            shape = MaterialTheme.shapes.medium,
-            colors = ButtonDefaults.elevatedButtonColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-            ),
-            elevation = ButtonDefaults.elevatedButtonElevation(
-                defaultElevation = 8.dp,
-                pressedElevation = 12.dp
-            ),
             modifier = Modifier.fillMaxWidth()
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 32.dp)
-                .padding(horizontal = 24.dp)
-        ) {
-            Text(text = "Start learning", modifier = Modifier.padding(8.dp))
-        }
+                .padding(horizontal = 24.dp),
+        )
     }
 }
 
