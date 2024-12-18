@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.Card
 import com.gaoyun.yanyou_kototomo.ui.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.AutoResizeText
+import com.gaoyun.yanyou_kototomo.ui.base.BackButtonType
 import com.gaoyun.yanyou_kototomo.ui.base.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.FontSizeRange
@@ -49,7 +50,10 @@ fun DeckPlayerScreen(
         }
     }
 
-    SurfaceScaffold(backHandler = { navigate(BackNavigationEffect) }) {
+    SurfaceScaffold(
+        backHandler = { navigate(BackNavigationEffect) },
+        backButtonType = BackButtonType.Close
+    ) {
         DeckPlayerScreenContent(
             currentCardState = viewModel.viewState.collectAsState().value,
             onCardOpenClick = viewModel::openCard,
