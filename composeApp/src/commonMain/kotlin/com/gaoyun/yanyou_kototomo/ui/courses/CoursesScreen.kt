@@ -52,7 +52,8 @@ private fun CoursesScreenContent(
         item {
             Text(
                 text = "Courses",
-                style = MaterialTheme.typography.displayLarge
+                style = MaterialTheme.typography.displayLarge,
+                modifier = Modifier.padding(bottom = 16.dp)
             )
         }
         content?.languages?.forEach { language ->

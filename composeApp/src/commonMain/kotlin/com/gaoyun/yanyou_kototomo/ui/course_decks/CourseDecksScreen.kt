@@ -60,7 +60,8 @@ private fun CourseDecksContent(course: Course?, toDeck: (DeckId) -> Unit) {
             item {
                 Text(
                     text = course.courseName,
-                    style = MaterialTheme.typography.displayLarge
+                    style = MaterialTheme.typography.displayLarge,
+                    modifier = Modifier.padding(bottom = 16.dp)
                 )
             }
 
