@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -23,6 +24,10 @@ import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.util.Platform
 import com.gaoyun.yanyou_kototomo.util.PlatformNames
 
+enum class BackButtonType {
+    Back, Close
+}
+
 @Composable
 fun SurfaceScaffold(
     modifier: Modifier = Modifier,
@@ -34,6 +39,7 @@ fun SurfaceScaffold(
     containerColor: Color = MaterialTheme.colorScheme.surfaceBright,
     contentColor: Color = contentColorFor(containerColor),
     contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
+    backButtonType: BackButtonType = BackButtonType.Back,
     backHandler: (() -> Unit)? = null,
     content: @Composable () -> Unit,
 ) {
@@ -57,14 +63,23 @@ fun SurfaceScaffold(
                         onClick = backHandler,
                         colors = IconButtonDefaults.iconButtonColors(contentColor = MaterialTheme.colorScheme.onSurface)
                     ) {
-                        if (Platform.name == PlatformNames.Android) {
-                            Icon(
-                                Icons.AutoMirrored.Filled.ArrowBack,
-                                contentDescription = "" //TODO: content description
-                            )
-                        } else {
-                            Icon(
-                                Icons.AutoMirrored.Filled.ArrowBackIos,
+                        when (backButtonType) {
+                            BackButtonType.Back -> {
+                                if (Platform.name == PlatformNames.Android) {
+                                    Icon(
+                                        Icons.AutoMirrored.Filled.ArrowBack,
+                                        contentDescription = "" //TODO: content description
+                                    )
+                                } else {
+                                    Icon(
+                                        Icons.AutoMirrored.Filled.ArrowBackIos,
+                                        contentDescription = "" //TODO: content description
+                                    )
+                                }
+                            }
+
+                            BackButtonType.Close -> Icon(
+                                Icons.Default.Close,
                                 contentDescription = "" //TODO: content description
                             )
                         }
