@@ -1,6 +1,5 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -26,6 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.Card
 import com.gaoyun.yanyou_kototomo.ui.base.AutoResizeText
 import com.gaoyun.yanyou_kototomo.ui.base.FontSizeRange
+import com.gaoyun.yanyou_kototomo.ui.base.platformStyleClickable
 
 @Composable
 internal fun Transcription(transcription: String, preformatted: Boolean = false) {
@@ -94,7 +94,10 @@ internal fun DeckCard(
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp)
     ) {
         Column(
-            modifier = Modifier.fillMaxSize().clickable { onClick() }.padding(contentPadding),
+            modifier = Modifier
+                .fillMaxSize()
+                .platformStyleClickable { onClick() }
+                .padding(contentPadding),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Bottom
         ) {

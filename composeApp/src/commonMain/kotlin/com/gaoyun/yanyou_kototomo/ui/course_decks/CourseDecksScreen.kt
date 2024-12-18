@@ -1,7 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.course_decks
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -25,6 +24,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.ToDeck
+import com.gaoyun.yanyou_kototomo.ui.base.platformStyleClickable
 import moe.tlaster.precompose.koin.koinViewModel
 
 private fun CourseScreenArgs.toDeckOverviewArgs(deckId: DeckId) = DeckScreenArgs(
@@ -70,7 +70,7 @@ private fun CourseDecksContent(course: Course?, toDeck: (DeckId) -> Unit) {
                     ElevatedCard(
                         modifier = Modifier.fillMaxWidth()
                             .padding(bottom = 16.dp)
-                            .clickable { toDeck(deck.id) },
+                            .platformStyleClickable { toDeck(deck.id) },
                         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp)
                     ) {
                         Text(

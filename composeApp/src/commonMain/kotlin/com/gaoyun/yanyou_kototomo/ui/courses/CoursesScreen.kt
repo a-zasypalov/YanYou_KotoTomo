@@ -1,7 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.courses
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -23,6 +22,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.ToCourse
+import com.gaoyun.yanyou_kototomo.ui.base.platformStyleClickable
 import moe.tlaster.precompose.koin.koinViewModel
 
 @Composable
@@ -75,7 +75,7 @@ private fun CoursesScreenContent(
                         ElevatedCard(
                             modifier = Modifier.fillMaxWidth()
                                 .padding(bottom = 16.dp)
-                                .clickable {
+                                .platformStyleClickable {
                                     toCourse(
                                         CourseScreenArgs(
                                             learningLanguageId = language.id,
