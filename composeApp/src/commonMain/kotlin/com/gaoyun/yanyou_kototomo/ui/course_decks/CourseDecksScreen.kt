@@ -20,14 +20,14 @@ import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.Course
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.ui.CourseScreenArgs
-import com.gaoyun.yanyou_kototomo.ui.DeckOverviewScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.ToDeck
 import moe.tlaster.precompose.koin.koinViewModel
 
-private fun CourseScreenArgs.toDeckOverviewArgs(deckId: DeckId) = DeckOverviewScreenArgs(
+private fun CourseScreenArgs.toDeckOverviewArgs(deckId: DeckId) = DeckScreenArgs(
     learningLanguageId = learningLanguageId,
     sourceLanguageId = sourceLanguageId,
     courseId = courseId,

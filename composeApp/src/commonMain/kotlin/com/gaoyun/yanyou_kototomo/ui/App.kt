@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.AppRoutes.COURSES_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.AppRoutes.COURSE_DECKS_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.AppRoutes.DECK_OVERVIEW_ROUTE
+import com.gaoyun.yanyou_kototomo.ui.AppRoutes.DECK_PLAYER_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.AppRoutes.HOME_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.NavigatorAction
 import com.gaoyun.yanyou_kototomo.ui.base.theme.AppTheme
@@ -27,6 +28,7 @@ import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksScreen
 import com.gaoyun.yanyou_kototomo.ui.courses.CoursesScreen
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewScreen
 import com.gaoyun.yanyou_kototomo.ui.home.HomeScreen
+import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerScreen
 import com.gaoyun.yanyou_kototomo.util.Platform
 import com.gaoyun.yanyou_kototomo.util.PlatformNames
 import kotlinx.coroutines.flow.onEach
@@ -126,8 +128,13 @@ fun App() {
                         }
                     }
                     scene(DECK_OVERVIEW_ROUTE) {
-                        it.deckOverviewScreenArgs()?.let { safeArgs ->
+                        it.deckScreenArgs()?.let { safeArgs ->
                             DeckOverviewScreen(args = safeArgs, navigate = viewModel::navigate)
+                        }
+                    }
+                    scene(DECK_PLAYER_ROUTE) {
+                        it.deckScreenArgs()?.let { safeArgs ->
+                            DeckPlayerScreen(args = safeArgs, navigate = viewModel::navigate)
                         }
                     }
                 }

@@ -27,20 +27,21 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.Card
 import com.gaoyun.yanyou_kototomo.data.local.Deck
-import com.gaoyun.yanyou_kototomo.ui.DeckOverviewScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.AutoResizeText
 import com.gaoyun.yanyou_kototomo.ui.base.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.FontSizeRange
 import com.gaoyun.yanyou_kototomo.ui.base.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.SurfaceScaffold
+import com.gaoyun.yanyou_kototomo.ui.base.ToDeckPlayer
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.details.CardDetailsView
 import moe.tlaster.precompose.koin.koinViewModel
 
 
 @Composable
 fun DeckOverviewScreen(
-    args: DeckOverviewScreenArgs,
+    args: DeckScreenArgs,
     navigate: (NavigationSideEffect) -> Unit,
 ) {
     val viewModel = koinViewModel(vmClass = DeckOverviewViewModel::class)
@@ -53,15 +54,21 @@ fun DeckOverviewScreen(
     }
 
     SurfaceScaffold(backHandler = { navigate(BackNavigationEffect) }) {
-        DeckOverviewContent(viewModel.viewState.collectAsState().value) { cardToShow ->
-            cardDetailState.value = cardToShow
-        }
+        DeckOverviewContent(
+            deck = viewModel.viewState.collectAsState().value,
+            onCardClick = { cardToShow -> cardDetailState.value = cardToShow },
+            onPlayDeckClick = { navigate(ToDeckPlayer(args)) }
+        )
         CardDetailsView(cardDetailState) { cardDetailState.value = null }
     }
 }
 
 @Composable
-private fun DeckOverviewContent(deck: Deck?, onCardClick: (Card) -> Unit) {
+private fun DeckOverviewContent(
+    deck: Deck?,
+    onCardClick: (Card) -> Unit,
+    onPlayDeckClick: () -> Unit,
+) {
     val cellsNumber = if (deck?.isKanaDeck() == true) 5 else 2
     val cellsSpacer = if (deck?.isKanaDeck() == true) 8.dp else 16.dp
 
@@ -132,7 +139,7 @@ private fun DeckOverviewContent(deck: Deck?, onCardClick: (Card) -> Unit) {
         }
 
         ElevatedButton(
-            onClick = {},
+            onClick = onPlayDeckClick,
             shape = MaterialTheme.shapes.medium,
             colors = ButtonDefaults.elevatedButtonColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer,
