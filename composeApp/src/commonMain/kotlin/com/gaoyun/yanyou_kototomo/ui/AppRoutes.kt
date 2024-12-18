@@ -10,6 +10,7 @@ object AppRoutes {
     }
 
     const val HOME_ROUTE = "HOME_ROUTE"
+    const val PLAYER_ROUTE = "PLAYER_ROUTE"
     const val COURSES_ROUTE = "$HOME_ROUTE/COURSES_ROUTE"
 
     const val COURSE_DECKS_ROUTE =
@@ -19,6 +20,11 @@ object AppRoutes {
         "$COURSES_ROUTE/${args.learningLanguageId.identifier}/${args.sourceLanguageId.identifier}/${args.courseId.identifier}"
 
     const val DECK_OVERVIEW_ROUTE = "$COURSE_DECKS_ROUTE/{${Arg.DECK_ID}}"
-    fun DECK_OVERVIEW_ROUTE(args: DeckOverviewScreenArgs) =
+    fun DECK_OVERVIEW_ROUTE(args: DeckScreenArgs) =
         "$COURSES_ROUTE/${args.learningLanguageId.identifier}/${args.sourceLanguageId.identifier}/${args.courseId.identifier}/${args.deckId.identifier}"
+
+    const val DECK_PLAYER_ROUTE = "$COURSE_DECKS_ROUTE/{${Arg.DECK_ID}}/$PLAYER_ROUTE"
+    fun DECK_PLAYER_ROUTE(args: DeckScreenArgs) =
+        "$COURSES_ROUTE/${args.learningLanguageId.identifier}/${args.sourceLanguageId.identifier}/${args.courseId.identifier}/${args.deckId.identifier}/$PLAYER_ROUTE"
+
 }

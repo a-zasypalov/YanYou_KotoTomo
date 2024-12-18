@@ -17,6 +17,7 @@ import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksViewModel
 import com.gaoyun.yanyou_kototomo.ui.courses.CoursesViewModel
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewViewModel
 import com.gaoyun.yanyou_kototomo.ui.home.HomeViewModel
+import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerViewModel
 import com.gaoyun.yanyoukototomo.data.persistence.CardsPersisted
 import com.gaoyun.yanyoukototomo.data.persistence.CoursesPersisted
 import com.squareup.sqldelight.ColumnAdapter
@@ -59,6 +60,7 @@ val viewModelModule = module {
     factory { CoursesViewModel(get()) }
     factory { CourseDecksViewModel(get()) }
     factory { DeckOverviewViewModel(get(), get()) }
+    factory { DeckPlayerViewModel(get(), get()) }
 }
 
 val dbModule = module {
