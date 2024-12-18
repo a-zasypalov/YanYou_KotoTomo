@@ -1,6 +1,7 @@
 package com.gaoyun.yanyou_kototomo.ui.base
 
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
@@ -60,7 +61,8 @@ fun AutoResizeText(
                     textDecoration = textDecoration,
                 ),
                 maxLines = maxLines,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.fillMaxWidth()
             )
         }
     }
