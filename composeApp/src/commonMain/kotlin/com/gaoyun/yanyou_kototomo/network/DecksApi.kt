@@ -9,10 +9,13 @@ import io.ktor.client.request.get
 import kotlinx.serialization.json.Json
 
 class DecksApi(private val client: HttpClient) {
+    companion object {
+        const val API_VERSION = "v1"
+    }
 
     internal suspend fun getCoursesRootComponent(): RootStructureDTO {
         val responseString: String = client.requestAndCatch {
-            get("${YanYouKotoTomoApi.GITHUB_ENDPOINT}/app_config/root.json").body()
+            get("${YanYouKotoTomoApi.GITHUB_ENDPOINT}/app_config/$API_VERSION/root.json").body()
         }
         return Json.decodeFromString(responseString)
     }
@@ -23,14 +26,14 @@ class DecksApi(private val client: HttpClient) {
         deckId: String
     ): DeckDTO {
         val responseString: String = client.requestAndCatch {
-            get("${YanYouKotoTomoApi.GITHUB_ENDPOINT}/app_config/cards/${learningLanguageId}/${sourceLanguage}/${deckId}.json").body()
+            get("${YanYouKotoTomoApi.GITHUB_ENDPOINT}/app_config/$API_VERSION/cards/${learningLanguageId}/${sourceLanguage}/${deckId}.json").body()
         }
         return Json.decodeFromString(responseString)
     }
 
     internal suspend fun getDeckUpdates(): DeckUpdatesDTO {
         val responseString: String = client.requestAndCatch {
-            get("${YanYouKotoTomoApi.GITHUB_ENDPOINT}/app_config/deck_updates.json").body()
+            get("${YanYouKotoTomoApi.GITHUB_ENDPOINT}/app_config/$API_VERSION/deck_updates.json").body()
         }
         return Json.decodeFromString(responseString)
     }

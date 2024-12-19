@@ -1,8 +1,17 @@
 package com.gaoyun.yanyou_kototomo.ui.player
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -32,10 +41,8 @@ import com.gaoyun.yanyou_kototomo.ui.base.FontSizeRange
 import com.gaoyun.yanyou_kototomo.ui.base.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.SurfaceScaffold
-import com.gaoyun.yanyou_kototomo.ui.deck_overview.details.CardDetailsAdditionalInfo
-import com.gaoyun.yanyou_kototomo.ui.deck_overview.details.CardDetailsTranscription
-import com.gaoyun.yanyou_kototomo.ui.deck_overview.details.CardDetailsTranslation
 import moe.tlaster.precompose.koin.koinViewModel
+import moe.tlaster.precompose.navigation.BackHandler
 
 @Composable
 fun DeckPlayerScreen(
@@ -50,28 +57,39 @@ fun DeckPlayerScreen(
         }
     }
 
+    BackHandler {}
+
     SurfaceScaffold(
         backHandler = { navigate(BackNavigationEffect) },
         backButtonType = BackButtonType.Close
     ) {
-        DeckPlayerScreenContent(
-            currentCardState = viewModel.viewState.collectAsState().value,
-            onCardOpenClick = viewModel::openCard,
-            onNextCardClick = viewModel::nextCard,
-            onFinishClick = { navigate(BackNavigationEffect) }
-        )
+        val viewState = viewModel.viewState.collectAsState().value
+        AnimatedVisibility(
+            visible = viewState != null,
+            enter = fadeIn(animationSpec = tween(300)) + slideInVertically(initialOffsetY = { it }),
+            exit = fadeOut(animationSpec = tween(200)) + slideOutVertically(targetOffsetY = { it })
+        ) {
+            viewState?.let {
+                DeckPlayerScreenContent(
+                    currentCardState = viewState,
+                    onCardOpenClick = viewModel::openCard,
+                    onNextCardClick = viewModel::nextCard,
+                    onFinishClick = { navigate(BackNavigationEffect) }
+                )
+            }
+        }
     }
 }
 
 @Composable
 private fun DeckPlayerScreenContent(
-    currentCardState: PlayerCardViewState?,
+    currentCardState: PlayerCardViewState,
     onCardOpenClick: () -> Unit,
     onNextCardClick: () -> Unit,
     onFinishClick: () -> Unit,
 ) {
-    currentCardState?.card?.let { card ->
-        Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        currentCardState.card?.let { card ->
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -79,12 +97,22 @@ private fun DeckPlayerScreenContent(
             ) {
                 CardPlayerFront(card.front)
 
-                if (currentCardState.answerOpened) {
-                    when (card) {
-                        is Card.WordCard -> CardPlayerDetailsWord(card)
-                        is Card.PhraseCard -> CardPlayerDetailsPhraseCard(card)
-                        is Card.KanjiCard -> CardPlayerDetailsKanjiCard(card)
-                        is Card.KanaCard -> CardPlayerDetailsKanaCard(card)
+                AnimatedVisibility(
+                    visible = currentCardState.answerOpened,
+                    enter = fadeIn(animationSpec = tween(300)) + slideInVertically(
+                        animationSpec = tween(300),
+                        initialOffsetY = { it }),
+                    exit = fadeOut(animationSpec = tween(200)) + slideOutVertically(
+                        animationSpec = tween(300),
+                        targetOffsetY = { it })
+                ) {
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        when (card) {
+                            is Card.WordCard -> CardPlayerDetailsWord(card)
+                            is Card.PhraseCard -> CardPlayerDetailsPhraseCard(card)
+                            is Card.KanjiCard -> CardPlayerDetailsKanjiCard(card)
+                            is Card.KanaCard -> CardPlayerDetailsKanaCard(card)
+                        }
                     }
                 }
             }
@@ -93,27 +121,52 @@ private fun DeckPlayerScreenContent(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .fillMaxWidth()
-                    .padding(horizontal = 24.dp)
-                    .padding(bottom = 32.dp)
             ) {
-                PrimaryElevatedButton(
-                    text = "Open card",
-                    modifier = Modifier.weight(1f),
-                    onClick = onCardOpenClick
-                )
+                AnimatedContent(
+                    targetState = currentCardState.answerOpened,
+                    transitionSpec = {
+                        if (targetState) {
+                            slideInVertically(animationSpec = tween(300)) { it } +
+                                    fadeIn(animationSpec = tween(300)) togetherWith
+                                    fadeOut(animationSpec = tween(300))
+                        } else {
+                            fadeIn(
+                                animationSpec = tween(200, delayMillis = 300)
+                            ) togetherWith fadeOut(animationSpec = tween(300))
+                        }
+                    },
+                    label = "Answer Opened Transition",
+                ) { isAnswerOpened ->
+                    if (!isAnswerOpened) {
+                        PrimaryElevatedButton(
+                            text = "Open card",
+                            modifier = Modifier.fillMaxWidth().padding(bottom = 64.dp).padding(horizontal = 24.dp),
+                            onClick = onCardOpenClick
+                        )
+                    } else {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(12.dp),
+                            modifier = Modifier.fillMaxWidth().padding(bottom = 64.dp).padding(horizontal = 24.dp)
+                        ) {
+                            PrimaryElevatedButton(
+                                text = "Hard",
+                                modifier = Modifier.weight(1f),
+                                onClick = if (!currentCardState.isLast) onNextCardClick else onFinishClick
+                            )
 
-                if (!currentCardState.isLast) {
-                    PrimaryElevatedButton(
-                        text = "Next card",
-                        modifier = Modifier.weight(1f),
-                        onClick = onNextCardClick
-                    )
-                } else {
-                    PrimaryElevatedButton(
-                        text = "Finish",
-                        modifier = Modifier.weight(1f),
-                        onClick = onFinishClick
-                    )
+                            PrimaryElevatedButton(
+                                text = "Good",
+                                modifier = Modifier.weight(1f),
+                                onClick = if (!currentCardState.isLast) onNextCardClick else onFinishClick
+                            )
+
+                            PrimaryElevatedButton(
+                                text = "Easy",
+                                modifier = Modifier.weight(1f),
+                                onClick = if (!currentCardState.isLast) onNextCardClick else onFinishClick
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -121,16 +174,16 @@ private fun DeckPlayerScreenContent(
 }
 
 @Composable
-private fun ColumnScope.CardPlayerDetailsWord(card: Card.WordCard) {
-    CardDetailsTranscription(card.transcription, modifier = Modifier.fillMaxWidth())
+internal fun ColumnScope.CardPlayerDetailsWord(card: Card.WordCard) {
+    CardPlayerTranscription(card.transcription, modifier = Modifier.fillMaxWidth())
     Divider(2.dp, Modifier.padding(vertical = 4.dp))
-    CardDetailsTranslation(card.translation)
-    card.additionalInfo?.let { CardDetailsAdditionalInfo(it) }
+    CardPlayerTranslation(card.translation)
+    card.additionalInfo?.let { CardPlayerAdditionalInfo(it) }
 }
 
 @Composable
-private fun ColumnScope.CardPlayerDetailsKanaCard(card: Card.KanaCard) {
-    CardDetailsTranscription(
+internal fun ColumnScope.CardPlayerDetailsKanaCard(card: Card.KanaCard) {
+    CardPlayerTranscription(
         transcription = "[${card.transcription}] ${card.mirror.front}",
         preformatted = true,
         modifier = Modifier.fillMaxWidth()
@@ -138,19 +191,19 @@ private fun ColumnScope.CardPlayerDetailsKanaCard(card: Card.KanaCard) {
 }
 
 @Composable
-private fun ColumnScope.CardPlayerDetailsKanjiCard(card: Card.KanjiCard) {
-    CardDetailsTranscription(card.transcription, modifier = Modifier.fillMaxWidth())
+internal fun ColumnScope.CardPlayerDetailsKanjiCard(card: Card.KanjiCard) {
+    CardPlayerReading(card.reading, modifier = Modifier.fillMaxWidth())
     Divider(2.dp, Modifier.padding(vertical = 4.dp))
-    CardDetailsTranslation(card.translation)
-    card.additionalInfo?.let { CardDetailsAdditionalInfo(it) }
+    CardPlayerTranslation(card.translation)
+    card.additionalInfo?.let { CardPlayerAdditionalInfo(it) }
 }
 
 @Composable
-private fun ColumnScope.CardPlayerDetailsPhraseCard(card: Card.PhraseCard) {
-    CardDetailsTranscription(card.transcription, modifier = Modifier.fillMaxWidth())
+internal fun ColumnScope.CardPlayerDetailsPhraseCard(card: Card.PhraseCard) {
+    CardPlayerTranscription(card.transcription, modifier = Modifier.fillMaxWidth())
     Divider(2.dp, Modifier.padding(vertical = 4.dp))
-    CardDetailsTranslation(card.translation)
-    card.additionalInfo?.let { CardDetailsAdditionalInfo(it) }
+    CardPlayerTranslation(card.translation)
+    card.additionalInfo?.let { CardPlayerAdditionalInfo(it) }
 }
 
 @Composable
@@ -191,27 +244,54 @@ internal fun ColumnScope.CardPlayerFront(
     fontSizeMax: TextUnit = 150.sp,
     modifier: Modifier = Modifier,
 ) {
-    AutoResizeText(
-        text = front,
-        fontSizeRange = FontSizeRange(min = 16.sp, max = fontSizeMax),
-        style = MaterialTheme.typography.displayLarge.copy(
-            fontWeight = FontWeight.Normal,
-            fontSize = fontSizeMax
-        ),
-        textAlign = TextAlign.Center,
-        maxLines = 1,
-        modifier = modifier.fillMaxWidth().wrapContentHeight(align = Alignment.CenterVertically)
-    )
+    AnimatedContent(
+        targetState = front,
+        transitionSpec = {
+            (fadeIn(animationSpec = tween(300)) + scaleIn(
+                initialScale = 0.9f,
+                animationSpec = tween(300)
+            )) togetherWith (fadeOut(animationSpec = tween(200)) + scaleOut(
+                targetScale = 1.1f,
+                animationSpec = tween(200)
+            ))
+        },
+        label = "Fade Transition"
+    ) { targetText ->
+        AutoResizeText(
+            text = targetText,
+            fontSizeRange = FontSizeRange(min = 16.sp, max = fontSizeMax),
+            style = MaterialTheme.typography.displayLarge.copy(
+                fontWeight = FontWeight.Normal,
+                fontSize = fontSizeMax
+            ),
+            textAlign = TextAlign.Center,
+            maxLines = 1,
+            modifier = modifier.fillMaxWidth().wrapContentHeight(align = Alignment.CenterVertically)
+        )
+    }
 }
 
 @Composable
-internal fun BoxScope.CardPlayerReading(
-    reading: List<Card.KanaCard>,
+internal fun ColumnScope.CardPlayerReading(
+    reading: Card.KanjiCard.Reading,
     modifier: Modifier = Modifier,
 ) {
+    val readingFormatted = reading.let {
+        "${it.on.map { it.front }.joinToString("")}、${it.kun.map { it.front }.joinToString("")}"
+    }
+    val readingTranscriptionFormatted = reading.let {
+        "[${it.on.map { it.transcription }.joinToString("")}, ${it.kun.map { it.transcription }.joinToString("")}]"
+    }
     Text(
-        text = reading.map { it.front }.joinToString("\n"),
+        text = readingFormatted,
         style = MaterialTheme.typography.headlineMedium,
-        modifier = modifier.align(Alignment.CenterEnd).padding(end = 8.dp)
+        textAlign = TextAlign.Center,
+        modifier = modifier.padding(start = 4.dp, end = 4.dp, bottom = 4.dp, top = 16.dp),
+    )
+    Text(
+        text = readingTranscriptionFormatted,
+        style = MaterialTheme.typography.headlineSmall,
+        textAlign = TextAlign.Center,
+        modifier = modifier.padding(horizontal = 4.dp).padding(bottom = 8.dp),
     )
 }

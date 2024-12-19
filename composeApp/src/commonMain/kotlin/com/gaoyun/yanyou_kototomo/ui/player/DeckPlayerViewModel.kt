@@ -8,6 +8,7 @@ import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import moe.tlaster.precompose.viewmodel.viewModelScope
@@ -39,7 +40,9 @@ class DeckPlayerViewModel(
         }
     }
 
-    fun nextCard() {
+    fun nextCard() = viewModelScope.launch {
+        closeCard()
+        delay(300)
         val currentCardIndex = deckState.value?.cards?.indexOf(viewState.value?.card) ?: -1
         val newCardIndex = currentCardIndex + 1
         viewState.value = PlayerCardViewState(
@@ -51,6 +54,11 @@ class DeckPlayerViewModel(
     fun openCard() {
         viewState.value = viewState.value?.copy(answerOpened = true)
     }
+
+    fun closeCard() {
+        viewState.value = viewState.value?.copy(answerOpened = false)
+    }
+
 }
 
 data class PlayerCardViewState(
