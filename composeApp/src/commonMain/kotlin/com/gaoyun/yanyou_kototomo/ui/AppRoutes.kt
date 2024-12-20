@@ -7,10 +7,10 @@ object AppRoutes {
         const val DECK_ID = "DECK_ID"
         const val LEARNING_LANGUAGE_ID = "LEARNING_LANGUAGE_ID"
         const val SOURCE_LANGUAGE_ID = "SOURCE_LANGUAGE_ID"
+        const val PLAYER_MODE = "PLAYER_MODE"
     }
 
     const val HOME_ROUTE = "HOME_ROUTE"
-    const val PLAYER_ROUTE = "PLAYER_ROUTE"
     const val COURSES_ROUTE = "$HOME_ROUTE/COURSES_ROUTE"
 
     const val COURSE_DECKS_ROUTE =
@@ -23,8 +23,8 @@ object AppRoutes {
     fun DECK_OVERVIEW_ROUTE(args: DeckScreenArgs) =
         "$COURSES_ROUTE/${args.learningLanguageId.identifier}/${args.sourceLanguageId.identifier}/${args.courseId.identifier}/${args.deckId.identifier}"
 
-    const val DECK_PLAYER_ROUTE = "$COURSE_DECKS_ROUTE/{${Arg.DECK_ID}}/$PLAYER_ROUTE"
-    fun DECK_PLAYER_ROUTE(args: DeckScreenArgs) =
-        "$COURSES_ROUTE/${args.learningLanguageId.identifier}/${args.sourceLanguageId.identifier}/${args.courseId.identifier}/${args.deckId.identifier}/$PLAYER_ROUTE"
+    const val DECK_PLAYER_ROUTE = "$DECK_OVERVIEW_ROUTE/{${Arg.PLAYER_MODE}}"
+    fun DECK_PLAYER_ROUTE(args: PlayerScreenArgs) =
+        "$COURSES_ROUTE/${args.learningLanguageId.identifier}/${args.sourceLanguageId.identifier}/${args.courseId.identifier}/${args.deckId.identifier}/${args.playerMode.name}"
 
 }

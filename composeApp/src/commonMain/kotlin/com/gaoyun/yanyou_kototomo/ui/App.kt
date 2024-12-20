@@ -133,7 +133,7 @@ fun App() {
                         }
                     }
                     scene(DECK_PLAYER_ROUTE) {
-                        it.deckScreenArgs()?.let { safeArgs ->
+                        it.playerScreenArgs()?.let { safeArgs ->
                             DeckPlayerScreen(args = safeArgs, navigate = viewModel::navigate)
                         }
                     }

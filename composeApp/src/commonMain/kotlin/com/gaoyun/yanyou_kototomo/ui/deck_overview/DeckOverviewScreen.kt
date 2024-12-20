@@ -3,6 +3,7 @@ package com.gaoyun.yanyou_kototomo.ui.deck_overview
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.Card
 import com.gaoyun.yanyou_kototomo.data.local.Deck
 import com.gaoyun.yanyou_kototomo.ui.DeckScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.AutoResizeText
 import com.gaoyun.yanyou_kototomo.ui.base.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.Divider
@@ -55,7 +57,7 @@ fun DeckOverviewScreen(
         DeckOverviewContent(
             deck = viewModel.viewState.collectAsState().value,
             onCardClick = { cardToShow -> cardDetailState.value = cardToShow },
-            onPlayDeckClick = { navigate(ToDeckPlayer(args)) }
+            onPlayDeckClick = { mode -> navigate(ToDeckPlayer(args.toPlayerArgs(mode))) }
         )
         CardDetailsView(cardDetailState) { cardDetailState.value = null }
     }
@@ -65,7 +67,7 @@ fun DeckOverviewScreen(
 private fun DeckOverviewContent(
     deck: Deck?,
     onCardClick: (Card) -> Unit,
-    onPlayDeckClick: () -> Unit,
+    onPlayDeckClick: (PlayerMode) -> Unit,
 ) {
     val cellsNumber = if (deck?.isKanaDeck() == true) 5 else 2
     val cellsSpacer = if (deck?.isKanaDeck() == true) 8.dp else 16.dp
@@ -136,14 +138,25 @@ private fun DeckOverviewContent(
             }
         }
 
-        PrimaryElevatedButton(
-            text = "Start learning",
-            onClick = onPlayDeckClick,
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier.fillMaxWidth()
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 32.dp)
-                .padding(horizontal = 24.dp),
-        )
+                .padding(horizontal = 24.dp)
+        ) {
+            PrimaryElevatedButton(
+                text = "Start learning",
+                onClick = { onPlayDeckClick(PlayerMode.SpacialRepetition) },
+                modifier = Modifier.weight(1f),
+            )
+
+            PrimaryElevatedButton(
+                text = "Start Quiz",
+                onClick = { onPlayDeckClick(PlayerMode.Quiz) },
+                modifier = Modifier.weight(1f),
+            )
+        }
     }
 }
 
