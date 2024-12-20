@@ -45,9 +45,12 @@ class DeckPlayerViewModel(
         delay(300)
         val currentCardIndex = deckState.value?.cards?.indexOf(viewState.value?.card) ?: -1
         val newCardIndex = currentCardIndex + 1
+        val deck = deckState.value ?: return@launch
+        val card = deck.cards.getOrNull(newCardIndex) ?: return@launch
         viewState.value = PlayerCardViewState(
-            card = deckState.value?.cards?.getOrNull(newCardIndex),
-            isLast = newCardIndex == deckState.value?.cards?.lastIndex
+            card = card,
+            isLast = newCardIndex == deck.cards.lastIndex,
+            possibleAnswers = getPossibleAnswersFor(card, deck)
         )
     }
 
@@ -55,14 +58,32 @@ class DeckPlayerViewModel(
         viewState.value = viewState.value?.copy(answerOpened = true)
     }
 
+    fun answerCard(answer: String) {
+        viewState.value = viewState.value?.copy(answerOpened = true)
+    }
+
     fun closeCard() {
         viewState.value = viewState.value?.copy(answerOpened = false)
     }
 
+    fun getPossibleAnswersFor(card: Card, deck: Deck): List<String> {
+        val correctAnswer = getAnswerFor(card)
+        val clearedDeck = deck.cards.toMutableList().also { it.remove(card) }
+        val allAnswers = clearedDeck.shuffled().take(3).map { getAnswerFor(it) } + correctAnswer
+        return allAnswers.shuffled()
+    }
+
+    private fun getAnswerFor(card: Card): String = when (card) {
+        is Card.PhraseCard -> card.translation
+        is Card.WordCard -> card.translation
+        is Card.KanjiCard -> card.translation
+        is Card.KanaCard -> card.transcription
+    }
 }
 
 data class PlayerCardViewState(
     val card: Card?,
     val isLast: Boolean,
+    val possibleAnswers: List<String>,
     val answerOpened: Boolean = false,
 )

@@ -3,6 +3,7 @@ package com.gaoyun.yanyou_kototomo.ui.base
 import com.gaoyun.yanyou_kototomo.ui.AppRoutes
 import com.gaoyun.yanyou_kototomo.ui.CourseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.DeckScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.PlayerScreenArgs
 import org.koin.core.component.KoinComponent
 
 sealed class NavigatorAction {
@@ -29,4 +30,4 @@ class AppNavigator() : KoinComponent {
 object ToCourses : NavigationSideEffect
 class ToCourse(val args: CourseScreenArgs) : NavigationSideEffect
 class ToDeck(val args: DeckScreenArgs) : NavigationSideEffect
-class ToDeckPlayer(val args: DeckScreenArgs) : NavigationSideEffect
+class ToDeckPlayer(val args: PlayerScreenArgs) : NavigationSideEffect
