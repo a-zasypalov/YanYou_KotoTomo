@@ -7,11 +7,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -56,7 +52,6 @@ fun App() {
                 modifier = Modifier.fillMaxSize()
             ) {
                 val navigator = rememberNavigator()
-
                 LaunchedEffect(LAUNCH_LISTEN_FOR_EFFECTS) {
                     viewModel.navigationEffect.onEach { destination ->
                         when (destination) {
@@ -75,7 +70,6 @@ fun App() {
                 }
 
                 NavHost(
-                    modifier = Modifier.padding(WindowInsets.statusBars.asPaddingValues()),
                     navigator = navigator,
                     initialRoute = HOME_ROUTE,
                     swipeProperties = if (Platform.name == PlatformNames.IOS) remember {
