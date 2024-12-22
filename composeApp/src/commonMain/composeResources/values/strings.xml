@@ -1,0 +1,7 @@
+<resources>
+    <!--  Language names  -->
+    <string name="chinese">Chinese</string>
+    <string name="japanese">Japanese</string>
+    <string name="english">English</string>
+
+</resources>

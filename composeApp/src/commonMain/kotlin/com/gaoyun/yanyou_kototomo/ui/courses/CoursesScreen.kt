@@ -1,6 +1,7 @@
 package com.gaoyun.yanyou_kototomo.ui.courses
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,13 +18,15 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.RootStructure
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.domain.toStringRes
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToCourse
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToCourse
 import moe.tlaster.precompose.koin.koinViewModel
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun CoursesScreen(
@@ -35,7 +38,7 @@ fun CoursesScreen(
         viewModel.getRootComponent()
     }
 
-    SurfaceScaffold(backHandler = { navigate(BackNavigationEffect) }) {
+    SurfaceScaffold {
         CoursesScreenContent(
             content = viewModel.viewState.collectAsState().value,
             toCourse = { args -> navigate(ToCourse(args)) }
@@ -48,42 +51,45 @@ private fun CoursesScreenContent(
     content: RootStructure?,
     toCourse: (CourseScreenArgs) -> Unit,
 ) {
-    LazyColumn(Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+    ) {
         item {
             Text(
                 text = "Courses",
                 style = MaterialTheme.typography.displayLarge,
-                modifier = Modifier.padding(bottom = 16.dp)
             )
         }
         content?.languages?.forEach { language ->
             item {
                 Text(
-                    text = language.id.identifier,
+                    text = stringResource(language.id.toStringRes()),
                     style = MaterialTheme.typography.headlineLarge
                 )
             }
             language.sourceLanguages.forEach { sourceLanguage ->
-                item {
-                    Text(
-                        text = sourceLanguage.id.identifier,
-                        style = MaterialTheme.typography.titleLarge
-                    )
-                }
+
+//                TODO: Unblock when new source languages will come
+//                item {
+//                    Text(
+//                        text = stringResource(sourceLanguage.id.toStringRes()),
+//                        style = MaterialTheme.typography.titleLarge
+//                    )
+//                }
+
                 sourceLanguage.courses.forEach { course ->
                     item {
                         ElevatedCard(
-                            modifier = Modifier.fillMaxWidth()
-                                .padding(bottom = 16.dp)
-                                .platformStyleClickable {
-                                    toCourse(
-                                        CourseScreenArgs(
-                                            learningLanguageId = language.id,
-                                            sourceLanguageId = sourceLanguage.id,
-                                            courseId = course.id
-                                        )
+                            modifier = Modifier.fillMaxWidth().platformStyleClickable {
+                                toCourse(
+                                    CourseScreenArgs(
+                                        learningLanguageId = language.id,
+                                        sourceLanguageId = sourceLanguage.id,
+                                        courseId = course.id
                                     )
-                                },
+                                )
+                            },
                             elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp)
                         ) {
                             Text(

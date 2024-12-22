@@ -11,11 +11,13 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
+import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColors
 import com.gaoyun.yanyou_kototomo.ui.player.PlayerCardViewState
 
 @Composable
@@ -57,21 +59,33 @@ internal fun BoxScope.SpaceRepetitionButtons(
                     modifier = Modifier.fillMaxWidth().padding(bottom = 64.dp).padding(horizontal = 24.dp)
                 ) {
                     PrimaryElevatedButton(
-                        text = "Hard",
+                        text = "Easy",
                         modifier = Modifier.weight(1f),
-                        onClick = if (!currentCardState.isLast) onNextCardClick else onFinishClick
+                        onClick = if (!currentCardState.isLast) onNextCardClick else onFinishClick,
+                        colors = ButtonDefaults.elevatedButtonColors(
+                            containerColor = YanYouColors.current.greenButtonContainer,
+                            contentColor = YanYouColors.current.onButtonContainer,
+                        )
                     )
 
                     PrimaryElevatedButton(
                         text = "Good",
                         modifier = Modifier.weight(1f),
-                        onClick = if (!currentCardState.isLast) onNextCardClick else onFinishClick
+                        onClick = if (!currentCardState.isLast) onNextCardClick else onFinishClick,
+                        colors = ButtonDefaults.elevatedButtonColors(
+                            containerColor = YanYouColors.current.blueButtonContainer,
+                            contentColor = YanYouColors.current.onButtonContainer,
+                        )
                     )
 
                     PrimaryElevatedButton(
-                        text = "Easy",
+                        text = "Hard",
                         modifier = Modifier.weight(1f),
-                        onClick = if (!currentCardState.isLast) onNextCardClick else onFinishClick
+                        onClick = if (!currentCardState.isLast) onNextCardClick else onFinishClick,
+                        colors = ButtonDefaults.elevatedButtonColors(
+                            containerColor = YanYouColors.current.redButtonContainer,
+                            contentColor = YanYouColors.current.onButtonContainer,
+                        )
                     )
                 }
             }
