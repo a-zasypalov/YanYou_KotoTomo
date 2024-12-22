@@ -63,7 +63,7 @@ fun SurfaceScaffold(
                     IconButton(
                         modifier = Modifier.padding(start = 4.dp),
                         onClick = backHandler,
-                        colors = IconButtonDefaults.iconButtonColors(contentColor = MaterialTheme.colorScheme.onSurface)
+                        colors = IconButtonDefaults.iconButtonColors(contentColor = contentColor)
                     ) {
                         when (backButtonType) {
                             BackButtonType.Back -> {

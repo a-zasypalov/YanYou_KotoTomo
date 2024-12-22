@@ -12,6 +12,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.LocalLibrary
+import androidx.compose.material.icons.outlined.Quiz
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -25,15 +29,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.Card
 import com.gaoyun.yanyou_kototomo.data.local.Deck
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.details.CardDetailsView
 import moe.tlaster.precompose.koin.koinViewModel
@@ -146,15 +150,21 @@ private fun DeckOverviewContent(
                 .padding(horizontal = 24.dp)
         ) {
             PrimaryElevatedButton(
-                text = "Start learning",
+                text = "Learn",
+                leadingIcon = Icons.Outlined.LocalLibrary,
                 onClick = { onPlayDeckClick(PlayerMode.SpacialRepetition) },
                 modifier = Modifier.weight(1f),
             )
 
             PrimaryElevatedButton(
-                text = "Start Quiz",
+                text = "Quiz",
+                leadingIcon = Icons.Outlined.Quiz,
                 onClick = { onPlayDeckClick(PlayerMode.Quiz) },
                 modifier = Modifier.weight(1f),
+                colors = ButtonDefaults.elevatedButtonColors(
+                    containerColor = MaterialTheme.colorScheme.tertiary,
+                    contentColor = MaterialTheme.colorScheme.onTertiary
+                )
             )
         }
     }

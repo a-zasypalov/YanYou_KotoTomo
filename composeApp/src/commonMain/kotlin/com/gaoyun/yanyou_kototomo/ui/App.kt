@@ -23,6 +23,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.courseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.deckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.playerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.theme.AppTheme
+import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColorsProvider
 import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksScreen
 import com.gaoyun.yanyou_kototomo.ui.courses.CoursesScreen
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewScreen
@@ -47,91 +48,93 @@ fun App() {
         val viewModel = koinViewModel(vmClass = AppViewModel::class)
 
         AppTheme {
-            Surface(
-                tonalElevation = 2.dp,
-                modifier = Modifier.fillMaxSize()
-            ) {
-                val navigator = rememberNavigator()
-                LaunchedEffect(LAUNCH_LISTEN_FOR_EFFECTS) {
-                    viewModel.navigationEffect.onEach { destination ->
-                        when (destination) {
-                            is NavigatorAction.NavigateTo -> navigator.navigate(destination.path)
-                            is NavigatorAction.NavigateBack -> navigator.goBack()
-                            is NavigatorAction.PopTo -> navigator.goBack(
-                                PopUpTo(
-                                    route = destination.path,
-                                    inclusive = destination.inclusive
+            YanYouColorsProvider {
+                Surface(
+                    tonalElevation = 1.dp,
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    val navigator = rememberNavigator()
+                    LaunchedEffect(LAUNCH_LISTEN_FOR_EFFECTS) {
+                        viewModel.navigationEffect.onEach { destination ->
+                            when (destination) {
+                                is NavigatorAction.NavigateTo -> navigator.navigate(destination.path)
+                                is NavigatorAction.NavigateBack -> navigator.goBack()
+                                is NavigatorAction.PopTo -> navigator.goBack(
+                                    PopUpTo(
+                                        route = destination.path,
+                                        inclusive = destination.inclusive
+                                    )
                                 )
+                            }
+                        }.collect {
+                            println("GlobalDestination NavigationAction: $it")
+                        }
+                    }
+
+                    NavHost(
+                        navigator = navigator,
+                        initialRoute = COURSES_ROUTE,
+                        swipeProperties = if (Platform.name == PlatformNames.IOS) remember {
+                            SwipeProperties(
+                                positionalThreshold = { distance: Float -> distance * 0.9f },
+                                velocityThreshold = { 0.dp.toPx() }
+                            )
+                        } else null,
+                        navTransition = remember {
+                            NavTransition(
+                                createTransition = fadeIn() + slideInHorizontally(
+                                    animationSpec = spring(
+                                        stiffness = Spring.StiffnessMediumLow,
+                                        visibilityThreshold = IntOffset.VisibilityThreshold
+                                    ),
+                                    initialOffsetX = { it }
+                                ),
+                                destroyTransition = fadeOut(targetAlpha = 0f) + slideOutHorizontally(
+                                    animationSpec = spring(
+                                        stiffness = Spring.StiffnessMediumLow,
+                                        visibilityThreshold = IntOffset.VisibilityThreshold
+                                    ),
+                                    targetOffsetX = { it }
+                                ),
+                                pauseTransition = fadeOut(targetAlpha = 0f) + slideOutHorizontally(
+                                    animationSpec = spring(
+                                        stiffness = Spring.StiffnessMediumLow,
+                                        visibilityThreshold = IntOffset.VisibilityThreshold
+                                    ),
+                                    targetOffsetX = { -it / 2 }
+                                ),
+                                resumeTransition = fadeIn() + slideInHorizontally(
+                                    animationSpec = spring(
+
+                                        stiffness = Spring.StiffnessMediumLow,
+                                        visibilityThreshold = IntOffset.VisibilityThreshold
+                                    ),
+                                    initialOffsetX = { -it / 2 }
+                                ),
+                                exitTargetContentZIndex = 1f
                             )
                         }
-                    }.collect {
-                        println("GlobalDestination NavigationAction: $it")
-                    }
-                }
-
-                NavHost(
-                    navigator = navigator,
-                    initialRoute = HOME_ROUTE,
-                    swipeProperties = if (Platform.name == PlatformNames.IOS) remember {
-                        SwipeProperties(
-                            positionalThreshold = { distance: Float -> distance * 0.9f },
-                            velocityThreshold = { 0.dp.toPx() }
-                        )
-                    } else null,
-                    navTransition = remember {
-                        NavTransition(
-                            createTransition = fadeIn() + slideInHorizontally(
-                                animationSpec = spring(
-                                    stiffness = Spring.StiffnessMediumLow,
-                                    visibilityThreshold = IntOffset.VisibilityThreshold
-                                ),
-                                initialOffsetX = { it }
-                            ),
-                            destroyTransition = fadeOut(targetAlpha = 0f) + slideOutHorizontally(
-                                animationSpec = spring(
-                                    stiffness = Spring.StiffnessMediumLow,
-                                    visibilityThreshold = IntOffset.VisibilityThreshold
-                                ),
-                                targetOffsetX = { it }
-                            ),
-                            pauseTransition = fadeOut(targetAlpha = 0f) + slideOutHorizontally(
-                                animationSpec = spring(
-                                    stiffness = Spring.StiffnessMediumLow,
-                                    visibilityThreshold = IntOffset.VisibilityThreshold
-                                ),
-                                targetOffsetX = { -it / 2 }
-                            ),
-                            resumeTransition = fadeIn() + slideInHorizontally(
-                                animationSpec = spring(
-
-                                    stiffness = Spring.StiffnessMediumLow,
-                                    visibilityThreshold = IntOffset.VisibilityThreshold
-                                ),
-                                initialOffsetX = { -it / 2 }
-                            ),
-                            exitTargetContentZIndex = 1f
-                        )
-                    }
-                ) {
-                    scene(HOME_ROUTE) {
-                        HomeScreen(viewModel::navigate)
-                    }
-                    scene(COURSES_ROUTE) {
-                        CoursesScreen(viewModel::navigate)
-                    }
-                    scene(COURSE_DECKS_ROUTE) {
-                        it.courseScreenArgs()?.let { safeArgs ->
-                            CourseDecksScreen(args = safeArgs, navigate = viewModel::navigate)
+                    ) {
+                        scene(HOME_ROUTE) {
+                            HomeScreen(viewModel::navigate)
                         }
-                    }
-                    scene(DECK_OVERVIEW_ROUTE) {
-                        it.deckScreenArgs()?.let { safeArgs ->
-                            DeckOverviewScreen(args = safeArgs, navigate = viewModel::navigate)
+                        scene(COURSES_ROUTE) {
+                            CoursesScreen(viewModel::navigate)
                         }
-                    }
-                    scene(DECK_PLAYER_ROUTE) {
-                        it.playerScreenArgs()?.let { safeArgs ->
-                            DeckPlayerScreen(args = safeArgs, navigate = viewModel::navigate)
+                        scene(COURSE_DECKS_ROUTE) {
+                            it.courseScreenArgs()?.let { safeArgs ->
+                                CourseDecksScreen(args = safeArgs, navigate = viewModel::navigate)
+                            }
+                        }
+                        scene(DECK_OVERVIEW_ROUTE) {
+                            it.deckScreenArgs()?.let { safeArgs ->
+                                DeckOverviewScreen(args = safeArgs, navigate = viewModel::navigate)
+                            }
+                        }
+                        scene(DECK_PLAYER_ROUTE) {
+                            it.playerScreenArgs()?.let { safeArgs ->
+                                DeckPlayerScreen(args = safeArgs, navigate = viewModel::navigate)
+                            }
                         }
                     }
                 }

@@ -34,7 +34,7 @@ internal fun CardDetailsView(cardState: State<Card?>, onDismiss: () -> Unit) {
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
                     .fillMaxWidth()
-                    .fillMaxHeight(0.9f)
+                    .fillMaxHeight(0.8f)
             ) {
                 when (card) {
                     is Card.WordCard -> CardDetailsWord(card)
