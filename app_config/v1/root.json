@@ -9,7 +9,7 @@
             {
               "id": "hsk1_en",
               "course_name": "HSK1",
-              "preview": "你，谢谢，好，我，很，是，再见，人，中国，高兴",
+              "preview": "你 谢谢 好 我 很 是 再见 人 中国 高兴",
               "decks": [
                 {
                   "type": "normal",
@@ -32,7 +32,7 @@
             {
               "id": "kana_en",
               "course_name": "Kana",
-              "preview": "あ，い，き，げ，す，そ，ご，し，お，ひ",
+              "preview": "あ い き げ す そ ご し お ひ",
               "required_decks": [
                 "hiragana_en",
                 "katakana_en"
@@ -57,7 +57,7 @@
             {
               "id": "jlpt5_en",
               "course_name": "JLPT5",
-              "preview": "日，本，山，電，水，父，雨，火，車，校",
+              "preview": "日 本 山 電 水 父 雨 火 車 校",
               "required_decks": [
                 "hiragana_en",
                 "katakana_en"
