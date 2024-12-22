@@ -25,16 +25,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.Card
 import com.gaoyun.yanyou_kototomo.data.local.Deck
-import com.gaoyun.yanyou_kototomo.ui.DeckScreenArgs
-import com.gaoyun.yanyou_kototomo.ui.PlayerMode
-import com.gaoyun.yanyou_kototomo.ui.base.AutoResizeText
-import com.gaoyun.yanyou_kototomo.ui.base.BackNavigationEffect
-import com.gaoyun.yanyou_kototomo.ui.base.Divider
-import com.gaoyun.yanyou_kototomo.ui.base.FontSizeRange
-import com.gaoyun.yanyou_kototomo.ui.base.NavigationSideEffect
-import com.gaoyun.yanyou_kototomo.ui.base.PrimaryElevatedButton
-import com.gaoyun.yanyou_kototomo.ui.base.SurfaceScaffold
-import com.gaoyun.yanyou_kototomo.ui.base.ToDeckPlayer
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
+import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
+import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
+import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
+import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.details.CardDetailsView
 import moe.tlaster.precompose.koin.koinViewModel
 

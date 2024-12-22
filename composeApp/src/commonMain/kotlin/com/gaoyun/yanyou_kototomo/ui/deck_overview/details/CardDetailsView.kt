@@ -15,7 +15,7 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.Card
-import com.gaoyun.yanyou_kototomo.ui.base.Divider
+import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

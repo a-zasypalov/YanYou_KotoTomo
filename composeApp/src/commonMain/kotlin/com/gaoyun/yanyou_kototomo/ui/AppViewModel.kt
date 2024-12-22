@@ -1,9 +1,9 @@
 package com.gaoyun.yanyou_kototomo.ui
 
-import com.gaoyun.yanyou_kototomo.ui.base.AppNavigator
-import com.gaoyun.yanyou_kototomo.ui.base.BackNavigationEffect
-import com.gaoyun.yanyou_kototomo.ui.base.NavigationSideEffect
-import com.gaoyun.yanyou_kototomo.ui.base.NavigatorAction
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppNavigator
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigatorAction
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.receiveAsFlow

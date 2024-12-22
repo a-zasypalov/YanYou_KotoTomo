@@ -12,7 +12,7 @@ import com.gaoyun.yanyou_kototomo.repository.CoursesRootComponentRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckUpdateRepository
 import com.gaoyun.yanyou_kototomo.ui.AppViewModel
-import com.gaoyun.yanyou_kototomo.ui.base.AppNavigator
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppNavigator
 import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksViewModel
 import com.gaoyun.yanyou_kototomo.ui.courses.CoursesViewModel
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewViewModel

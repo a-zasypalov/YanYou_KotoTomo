@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui.base
+package com.gaoyun.yanyou_kototomo.ui.base.composables
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ButtonDefaults

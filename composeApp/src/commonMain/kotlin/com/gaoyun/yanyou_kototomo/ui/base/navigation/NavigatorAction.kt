@@ -1,9 +1,5 @@
-package com.gaoyun.yanyou_kototomo.ui.base
+package com.gaoyun.yanyou_kototomo.ui.base.navigation
 
-import com.gaoyun.yanyou_kototomo.ui.AppRoutes
-import com.gaoyun.yanyou_kototomo.ui.CourseScreenArgs
-import com.gaoyun.yanyou_kototomo.ui.DeckScreenArgs
-import com.gaoyun.yanyou_kototomo.ui.PlayerScreenArgs
 import org.koin.core.component.KoinComponent
 
 sealed class NavigatorAction {
