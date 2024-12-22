@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.Card
-import com.gaoyun.yanyou_kototomo.ui.base.AutoResizeText
-import com.gaoyun.yanyou_kototomo.ui.base.FontSizeRange
-import com.gaoyun.yanyou_kototomo.ui.base.platformStyleClickable
+import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
+import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
+import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 
 @Composable
 internal fun Transcription(transcription: String, preformatted: Boolean = false) {

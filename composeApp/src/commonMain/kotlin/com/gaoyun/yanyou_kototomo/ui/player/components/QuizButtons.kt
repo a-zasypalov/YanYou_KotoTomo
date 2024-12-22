@@ -22,7 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.gaoyun.yanyou_kototomo.ui.base.PrimaryElevatedButton
+import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.player.PlayerCardViewState
 
 @Composable

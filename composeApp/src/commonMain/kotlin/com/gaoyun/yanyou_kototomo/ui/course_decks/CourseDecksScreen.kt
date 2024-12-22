@@ -18,13 +18,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.Course
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
-import com.gaoyun.yanyou_kototomo.ui.CourseScreenArgs
-import com.gaoyun.yanyou_kototomo.ui.DeckScreenArgs
-import com.gaoyun.yanyou_kototomo.ui.base.BackNavigationEffect
-import com.gaoyun.yanyou_kototomo.ui.base.NavigationSideEffect
-import com.gaoyun.yanyou_kototomo.ui.base.SurfaceScaffold
-import com.gaoyun.yanyou_kototomo.ui.base.ToDeck
-import com.gaoyun.yanyou_kototomo.ui.base.platformStyleClickable
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
+import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import moe.tlaster.precompose.koin.koinViewModel
 
 private fun CourseScreenArgs.toDeckOverviewArgs(deckId: DeckId) = DeckScreenArgs(

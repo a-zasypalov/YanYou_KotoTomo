@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui
+package com.gaoyun.yanyou_kototomo.ui.base.navigation
 
 @Suppress("FunctionName")
 object AppRoutes {

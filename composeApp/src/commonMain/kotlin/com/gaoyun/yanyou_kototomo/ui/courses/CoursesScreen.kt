@@ -17,12 +17,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.RootStructure
-import com.gaoyun.yanyou_kototomo.ui.CourseScreenArgs
-import com.gaoyun.yanyou_kototomo.ui.base.BackNavigationEffect
-import com.gaoyun.yanyou_kototomo.ui.base.NavigationSideEffect
-import com.gaoyun.yanyou_kototomo.ui.base.SurfaceScaffold
-import com.gaoyun.yanyou_kototomo.ui.base.ToCourse
-import com.gaoyun.yanyou_kototomo.ui.base.platformStyleClickable
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToCourse
+import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import moe.tlaster.precompose.koin.koinViewModel
 
 @Composable

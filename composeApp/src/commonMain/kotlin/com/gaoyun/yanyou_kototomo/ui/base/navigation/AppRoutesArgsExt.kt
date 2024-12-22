@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui
+package com.gaoyun.yanyou_kototomo.ui.base.navigation
 
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId

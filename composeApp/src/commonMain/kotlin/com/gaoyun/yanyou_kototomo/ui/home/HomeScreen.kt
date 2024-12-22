@@ -3,12 +3,10 @@ package com.gaoyun.yanyou_kototomo.ui.home
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import com.gaoyun.yanyou_kototomo.ui.base.NavigationSideEffect
-import com.gaoyun.yanyou_kototomo.ui.base.PreviewBase
-import com.gaoyun.yanyou_kototomo.ui.base.SurfaceScaffold
-import com.gaoyun.yanyou_kototomo.ui.base.ToCourses
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToCourses
 import moe.tlaster.precompose.koin.koinViewModel
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun HomeScreen(
@@ -29,13 +27,5 @@ private fun HomeScreenContent(
 ) {
     Button(onClick = navigate) {
         Text("Navigate")
-    }
-}
-
-@Preview
-@Composable
-fun HomeScreenContentPreview() {
-    PreviewBase {
-        HomeScreenContent {}
     }
 }
