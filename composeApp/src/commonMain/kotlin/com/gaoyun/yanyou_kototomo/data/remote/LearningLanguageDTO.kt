@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class RootStructureDTO(
     @SerialName("languages")
-    val languages: List<LearningLanguageDTO>
+    val languages: List<LearningLanguageDTO>,
 )
 
 @Serializable
@@ -14,7 +14,7 @@ data class LearningLanguageDTO(
     @SerialName("id")
     val id: String,
     @SerialName("source_languages")
-    val sourceLanguages: List<SourceLanguageDTO>
+    val sourceLanguages: List<SourceLanguageDTO>,
 )
 
 @Serializable
@@ -22,7 +22,7 @@ data class SourceLanguageDTO(
     @SerialName("source_language")
     val sourceLanguage: String,
     @SerialName("courses")
-    val courses: List<CourseDTO>
+    val courses: List<CourseDTO>,
 )
 
 @Serializable
@@ -31,6 +31,8 @@ data class CourseDTO(
     val id: String,
     @SerialName("course_name")
     val courseName: String,
+    @SerialName("preview")
+    val preview: String,
     @SerialName("decks")
     val decks: List<CourseDeckDTO>,
     @SerialName("required_decks")
@@ -61,7 +63,7 @@ sealed interface CourseDeckDTO {
         @SerialName("name")
         override val name: String,
         @SerialName("version")
-        override val version: Int
+        override val version: Int,
     ) : CourseDeckDTO
 
     @Serializable
@@ -74,6 +76,6 @@ sealed interface CourseDeckDTO {
         @SerialName("alphabet")
         val alphabet: String,
         @SerialName("version")
-        override val version: Int
+        override val version: Int,
     ) : CourseDeckDTO
 }

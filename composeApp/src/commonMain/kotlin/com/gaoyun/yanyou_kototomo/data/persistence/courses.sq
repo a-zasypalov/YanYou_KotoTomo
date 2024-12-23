@@ -20,6 +20,7 @@ CREATE TABLE CoursesPersisted (
     source_language_id TEXT NOT NULL,
     language_id TEXT NOT NULL,
     course_name TEXT NOT NULL,
+    preview TEXT NOT NULL,
     required_decks TEXT AS List<String>, -- JSON array of required deck IDs
     FOREIGN KEY (source_language_id) REFERENCES SourceLanguagesPersisted(source_language) ON DELETE CASCADE,
     FOREIGN KEY (language_id) REFERENCES SourceLanguagesPersisted(id) ON DELETE CASCADE
@@ -43,8 +44,8 @@ insertSourceLanguage:
 INSERT OR REPLACE INTO SourceLanguagesPersisted (id, source_language) VALUES (?, ?);
 
 insertCourse:
-INSERT OR REPLACE INTO CoursesPersisted (id, source_language_id, language_id, course_name, required_decks)
-VALUES (?, ?, ?, ?, ?);
+INSERT OR REPLACE INTO CoursesPersisted (id, source_language_id, language_id, course_name, preview, required_decks)
+VALUES (?, ?, ?, ?, ?, ?);
 
 insertCourseDeck:
 INSERT OR REPLACE INTO CourseDecksPersisted (id, course_id, name, version, type, alphabet)
@@ -56,6 +57,7 @@ SELECT
     slp.source_language AS source_language,
     cp.id AS course_id,
     cp.course_name AS course_name,
+    cp.preview AS preview,
     cp.required_decks AS required_decks,
     cdp.id AS deck_id,
     cdp.name AS deck_name,
@@ -72,6 +74,7 @@ getCourse:
 SELECT
     CoursesPersisted.id AS course_id,
     CoursesPersisted.course_name,
+    CoursesPersisted.preview AS preview,
     CoursesPersisted.required_decks,
     CourseDecksPersisted.id AS deck_id,
     CourseDecksPersisted.name AS deck_name,

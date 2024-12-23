@@ -7,9 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,8 +18,6 @@ import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.RootStructure
 import com.gaoyun.yanyou_kototomo.domain.toStringRes
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
-import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToCourse
@@ -80,23 +76,13 @@ private fun CoursesScreenContent(
 
                 sourceLanguage.courses.forEach { course ->
                     item {
-                        ElevatedCard(
-                            modifier = Modifier.fillMaxWidth().platformStyleClickable {
-                                toCourse(
-                                    CourseScreenArgs(
-                                        learningLanguageId = language.id,
-                                        sourceLanguageId = sourceLanguage.id,
-                                        courseId = course.id
-                                    )
+                        CourseCard(course = course) {
+                            toCourse(
+                                CourseScreenArgs(
+                                    learningLanguageId = language.id,
+                                    sourceLanguageId = sourceLanguage.id,
+                                    courseId = course.id
                                 )
-                            },
-                            elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp)
-                        ) {
-                            Text(
-                                text = course.id.identifier
-                            )
-                            Text(
-                                text = course.courseName
                             )
                         }
                     }

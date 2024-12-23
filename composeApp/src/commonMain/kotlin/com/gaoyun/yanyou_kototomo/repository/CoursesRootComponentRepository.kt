@@ -17,7 +17,7 @@ class CoursesRootComponentRepository(
     private val api: DecksApi,
     private val db: YanYouKotoTomoDatabase,
     private val prefs: Preferences,
-    private val deckUpdateRepository: DeckUpdateRepository
+    private val deckUpdateRepository: DeckUpdateRepository,
 ) {
 
     suspend fun getCoursesRoot(): RootStructureDTO {
@@ -67,6 +67,7 @@ class CoursesRootComponentRepository(
                         language_id = learningLanguage.id,
                         source_language_id = sourceLanguage.sourceLanguage,
                         course_name = course.courseName,
+                        preview = course.preview,
                         required_decks = course.requiredDecks
                     )
 
