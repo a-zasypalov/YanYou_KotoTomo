@@ -63,7 +63,7 @@ fun DeckOverviewScreen(
             onCardClick = { cardToShow -> cardDetailState.value = cardToShow },
             onPlayDeckClick = { mode -> navigate(ToDeckPlayer(args.toPlayerArgs(mode))) }
         )
-        CardDetailsView(cardDetailState) { cardDetailState.value = null }
+        CardDetailsView(cardDetailState, args.learningLanguageId) { cardDetailState.value = null }
     }
 }
 
