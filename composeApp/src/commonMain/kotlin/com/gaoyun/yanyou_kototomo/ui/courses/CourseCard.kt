@@ -1,5 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.courses
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,12 +18,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.Course
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.ui.base.courseCardColor
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.details.getCourseMascot
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun CourseCard(course: Course, toCourse: () -> Unit) {
@@ -48,15 +52,23 @@ fun CourseCard(course: Course, toCourse: () -> Unit) {
                     color = Color(0xFFEDE1D4),
                     style = MaterialTheme.typography.bodyLarge,
                 )
+                Image(
+                    painter = painterResource(course.getCourseMascot()),
+                    contentDescription = null,
+                    colorFilter = ColorFilter.tint(courseTextColor),
+                    modifier = Modifier.size(24.dp).padding(top = 8.dp)
+                )
                 Spacer(Modifier.size(6.dp))
             }
             Text(
                 text = course.preview,
-                color = courseTextColor.copy(alpha = 0.3f),
+                color = courseTextColor.copy(alpha = 0.4f),
                 textAlign = TextAlign.Left,
                 maxLines = 3,
                 lineHeight = 32.sp,
-                modifier = Modifier.align(Alignment.CenterVertically).offset(x = 16.dp)
+                modifier = Modifier.align(Alignment.CenterVertically)
+                    .padding(vertical = 4.dp)
+                    .offset(x = 16.dp)
             )
         }
     }

@@ -1,5 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview.details
 
+import com.gaoyun.yanyou_kototomo.data.local.Course
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import org.jetbrains.compose.resources.DrawableResource
 import yanyou_kototomo.composeapp.generated.resources.Res
@@ -74,6 +75,25 @@ fun LanguageId.getRandomMascotImage(): DrawableResource {
     return when(this.identifier) {
         "jp" -> jpImages.random()
         "cn" -> cnImages.random()
+        else -> Res.drawable.sakura
+    }
+}
+
+fun Course.getCourseMascot(): DrawableResource {
+    val id = this.id.identifier
+    return when {
+        id.contains("hsk1") -> Res.drawable.tea
+        id.contains("hsk2") -> Res.drawable.rice
+        id.contains("hsk3") -> Res.drawable.lantern
+        id.contains("hsk4") -> Res.drawable.knot
+        id.contains("hsk5") -> Res.drawable.wonton
+        id.contains("hsk6") -> Res.drawable.temple
+        id.contains("kana") -> Res.drawable.sakura
+        id.contains("jlpt5") -> Res.drawable.bamboo
+        id.contains("jlpt4") -> Res.drawable.koinobori
+        id.contains("jlpt3") -> Res.drawable.fuji_mountain
+        id.contains("jlpt2") -> Res.drawable.maneki_neko
+        id.contains("jlpt1") -> Res.drawable.shrine
         else -> Res.drawable.sakura
     }
 }
