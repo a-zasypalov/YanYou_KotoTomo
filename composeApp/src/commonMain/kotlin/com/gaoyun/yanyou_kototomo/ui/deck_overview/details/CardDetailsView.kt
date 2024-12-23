@@ -1,25 +1,34 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview.details
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.Card
+import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
+import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun CardDetailsView(cardState: State<Card?>, onDismiss: () -> Unit) {
+internal fun CardDetailsView(cardState: State<Card?>, languageId: LanguageId, onDismiss: () -> Unit) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
     cardState.value?.let { card ->
@@ -42,6 +51,17 @@ internal fun CardDetailsView(cardState: State<Card?>, onDismiss: () -> Unit) {
                     is Card.KanjiCard -> CardDetailsKanjiCard(card)
                     is Card.KanaCard -> CardDetailsKanaCard(card)
                 }
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Image(
+                    painter = painterResource(languageId.getRandomMascotImage()),
+                    contentDescription = null,
+                    colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
+                    modifier = Modifier.size(48.dp).align(Alignment.CenterHorizontally).alpha(0.4f)
+                )
+
+                Spacer(modifier = Modifier.size(32.dp))
             }
         }
     }
