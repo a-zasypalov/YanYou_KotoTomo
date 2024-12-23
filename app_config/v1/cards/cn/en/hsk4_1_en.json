@@ -1,0 +1,113 @@
+{
+  "deck_id": "hsk4_1_en",
+  "version": 1,
+  "cards": [
+    {
+      "type": "phrase",
+      "id": "hsk4_1_en_1",
+      "character": "你好",
+      "transcription": "nǐ hǎo",
+      "translation": "Hello",
+      "additional_info": "Common greeting used in Chinese.",
+      "words": [
+        "hsk4_1_en_2",
+        "hsk4_1_en_3"
+      ]
+    },
+    {
+      "type": "word",
+      "id": "hsk4_1_en_2",
+      "character": "你",
+      "transcription": "nǐ",
+      "translation": "You",
+      "additional_info": "Pronoun for 'you' (informal).",
+      "speech_part": "pronoun"
+    },
+    {
+      "type": "word",
+      "id": "hsk4_1_en_3",
+      "character": "好",
+      "transcription": "hǎo",
+      "translation": "Good",
+      "additional_info": "Adjective meaning good. But can be also a verb.",
+      "speech_part": "adjective"
+    },
+    {
+      "type": "word",
+      "id": "hsk4_1_en_4",
+      "character": "我",
+      "transcription": "wǒ",
+      "translation": "I, me",
+      "additional_info": "Pronoun for 'I' or 'me'. Common in basic sentences.",
+      "speech_part": "pronoun"
+    },
+    {
+      "type": "word",
+      "id": "hsk4_1_en_5",
+      "character": "很",
+      "transcription": "hěn",
+      "translation": "Very",
+      "additional_info": "Used as an adverb to intensify adjectives.",
+      "speech_part": "adverb"
+    },
+    {
+      "type": "phrase",
+      "id": "hsk4_1_en_6",
+      "character": "谢谢",
+      "transcription": "xièxie",
+      "translation": "Thank you",
+      "additional_info": "Polite expression to show gratitude.",
+      "words": [
+        "hsk4_1_en_7"
+      ]
+    },
+    {
+      "type": "word",
+      "id": "hsk4_1_en_7",
+      "character": "谢",
+      "transcription": "xiè",
+      "translation": "To thank",
+      "additional_info": "Used to express gratitude.",
+      "speech_part": "verb"
+    },
+    {
+      "type": "phrase",
+      "id": "hsk4_1_en_8",
+      "character": "再见",
+      "transcription": "zàijiàn",
+      "translation": "Goodbye",
+      "additional_info": "Common farewell phrase.",
+      "words": [
+        "hsk4_1_en_9",
+        "hsk4_1_en_10"
+      ]
+    },
+    {
+      "type": "word",
+      "id": "hsk4_1_en_9",
+      "character": "再",
+      "transcription": "zài",
+      "translation": "Again",
+      "additional_info": "Used to indicate repetition.",
+      "speech_part": "adverb"
+    },
+    {
+      "type": "word",
+      "id": "hsk4_1_en_10",
+      "character": "见",
+      "transcription": "jiàn",
+      "translation": "To see",
+      "additional_info": "Used to mean 'to meet' or 'to see'.",
+      "speech_part": "verb"
+    },
+    {
+      "type": "word",
+      "id": "hsk4_1_en_11",
+      "character": "是",
+      "transcription": "shì",
+      "translation": "To be",
+      "additional_info": "Basic linking verb for identifying or equating subjects.",
+      "speech_part": "verb"
+    }
+  ]
+}

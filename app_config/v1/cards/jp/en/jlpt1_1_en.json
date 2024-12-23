@@ -1,0 +1,97 @@
+{
+  "deck_id": "jlpt1_1_en",
+  "version": 1,
+  "cards": [
+    {
+      "type": "kanji",
+      "id": "jlpt1_1_en_1",
+      "character": "山",
+      "transcription": "san, yama",
+      "reading": {
+        "on": [
+          "hiragana11",
+          "hiragana46"
+        ],
+        "kun": [
+          "hiragana36",
+          "hiragana21"
+        ]
+      },
+      "translation": "Mountain",
+      "additional_info": "Common Kanji character for 'mountain'.",
+      "speech_part": "noun"
+    },
+    {
+      "type": "kanji",
+      "id": "jlpt1_1_en_2",
+      "character": "川",
+      "transcription": "sen, kawa",
+      "reading": {
+        "on": [
+          "hiragana11",
+          "hiragana46"
+        ],
+        "kun": [
+          "hiragana15",
+          "hiragana10"
+        ]
+      },
+      "translation": "River",
+      "additional_info": "Common Kanji character for 'river'.",
+      "speech_part": "noun"
+    },
+    {
+      "type": "kanji",
+      "id": "jlpt1_1_en_3",
+      "character": "人",
+      "transcription": "jin, hito",
+      "reading": {
+        "on": [
+          "hiragana12",
+          "hiragana17"
+        ],
+        "kun": [
+          "hiragana19"
+        ]
+      },
+      "translation": "Person",
+      "additional_info": "Used to refer to people or human.",
+      "speech_part": "noun"
+    },
+    {
+      "type": "kanji",
+      "id": "jlpt1_1_en_4",
+      "character": "日",
+      "transcription": "nichi, hi",
+      "reading": {
+        "on": [
+          "hiragana17",
+          "hiragana46"
+        ],
+        "kun": [
+          "hiragana27"
+        ]
+      },
+      "translation": "Sun, Day",
+      "additional_info": "Kanji often seen in dates and words for day.",
+      "speech_part": "noun"
+    },
+    {
+      "type": "kanji",
+      "id": "jlpt1_1_en_5",
+      "character": "本",
+      "transcription": "hon, moto",
+      "reading": {
+        "on": [
+          "hiragana16"
+        ],
+        "kun": [
+          "hiragana22"
+        ]
+      },
+      "translation": "Book, Origin",
+      "additional_info": "Common Kanji meaning 'book' or 'origin'.",
+      "speech_part": "noun"
+    }
+  ]
+}
