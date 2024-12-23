@@ -98,7 +98,7 @@ private fun DeckOverviewContent(
                     )
                 }
 
-                deck.cards.forEach { card ->
+                deck.cards.map { it.card }.forEach { card ->
                     when (card) {
                         is Card.WordCard -> item {
                             DeckOverviewWordCard(

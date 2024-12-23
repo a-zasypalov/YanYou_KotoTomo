@@ -1,11 +1,11 @@
 package com.gaoyun.yanyou_kototomo.data.remote.converters
 
-import com.gaoyun.yanyou_kototomo.data.local.Card
+import com.gaoyun.yanyou_kototomo.data.local.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.Deck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.remote.DeckDTO
 
-fun DeckDTO.toLocal(name: String, cards: List<Card>): Deck {
+fun DeckDTO.toLocal(name: String, cards: List<CardWithProgress<*>>): Deck {
     return Deck(
         id = DeckId(this.id),
         name = name,

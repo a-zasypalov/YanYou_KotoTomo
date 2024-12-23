@@ -4,10 +4,13 @@ import com.gaoyun.yanyou_kototomo.data.persistence.DriverFactory
 import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.data.persistence.platformModule
+import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
+import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
 import com.gaoyun.yanyou_kototomo.network.DecksApi
 import com.gaoyun.yanyou_kototomo.network.PlatformHttpClient
+import com.gaoyun.yanyou_kototomo.repository.CardProgressRepository
 import com.gaoyun.yanyou_kototomo.repository.CoursesRootComponentRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckUpdateRepository
@@ -46,11 +49,14 @@ val repositoryModule = module {
     single { CoursesRootComponentRepository(get(), get(), get(), get()) }
     single { DeckRepository(get(), get(), get()) }
     single { DeckUpdateRepository(get(), get(), get()) }
+    single { CardProgressRepository(get()) }
 }
 
 val useCaseModule = module {
     single { GetCoursesRoot(get()) }
-    single { GetDeck(get()) }
+    single { GetDeck(get(), get()) }
+    single { SpacedRepetitionCalculation() }
+    single { CardProgressUpdater(get()) }
 }
 
 val viewModelModule = module {
@@ -60,7 +66,7 @@ val viewModelModule = module {
     factory { CoursesViewModel(get()) }
     factory { CourseDecksViewModel(get()) }
     factory { DeckOverviewViewModel(get(), get()) }
-    factory { DeckPlayerViewModel(get(), get()) }
+    factory { DeckPlayerViewModel(get(), get(), get(), get()) }
 }
 
 val dbModule = module {

@@ -55,3 +55,5 @@ sealed interface Card {
         )
     }
 }
+
+fun Card.withProgress(progress: CardProgress?) = CardWithProgress(card = this, progress = progress)
