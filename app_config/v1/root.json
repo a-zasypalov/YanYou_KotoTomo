@@ -15,7 +15,8 @@
                   "type": "normal",
                   "id": "hsk1_1_en",
                   "name": "HSK1 Chapter 1",
-                  "version": 1
+                  "version": 1,
+                  "deck_preview": "你 谢谢 好 我 很 是"
                 }
               ]
             },
@@ -28,7 +29,8 @@
                   "type": "normal",
                   "id": "hsk2_1_en",
                   "name": "HSK2 Chapter 1",
-                  "version": 1
+                  "version": 1,
+                  "deck_preview": "学生 饭店 朋友 请 教室"
                 }
               ]
             },
@@ -41,7 +43,8 @@
                   "type": "normal",
                   "id": "hsk3_1_en",
                   "name": "HSK3 Chapter 1",
-                  "version": 1
+                  "version": 1,
+                  "deck_preview": "问题 出租车 机会 公司 高速公路"
                 }
               ]
             },
@@ -54,7 +57,8 @@
                   "type": "normal",
                   "id": "hsk4_1_en",
                   "name": "HSK4 Chapter 1",
-                  "version": 1
+                  "version": 1,
+                  "deck_preview": "中文 习惯 社会 电视 变化"
                 }
               ]
             },
@@ -67,7 +71,8 @@
                   "type": "normal",
                   "id": "hsk5_1_en",
                   "name": "HSK5 Chapter 1",
-                  "version": 1
+                  "version": 1,
+                  "deck_preview": "政治 文化 经验 会议 经济"
                 }
               ]
             },
@@ -80,7 +85,8 @@
                   "type": "normal",
                   "id": "hsk6_1_en",
                   "name": "HSK6 Chapter 1",
-                  "version": 1
+                  "version": 1,
+                  "deck_preview": "广告 文化 经济 人权 法律"
                 }
               ]
             }
@@ -108,14 +114,16 @@
                   "id": "hiragana_en",
                   "alphabet": "hiragana",
                   "name": "Hiragana",
-                  "version": 1
+                  "version": 1,
+                  "deck_preview": "あ か さ ん た と つ は ひ ほ み も や ゆ ら り ろ れ そ く こ む め ふ け き お い て ね の "
                 },
                 {
                   "type": "alphabet",
                   "id": "katakana_en",
                   "alphabet": "katakana",
                   "name": "Katakana",
-                  "version": 1
+                  "version": 1,
+                  "deck_preview": "ア カ サ ン タ ト ツ ハ ヒ ホ ミ モ ヤ ユ ラ リ ロ レ ソ ク コ ム メ フ ケ キ オ イ テ ネ ノ "
                 }
               ]
             },
@@ -132,75 +140,8 @@
                   "type": "normal",
                   "id": "jlpt5_1_en",
                   "name": "JLPT5 Chapter 1",
-                  "version": 1
-                }
-              ]
-            },
-            {
-              "id": "jlpt4_en",
-              "course_name": "JLPT4",
-              "preview": "文化 日本 明 日 本 英 語 映 画 車 勉 強 友達 店 銀行 会社 店員 駅 先生 週 休 図書館 電話 時間 天気",
-              "required_decks": [
-                "hiragana_en",
-                "katakana_en"
-              ],
-              "decks": [
-                {
-                  "type": "normal",
-                  "id": "jlpt4_1_en",
-                  "name": "JLPT4 Chapter 1",
-                  "version": 1
-                }
-              ]
-            },
-            {
-              "id": "jlpt3_en",
-              "course_name": "JLPT3",
-              "preview": "会 話 毎 日 小 物 寺 観 光 通 う 考 事 直 進 や はし 何時 文化 会議 學ぶ 才能 計画 安全 方向 成功 問題 解決 日課 休憩",
-              "required_decks": [
-                "hiragana_en",
-                "katakana_en"
-              ],
-              "decks": [
-                {
-                  "type": "normal",
-                  "id": "jlpt3_1_en",
-                  "name": "JLPT3 Chapter 1",
-                  "version": 1
-                }
-              ]
-            },
-            {
-              "id": "jlpt2_en",
-              "course_name": "JLPT2",
-              "preview": "問題 単語 経験 外 国 方 法 知識 気持ち 注意 営業 問題 成果 成長 意見 情報 進展 意味 確認 改善 提案 安定 確信 構造 表現 理由",
-              "required_decks": [
-                "hiragana_en",
-                "katakana_en"
-              ],
-              "decks": [
-                {
-                  "type": "normal",
-                  "id": "jlpt2_1_en",
-                  "name": "JLPT2 Chapter 1",
-                  "version": 1
-                }
-              ]
-            },
-            {
-              "id": "jlpt1_en",
-              "course_name": "JLPT1",
-              "preview": "漢字 学 習 慣 法 応 用 理解 生活 通じる 職業 認識 研究 批判 理論 効果 発表 対策 詳細 専門 経験 提案 責任 思考 計算 合格 仕事 自由",
-              "required_decks": [
-                "hiragana_en",
-                "katakana_en"
-              ],
-              "decks": [
-                {
-                  "type": "normal",
-                  "id": "jlpt1_1_en",
-                  "name": "JLPT1 Chapter 1",
-                  "version": 1
+                  "version": 1,
+                  "deck_preview": "日 本 山 電 水"
                 }
               ]
             }
