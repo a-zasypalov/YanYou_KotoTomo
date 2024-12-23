@@ -32,6 +32,7 @@ fun List<GetRootData>.mapToRootStructureDTO(): RootStructureDTO? {
                                                     ?: error("Deck ID cannot be null"),
                                                 name = deckRow.deck_name
                                                     ?: error("Deck name cannot be null"),
+                                                preview = deckRow.preview ?: "",
                                                 version = deckRow.version?.toInt() ?: 0
                                             )
 
@@ -40,6 +41,7 @@ fun List<GetRootData>.mapToRootStructureDTO(): RootStructureDTO? {
                                                     ?: error("Deck ID cannot be null"),
                                                 name = deckRow.deck_name
                                                     ?: error("Deck name cannot be null"),
+                                                preview = deckRow.preview ?: "",
                                                 alphabet = deckRow.alphabet
                                                     ?: error("Alphabet cannot be null for alphabet deck"),
                                                 version = deckRow.version?.toInt() ?: 0
@@ -73,6 +75,7 @@ fun List<GetCourse>.toDTO(): CourseDTO? {
                     ?: error("Deck ID cannot be null"),
                 name = row.deck_name
                     ?: error("Deck name cannot be null"),
+                preview = row.deck_preview ?: "",
                 version = row.deck_version?.toInt() ?: 0
             )
 
@@ -81,6 +84,7 @@ fun List<GetCourse>.toDTO(): CourseDTO? {
                     ?: error("Deck ID cannot be null"),
                 name = row.deck_name
                     ?: error("Deck name cannot be null"),
+                preview = row.deck_preview ?: "",
                 version = row.deck_version?.toInt() ?: 0,
                 alphabet = row.deck_alphabet
                     ?: error("Alphabet cannot be null for alphabet deck"),

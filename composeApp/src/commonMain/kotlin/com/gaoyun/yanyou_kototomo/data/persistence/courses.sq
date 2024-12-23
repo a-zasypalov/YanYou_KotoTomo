@@ -31,6 +31,7 @@ CREATE TABLE CourseDecksPersisted (
     id TEXT PRIMARY KEY NOT NULL,
     course_id TEXT NOT NULL,
     name TEXT NOT NULL,
+    deck_preview TEXT NOT NULL,
     version INTEGER NOT NULL,
     type TEXT NOT NULL, -- "normal" or "alphabet"
     alphabet TEXT, -- Nullable, specific to "alphabet" type
@@ -48,8 +49,8 @@ INSERT OR REPLACE INTO CoursesPersisted (id, source_language_id, language_id, co
 VALUES (?, ?, ?, ?, ?, ?);
 
 insertCourseDeck:
-INSERT OR REPLACE INTO CourseDecksPersisted (id, course_id, name, version, type, alphabet)
-VALUES (?, ?, ?, ?, ?, ?);
+INSERT OR REPLACE INTO CourseDecksPersisted (id, course_id, name, deck_preview, version, type, alphabet)
+VALUES (?, ?, ?, ?, ?, ?, ?);
 
 getRootData:
 SELECT
@@ -61,6 +62,7 @@ SELECT
     cp.required_decks AS required_decks,
     cdp.id AS deck_id,
     cdp.name AS deck_name,
+    cdp.deck_preview AS deck_preview,
     cdp.type AS deck_type,
     cdp.alphabet AS alphabet,
     cdp.version AS version
@@ -78,6 +80,7 @@ SELECT
     CoursesPersisted.required_decks,
     CourseDecksPersisted.id AS deck_id,
     CourseDecksPersisted.name AS deck_name,
+    CourseDecksPersisted.deck_preview AS deck_preview,
     CourseDecksPersisted.version AS deck_version,
     CourseDecksPersisted.type AS deck_type,
     CourseDecksPersisted.alphabet AS deck_alphabet

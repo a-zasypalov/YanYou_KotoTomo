@@ -75,6 +75,7 @@ class CoursesRootComponentRepository(
                         db.coursesQueries.insertCourseDeck(
                             id = deck.id,
                             name = deck.name,
+                            deck_preview = deck.preview,
                             version = deck.version.toLong(),
                             course_id = course.id,
                             type = deck.typeToString(),
