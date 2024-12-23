@@ -144,6 +144,78 @@
                   "deck_preview": "日 本 山 電 水"
                 }
               ]
+            },
+            {
+              "id": "jlpt4_en",
+              "course_name": "JLPT4",
+              "preview": "文化 日本 明 日 本 英 語 映 画 車 勉 強 友達 店 銀行 会社 店員 駅 先生 週 休 図書館 電話 時間 天気",
+              "required_decks": [
+                "hiragana_en",
+                "katakana_en"
+              ],
+              "decks": [
+                {
+                  "type": "normal",
+                  "id": "jlpt4_1_en",
+                  "name": "JLPT4 Chapter 1",
+                  "version": 1,
+                  "deck_preview": "文化 日本 明 日 本"
+                }
+              ]
+            },
+            {
+              "id": "jlpt3_en",
+              "course_name": "JLPT3",
+              "preview": "会 話 毎 日 小 物 寺 観 光 通 う 考 事 直 進 や はし 何時 文化 会議 學ぶ 才能 計画 安全 方向 成功 問題 解決 日課 休憩",
+              "required_decks": [
+                "hiragana_en",
+                "katakana_en"
+              ],
+              "decks": [
+                {
+                  "type": "normal",
+                  "id": "jlpt3_1_en",
+                  "name": "JLPT3 Chapter 1",
+                  "version": 1,
+                  "deck_preview": "会 話 毎 日 小"
+                }
+              ]
+            },
+            {
+              "id": "jlpt2_en",
+              "course_name": "JLPT2",
+              "preview": "問題 単語 経験 外 国 方 法 知識 気持ち 注意 営業 問題 成果 成長 意見 情報 進展 意味 確認 改善 提案 安定 確信 構造 表現 理由",
+              "required_decks": [
+                "hiragana_en",
+                "katakana_en"
+              ],
+              "decks": [
+                {
+                  "type": "normal",
+                  "id": "jlpt2_1_en",
+                  "name": "JLPT2 Chapter 1",
+                  "version": 1,
+                  "deck_preview": "問題 単語 経験 外 国"
+                }
+              ]
+            },
+            {
+              "id": "jlpt1_en",
+              "course_name": "JLPT1",
+              "preview": "漢字 学 習 慣 法 応 用 理解 生活 通じる 職業 認識 研究 批判 理論 効果 発表 対策 詳細 専門 経験 提案 責任 思考 計算 合格 仕事 自由",
+              "required_decks": [
+                "hiragana_en",
+                "katakana_en"
+              ],
+              "decks": [
+                {
+                  "type": "normal",
+                  "id": "jlpt1_1_en",
+                  "name": "JLPT1 Chapter 1",
+                  "version": 1,
+                  "deck_preview": "漢字 学 習 慣 法"
+                }
+              ]
             }
           ]
         }
