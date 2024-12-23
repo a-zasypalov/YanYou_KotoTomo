@@ -8,4 +8,5 @@ data class Deck(
     private val kanaDecks = listOf("hiragana_en", "katakana_en")
 
     fun isKanaDeck() = kanaDecks.contains(id.identifier)
+    fun isJlptDeck() = id.identifier.contains("jlpt")
 }

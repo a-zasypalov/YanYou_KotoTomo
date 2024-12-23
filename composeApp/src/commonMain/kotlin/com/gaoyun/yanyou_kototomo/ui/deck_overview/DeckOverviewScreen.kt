@@ -1,7 +1,9 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,11 +15,16 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Subtitles
+import androidx.compose.material.icons.filled.Translate
+import androidx.compose.material.icons.filled.ViewColumn
 import androidx.compose.material.icons.outlined.LocalLibrary
 import androidx.compose.material.icons.outlined.Quiz
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedIconToggleButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -40,6 +47,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.details.CardDetailsView
+import com.gaoyun.yanyou_kototomo.util.toggle
 import moe.tlaster.precompose.koin.koinViewModel
 
 
@@ -76,6 +84,10 @@ private fun DeckOverviewContent(
     val cellsNumber = if (deck?.isKanaDeck() == true) 5 else 2
     val cellsSpacer = if (deck?.isKanaDeck() == true) 8.dp else 16.dp
 
+    val showTranslation = remember { mutableStateOf(true) }
+    val showTranscription = remember { mutableStateOf(true) }
+    val showReading = remember { mutableStateOf(true) }
+
     Box(modifier = Modifier.fillMaxSize()) {
         LazyVerticalGrid(
             columns = GridCells.Fixed(cellsNumber),
@@ -86,16 +98,45 @@ private fun DeckOverviewContent(
         ) {
             deck?.let {
                 item(span = { GridItemSpan(cellsNumber) }) {
-                    AutoResizeText(
-                        text = deck.name,
-                        fontSizeRange = FontSizeRange(
-                            max = MaterialTheme.typography.displayLarge.fontSize,
-                            min = 24.sp
-                        ),
-                        maxLines = 1,
-                        style = MaterialTheme.typography.displayLarge,
-                        modifier = Modifier.padding(end = 8.dp, bottom = 16.dp)
-                    )
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        AutoResizeText(
+                            text = deck.name,
+                            fontSizeRange = FontSizeRange(
+                                max = MaterialTheme.typography.displayLarge.fontSize,
+                                min = 24.sp
+                            ),
+                            maxLines = 1,
+                            style = MaterialTheme.typography.displayLarge,
+                        )
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            if (deck.isKanaDeck() == false) {
+                                OutlinedIconToggleButton(
+                                    checked = showTranslation.value,
+                                    onCheckedChange = { showTranslation.toggle() },
+                                ) {
+                                    Icon(Icons.Default.Translate, null)
+                                }
+                            }
+                            OutlinedIconToggleButton(
+                                checked = showTranscription.value,
+                                onCheckedChange = { showTranscription.toggle() },
+                            ) {
+                                Icon(Icons.Default.Subtitles, null)
+                            }
+                            if (deck.isJlptDeck() == true) {
+                                OutlinedIconToggleButton(
+                                    checked = showReading.value,
+                                    onCheckedChange = { showReading.toggle() },
+                                ) {
+                                    Icon(Icons.Default.ViewColumn, null)
+                                }
+                            }
+                        }
+                    }
                 }
 
                 deck.cards.map { it.card }.forEach { card ->
@@ -103,6 +144,8 @@ private fun DeckOverviewContent(
                         is Card.WordCard -> item {
                             DeckOverviewWordCard(
                                 card = card,
+                                showTranscription = showTranscription.value,
+                                showTranslation = showTranslation.value,
                                 onClick = { onCardClick(card) }
                             )
                         }
@@ -110,6 +153,8 @@ private fun DeckOverviewContent(
                         is Card.PhraseCard -> item {
                             DeckOverviewPhraseCard(
                                 card = card,
+                                showTranscription = showTranscription.value,
+                                showTranslation = showTranslation.value,
                                 onClick = { onCardClick(card) }
                             )
                         }
@@ -117,6 +162,9 @@ private fun DeckOverviewContent(
                         is Card.KanjiCard -> item {
                             DeckOverviewKanjiCard(
                                 card = card,
+                                showTranscription = showTranscription.value,
+                                showTranslation = showTranslation.value,
+                                showReading = showReading.value,
                                 onClick = { onCardClick(card) }
                             )
                         }
@@ -125,6 +173,7 @@ private fun DeckOverviewContent(
                             item {
                                 DeckOverviewKanaCard(
                                     card = card,
+                                    showTranscription = showTranscription.value,
                                     onClick = { onCardClick(card) }
                                 )
                             }
@@ -150,7 +199,7 @@ private fun DeckOverviewContent(
                 .padding(horizontal = 24.dp)
         ) {
             PrimaryElevatedButton(
-                text = "Learn",
+                text = "Review",
                 leadingIcon = Icons.Outlined.LocalLibrary,
                 onClick = { onPlayDeckClick(PlayerMode.SpacialRepetition) },
                 modifier = Modifier.weight(1f),
@@ -171,56 +220,78 @@ private fun DeckOverviewContent(
 }
 
 @Composable
-fun DeckOverviewWordCard(card: Card.WordCard, onClick: () -> Unit, modifier: Modifier = Modifier) {
+fun DeckOverviewWordCard(
+    card: Card.WordCard,
+    showTranslation: Boolean,
+    showTranscription: Boolean,
+    onClick: () -> Unit, modifier: Modifier = Modifier,
+) {
     DeckCard(onClick = onClick, modifier = modifier) {
         CardFront(card.front)
-        Transcription(card.transcription)
-        Divider(2.dp, Modifier.padding(vertical = 4.dp))
-        Translation(card.translation)
+        AnimatedVisibility(visible = showTranscription) { Transcription(card.transcription) }
+        AnimatedVisibility(visible = showTranscription && showTranslation) {
+            Divider(2.dp, Modifier.padding(vertical = 4.dp))
+        }
+        AnimatedVisibility(visible = showTranslation) { Translation(card.translation) }
     }
 }
 
 @Composable
 private fun DeckOverviewKanaCard(
     card: Card.KanaCard,
+    showTranscription: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     DeckCard(onClick = onClick, modifier = modifier, contentPadding = 0.dp) {
         CardFront(front = card.front, fontSizeMax = 48.sp)
-        Transcription(
-            transcription = "[${card.transcription}] ${card.mirror.front}",
-            preformatted = true
-        )
+        AnimatedVisibility(visible = showTranscription) {
+            Transcription(
+                transcription = "[${card.transcription}] ${card.mirror.front}",
+                preformatted = true
+            )
+        }
+
     }
 }
 
 @Composable
 private fun DeckOverviewKanjiCard(
     card: Card.KanjiCard,
+    showTranslation: Boolean,
+    showTranscription: Boolean,
+    showReading: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     DeckCard(onClick = onClick, modifier = modifier) {
         CardFront(card.front, modifier = Modifier.weight(1f).padding(horizontal = 24.dp)) {
-            Reading(card.reading.on)
+            this@DeckCard.AnimatedVisibility(visible = showReading, modifier = modifier.align(Alignment.CenterEnd)) {
+                Reading(card.reading.on)
+            }
         }
-        Transcription(card.transcription)
-        Divider(2.dp, Modifier.padding(vertical = 4.dp))
-        Translation(card.translation)
+        AnimatedVisibility(visible = showTranscription) { Transcription(card.transcription) }
+        AnimatedVisibility(visible = showTranscription && showTranslation) {
+            Divider(2.dp, Modifier.padding(vertical = 4.dp))
+        }
+        AnimatedVisibility(visible = showTranslation) { Translation(card.translation) }
     }
 }
 
 @Composable
 private fun DeckOverviewPhraseCard(
     card: Card.PhraseCard,
+    showTranslation: Boolean,
+    showTranscription: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     DeckCard(onClick = onClick, modifier = modifier) {
         CardFront(card.front)
-        Transcription(card.transcription)
-        Divider(2.dp, Modifier.padding(vertical = 4.dp))
-        Translation(card.translation)
+        AnimatedVisibility(visible = showTranscription) { Transcription(card.transcription) }
+        AnimatedVisibility(visible = showTranscription && showTranslation) {
+            Divider(2.dp, Modifier.padding(vertical = 4.dp))
+        }
+        AnimatedVisibility(visible = showTranslation) { Translation(card.translation) }
     }
 }
