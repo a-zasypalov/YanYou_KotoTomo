@@ -9,7 +9,7 @@
             {
               "id": "hsk1_en",
               "course_name": "HSK1",
-              "preview": "你 谢谢 好 我 很 是 再见 人 中国 高兴 吗 吃 错 有 猫",
+              "preview": "你 谢谢 好 我 很 是 再见 人 中国 高兴 吗 吃 错 有 猫 女 儿子 六 爸 妈 的 水 火 钱 菜",
               "decks": [
                 {
                   "type": "normal",
@@ -32,7 +32,7 @@
             {
               "id": "kana_en",
               "course_name": "Kana",
-              "preview": "あ い き げ す そ ご し お ひ こ で の ま や",
+              "preview": "あ イ い ツ き フ げ タ す サ そ コ ご し オ お ピ ひ ヰ ン こ で の ギ ま ゴ や",
               "required_decks": [
                 "hiragana_en",
                 "katakana_en"
@@ -57,7 +57,7 @@
             {
               "id": "jlpt5_en",
               "course_name": "JLPT5",
-              "preview": "日 本 山 電 水 父 雨 火 車 校 天 半 北 川 女",
+              "preview": "日 本 山 電 水 父 雨 火 車 校 天 半 北 川 女 百 小 子 円 高 学 入 今 東 間 前 分 年",
               "required_decks": [
                 "hiragana_en",
                 "katakana_en"
