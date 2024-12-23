@@ -78,7 +78,7 @@ internal fun BoxScope.Reading(
         text = reading.map { it.front }.joinToString("\n"),
         style = MaterialTheme.typography.bodyLarge,
         lineHeight = 18.sp,
-        modifier = modifier.align(Alignment.CenterEnd)
+        modifier = modifier,
     )
 }
 
@@ -99,7 +99,7 @@ internal fun DeckCard(
                 .platformStyleClickable { onClick() }
                 .padding(contentPadding),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Bottom
+            verticalArrangement = Arrangement.Center
         ) {
             content()
         }
