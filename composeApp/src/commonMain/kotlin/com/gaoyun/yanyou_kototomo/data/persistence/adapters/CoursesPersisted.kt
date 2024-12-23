@@ -23,6 +23,7 @@ fun List<GetRootData>.mapToRootStructureDTO(): RootStructureDTO? {
                                     id = courseId ?: error("Course ID cannot be null"),
                                     courseName = courseGroup.first().course_name
                                         ?: error("Course name cannot be null"),
+                                    preview = courseGroup.first().preview ?: "",
                                     requiredDecks = courseGroup.first().required_decks,
                                     decks = courseGroup.mapNotNull { deckRow ->
                                         when (deckRow.deck_type) {
@@ -92,6 +93,7 @@ fun List<GetCourse>.toDTO(): CourseDTO? {
     return CourseDTO(
         id = courseId,
         courseName = courseName,
+        preview = firstRow.preview,
         requiredDecks = firstRow.required_decks,
         decks = decks
     )

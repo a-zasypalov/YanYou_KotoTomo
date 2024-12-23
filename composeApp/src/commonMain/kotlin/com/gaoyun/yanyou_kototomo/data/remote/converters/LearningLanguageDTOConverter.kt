@@ -38,6 +38,7 @@ fun CourseDTO.toLocal(): Course {
     return Course(
         id = CourseId(this.id),
         courseName = this.courseName,
+        preview = this.preview,
         decks = this.decks.map { it.toLocal() },
         requiredDecks = requiredDecks?.mapNotNull { DeckId(it) }
     )
