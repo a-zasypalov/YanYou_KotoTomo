@@ -49,6 +49,7 @@ fun CourseDeckDTO.toLocal(): CourseDeck {
         is CourseDeckDTO.Normal -> CourseDeck.Normal(
             id = DeckId(this.id),
             name = this.name,
+            preview = this.preview,
             version = this.version,
         )
 
@@ -56,6 +57,7 @@ fun CourseDeckDTO.toLocal(): CourseDeck {
             CourseDeck.Alphabet(
                 id = DeckId(this.id),
                 name = this.name,
+                preview = this.preview,
                 version = this.version,
                 alphabet = alphabet.toAlphabet() ?: error("Wrong alphabet for $name, id:$id")
             )

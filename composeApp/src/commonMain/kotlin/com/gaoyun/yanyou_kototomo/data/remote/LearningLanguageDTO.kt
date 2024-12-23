@@ -52,6 +52,9 @@ sealed interface CourseDeckDTO {
     @SerialName("name")
     val name: String
 
+    @SerialName("deck_preview")
+    val preview: String
+
     @SerialName("version")
     val version: Int
 
@@ -62,6 +65,8 @@ sealed interface CourseDeckDTO {
         override val id: String,
         @SerialName("name")
         override val name: String,
+        @SerialName("deck_preview")
+        override val preview: String,
         @SerialName("version")
         override val version: Int,
     ) : CourseDeckDTO
@@ -73,6 +78,8 @@ sealed interface CourseDeckDTO {
         override val id: String,
         @SerialName("name")
         override val name: String,
+        @SerialName("deck_preview")
+        override val preview: String,
         @SerialName("alphabet")
         val alphabet: String,
         @SerialName("version")

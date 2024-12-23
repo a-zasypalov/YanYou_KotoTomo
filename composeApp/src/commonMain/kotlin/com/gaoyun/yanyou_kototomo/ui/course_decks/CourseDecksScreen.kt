@@ -1,14 +1,12 @@
 package com.gaoyun.yanyou_kototomo.ui.course_decks
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.CardDefaults
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,13 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.Course
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
+import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
-import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
-import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import moe.tlaster.precompose.koin.koinViewModel
 
 private fun CourseScreenArgs.toDeckOverviewArgs(deckId: DeckId) = DeckScreenArgs(
@@ -65,30 +62,16 @@ private fun CourseDecksContent(course: Course?, toDeck: (DeckId) -> Unit) {
                 )
             }
 
-            course.decks.forEach { deck ->
-                item {
-                    ElevatedCard(
-                        modifier = Modifier.fillMaxWidth()
-                            .padding(bottom = 16.dp)
-                            .platformStyleClickable { toDeck(deck.id) },
-                        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp)
-                    ) {
-                        Text(
-                            text = deck.id.identifier
-                        )
-                        Text(
-                            text = deck.name
-                        )
-                    }
-                }
+            items(course.decks) { deck ->
+                CourseDeckCard(
+                    course = course,
+                    deck = deck,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                ) { toDeck(deck.id) }
             }
 
             item {
-                Box(
-                    modifier = Modifier.fillMaxWidth().height(2.dp).background(
-                        MaterialTheme.colorScheme.outline
-                    )
-                )
+                Spacer(modifier = Modifier.height(64.dp))
             }
 
         } ?: item {

@@ -3,10 +3,12 @@ package com.gaoyun.yanyou_kototomo.ui.courses
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -57,7 +59,7 @@ private fun CoursesScreenContent(
                 style = MaterialTheme.typography.displayLarge,
             )
         }
-        content?.languages?.forEach { language ->
+        content?.languages?.forEachIndexed { languageIndex, language ->
             item {
                 Text(
                     text = stringResource(language.id.toStringRes()),
@@ -74,27 +76,27 @@ private fun CoursesScreenContent(
 //                    )
 //                }
 
-                sourceLanguage.courses.forEach { course ->
-                    item {
-                        CourseCard(course = course) {
-                            toCourse(
-                                CourseScreenArgs(
-                                    learningLanguageId = language.id,
-                                    sourceLanguageId = sourceLanguage.id,
-                                    courseId = course.id
-                                )
+                items(sourceLanguage.courses) { course ->
+                    CourseCard(course = course) {
+                        toCourse(
+                            CourseScreenArgs(
+                                learningLanguageId = language.id,
+                                sourceLanguageId = sourceLanguage.id,
+                                courseId = course.id
                             )
-                        }
+                        )
                     }
                 }
 
-                item {
-                    Box(
-                        modifier = Modifier.fillMaxWidth().height(2.dp).background(
-                            MaterialTheme.colorScheme.outline
+                if (languageIndex != content.languages.lastIndex) {
+                    item {
+                        Box(
+                            modifier = Modifier.fillMaxWidth().height(2.dp).background(
+                                MaterialTheme.colorScheme.outline
+                            )
                         )
-                    )
-                }
+                    }
+                } else item { Spacer(modifier = Modifier.height(64.dp)) }
             }
         } ?: item {
             CircularProgressIndicator()
