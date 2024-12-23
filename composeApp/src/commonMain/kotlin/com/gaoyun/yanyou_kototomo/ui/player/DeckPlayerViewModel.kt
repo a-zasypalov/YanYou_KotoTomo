@@ -1,13 +1,19 @@
 package com.gaoyun.yanyou_kototomo.ui.player
 
 import com.gaoyun.yanyou_kototomo.data.local.Card
+import com.gaoyun.yanyou_kototomo.data.local.CardProgress
+import com.gaoyun.yanyou_kototomo.data.local.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.Deck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
+import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
+import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
+import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
+import com.gaoyun.yanyou_kototomo.util.localDateNow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
@@ -16,6 +22,8 @@ import moe.tlaster.precompose.viewmodel.viewModelScope
 class DeckPlayerViewModel(
     private val getDeck: GetDeck,
     private val getCoursesRoot: GetCoursesRoot,
+    private val spacedRepetitionCalculation: SpacedRepetitionCalculation,
+    private val cardProgressUpdater: CardProgressUpdater,
 ) : BaseViewModel() {
 
     override val viewState = MutableStateFlow<PlayerCardViewState?>(null)
@@ -50,8 +58,30 @@ class DeckPlayerViewModel(
         viewState.value = PlayerCardViewState(
             card = card,
             isLast = newCardIndex == deck.cards.lastIndex,
-            possibleAnswers = getPossibleAnswersFor(card, deck)
+            possibleAnswers = getPossibleAnswersFor(card.card, deck)
         )
+    }
+
+    fun repetitionAnswer(answer: RepetitionAnswer) = viewModelScope.launch {
+        val deckId = deckState.value?.id ?: return@launch
+        val currentCard = viewState.value?.card ?: return@launch
+        val reviewDate = localDateNow()
+        val (nextReviewDate, newEaseFactor, intervalDays) = spacedRepetitionCalculation.calculateNextInterval(
+            currentReviewDate = reviewDate,
+            easeFactorInput = currentCard.progress?.easeFactor,
+            reviewQuality = answer
+        )
+        cardProgressUpdater.updateCardProgress(
+            deckId = deckId,
+            cardProgress = CardProgress(
+                cardId = currentCard.card.id.identifier,
+                nextReview = nextReviewDate,
+                easeFactor = newEaseFactor,
+                lastReviewed = reviewDate,
+                interval = intervalDays
+            )
+        )
+        nextCard()
     }
 
     fun openCard() {
@@ -59,6 +89,8 @@ class DeckPlayerViewModel(
     }
 
     fun answerCard(answer: String) {
+        val currentCard = viewState.value?.card?.card ?: return
+        val isAnswerCorrect = getAnswerFor(currentCard) == answer
         viewState.value = viewState.value?.copy(answerOpened = true)
     }
 
@@ -68,7 +100,7 @@ class DeckPlayerViewModel(
 
     fun getPossibleAnswersFor(card: Card, deck: Deck): List<String> {
         val correctAnswer = getAnswerFor(card)
-        val clearedDeck = deck.cards.toMutableList().also { it.remove(card) }
+        val clearedDeck = deck.cards.map { it.card }.toMutableList().also { it.remove(card) }
         val allAnswers = clearedDeck.shuffled().take(3).map { getAnswerFor(it) } + correctAnswer
         return allAnswers.shuffled()
     }
@@ -82,7 +114,7 @@ class DeckPlayerViewModel(
 }
 
 data class PlayerCardViewState(
-    val card: Card?,
+    val card: CardWithProgress<*>?,
     val isLast: Boolean,
     val possibleAnswers: List<String>,
     val answerOpened: Boolean = false,

@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -36,6 +37,7 @@ import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerReading
 import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerTranscription
 import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerTranslation
 import com.gaoyun.yanyou_kototomo.ui.player.components.QuizButtons
+import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
 import com.gaoyun.yanyou_kototomo.ui.player.components.SpaceRepetitionButtons
 import moe.tlaster.precompose.koin.koinViewModel
 import moe.tlaster.precompose.navigation.BackHandler
@@ -76,6 +78,7 @@ fun DeckPlayerScreen(
                     mode = args.playerMode,
                     onCardOpenClick = viewModel::openCard,
                     onNextCardClick = viewModel::nextCard,
+                    onRepetitionClick = viewModel::repetitionAnswer,
                     onAnswerClick = viewModel::answerCard,
                     onFinishClick = { navigate(BackNavigationEffect) }
                 )
@@ -91,6 +94,7 @@ private fun DeckPlayerScreenContent(
     onCardOpenClick: () -> Unit,
     onAnswerClick: (String) -> Unit,
     onNextCardClick: () -> Unit,
+    onRepetitionClick: (RepetitionAnswer) -> Unit,
     onFinishClick: () -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -106,7 +110,9 @@ private fun DeckPlayerScreenContent(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.padding(horizontal = 16.dp)
                 ) {
-                    CardPlayerFront(card.front)
+                    CardPlayerFront(card.card.front)
+
+                    Text("Progress: ${card.progress}")
 
                     AnimatedVisibility(
                         visible = currentCardState.answerOpened,
@@ -118,7 +124,7 @@ private fun DeckPlayerScreenContent(
                             targetOffsetY = { it })
                     ) {
                         Column(modifier = Modifier.fillMaxWidth()) {
-                            when (card) {
+                            when (val card = card.card) {
                                 is Card.WordCard -> CardPlayerDetailsWord(card)
                                 is Card.PhraseCard -> CardPlayerDetailsPhraseCard(card)
                                 is Card.KanjiCard -> CardPlayerDetailsKanjiCard(card)
@@ -132,8 +138,7 @@ private fun DeckPlayerScreenContent(
                 PlayerMode.SpacialRepetition -> SpaceRepetitionButtons(
                     currentCardState = currentCardState,
                     onCardOpenClick = onCardOpenClick,
-                    onNextCardClick = onNextCardClick,
-                    onFinishClick = onFinishClick
+                    onRepetitionClick = onRepetitionClick,
                 )
 
                 PlayerMode.Quiz -> QuizButtons(

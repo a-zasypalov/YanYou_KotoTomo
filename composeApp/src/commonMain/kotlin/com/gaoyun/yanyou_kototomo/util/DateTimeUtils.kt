@@ -4,5 +4,6 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 
+fun localDateNow() = localDateTimeNow().date
 fun localDateTimeNow() = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
 fun now() = Clock.System.now()

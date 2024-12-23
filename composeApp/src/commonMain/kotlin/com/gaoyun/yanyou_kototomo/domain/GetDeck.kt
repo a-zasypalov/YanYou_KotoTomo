@@ -4,18 +4,24 @@ import com.gaoyun.yanyou_kototomo.data.local.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.Deck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
+import com.gaoyun.yanyou_kototomo.data.local.withProgress
 import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toLocal
+import com.gaoyun.yanyou_kototomo.repository.CardProgressRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckRepository
 
-class GetDeck(private val repository: DeckRepository) {
+class GetDeck(
+    private val deckRepository: DeckRepository,
+    private val cardProgressRepository: CardProgressRepository,
+) {
+
     suspend fun getDeck(
         learningLanguage: LanguageId,
         sourceLanguage: LanguageId,
         deck: CourseDeck,
-        requiredDecks: List<DeckId> = listOf()
+        requiredDecks: List<DeckId> = listOf(),
     ): Deck {
-        val deckResponse = repository.getDeck(learningLanguage, sourceLanguage, deck)
+        val deckResponse = deckRepository.getDeck(learningLanguage, sourceLanguage, deck)
         val deckWords = deckResponse.cards.filterIsInstance<CardDTO.WordCardDTO>()
         val deckKana = deckResponse.cards.filterIsInstance<CardDTO.KanaCardDTO>()
 
@@ -23,12 +29,15 @@ class GetDeck(private val repository: DeckRepository) {
         val requiredWords = deckWords + requiredCards.filterIsInstance<CardDTO.WordCardDTO>()
         val kanaCards = deckKana + requiredCards.filterIsInstance<CardDTO.KanaCardDTO>()
 
+        val progresses = cardProgressRepository.getCardProgressFor(deck.id).associateBy { it.cardId }
+
         val cards = deckResponse.cards.map { card ->
+            val progress = progresses[card.id]
             when (card) {
-                is CardDTO.WordCardDTO -> card.toLocal()
-                is CardDTO.KanaCardDTO -> card.toLocal(kanaCards)
-                is CardDTO.KanjiCardDTO -> card.toLocal(kanaCards)
-                is CardDTO.PhraseCardDTO -> card.toLocal(requiredWords)
+                is CardDTO.WordCardDTO -> card.toLocal().withProgress(progress)
+                is CardDTO.KanaCardDTO -> card.toLocal(kanaCards).withProgress(progress)
+                is CardDTO.KanjiCardDTO -> card.toLocal(kanaCards).withProgress(progress)
+                is CardDTO.PhraseCardDTO -> card.toLocal(requiredWords).withProgress(progress)
             }
         }
 
@@ -40,6 +49,6 @@ class GetDeck(private val repository: DeckRepository) {
         sourceLanguage: LanguageId,
         requiredDecks: List<DeckId>,
     ): List<CardDTO> = requiredDecks
-        .map { repository.getDeck(learningLanguage, sourceLanguage, it) }
+        .map { deckRepository.getDeck(learningLanguage, sourceLanguage, it) }
         .flatMap { it.cards }
 }

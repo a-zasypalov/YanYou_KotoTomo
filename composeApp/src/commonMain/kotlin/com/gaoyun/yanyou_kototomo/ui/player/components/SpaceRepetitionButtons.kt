@@ -23,8 +23,7 @@ import com.gaoyun.yanyou_kototomo.ui.player.PlayerCardViewState
 @Composable
 internal fun BoxScope.SpaceRepetitionButtons(
     currentCardState: PlayerCardViewState, onCardOpenClick: () -> Unit,
-    onNextCardClick: () -> Unit,
-    onFinishClick: () -> Unit,
+    onRepetitionClick: (RepetitionAnswer) -> Unit,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -61,7 +60,7 @@ internal fun BoxScope.SpaceRepetitionButtons(
                     PrimaryElevatedButton(
                         text = "Easy",
                         modifier = Modifier.weight(1f),
-                        onClick = if (!currentCardState.isLast) onNextCardClick else onFinishClick,
+                        onClick = { onRepetitionClick(RepetitionAnswer.Easy) },
                         colors = ButtonDefaults.elevatedButtonColors(
                             containerColor = YanYouColors.current.greenButtonContainer,
                             contentColor = YanYouColors.current.onButtonContainer,
@@ -71,7 +70,7 @@ internal fun BoxScope.SpaceRepetitionButtons(
                     PrimaryElevatedButton(
                         text = "Good",
                         modifier = Modifier.weight(1f),
-                        onClick = if (!currentCardState.isLast) onNextCardClick else onFinishClick,
+                        onClick = { onRepetitionClick(RepetitionAnswer.Good) },
                         colors = ButtonDefaults.elevatedButtonColors(
                             containerColor = YanYouColors.current.blueButtonContainer,
                             contentColor = YanYouColors.current.onButtonContainer,
@@ -81,7 +80,7 @@ internal fun BoxScope.SpaceRepetitionButtons(
                     PrimaryElevatedButton(
                         text = "Hard",
                         modifier = Modifier.weight(1f),
-                        onClick = if (!currentCardState.isLast) onNextCardClick else onFinishClick,
+                        onClick = { onRepetitionClick(RepetitionAnswer.Hard) },
                         colors = ButtonDefaults.elevatedButtonColors(
                             containerColor = YanYouColors.current.redButtonContainer,
                             contentColor = YanYouColors.current.onButtonContainer,
