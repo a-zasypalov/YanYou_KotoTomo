@@ -9,4 +9,6 @@ class CardProgressUpdater(private val repository: CardProgressRepository) {
     fun updateCardProgress(cardProgress: CardProgress, deckId: DeckId) {
         repository.updateProgress(cardProgress, deckId)
     }
+
+    fun resetDeck(deckId: DeckId) = repository.resetDeck(deckId)
 }

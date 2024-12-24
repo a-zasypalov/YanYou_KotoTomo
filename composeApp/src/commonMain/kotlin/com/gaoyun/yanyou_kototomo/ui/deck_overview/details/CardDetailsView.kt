@@ -60,7 +60,7 @@ internal fun CardDetailsView(cardState: State<CardWithProgress<*>?>, languageId:
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = nextReviewDate.toRelativeFormat(),
+                            text = "review ${nextReviewDate.toRelativeFormat()}",
                             style = MaterialTheme.typography.bodyMedium.copy(
                                 fontStyle = FontStyle.Italic,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -69,7 +69,7 @@ internal fun CardDetailsView(cardState: State<CardWithProgress<*>?>, languageId:
                         Icon(
                             imageVector = Icons.Default.EventRepeat,
                             contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
+                            tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                         )
                     }
                 }
