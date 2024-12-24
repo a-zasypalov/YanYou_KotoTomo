@@ -5,6 +5,7 @@ import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.data.persistence.platformModule
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
+import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
@@ -13,7 +14,8 @@ import com.gaoyun.yanyou_kototomo.network.PlatformHttpClient
 import com.gaoyun.yanyou_kototomo.repository.CardProgressRepository
 import com.gaoyun.yanyou_kototomo.repository.CoursesRootComponentRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckRepository
-import com.gaoyun.yanyou_kototomo.repository.DeckUpdateRepository
+import com.gaoyun.yanyou_kototomo.repository.DeckSettingsRepository
+import com.gaoyun.yanyou_kototomo.repository.DeckUpdatesRepository
 import com.gaoyun.yanyou_kototomo.ui.AppViewModel
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppNavigator
 import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksViewModel
@@ -48,8 +50,9 @@ val networkModule = module {
 val repositoryModule = module {
     single { CoursesRootComponentRepository(get(), get(), get(), get()) }
     single { DeckRepository(get(), get(), get()) }
-    single { DeckUpdateRepository(get(), get(), get()) }
+    single { DeckUpdatesRepository(get(), get(), get()) }
     single { CardProgressRepository(get()) }
+    single { DeckSettingsRepository(get()) }
 }
 
 val useCaseModule = module {
@@ -57,6 +60,7 @@ val useCaseModule = module {
     single { GetDeck(get(), get()) }
     single { SpacedRepetitionCalculation() }
     single { CardProgressUpdater(get()) }
+    single { DeckSettingsInteractor(get()) }
 }
 
 val viewModelModule = module {
@@ -65,7 +69,7 @@ val viewModelModule = module {
     factory { HomeViewModel(get()) }
     factory { CoursesViewModel(get()) }
     factory { CourseDecksViewModel(get()) }
-    factory { DeckOverviewViewModel(get(), get()) }
+    factory { DeckOverviewViewModel(get(), get(), get()) }
     factory { DeckPlayerViewModel(get(), get(), get(), get()) }
 }
 
