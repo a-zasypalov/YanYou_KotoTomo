@@ -7,11 +7,13 @@ import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.Deck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
+import com.gaoyun.yanyou_kototomo.data.local.countForReview
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
 import com.gaoyun.yanyou_kototomo.util.localDateNow
 import kotlinx.coroutines.delay
@@ -28,13 +30,17 @@ class DeckPlayerViewModel(
 
     override val viewState = MutableStateFlow<PlayerCardViewState?>(null)
     private val deckState = MutableStateFlow<Deck?>(null)
+    private var finishCallback: (() -> Unit)? = null
 
     fun startPlayer(
         learningLanguageId: LanguageId,
         sourceLanguageId: LanguageId,
         courseId: CourseId,
         deckId: DeckId,
+        playerMode: PlayerMode,
+        finishCallback: () -> Unit,
     ) = viewModelScope.launch {
+        this@DeckPlayerViewModel.finishCallback = finishCallback
         val course = getCoursesRoot.getCourseDecks(courseId)
         course.decks.find { it.id == deckId }?.let { deckInCourse ->
             val result = getDeck.getDeck(
@@ -43,22 +49,34 @@ class DeckPlayerViewModel(
                 deck = deckInCourse,
                 requiredDecks = course.requiredDecks ?: listOf()
             )
-            deckState.value = result.copy(cards = result.cards.shuffled())
+            val cardForPlayer = when (playerMode) {
+                PlayerMode.SpacialRepetition -> result.cards.filter { it.progress.countForReview() }.shuffled()
+                PlayerMode.Quiz -> result.cards.shuffled()
+            }
+            deckState.value = result.copy(cards = cardForPlayer)
             nextCard()
         }
     }
 
     fun nextCard() = viewModelScope.launch {
-        closeCard()
-        delay(300)
         val currentCardIndex = deckState.value?.cards?.indexOf(viewState.value?.card) ?: -1
         val newCardIndex = currentCardIndex + 1
+        val totalNumOfCards = deckState.value?.cards?.count() ?: -1
+
+        if (newCardIndex == totalNumOfCards) {
+            finishCallback?.invoke()
+            return@launch
+        }
+
+        closeCard()
+        delay(300)
+
         val deck = deckState.value ?: return@launch
         val card = deck.cards.getOrNull(newCardIndex) ?: return@launch
         viewState.value = PlayerCardViewState(
             card = card,
-            isLast = newCardIndex == deck.cards.lastIndex,
-            possibleAnswers = getPossibleAnswersFor(card.card, deck)
+            possibleAnswers = getPossibleAnswersFor(card.card, deck),
+            cardNumOutOf = newCardIndex + 1 to totalNumOfCards
         )
     }
 
@@ -115,7 +133,7 @@ class DeckPlayerViewModel(
 
 data class PlayerCardViewState(
     val card: CardWithProgress<*>?,
-    val isLast: Boolean,
     val possibleAnswers: List<String>,
+    val cardNumOutOf: Pair<Int, Int>,
     val answerOpened: Boolean = false,
 )

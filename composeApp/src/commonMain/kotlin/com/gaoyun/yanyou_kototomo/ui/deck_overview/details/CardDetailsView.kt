@@ -4,15 +4,20 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.EventRepeat
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -20,18 +25,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.Card
+import com.gaoyun.yanyou_kototomo.data.local.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
+import com.gaoyun.yanyou_kototomo.util.toRelativeFormat
 import org.jetbrains.compose.resources.painterResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun CardDetailsView(cardState: State<Card?>, languageId: LanguageId, onDismiss: () -> Unit) {
+internal fun CardDetailsView(cardState: State<CardWithProgress<*>?>, languageId: LanguageId, onDismiss: () -> Unit) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
 
-    cardState.value?.let { card ->
+    cardState.value?.let { cardWithProgress ->
         ModalBottomSheet(
             onDismissRequest = onDismiss,
             sheetState = sheetState,
@@ -45,7 +53,28 @@ internal fun CardDetailsView(cardState: State<Card?>, languageId: LanguageId, on
                     .fillMaxWidth()
                     .fillMaxHeight(0.8f)
             ) {
-                when (card) {
+                cardWithProgress.progress?.nextReview?.let { nextReviewDate ->
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.End),
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            text = nextReviewDate.toRelativeFormat(),
+                            style = MaterialTheme.typography.bodyMedium.copy(
+                                fontStyle = FontStyle.Italic,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                        )
+                        Icon(
+                            imageVector = Icons.Default.EventRepeat,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f)
+                        )
+                    }
+                }
+
+                when (val card = cardWithProgress.card) {
                     is Card.WordCard -> CardDetailsWord(card)
                     is Card.PhraseCard -> CardDetailsPhraseCard(card)
                     is Card.KanjiCard -> CardDetailsKanjiCard(card)
