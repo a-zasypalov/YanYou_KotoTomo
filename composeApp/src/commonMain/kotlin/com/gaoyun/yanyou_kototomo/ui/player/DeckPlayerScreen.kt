@@ -33,6 +33,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerFront
 import com.gaoyun.yanyou_kototomo.ui.player.components.QuizButtons
 import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
+import com.gaoyun.yanyou_kototomo.ui.player.components.ResultAnimation
 import com.gaoyun.yanyou_kototomo.ui.player.components.SpaceRepetitionButtons
 import moe.tlaster.precompose.koin.koinViewModel
 import moe.tlaster.precompose.navigation.BackHandler
@@ -112,8 +113,6 @@ private fun DeckPlayerScreenContent(
                 ) {
                     CardPlayerFront(card.card.front)
 
-//                    Text("Progress: ${card.progress}")
-
                     AnimatedVisibility(
                         visible = currentCardState.answerOpened,
                         enter = fadeIn(animationSpec = tween(300)) + slideInVertically(
@@ -124,6 +123,7 @@ private fun DeckPlayerScreenContent(
                             targetOffsetY = { it })
                     ) {
                         Column(modifier = Modifier.fillMaxWidth()) {
+                            ResultAnimation(currentCardState.answerIsCorrect)
                             when (val card = card.card) {
                                 is Card.WordCard -> CardPlayerDetailsWord(card)
                                 is Card.PhraseCard -> CardPlayerDetailsPhraseCard(card)

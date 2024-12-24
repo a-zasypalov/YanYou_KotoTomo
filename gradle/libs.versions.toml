@@ -1,7 +1,7 @@
 [versions]
 agp = "8.7.3"
 android-compileSdk = "34"
-android-minSdk = "24"
+android-minSdk = "26"
 android-targetSdk = "34"
 androidx-activityCompose = "1.9.3"
 androidx-lifecycle = "2.8.4"
@@ -15,6 +15,7 @@ precompose = "1.6.2"
 kotlinDatetime = "0.6.1"
 sqldelight = "1.5.5"
 material = "1.12.0"
+compottie="2.0.0-rc01" #Update to stable as rc02 crashes iOS
 
 [libraries]
 #Android
@@ -48,6 +49,9 @@ sqldelight-nativeDriver = { module = "com.squareup.sqldelight:native-driver", ve
 precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
 precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
 precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "precompose" }
+#UI
+compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
+compottie-dot = { module = "io.github.alexzhirkevich:compottie-dot", version.ref = "compottie" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

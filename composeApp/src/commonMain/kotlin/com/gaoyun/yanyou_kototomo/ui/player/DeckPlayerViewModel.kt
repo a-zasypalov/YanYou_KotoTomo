@@ -109,11 +109,11 @@ class DeckPlayerViewModel(
     fun answerCard(answer: String) {
         val currentCard = viewState.value?.card?.card ?: return
         val isAnswerCorrect = getAnswerFor(currentCard) == answer
-        viewState.value = viewState.value?.copy(answerOpened = true)
+        viewState.value = viewState.value?.copy(answerOpened = true, answerIsCorrect = isAnswerCorrect)
     }
 
     fun closeCard() {
-        viewState.value = viewState.value?.copy(answerOpened = false)
+        viewState.value = viewState.value?.copy(answerOpened = false, answerIsCorrect = null)
     }
 
     fun getPossibleAnswersFor(card: Card, deck: Deck): List<String> {
@@ -136,4 +136,5 @@ data class PlayerCardViewState(
     val possibleAnswers: List<String>,
     val cardNumOutOf: Pair<Int, Int>,
     val answerOpened: Boolean = false,
+    val answerIsCorrect: Boolean? = null,
 )

@@ -86,6 +86,9 @@ kotlin {
             implementation(libs.precompose)
             implementation(libs.precompose.viewmodel)
             implementation(libs.precompose.koin)
+
+            implementation(libs.compottie)
+            implementation(libs.compottie.dot)
         }
     }
 }
