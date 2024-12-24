@@ -1,0 +1,13 @@
+CREATE TABLE DeckSettings (
+    deckId TEXT NOT NULL PRIMARY KEY,
+    showTranslation INTEGER NOT NULL,
+    showTranscription INTEGER NOT NULL,
+    showReading INTEGER NOT NULL
+);
+
+getSettingForDeck:
+SELECT * FROM DeckSettings WHERE deckId = ?;
+
+updateSettings:
+INSERT OR REPLACE INTO DeckSettings (deckId, showTranslation, showTranscription, showReading)
+VALUES (?, ?, ?, ?);

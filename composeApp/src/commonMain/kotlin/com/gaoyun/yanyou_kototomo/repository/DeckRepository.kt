@@ -12,7 +12,7 @@ import com.gaoyun.yanyou_kototomo.network.DecksApi
 class DeckRepository(
     private val api: DecksApi,
     private val db: YanYouKotoTomoDatabase,
-    private val deckUpdateRepository: DeckUpdateRepository,
+    private val deckUpdatesRepository: DeckUpdatesRepository,
 ) {
     suspend fun getDeck(
         learningLanguage: LanguageId,
@@ -20,7 +20,7 @@ class DeckRepository(
         deckId: DeckId,
     ): DeckDTO {
         val cache = getDeckFromCache(deckId)?.let {
-            val shouldRefresh = deckUpdateRepository.shouldRefreshDeck(deckId, it.version)
+            val shouldRefresh = deckUpdatesRepository.shouldRefreshDeck(deckId, it.version)
             if (!shouldRefresh) it else null
         }
 
@@ -36,7 +36,7 @@ class DeckRepository(
         sourceLanguage: LanguageId,
         deck: CourseDeck,
     ): DeckDTO {
-        val shouldRefresh = deckUpdateRepository.shouldRefreshDeck(deck.id, deck.version)
+        val shouldRefresh = deckUpdatesRepository.shouldRefreshDeck(deck.id, deck.version)
         val cache = if (!shouldRefresh) getDeckFromCache(deck.id) else null
 
         return cache ?: fetchDeck(

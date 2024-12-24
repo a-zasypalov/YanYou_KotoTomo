@@ -3,7 +3,9 @@ package com.gaoyun.yanyou_kototomo.ui.deck_overview
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.Deck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
+import com.gaoyun.yanyou_kototomo.data.local.DeckSettings
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
+import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
@@ -13,12 +15,13 @@ import moe.tlaster.precompose.viewmodel.viewModelScope
 
 class DeckOverviewViewModel(
     private val getDeck: GetDeck,
-    private val getCoursesRoot: GetCoursesRoot
+    private val getCoursesRoot: GetCoursesRoot,
+    private val deckSettingsInteractor: DeckSettingsInteractor,
 ) : BaseViewModel() {
 
-    override val viewState = MutableStateFlow<Deck?>(null)
+    override val viewState = MutableStateFlow<DeckOverviewState?>(null)
 
-    fun getCourseDecks(
+    fun getDeck(
         learningLanguageId: LanguageId,
         sourceLanguageId: LanguageId,
         courseId: CourseId,
@@ -26,14 +29,43 @@ class DeckOverviewViewModel(
     ) = viewModelScope.launch {
         val course = getCoursesRoot.getCourseDecks(courseId)
         course.decks.find { it.id == deckId }?.let { deckInCourse ->
-            val result = getDeck.getDeck(
+            val deck = getDeck.getDeck(
                 learningLanguage = learningLanguageId,
                 sourceLanguage = sourceLanguageId,
                 deck = deckInCourse,
                 requiredDecks = course.requiredDecks ?: listOf()
             )
-            viewState.value = result
+            val settings = deckSettingsInteractor.getDeckSettings(deckId) ?: DeckSettings.DEFAULT(deckId)
+            viewState.value = DeckOverviewState(deck, settings)
         }
     }
 
+    fun updateTranslationSettings(show: Boolean) = viewModelScope.launch {
+        viewState.value?.let { viewStateSafe ->
+            val newSettings = viewStateSafe.settings.copy(showTranslation = show)
+            deckSettingsInteractor.updateDeckSettings(newSettings)
+            viewState.value = viewStateSafe.copy(settings = newSettings)
+        }
+    }
+
+    fun updateTranscriptionSettings(show: Boolean) = viewModelScope.launch {
+        viewState.value?.let { viewStateSafe ->
+            val newSettings = viewStateSafe.settings.copy(showTranscription = show)
+            deckSettingsInteractor.updateDeckSettings(newSettings)
+            viewState.value = viewStateSafe.copy(settings = newSettings)
+        }
+    }
+
+    fun updateReadingSettings(show: Boolean) = viewModelScope.launch {
+        viewState.value?.let { viewStateSafe ->
+            val newSettings = viewStateSafe.settings.copy(showReading = show)
+            deckSettingsInteractor.updateDeckSettings(newSettings)
+            viewState.value = viewStateSafe.copy(settings = newSettings)
+        }
+    }
 }
+
+data class DeckOverviewState(
+    val deck: Deck,
+    val settings: DeckSettings,
+)

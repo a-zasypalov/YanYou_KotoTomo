@@ -35,7 +35,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.Card
-import com.gaoyun.yanyou_kototomo.data.local.Deck
 import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
@@ -47,7 +46,6 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.details.CardDetailsView
-import com.gaoyun.yanyou_kototomo.util.toggle
 import moe.tlaster.precompose.koin.koinViewModel
 
 
@@ -61,15 +59,18 @@ fun DeckOverviewScreen(
 
     LaunchedEffect(Unit) {
         with(args) {
-            viewModel.getCourseDecks(learningLanguageId, sourceLanguageId, courseId, deckId)
+            viewModel.getDeck(learningLanguageId, sourceLanguageId, courseId, deckId)
         }
     }
 
     SurfaceScaffold(backHandler = { navigate(BackNavigationEffect) }) {
         DeckOverviewContent(
-            deck = viewModel.viewState.collectAsState().value,
+            viewState = viewModel.viewState.collectAsState().value,
             onCardClick = { cardToShow -> cardDetailState.value = cardToShow },
-            onPlayDeckClick = { mode -> navigate(ToDeckPlayer(args.toPlayerArgs(mode))) }
+            onPlayDeckClick = { mode -> navigate(ToDeckPlayer(args.toPlayerArgs(mode))) },
+            updateTranslationSettings = viewModel::updateTranslationSettings,
+            updateTranscriptionSettings = viewModel::updateTranscriptionSettings,
+            updateReadingSettings = viewModel::updateReadingSettings
         )
         CardDetailsView(cardDetailState, args.learningLanguageId) { cardDetailState.value = null }
     }
@@ -77,26 +78,26 @@ fun DeckOverviewScreen(
 
 @Composable
 private fun DeckOverviewContent(
-    deck: Deck?,
+    viewState: DeckOverviewState?,
     onCardClick: (Card) -> Unit,
     onPlayDeckClick: (PlayerMode) -> Unit,
+    updateTranslationSettings: (Boolean) -> Unit,
+    updateTranscriptionSettings: (Boolean) -> Unit,
+    updateReadingSettings: (Boolean) -> Unit,
 ) {
-    val cellsNumber = if (deck?.isKanaDeck() == true) 5 else 2
-    val cellsSpacer = if (deck?.isKanaDeck() == true) 8.dp else 16.dp
-
-    val showTranslation = remember { mutableStateOf(true) }
-    val showTranscription = remember { mutableStateOf(true) }
-    val showReading = remember { mutableStateOf(true) }
-
     Box(modifier = Modifier.fillMaxSize()) {
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(cellsNumber),
-            contentPadding = PaddingValues(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(cellsSpacer),
-            horizontalArrangement = Arrangement.spacedBy(cellsSpacer),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            deck?.let {
+        viewState?.let {
+            val deck = viewState.deck
+            val cellsNumber = if (deck.isKanaDeck() == true) 5 else 2
+            val cellsSpacer = if (deck.isKanaDeck() == true) 8.dp else 16.dp
+
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(cellsNumber),
+                contentPadding = PaddingValues(horizontal = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(cellsSpacer),
+                horizontalArrangement = Arrangement.spacedBy(cellsSpacer),
+                modifier = Modifier.fillMaxWidth()
+            ) {
                 item(span = { GridItemSpan(cellsNumber) }) {
                     Column(modifier = Modifier.fillMaxWidth()) {
                         AutoResizeText(
@@ -115,22 +116,22 @@ private fun DeckOverviewContent(
                         ) {
                             if (deck.isKanaDeck() == false) {
                                 OutlinedIconToggleButton(
-                                    checked = showTranslation.value,
-                                    onCheckedChange = { showTranslation.toggle() },
+                                    checked = viewState.settings.showTranslation,
+                                    onCheckedChange = updateTranslationSettings,
                                 ) {
                                     Icon(Icons.Default.Translate, null)
                                 }
                             }
                             OutlinedIconToggleButton(
-                                checked = showTranscription.value,
-                                onCheckedChange = { showTranscription.toggle() },
+                                checked = viewState.settings.showTranscription,
+                                onCheckedChange = updateTranscriptionSettings,
                             ) {
                                 Icon(Icons.Default.Subtitles, null)
                             }
                             if (deck.isJlptDeck() == true) {
                                 OutlinedIconToggleButton(
-                                    checked = showReading.value,
-                                    onCheckedChange = { showReading.toggle() },
+                                    checked = viewState.settings.showReading,
+                                    onCheckedChange = updateReadingSettings,
                                 ) {
                                     Icon(Icons.Default.ViewColumn, null)
                                 }
@@ -144,8 +145,8 @@ private fun DeckOverviewContent(
                         is Card.WordCard -> item {
                             DeckOverviewWordCard(
                                 card = card,
-                                showTranscription = showTranscription.value,
-                                showTranslation = showTranslation.value,
+                                showTranscription = viewState.settings.showTranscription,
+                                showTranslation = viewState.settings.showTranslation,
                                 onClick = { onCardClick(card) }
                             )
                         }
@@ -153,8 +154,8 @@ private fun DeckOverviewContent(
                         is Card.PhraseCard -> item {
                             DeckOverviewPhraseCard(
                                 card = card,
-                                showTranscription = showTranscription.value,
-                                showTranslation = showTranslation.value,
+                                showTranscription = viewState.settings.showTranscription,
+                                showTranslation = viewState.settings.showTranslation,
                                 onClick = { onCardClick(card) }
                             )
                         }
@@ -162,9 +163,9 @@ private fun DeckOverviewContent(
                         is Card.KanjiCard -> item {
                             DeckOverviewKanjiCard(
                                 card = card,
-                                showTranscription = showTranscription.value,
-                                showTranslation = showTranslation.value,
-                                showReading = showReading.value,
+                                showTranscription = viewState.settings.showTranscription,
+                                showTranslation = viewState.settings.showTranslation,
+                                showReading = viewState.settings.showReading,
                                 onClick = { onCardClick(card) }
                             )
                         }
@@ -173,7 +174,7 @@ private fun DeckOverviewContent(
                             item {
                                 DeckOverviewKanaCard(
                                     card = card,
-                                    showTranscription = showTranscription.value,
+                                    showTranscription = viewState.settings.showTranscription,
                                     onClick = { onCardClick(card) }
                                 )
                             }
@@ -186,36 +187,34 @@ private fun DeckOverviewContent(
                     Spacer(modifier = Modifier.height(96.dp))
                 }
 
-            } ?: item(span = { GridItemSpan(cellsNumber) }) {
-                CircularProgressIndicator()
             }
-        }
 
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier.fillMaxWidth()
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 32.dp)
-                .padding(horizontal = 24.dp)
-        ) {
-            PrimaryElevatedButton(
-                text = "Review",
-                leadingIcon = Icons.Outlined.LocalLibrary,
-                onClick = { onPlayDeckClick(PlayerMode.SpacialRepetition) },
-                modifier = Modifier.weight(1f),
-            )
-
-            PrimaryElevatedButton(
-                text = "Quiz",
-                leadingIcon = Icons.Outlined.Quiz,
-                onClick = { onPlayDeckClick(PlayerMode.Quiz) },
-                modifier = Modifier.weight(1f),
-                colors = ButtonDefaults.elevatedButtonColors(
-                    containerColor = MaterialTheme.colorScheme.tertiary,
-                    contentColor = MaterialTheme.colorScheme.onTertiary
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(12.dp),
+                modifier = Modifier.fillMaxWidth()
+                    .align(Alignment.BottomCenter)
+                    .padding(bottom = 32.dp)
+                    .padding(horizontal = 24.dp)
+            ) {
+                PrimaryElevatedButton(
+                    text = "Review",
+                    leadingIcon = Icons.Outlined.LocalLibrary,
+                    onClick = { onPlayDeckClick(PlayerMode.SpacialRepetition) },
+                    modifier = Modifier.weight(1f),
                 )
-            )
-        }
+
+                PrimaryElevatedButton(
+                    text = "Quiz",
+                    leadingIcon = Icons.Outlined.Quiz,
+                    onClick = { onPlayDeckClick(PlayerMode.Quiz) },
+                    modifier = Modifier.weight(1f),
+                    colors = ButtonDefaults.elevatedButtonColors(
+                        containerColor = MaterialTheme.colorScheme.tertiary,
+                        contentColor = MaterialTheme.colorScheme.onTertiary
+                    )
+                )
+            }
+        } ?: CircularProgressIndicator()
     }
 }
 

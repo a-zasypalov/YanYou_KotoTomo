@@ -17,17 +17,17 @@ class CoursesRootComponentRepository(
     private val api: DecksApi,
     private val db: YanYouKotoTomoDatabase,
     private val prefs: Preferences,
-    private val deckUpdateRepository: DeckUpdateRepository,
+    private val deckUpdatesRepository: DeckUpdatesRepository,
 ) {
 
     suspend fun getCoursesRoot(): RootStructureDTO {
-        val shouldRefresh = deckUpdateRepository.shouldRefreshCourses()
+        val shouldRefresh = deckUpdatesRepository.shouldRefreshCourses()
         val cache = if (!shouldRefresh) getCoursesFromCache() else null
         return cache ?: fetchCoursesFromApi()
     }
 
     suspend fun getCourse(courseId: CourseId): CourseDTO {
-        val shouldRefresh = deckUpdateRepository.shouldRefreshCourses()
+        val shouldRefresh = deckUpdatesRepository.shouldRefreshCourses()
         val cache = if (!shouldRefresh) {
             db.coursesQueries.getCourse(courseId.identifier).executeAsList().toDTO()
         } else null

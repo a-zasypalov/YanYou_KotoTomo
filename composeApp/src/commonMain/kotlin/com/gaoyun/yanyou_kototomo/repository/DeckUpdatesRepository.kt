@@ -13,10 +13,10 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Duration.Companion.days
 
-class DeckUpdateRepository(
+class DeckUpdatesRepository(
     private val api: DecksApi,
     private val db: YanYouKotoTomoDatabase,
-    private val prefs: Preferences
+    private val prefs: Preferences,
 ) {
     private val refreshTimeout = 2.days
 
