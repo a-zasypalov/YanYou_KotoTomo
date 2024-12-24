@@ -5,6 +5,7 @@ import com.gaoyun.yanyou_kototomo.data.local.Deck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.DeckSettings
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
+import com.gaoyun.yanyou_kototomo.data.local.countForReview
 import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
@@ -36,7 +37,13 @@ class DeckOverviewViewModel(
                 requiredDecks = course.requiredDecks ?: listOf()
             )
             val settings = deckSettingsInteractor.getDeckSettings(deckId) ?: DeckSettings.DEFAULT(deckId)
-            viewState.value = DeckOverviewState(deck, settings)
+            val cardsDueToReview = deck.cards.count { it.progress.countForReview() }
+
+            viewState.value = DeckOverviewState(
+                deck = deck,
+                settings = settings,
+                cardsDueToReview = cardsDueToReview
+            )
         }
     }
 
@@ -68,4 +75,5 @@ class DeckOverviewViewModel(
 data class DeckOverviewState(
     val deck: Deck,
     val settings: DeckSettings,
+    val cardsDueToReview: Int,
 )

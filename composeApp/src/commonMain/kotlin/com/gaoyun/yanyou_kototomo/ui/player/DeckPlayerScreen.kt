@@ -9,7 +9,7 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,17 +25,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.Card
 import com.gaoyun.yanyou_kototomo.ui.base.composables.BackButtonType
-import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
-import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerAdditionalInfo
 import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerFront
-import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerReading
-import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerTranscription
-import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerTranslation
 import com.gaoyun.yanyou_kototomo.ui.player.components.QuizButtons
 import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
 import com.gaoyun.yanyou_kototomo.ui.player.components.SpaceRepetitionButtons
@@ -51,7 +46,14 @@ fun DeckPlayerScreen(
 
     LaunchedEffect(Unit) {
         with(args) {
-            viewModel.startPlayer(learningLanguageId, sourceLanguageId, courseId, deckId)
+            viewModel.startPlayer(
+                learningLanguageId = learningLanguageId,
+                sourceLanguageId = sourceLanguageId,
+                courseId = courseId,
+                playerMode = args.playerMode,
+                deckId = deckId,
+                finishCallback = { navigate(BackNavigationEffect) }
+            )
         }
     }
 
@@ -80,7 +82,6 @@ fun DeckPlayerScreen(
                     onNextCardClick = viewModel::nextCard,
                     onRepetitionClick = viewModel::repetitionAnswer,
                     onAnswerClick = viewModel::answerCard,
-                    onFinishClick = { navigate(BackNavigationEffect) }
                 )
             }
         }
@@ -95,7 +96,6 @@ private fun DeckPlayerScreenContent(
     onAnswerClick: (String) -> Unit,
     onNextCardClick: () -> Unit,
     onRepetitionClick: (RepetitionAnswer) -> Unit,
-    onFinishClick: () -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         currentCardState.card?.let { card ->
@@ -112,7 +112,7 @@ private fun DeckPlayerScreenContent(
                 ) {
                     CardPlayerFront(card.card.front)
 
-                    Text("Progress: ${card.progress}")
+//                    Text("Progress: ${card.progress}")
 
                     AnimatedVisibility(
                         visible = currentCardState.answerOpened,
@@ -132,6 +132,14 @@ private fun DeckPlayerScreenContent(
                             }
                         }
                     }
+
+                    Spacer(modifier = Modifier.weight(1f))
+
+                    Text(
+                        text = "${currentCardState.cardNumOutOf.first}/${currentCardState.cardNumOutOf.second}",
+                        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                        modifier = Modifier.padding(bottom = 8.dp)
+                    )
                 }
             }
             when (mode) {
@@ -145,42 +153,8 @@ private fun DeckPlayerScreenContent(
                     currentCardState = currentCardState,
                     onAnswerClick = onAnswerClick,
                     onNextCardClick = onNextCardClick,
-                    onFinishClick = onFinishClick
                 )
             }
         }
     }
-}
-
-@Composable
-private fun ColumnScope.CardPlayerDetailsWord(card: Card.WordCard) {
-    CardPlayerTranscription(card.transcription, modifier = Modifier.fillMaxWidth())
-    Divider(2.dp, Modifier.padding(vertical = 4.dp))
-    CardPlayerTranslation(card.translation)
-    card.additionalInfo?.let { CardPlayerAdditionalInfo(it) }
-}
-
-@Composable
-private fun ColumnScope.CardPlayerDetailsKanaCard(card: Card.KanaCard) {
-    CardPlayerTranscription(
-        transcription = "[${card.transcription}] ${card.mirror.front}",
-        preformatted = true,
-        modifier = Modifier.fillMaxWidth()
-    )
-}
-
-@Composable
-private fun ColumnScope.CardPlayerDetailsKanjiCard(card: Card.KanjiCard) {
-    CardPlayerReading(card.reading, modifier = Modifier.fillMaxWidth())
-    Divider(2.dp, Modifier.padding(vertical = 4.dp))
-    CardPlayerTranslation(card.translation)
-    card.additionalInfo?.let { CardPlayerAdditionalInfo(it) }
-}
-
-@Composable
-private fun ColumnScope.CardPlayerDetailsPhraseCard(card: Card.PhraseCard) {
-    CardPlayerTranscription(card.transcription, modifier = Modifier.fillMaxWidth())
-    Divider(2.dp, Modifier.padding(vertical = 4.dp))
-    CardPlayerTranslation(card.translation)
-    card.additionalInfo?.let { CardPlayerAdditionalInfo(it) }
 }

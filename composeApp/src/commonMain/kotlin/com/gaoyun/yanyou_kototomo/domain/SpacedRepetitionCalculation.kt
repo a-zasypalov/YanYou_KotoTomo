@@ -13,7 +13,7 @@ class SpacedRepetitionCalculation {
         reviewQuality: RepetitionAnswer,
     ): Triple<LocalDate, Double, Int> {
         // Default ease factor if not provided
-        val easeFactor = easeFactorInput ?: 2.5
+        val easeFactor = easeFactorInput ?: 2.0
 
         // Calculate the new ease factor based on the review quality
         val newEaseFactor = when (reviewQuality) {
@@ -23,12 +23,12 @@ class SpacedRepetitionCalculation {
         }
 
         // Base interval starting at 1 day, increasing with review quality
-        val intervalBase = 2
+        val intervalBase = 1.5
 
         // Calculate the interval in days based on review quality
         val intervalDays = when (reviewQuality) {
-            RepetitionAnswer.Easy -> (intervalBase * 1.4 * newEaseFactor).toInt() // Gradually increase interval for "Easy"
-            RepetitionAnswer.Good -> (intervalBase * 1.2 * newEaseFactor).toInt() // Gradually increase interval for "Good"
+            RepetitionAnswer.Easy -> (intervalBase * 1.3 * newEaseFactor).toInt() // Gradually increase interval for "Easy"
+            RepetitionAnswer.Good -> (intervalBase * 1.1 * newEaseFactor).toInt() // Gradually increase interval for "Good"
             RepetitionAnswer.Hard -> maxOf((intervalBase * 0.8).toInt(), 1)      // Slightly reduce interval for "Hard"
         }
 

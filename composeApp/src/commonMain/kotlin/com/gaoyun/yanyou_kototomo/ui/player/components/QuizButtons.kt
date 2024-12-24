@@ -30,7 +30,6 @@ internal fun BoxScope.QuizButtons(
     currentCardState: PlayerCardViewState,
     onAnswerClick: (String) -> Unit,
     onNextCardClick: () -> Unit,
-    onFinishClick: () -> Unit,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -79,7 +78,7 @@ internal fun BoxScope.QuizButtons(
                     PrimaryElevatedButton(
                         text = "Next card",
                         modifier = Modifier.fillMaxWidth().padding(bottom = 64.dp).padding(horizontal = 24.dp),
-                        onClick = if (!currentCardState.isLast) onNextCardClick else onFinishClick
+                        onClick = onNextCardClick
                     )
                 }
             }

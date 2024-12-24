@@ -1,10 +1,11 @@
 package com.gaoyun.yanyou_kototomo.data.local
 
+import com.gaoyun.yanyou_kototomo.util.localDateNow
 import kotlinx.datetime.LocalDate
 
-data class CardWithProgress<T: Card>(
+data class CardWithProgress<T : Card>(
     val card: T,
-    val progress: CardProgress?
+    val progress: CardProgress?,
 )
 
 data class CardProgress(
@@ -14,3 +15,5 @@ data class CardProgress(
     val easeFactor: Double,
     val nextReview: LocalDate,
 )
+
+fun CardProgress?.countForReview(): Boolean = this == null || this.nextReview == localDateNow()
