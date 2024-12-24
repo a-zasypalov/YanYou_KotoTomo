@@ -69,7 +69,7 @@ val viewModelModule = module {
     factory { HomeViewModel(get()) }
     factory { CoursesViewModel(get()) }
     factory { CourseDecksViewModel(get()) }
-    factory { DeckOverviewViewModel(get(), get(), get()) }
+    factory { DeckOverviewViewModel(get(), get(), get(), get()) }
     factory { DeckPlayerViewModel(get(), get(), get(), get()) }
 }
 

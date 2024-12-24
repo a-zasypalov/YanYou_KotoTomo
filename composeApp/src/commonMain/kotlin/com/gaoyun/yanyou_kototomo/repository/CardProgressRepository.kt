@@ -23,4 +23,8 @@ class CardProgressRepository(
             deck_id = deckId.identifier
         )
     }
+
+    fun resetDeck(deckId: DeckId) {
+        db.card_progressQueries.removeProgressForDeck(deckId.identifier)
+    }
 }

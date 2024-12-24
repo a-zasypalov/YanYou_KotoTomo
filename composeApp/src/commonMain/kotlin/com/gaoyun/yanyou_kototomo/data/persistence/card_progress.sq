@@ -14,5 +14,5 @@ updateCardProgress:
 INSERT OR REPLACE INTO CardProgress (card_id, deck_id, lastReviewed, interval, easeFactor, nextReview)
 VALUES (?, ?, ?, ?, ?, ?);
 
-removeProgressForCard:
-DELETE FROM CardProgress WHERE card_id = ?;
+removeProgressForDeck:
+DELETE FROM CardProgress WHERE deck_id = ?;

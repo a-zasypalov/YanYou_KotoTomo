@@ -38,13 +38,12 @@ fun DeckOverviewScreen(
     val viewModel = koinViewModel(vmClass = DeckOverviewViewModel::class)
     val cardDetailState = remember { mutableStateOf<CardWithProgress<*>?>(null) }
 
-    LaunchedEffect(Unit) {
-        with(args) {
-            viewModel.getDeck(learningLanguageId, sourceLanguageId, courseId, deckId)
-        }
-    }
+    LaunchedEffect(Unit) { viewModel.getDeck(args) }
 
-    SurfaceScaffold(backHandler = { navigate(BackNavigationEffect) }) {
+    SurfaceScaffold(
+        backHandler = { navigate(BackNavigationEffect) },
+        actionButtons = { DeckOptionsMenu({ viewModel.resetDeck(args) }) }
+    ) {
         DeckOverviewContent(
             viewState = viewModel.viewState.collectAsState().value,
             onCardClick = { cardToShow -> cardDetailState.value = cardToShow },
