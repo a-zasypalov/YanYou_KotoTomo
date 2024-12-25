@@ -1,20 +1,42 @@
 package com.gaoyun.yanyou_kototomo.domain
 
-import com.gaoyun.yanyou_kototomo.data.local.QuizCardResult
+import com.gaoyun.yanyou_kototomo.data.local.QuizCardResultPersisted
 import com.gaoyun.yanyou_kototomo.data.local.QuizSession
 import com.gaoyun.yanyou_kototomo.data.local.QuizSessionId
+import com.gaoyun.yanyou_kototomo.data.local.QuizSessionWithCards
 import com.gaoyun.yanyou_kototomo.repository.QuizSessionRepository
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.QuizSessionSummaryArgs
 import com.gaoyun.yanyou_kototomo.util.localDateTimeNow
 import kotlinx.datetime.LocalDateTime
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
-class QuizInteractor(private val repository: QuizSessionRepository) {
+class QuizInteractor(
+    private val repository: QuizSessionRepository,
+    private val getDeck: GetDeck,
+    private val getCoursesRoot: GetCoursesRoot,
+) {
 
-    fun getQuizSession(sessionId: QuizSessionId): QuizSession? = repository.getQuizSession(sessionId)
+    suspend fun getQuizSession(
+        args: QuizSessionSummaryArgs,
+    ): QuizSessionWithCards? {
+        val session = repository.getQuizSession(args.sessionId) ?: return null
+        val cardIds = session.results.map { it.card }
+        val course = getCoursesRoot.getCourseDecks(args.courseId)
+        val cards = course.decks.find { it.id == args.deckId }?.let { deckInCourse ->
+            val deck = getDeck.getDeck(
+                learningLanguage = args.learningLanguageId,
+                sourceLanguage = args.sourceLanguageId,
+                deck = deckInCourse,
+                requiredDecks = course.requiredDecks ?: listOf()
+            )
+            deck.cards
+        }?.filter { cardIds.contains(it.card.id.identifier) } ?: listOf()
+        return session.withCards(cards)
+    }
 
     @OptIn(ExperimentalUuidApi::class)
-    fun addSession(startTime: LocalDateTime, cardResults: List<QuizCardResult>): QuizSessionId {
+    fun addSession(startTime: LocalDateTime, cardResults: List<QuizCardResultPersisted>): QuizSessionId {
         val sessionId = QuizSessionId(Uuid.random().toString())
         val session = QuizSession(
             sessionId = sessionId,

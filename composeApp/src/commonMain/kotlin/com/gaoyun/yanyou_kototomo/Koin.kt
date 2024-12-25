@@ -66,7 +66,7 @@ val useCaseModule = module {
     single { SpacedRepetitionCalculation() }
     single { CardProgressUpdater(get()) }
     single { DeckSettingsInteractor(get()) }
-    single { QuizInteractor(get()) }
+    single { QuizInteractor(get(), get(), get()) }
 }
 
 val viewModelModule = module {
@@ -77,7 +77,7 @@ val viewModelModule = module {
     factory { CourseDecksViewModel(get()) }
     factory { DeckOverviewViewModel(get(), get(), get(), get()) }
     factory { DeckPlayerViewModel(get(), get(), get(), get(), get()) }
-    factory { QuizSessionSummaryViewModel() }
+    factory { QuizSessionSummaryViewModel(get()) }
 }
 
 val dbModule = module {
