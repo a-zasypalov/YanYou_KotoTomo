@@ -6,7 +6,7 @@ import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.Deck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
-import com.gaoyun.yanyou_kototomo.data.local.QuizCardResult
+import com.gaoyun.yanyou_kototomo.data.local.QuizCardResultPersisted
 import com.gaoyun.yanyou_kototomo.data.local.QuizSessionId
 import com.gaoyun.yanyou_kototomo.data.local.countForReview
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
@@ -35,7 +35,7 @@ class DeckPlayerViewModel(
 
     override val viewState = MutableStateFlow<PlayerCardViewState?>(null)
     private val deckState = MutableStateFlow<Deck?>(null)
-    private val quizResults = MutableStateFlow<MutableList<QuizCardResult>>(mutableListOf())
+    private val quizResults = MutableStateFlow<MutableList<QuizCardResultPersisted>>(mutableListOf())
     private val quizStart = MutableStateFlow<LocalDateTime?>(null)
     private val playerMode = MutableStateFlow<PlayerMode?>(null)
 
@@ -131,7 +131,7 @@ class DeckPlayerViewModel(
         val currentCard = viewState.value?.card?.card ?: return
         val isAnswerCorrect = getAnswerFor(currentCard) == answer
         viewState.value = viewState.value?.copy(answerOpened = true, answerIsCorrect = isAnswerCorrect)
-        quizResults.value.add(QuizCardResult(currentCard.id, isAnswerCorrect))
+        quizResults.value.add(QuizCardResultPersisted(currentCard.id.identifier, isAnswerCorrect))
     }
 
     fun closeCard() {

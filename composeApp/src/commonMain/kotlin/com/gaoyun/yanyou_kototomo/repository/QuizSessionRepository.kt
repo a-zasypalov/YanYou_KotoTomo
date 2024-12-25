@@ -1,6 +1,6 @@
 package com.gaoyun.yanyou_kototomo.repository
 
-import com.gaoyun.yanyou_kototomo.data.local.QuizCardResult
+import com.gaoyun.yanyou_kototomo.data.local.QuizCardResultPersisted
 import com.gaoyun.yanyou_kototomo.data.local.QuizSession
 import com.gaoyun.yanyou_kototomo.data.local.QuizSessionId
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
@@ -11,7 +11,10 @@ import kotlinx.serialization.json.Json
 class QuizSessionRepository(private val db: YanYouKotoTomoDatabase) {
 
     fun getQuizSession(sessionId: QuizSessionId): QuizSession? {
-        return db.quiz_sessionQueries.getQuizSession(sessionId.identifier).executeAsOneOrNull()?.toLocal()
+        return db.quiz_sessionQueries.getQuizSession(sessionId.identifier).executeAsOneOrNull()?.let { session ->
+            val cards = db.decksQueries.getCardsByIds(session.card_ids).executeAsList()
+            session.toLocal(cards)
+        }
     }
 
     fun addSession(session: QuizSession) {
@@ -19,8 +22,8 @@ class QuizSessionRepository(private val db: YanYouKotoTomoDatabase) {
             sessionId = session.sessionId.identifier,
             startTime = session.startTime.toString(),
             endTime = session.endTime.toString(),
-            cardIds = session.results.map { it.cardId.identifier },
-            cardResults = Json.encodeToString(ListSerializer(QuizCardResult.serializer()), session.results)
+            cardIds = session.results.map { it.card },
+            cardResults = Json.encodeToString(ListSerializer(QuizCardResultPersisted.serializer()), session.results)
         )
     }
 }
