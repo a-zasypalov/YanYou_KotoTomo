@@ -53,7 +53,10 @@ fun DeckPlayerScreen(
                 courseId = courseId,
                 playerMode = args.playerMode,
                 deckId = deckId,
-                finishCallback = { navigate(BackNavigationEffect) }
+                finishCallback = { sessionId ->
+                    println("New sessionId: $sessionId")
+                    navigate(BackNavigationEffect)
+                }
             )
         }
     }

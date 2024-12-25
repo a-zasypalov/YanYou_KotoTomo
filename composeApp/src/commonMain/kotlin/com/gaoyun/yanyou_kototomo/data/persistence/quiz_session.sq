@@ -1,0 +1,31 @@
+import kotlin.String;
+import kotlin.collections.List;
+
+CREATE TABLE QuizSessionsPersisted (
+    session_id TEXT PRIMARY KEY NOT NULL,
+    start_time TEXT NOT NULL,
+    end_time TEXT NOT NULL,
+    card_ids TEXT AS List<String> NOT NULL,
+    card_results TEXT NOT NULL    -- JSON-encoded list of card results (CardResult: cardId, isCorrect)
+);
+
+getQuizSession:
+SELECT * FROM QuizSessionsPersisted
+WHERE session_id = :sessionId;
+
+getSessionsForDeck:
+SELECT * FROM QuizSessionsPersisted
+WHERE EXISTS (
+    SELECT 1
+    FROM CardsPersisted
+    WHERE CardsPersisted.deck_id = :deckId
+    AND (
+        -- This checks if the card_id exists in the card_ids list
+        QuizSessionsPersisted.card_ids LIKE '%' || CardsPersisted.id || '%'
+    )
+);
+
+insertQuizSession:
+INSERT OR REPLACE INTO QuizSessionsPersisted (session_id, start_time, end_time, card_ids, card_results)
+VALUES (:sessionId, :startTime, :endTime, :cardIds, :cardResults);
+

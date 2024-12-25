@@ -2,23 +2,27 @@ package com.gaoyun.yanyou_kototomo.ui.player
 
 import com.gaoyun.yanyou_kototomo.data.local.Card
 import com.gaoyun.yanyou_kototomo.data.local.CardProgress
-import com.gaoyun.yanyou_kototomo.data.local.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.Deck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
+import com.gaoyun.yanyou_kototomo.data.local.QuizCardResult
+import com.gaoyun.yanyou_kototomo.data.local.QuizSessionId
 import com.gaoyun.yanyou_kototomo.data.local.countForReview
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
+import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
 import com.gaoyun.yanyou_kototomo.util.localDateNow
+import com.gaoyun.yanyou_kototomo.util.localDateTimeNow
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.datetime.LocalDateTime
 import moe.tlaster.precompose.viewmodel.viewModelScope
 
 class DeckPlayerViewModel(
@@ -26,11 +30,16 @@ class DeckPlayerViewModel(
     private val getCoursesRoot: GetCoursesRoot,
     private val spacedRepetitionCalculation: SpacedRepetitionCalculation,
     private val cardProgressUpdater: CardProgressUpdater,
+    private val quizInteractor: QuizInteractor,
 ) : BaseViewModel() {
 
     override val viewState = MutableStateFlow<PlayerCardViewState?>(null)
     private val deckState = MutableStateFlow<Deck?>(null)
-    private var finishCallback: (() -> Unit)? = null
+    private val quizResults = MutableStateFlow<MutableList<QuizCardResult>>(mutableListOf())
+    private val quizStart = MutableStateFlow<LocalDateTime?>(null)
+    private val playerMode = MutableStateFlow<PlayerMode?>(null)
+
+    private var finishCallback: ((QuizSessionId?) -> Unit)? = null
 
     fun startPlayer(
         learningLanguageId: LanguageId,
@@ -38,9 +47,10 @@ class DeckPlayerViewModel(
         courseId: CourseId,
         deckId: DeckId,
         playerMode: PlayerMode,
-        finishCallback: () -> Unit,
+        finishCallback: (QuizSessionId?) -> Unit,
     ) = viewModelScope.launch {
         this@DeckPlayerViewModel.finishCallback = finishCallback
+        this@DeckPlayerViewModel.playerMode.value = playerMode
         val course = getCoursesRoot.getCourseDecks(courseId)
         course.decks.find { it.id == deckId }?.let { deckInCourse ->
             val result = getDeck.getDeck(
@@ -51,7 +61,7 @@ class DeckPlayerViewModel(
             )
             val cardForPlayer = when (playerMode) {
                 PlayerMode.SpacialRepetition -> result.cards.filter { it.progress.countForReview() }.shuffled()
-                PlayerMode.Quiz -> result.cards.shuffled()
+                PlayerMode.Quiz -> result.cards.shuffled().also { quizStart.value = localDateTimeNow() }
             }
             deckState.value = result.copy(cards = cardForPlayer)
             nextCard()
@@ -64,7 +74,7 @@ class DeckPlayerViewModel(
         val totalNumOfCards = deckState.value?.cards?.count() ?: -1
 
         if (newCardIndex == totalNumOfCards) {
-            finishCallback?.invoke()
+            finishPlayer()
             return@launch
         }
 
@@ -78,6 +88,17 @@ class DeckPlayerViewModel(
             possibleAnswers = getPossibleAnswersFor(card.card, deck),
             cardNumOutOf = newCardIndex + 1 to totalNumOfCards
         )
+    }
+
+    private fun finishPlayer() {
+        when (playerMode.value) {
+            PlayerMode.Quiz -> viewModelScope.launch {
+                val newSessionId = quizInteractor.addSession(quizStart.value ?: localDateTimeNow(), quizResults.value)
+                finishCallback?.invoke(newSessionId)
+            }
+
+            else -> finishCallback?.invoke(null)
+        }
     }
 
     fun repetitionAnswer(answer: RepetitionAnswer) = viewModelScope.launch {
@@ -110,6 +131,7 @@ class DeckPlayerViewModel(
         val currentCard = viewState.value?.card?.card ?: return
         val isAnswerCorrect = getAnswerFor(currentCard) == answer
         viewState.value = viewState.value?.copy(answerOpened = true, answerIsCorrect = isAnswerCorrect)
+        quizResults.value.add(QuizCardResult(currentCard.id, isAnswerCorrect))
     }
 
     fun closeCard() {
@@ -131,10 +153,3 @@ class DeckPlayerViewModel(
     }
 }
 
-data class PlayerCardViewState(
-    val card: CardWithProgress<*>?,
-    val possibleAnswers: List<String>,
-    val cardNumOutOf: Pair<Int, Int>,
-    val answerOpened: Boolean = false,
-    val answerIsCorrect: Boolean? = null,
-)
