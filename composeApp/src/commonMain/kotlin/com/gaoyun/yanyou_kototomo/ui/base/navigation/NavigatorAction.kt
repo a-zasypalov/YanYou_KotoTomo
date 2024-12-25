@@ -4,6 +4,7 @@ import org.koin.core.component.KoinComponent
 
 sealed class NavigatorAction {
     class NavigateTo(val path: String) : NavigatorAction()
+    class NavigateToWithBackHandler(val path: String, val popupTo: String) : NavigatorAction()
     data object NavigateBack : NavigatorAction()
     class PopTo(val path: String, val inclusive: Boolean) : NavigatorAction()
 }
@@ -18,6 +19,10 @@ class AppNavigator() : KoinComponent {
         is ToCourse -> NavigatorAction.NavigateTo(AppRoutes.COURSE_DECKS_ROUTE(args = call.args))
         is ToDeck -> NavigatorAction.NavigateTo(AppRoutes.DECK_OVERVIEW_ROUTE(args = call.args))
         is ToDeckPlayer -> NavigatorAction.NavigateTo(AppRoutes.DECK_PLAYER_ROUTE(args = call.args))
+        is ToQuizSessionSummary -> NavigatorAction.NavigateToWithBackHandler(
+            path = AppRoutes.QUIZ_SESSION_SUMMARY_ROUTE(args = call.args),
+            popupTo = AppRoutes.DECK_OVERVIEW_ROUTE
+        )
 
         else -> null
     }
@@ -27,3 +32,4 @@ object ToCourses : NavigationSideEffect
 class ToCourse(val args: CourseScreenArgs) : NavigationSideEffect
 class ToDeck(val args: DeckScreenArgs) : NavigationSideEffect
 class ToDeckPlayer(val args: PlayerScreenArgs) : NavigationSideEffect
+class ToQuizSessionSummary(val args: QuizSessionSummaryArgs) : NavigationSideEffect

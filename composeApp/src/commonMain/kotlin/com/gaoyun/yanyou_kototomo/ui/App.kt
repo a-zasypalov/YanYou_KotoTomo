@@ -18,10 +18,12 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.COURSE_DECKS_ROUT
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.DECK_OVERVIEW_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.DECK_PLAYER_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.HOME_ROUTE
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.QUIZ_SESSION_SUMMARY_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigatorAction
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.courseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.deckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.playerScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.quizSessionSummaryArgs
 import com.gaoyun.yanyou_kototomo.ui.base.theme.AppTheme
 import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColorsProvider
 import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksScreen
@@ -29,12 +31,14 @@ import com.gaoyun.yanyou_kototomo.ui.courses.CoursesScreen
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewScreen
 import com.gaoyun.yanyou_kototomo.ui.home.HomeScreen
 import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerScreen
+import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryScreen
 import com.gaoyun.yanyou_kototomo.util.Platform
 import com.gaoyun.yanyou_kototomo.util.PlatformNames
 import kotlinx.coroutines.flow.onEach
 import moe.tlaster.precompose.PreComposeApp
 import moe.tlaster.precompose.koin.koinViewModel
 import moe.tlaster.precompose.navigation.NavHost
+import moe.tlaster.precompose.navigation.NavOptions
 import moe.tlaster.precompose.navigation.PopUpTo
 import moe.tlaster.precompose.navigation.SwipeProperties
 import moe.tlaster.precompose.navigation.rememberNavigator
@@ -57,13 +61,12 @@ fun App() {
                     LaunchedEffect(LAUNCH_LISTEN_FOR_EFFECTS) {
                         viewModel.navigationEffect.onEach { destination ->
                             when (destination) {
-                                is NavigatorAction.NavigateTo -> navigator.navigate(destination.path)
                                 is NavigatorAction.NavigateBack -> navigator.goBack()
-                                is NavigatorAction.PopTo -> navigator.goBack(
-                                    PopUpTo(
-                                        route = destination.path,
-                                        inclusive = destination.inclusive
-                                    )
+                                is NavigatorAction.PopTo -> navigator.goBack(PopUpTo(destination.path, destination.inclusive))
+                                is NavigatorAction.NavigateTo -> navigator.navigate(destination.path)
+                                is NavigatorAction.NavigateToWithBackHandler -> navigator.navigate(
+                                    route = destination.path,
+                                    options = NavOptions(popUpTo = PopUpTo(destination.popupTo, false))
                                 )
                             }
                         }.collect {
@@ -134,6 +137,11 @@ fun App() {
                         scene(DECK_PLAYER_ROUTE) {
                             it.playerScreenArgs()?.let { safeArgs ->
                                 DeckPlayerScreen(args = safeArgs, navigate = viewModel::navigate)
+                            }
+                        }
+                        scene(QUIZ_SESSION_SUMMARY_ROUTE) {
+                            it.quizSessionSummaryArgs()?.let { safeArgs ->
+                                QuizSessionSummaryScreen(args = safeArgs, navigate = viewModel::navigate)
                             }
                         }
                     }

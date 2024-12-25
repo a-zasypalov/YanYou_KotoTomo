@@ -3,6 +3,7 @@ package com.gaoyun.yanyou_kototomo.ui.base.navigation
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
+import com.gaoyun.yanyou_kototomo.data.local.QuizSessionId
 import moe.tlaster.precompose.navigation.BackStackEntry
 import moe.tlaster.precompose.navigation.path
 
@@ -34,12 +35,32 @@ data class PlayerScreenArgs(
     val sourceLanguageId: LanguageId,
     val courseId: CourseId,
     val deckId: DeckId,
-    val playerMode: PlayerMode
-)
+    val playerMode: PlayerMode,
+) {
+    fun toQuizSummaryArgs(sessionId: QuizSessionId): QuizSessionSummaryArgs {
+        return QuizSessionSummaryArgs(
+            learningLanguageId = learningLanguageId,
+            sourceLanguageId = sourceLanguageId,
+            courseId = courseId,
+            deckId = deckId,
+            playerMode = playerMode,
+            sessionId = sessionId
+        )
+    }
+}
 
 enum class PlayerMode {
     SpacialRepetition, Quiz
 }
+
+data class QuizSessionSummaryArgs(
+    val learningLanguageId: LanguageId,
+    val sourceLanguageId: LanguageId,
+    val courseId: CourseId,
+    val deckId: DeckId,
+    val playerMode: PlayerMode,
+    val sessionId: QuizSessionId,
+)
 
 internal fun BackStackEntry.courseScreenArgs(): CourseScreenArgs? {
     val learningLanguageId = path<String>(AppRoutes.Arg.LEARNING_LANGUAGE_ID) ?: return null
@@ -79,4 +100,21 @@ internal fun BackStackEntry.playerScreenArgs(): PlayerScreenArgs? {
             playerMode = PlayerMode.valueOf(playerMode)
         )
     } ?: return null
+}
+
+internal fun BackStackEntry.quizSessionSummaryArgs(): QuizSessionSummaryArgs? {
+    val learningLanguageId = path<String>(AppRoutes.Arg.LEARNING_LANGUAGE_ID) ?: return null
+    val sourceLanguageId = path<String>(AppRoutes.Arg.SOURCE_LANGUAGE_ID) ?: return null
+    val courseId = path<String>(AppRoutes.Arg.COURSE_ID) ?: return null
+    val deckId = path<String>(AppRoutes.Arg.DECK_ID) ?: return null
+    val playerMode = path<String>(AppRoutes.Arg.PLAYER_MODE) ?: return null
+    val quizSessionId = path<String>(AppRoutes.Arg.QUIZ_SESSION_ID) ?: return null
+    return QuizSessionSummaryArgs(
+        learningLanguageId = LanguageId(learningLanguageId),
+        sourceLanguageId = LanguageId(sourceLanguageId),
+        courseId = CourseId(courseId),
+        deckId = DeckId(deckId),
+        playerMode = PlayerMode.valueOf(playerMode),
+        sessionId = QuizSessionId(quizSessionId)
+    )
 }

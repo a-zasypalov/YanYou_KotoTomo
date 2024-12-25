@@ -8,6 +8,7 @@ object AppRoutes {
         const val LEARNING_LANGUAGE_ID = "LEARNING_LANGUAGE_ID"
         const val SOURCE_LANGUAGE_ID = "SOURCE_LANGUAGE_ID"
         const val PLAYER_MODE = "PLAYER_MODE"
+        const val QUIZ_SESSION_ID = "QUIZ_SESSION_ID"
     }
 
     const val HOME_ROUTE = "HOME_ROUTE"
@@ -26,5 +27,9 @@ object AppRoutes {
     const val DECK_PLAYER_ROUTE = "$DECK_OVERVIEW_ROUTE/{${Arg.PLAYER_MODE}}"
     fun DECK_PLAYER_ROUTE(args: PlayerScreenArgs) =
         "$COURSES_ROUTE/${args.learningLanguageId.identifier}/${args.sourceLanguageId.identifier}/${args.courseId.identifier}/${args.deckId.identifier}/${args.playerMode.name}"
+
+    const val QUIZ_SESSION_SUMMARY_ROUTE = "$DECK_PLAYER_ROUTE/{${Arg.QUIZ_SESSION_ID}}"
+    fun QUIZ_SESSION_SUMMARY_ROUTE(args: QuizSessionSummaryArgs) =
+        "$COURSES_ROUTE/${args.learningLanguageId.identifier}/${args.sourceLanguageId.identifier}/${args.courseId.identifier}/${args.deckId.identifier}/${args.playerMode.name}/${args.sessionId.identifier}"
 
 }

@@ -17,7 +17,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
 import com.gaoyun.yanyou_kototomo.data.local.Card
 import com.gaoyun.yanyou_kototomo.data.local.CardWithProgress
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
@@ -38,7 +40,15 @@ fun DeckOverviewScreen(
     val viewModel = koinViewModel(vmClass = DeckOverviewViewModel::class)
     val cardDetailState = remember { mutableStateOf<CardWithProgress<*>?>(null) }
 
-    LaunchedEffect(Unit) { viewModel.getDeck(args) }
+    val lifecycleOwner = LocalLifecycleOwner.current
+    val lifecycleState = lifecycleOwner.lifecycle.currentStateFlow.collectAsState()
+
+    LaunchedEffect(lifecycleState.value) {
+        when (lifecycleState.value) {
+            Lifecycle.State.RESUMED -> viewModel.getDeck(args)
+            else -> {}
+        }
+    }
 
     SurfaceScaffold(
         backHandler = { navigate(BackNavigationEffect) },
