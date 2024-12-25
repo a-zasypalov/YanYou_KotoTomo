@@ -30,6 +30,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToQuizSessionSummary
 import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerFront
 import com.gaoyun.yanyou_kototomo.ui.player.components.QuizButtons
 import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
@@ -54,8 +55,8 @@ fun DeckPlayerScreen(
                 playerMode = args.playerMode,
                 deckId = deckId,
                 finishCallback = { sessionId ->
-                    println("New sessionId: $sessionId")
-                    navigate(BackNavigationEffect)
+                    sessionId?.let { navigate(ToQuizSessionSummary(args.toQuizSummaryArgs(sessionId))) }
+                        ?: navigate(BackNavigationEffect)
                 }
             )
         }
