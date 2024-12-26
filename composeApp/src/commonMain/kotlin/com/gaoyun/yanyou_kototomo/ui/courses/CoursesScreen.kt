@@ -1,8 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.courses
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.RootStructure
 import com.gaoyun.yanyou_kototomo.domain.toStringRes
+import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
@@ -88,15 +87,11 @@ private fun CoursesScreenContent(
                     }
                 }
 
-                if (languageIndex != content.languages.lastIndex) {
-                    item {
-                        Box(
-                            modifier = Modifier.fillMaxWidth().height(2.dp).background(
-                                MaterialTheme.colorScheme.outline
-                            )
-                        )
-                    }
-                } else item { Spacer(modifier = Modifier.height(64.dp)) }
+                if (languageIndex != content.languages.lastIndex) item {
+                    Divider(height = 2.dp, modifier = Modifier.fillMaxWidth())
+                } else item {
+                    Spacer(modifier = Modifier.height(64.dp))
+                }
             }
         } ?: item {
             CircularProgressIndicator()
