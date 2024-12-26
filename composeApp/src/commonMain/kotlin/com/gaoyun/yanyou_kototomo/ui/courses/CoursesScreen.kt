@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.RootStructure
 import com.gaoyun.yanyou_kototomo.domain.toStringRes
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
-import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToCourse
@@ -28,6 +27,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun CoursesScreen(
     navigate: (NavigationSideEffect) -> Unit,
+    modifier: Modifier,
 ) {
     val viewModel = koinViewModel(vmClass = CoursesViewModel::class)
 
@@ -35,22 +35,22 @@ fun CoursesScreen(
         viewModel.getRootComponent()
     }
 
-    SurfaceScaffold {
-        CoursesScreenContent(
-            content = viewModel.viewState.collectAsState().value,
-            toCourse = { args -> navigate(ToCourse(args)) }
-        )
-    }
+    CoursesScreenContent(
+        content = viewModel.viewState.collectAsState().value,
+        modifier = modifier,
+        toCourse = { args -> navigate(ToCourse(args)) }
+    )
 }
 
 @Composable
 private fun CoursesScreenContent(
     content: RootStructure?,
     toCourse: (CourseScreenArgs) -> Unit,
+    modifier: Modifier,
 ) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),
     ) {
         item {
             Text(
@@ -90,7 +90,7 @@ private fun CoursesScreenContent(
                 if (languageIndex != content.languages.lastIndex) item {
                     Divider(height = 2.dp, modifier = Modifier.fillMaxWidth())
                 } else item {
-                    Spacer(modifier = Modifier.height(64.dp))
+                    Spacer(modifier = Modifier.height(32.dp))
                 }
             }
         } ?: item {
