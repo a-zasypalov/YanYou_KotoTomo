@@ -13,7 +13,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.COURSES_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.COURSE_DECKS_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.DECK_OVERVIEW_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.DECK_PLAYER_ROUTE
@@ -27,9 +26,8 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.quizSessionSummaryArgs
 import com.gaoyun.yanyou_kototomo.ui.base.theme.AppTheme
 import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColorsProvider
 import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksScreen
-import com.gaoyun.yanyou_kototomo.ui.courses.CoursesScreen
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewScreen
-import com.gaoyun.yanyou_kototomo.ui.home.HomeScreen
+import com.gaoyun.yanyou_kototomo.ui.home.HomeScreenHost
 import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerScreen
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryScreen
 import com.gaoyun.yanyou_kototomo.util.Platform
@@ -76,7 +74,7 @@ fun App() {
 
                     NavHost(
                         navigator = navigator,
-                        initialRoute = COURSES_ROUTE,
+                        initialRoute = HOME_ROUTE,
                         swipeProperties = if (Platform.name == PlatformNames.IOS) remember {
                             SwipeProperties(
                                 positionalThreshold = { distance: Float -> distance * 0.9f },
@@ -119,10 +117,7 @@ fun App() {
                         }
                     ) {
                         scene(HOME_ROUTE) {
-                            HomeScreen(viewModel::navigate)
-                        }
-                        scene(COURSES_ROUTE) {
-                            CoursesScreen(viewModel::navigate)
+                            HomeScreenHost(viewModel::navigate)
                         }
                         scene(COURSE_DECKS_ROUTE) {
                             it.courseScreenArgs()?.let { safeArgs ->

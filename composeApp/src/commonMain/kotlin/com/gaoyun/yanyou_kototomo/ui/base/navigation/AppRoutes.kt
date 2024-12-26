@@ -11,8 +11,10 @@ object AppRoutes {
         const val QUIZ_SESSION_ID = "QUIZ_SESSION_ID"
     }
 
-    const val HOME_ROUTE = "HOME_ROUTE"
-    const val COURSES_ROUTE = "$HOME_ROUTE/COURSES_ROUTE"
+    const val HOME_ROUTE = "/HOME_ROUTE"
+    const val COURSES_ROUTE = "/COURSES_ROUTE"
+    const val STATISTICS_ROUTE = "/STATISTICS_ROUTE"
+    const val SETTINGS_ROUTE = "/SETTINGS_ROUTE"
 
     const val COURSE_DECKS_ROUTE =
         "$COURSES_ROUTE/{${Arg.LEARNING_LANGUAGE_ID}}/{${Arg.SOURCE_LANGUAGE_ID}}/{${Arg.COURSE_ID}}"

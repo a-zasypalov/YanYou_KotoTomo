@@ -1,31 +1,21 @@
 package com.gaoyun.yanyou_kototomo.ui.home
 
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
+import androidx.compose.ui.Modifier
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToCourses
 import moe.tlaster.precompose.koin.koinViewModel
 
 @Composable
 fun HomeScreen(
     navigate: (NavigationSideEffect) -> Unit,
+    modifier: Modifier,
 ) {
     val viewModel = koinViewModel(vmClass = HomeViewModel::class)
 
-    SurfaceScaffold {
-        HomeScreenContent(
-            navigate = { navigate(ToCourses) }
-        )
-    }
+    HomeScreenContent(modifier)
 }
 
 @Composable
-private fun HomeScreenContent(
-    navigate: () -> Unit,
-) {
-    Button(onClick = navigate) {
-        Text("Navigate")
-    }
+private fun HomeScreenContent(modifier: Modifier) {
+
 }
