@@ -9,6 +9,13 @@ sealed interface Card {
     val front: String
     val transcription: String
 
+    fun translationOrEmpty(prefix: String = ""): String = when(this) {
+        is KanjiCard -> "$prefix$translation"
+        is PhraseCard -> "$prefix$translation"
+        is WordCard -> "$prefix$translation"
+        is KanaCard -> ""
+    }
+
     data class PhraseCard(
         override val id: PhraseCardId,
         override val front: String,
