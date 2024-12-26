@@ -3,7 +3,10 @@ package com.gaoyun.yanyou_kototomo.ui.deck_overview
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.LocalLibrary
@@ -23,7 +26,8 @@ fun BoxScope.DeckOverviewActionButtons(dueCards: Int, onPlayDeckClick: (PlayerMo
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier.fillMaxWidth()
             .align(Alignment.BottomCenter)
-            .padding(bottom = 32.dp)
+            .padding(WindowInsets.navigationBars.asPaddingValues())
+            .padding(bottom = 8.dp)
             .padding(horizontal = 24.dp)
     ) {
         if (dueCards > 0) {
