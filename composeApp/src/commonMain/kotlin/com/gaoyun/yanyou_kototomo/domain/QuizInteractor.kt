@@ -22,16 +22,16 @@ class QuizInteractor(
 
     fun getSessionsPage(page: Int): List<QuizSessionWithSimpleDataEntryCards> {
         val sessions = repository.getQuizSessions(page)
-        val sessionsCardsIds = sessions.flatMap { it.results.map { it.card } }
-        val cards = cardsRepository.getCards(sessionsCardsIds)
-        return sessions.map { it.withDataCards(cards) }
+        val sessionsCardsIds = sessions.flatMap { it.results.map { it.cardId } }
+        val cardsAndDeckNames = cardsRepository.getCards(sessionsCardsIds)
+        return sessions.map { it.withDataCards(cardsAndDeckNames) }
     }
 
     suspend fun getQuizSession(
         args: QuizSessionSummaryArgs,
     ): QuizSessionWithCards? {
         val session = repository.getQuizSession(args.sessionId) ?: return null
-        val cardIds = session.results.map { it.card }
+        val cardIds = session.results.map { it.cardId }
         val course = getCoursesRoot.getCourseDecks(args.courseId)
         val cards = course.decks.find { it.id == args.deckId }?.let { deckInCourse ->
             val deck = getDeck.getDeck(

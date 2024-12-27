@@ -2,6 +2,7 @@ package com.gaoyun.yanyou_kototomo.data.local
 
 import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toSimpleDataEntry
+import com.gaoyun.yanyoukototomo.data.persistence.GetDeckNames
 import kotlinx.datetime.LocalDateTime
 import kotlinx.serialization.Serializable
 
@@ -17,19 +18,20 @@ data class QuizSession(
         endTime = endTime,
         results = results.mapNotNull {
             QuizCardResult(
-                card = cards.find { c -> c.card.id.identifier == it.card }?.card ?: return@mapNotNull null,
+                card = cards.find { c -> c.card.id.identifier == it.cardId }?.card ?: return@mapNotNull null,
                 isCorrect = it.isCorrect
             )
         }
     )
 
-    fun withDataCards(cards: List<CardDTO>) = QuizSessionWithSimpleDataEntryCards(
+    fun withDataCards(cardsWithDecks: List<Pair<CardDTO, GetDeckNames?>>) = QuizSessionWithSimpleDataEntryCards(
         sessionId = sessionId,
         startTime = startTime,
         endTime = endTime,
+        deckNames = cardsWithDecks.filter { results.map { it.cardId }.contains(it.first.id) }.mapNotNull { it.second?.name }.toSet(),
         results = results.mapNotNull {
             QuizCardSimpleDataEntryResult(
-                card = cards.find { c -> c.id == it.card }?.toSimpleDataEntry() ?: return@mapNotNull null,
+                card = cardsWithDecks.find { c -> c.first.id == it.cardId }?.first?.toSimpleDataEntry() ?: return@mapNotNull null,
                 isCorrect = it.isCorrect
             )
         }
@@ -40,6 +42,7 @@ data class QuizSessionWithSimpleDataEntryCards(
     val sessionId: QuizSessionId,
     val startTime: LocalDateTime,
     val endTime: LocalDateTime,
+    val deckNames: Set<String>,
     val results: List<QuizCardSimpleDataEntryResult>,
 )
 
@@ -52,7 +55,7 @@ data class QuizSessionWithCards(
 
 @Serializable
 data class QuizCardResultPersisted(
-    val card: String,
+    val cardId: String,
     val isCorrect: Boolean,
 )
 

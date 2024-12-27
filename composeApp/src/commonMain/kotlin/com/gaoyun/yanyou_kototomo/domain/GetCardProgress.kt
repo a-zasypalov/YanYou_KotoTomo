@@ -12,9 +12,9 @@ class GetCardProgress(
         val progresses = repository.getCardProgressPage(page)
         val cardDTOs = repository.getCards(progresses.map { it.cardId })
 
-        return cardDTOs.mapNotNull { card ->
-            progresses.find { it.cardId == card.id }?.let {
-                card.toSimpleDataEntryWithProgress(it)
+        return cardDTOs.mapNotNull { cardWithDeckNames ->
+            progresses.find { it.cardId == cardWithDeckNames.first.id }?.let {
+                cardWithDeckNames.first.toSimpleDataEntryWithProgress(it)
             }
         }
     }

@@ -6,6 +6,7 @@ import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.data.persistence.adapters.toCardsDTO
 import com.gaoyun.yanyou_kototomo.data.persistence.adapters.toLocal
 import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
+import com.gaoyun.yanyoukototomo.data.persistence.GetDeckNames
 
 class CardsAndProgressRepository(
     private val db: YanYouKotoTomoDatabase,
@@ -25,8 +26,10 @@ class CardsAndProgressRepository(
         return progress.map { it.toLocal() }
     }
 
-    fun getCards(ids: List<String>): List<CardDTO> {
-        return db.decksQueries.getCardsByIds(ids).executeAsList().map { it.toCardsDTO() }
+    fun getCards(ids: List<String>): List<Pair<CardDTO, GetDeckNames?>> {
+        val cards = db.decksQueries.getCardsByIds(ids).executeAsList()
+        val decks = db.coursesQueries.getDeckNames(cards.map { it.deck_id }).executeAsList()
+        return cards.map { it.toCardsDTO() to decks.find { d -> d.id == it.deck_id } }
     }
 
     fun updateProgress(progress: CardProgress, deckId: DeckId) {

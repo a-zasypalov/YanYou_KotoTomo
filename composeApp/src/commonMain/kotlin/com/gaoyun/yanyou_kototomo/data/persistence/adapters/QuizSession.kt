@@ -13,7 +13,7 @@ fun QuizSessionsPersisted.toLocal(
 ): QuizSession {
     val results = Json.decodeFromString<List<QuizCardResultPersisted>>(card_results).mapNotNull { cardPersisted ->
         QuizCardResultPersisted(
-            card = cards.find { c -> c.id == cardPersisted.card }?.id ?: return@mapNotNull null,
+            cardId = cards.find { c -> c.id == cardPersisted.cardId }?.id ?: return@mapNotNull null,
             isCorrect = cardPersisted.isCorrect
         )
     }
