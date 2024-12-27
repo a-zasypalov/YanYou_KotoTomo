@@ -1,12 +1,14 @@
 package com.gaoyun.yanyou_kototomo.ui.statistics
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -66,7 +68,23 @@ private fun StatisticsScreenContent(
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
             }
-            content.sessions.take(5).forEach { session -> item { QuizSessionStatisticsItem(session) } }
+            item {
+                Surface(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.medium,
+                    tonalElevation = 8.dp,
+                ) {
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(4.dp),
+                        modifier = Modifier.fillMaxWidth().padding(8.dp),
+                    ) {
+                        val sessionsToShow = content.sessions.take(5)
+                        sessionsToShow.forEachIndexed { index, session ->
+                            QuizSessionStatisticsItem(session, index < sessionsToShow.lastIndex)
+                        }
+                    }
+                }
+            }
             item { SectionDividerShowMore(onShowMoreQuizzes) }
         }
 
