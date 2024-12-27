@@ -6,7 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.gaoyun.yanyou_kototomo.data.local.Card
+import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerAdditionalInfo
 import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerReading

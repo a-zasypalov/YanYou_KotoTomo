@@ -1,5 +1,7 @@
 package com.gaoyun.yanyou_kototomo.data.local
 
+import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
+
 data class Deck(
     val id: DeckId,
     val name: String,

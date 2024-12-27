@@ -1,6 +1,6 @@
 package com.gaoyun.yanyou_kototomo.domain
 
-import com.gaoyun.yanyou_kototomo.data.local.CardSimpleDataEntryWithProgress
+import com.gaoyun.yanyou_kototomo.data.local.card.CardSimpleDataEntryWithProgress
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toSimpleDataEntryWithProgress
 import com.gaoyun.yanyou_kototomo.repository.CardsAndProgressRepository
 

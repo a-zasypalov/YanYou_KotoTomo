@@ -1,7 +1,7 @@
 package com.gaoyun.yanyou_kototomo.repository
 
-import com.gaoyun.yanyou_kototomo.data.local.CardProgress
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
+import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.data.persistence.adapters.toCardsDTO
 import com.gaoyun.yanyou_kototomo.data.persistence.adapters.toLocal

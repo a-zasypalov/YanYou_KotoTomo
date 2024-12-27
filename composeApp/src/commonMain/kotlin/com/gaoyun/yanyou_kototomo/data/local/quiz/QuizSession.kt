@@ -1,6 +1,6 @@
 package com.gaoyun.yanyou_kototomo.data.local.quiz
 
-import com.gaoyun.yanyou_kototomo.data.local.CardWithProgress
+import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.persistence.QuizCardResultPersisted
 import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toSimpleDataEntry

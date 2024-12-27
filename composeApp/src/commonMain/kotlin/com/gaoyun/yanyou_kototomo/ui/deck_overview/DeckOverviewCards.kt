@@ -7,7 +7,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.gaoyun.yanyou_kototomo.data.local.Card
+import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 
 @Composable

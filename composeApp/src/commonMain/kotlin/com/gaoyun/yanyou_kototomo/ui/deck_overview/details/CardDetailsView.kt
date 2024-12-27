@@ -27,9 +27,9 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
-import com.gaoyun.yanyou_kototomo.data.local.Card
-import com.gaoyun.yanyou_kototomo.data.local.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
+import com.gaoyun.yanyou_kototomo.data.local.card.Card
+import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.util.toRelativeFormat
 import org.jetbrains.compose.resources.painterResource
