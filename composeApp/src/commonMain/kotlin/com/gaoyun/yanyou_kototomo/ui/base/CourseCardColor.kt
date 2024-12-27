@@ -3,7 +3,7 @@ package com.gaoyun.yanyou_kototomo.ui.base
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import com.gaoyun.yanyou_kototomo.data.local.Course
+import com.gaoyun.yanyou_kototomo.data.local.course.Course
 
 @Composable
 fun Course.courseCardColor(): Color = when (this.id.identifier) {

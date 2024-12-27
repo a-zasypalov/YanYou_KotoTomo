@@ -1,10 +1,10 @@
 package com.gaoyun.yanyou_kototomo.domain
 
-import com.gaoyun.yanyou_kototomo.data.local.CourseDeck
-import com.gaoyun.yanyou_kototomo.data.local.Deck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.withProgress
+import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
+import com.gaoyun.yanyou_kototomo.data.local.deck.Deck
 import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toLocal
 import com.gaoyun.yanyou_kototomo.repository.CardsAndProgressRepository

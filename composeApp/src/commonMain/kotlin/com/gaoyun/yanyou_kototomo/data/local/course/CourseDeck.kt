@@ -1,4 +1,7 @@
-package com.gaoyun.yanyou_kototomo.data.local
+package com.gaoyun.yanyou_kototomo.data.local.course
+
+import com.gaoyun.yanyou_kototomo.data.local.AlphabetType
+import com.gaoyun.yanyou_kototomo.data.local.DeckId
 
 sealed interface CourseDeck {
     val id: DeckId

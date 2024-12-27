@@ -1,7 +1,7 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview.details
 
-import com.gaoyun.yanyou_kototomo.data.local.Course
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
+import com.gaoyun.yanyou_kototomo.data.local.course.Course
 import org.jetbrains.compose.resources.DrawableResource
 import yanyou_kototomo.composeapp.generated.resources.Res
 import yanyou_kototomo.composeapp.generated.resources.bamboo
@@ -72,7 +72,7 @@ private val cnImages = listOf(
 )
 
 fun LanguageId.getRandomMascotImage(): DrawableResource {
-    return when(this.identifier) {
+    return when (this.identifier) {
         "jp" -> jpImages.random()
         "cn" -> cnImages.random()
         else -> Res.drawable.sakura

@@ -1,7 +1,7 @@
 package com.gaoyun.yanyou_kototomo.repository
 
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
-import com.gaoyun.yanyou_kototomo.data.local.DeckSettings
+import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 
 class DeckSettingsRepository(

@@ -1,8 +1,8 @@
 package com.gaoyun.yanyou_kototomo.repository
 
-import com.gaoyun.yanyou_kototomo.data.local.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
+import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.data.persistence.adapters.convertCardsToDTO
 import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
