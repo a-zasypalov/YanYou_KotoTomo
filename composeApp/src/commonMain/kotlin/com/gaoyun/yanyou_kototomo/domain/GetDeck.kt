@@ -7,12 +7,12 @@ import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.withProgress
 import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toLocal
-import com.gaoyun.yanyou_kototomo.repository.CardProgressRepository
+import com.gaoyun.yanyou_kototomo.repository.CardsAndProgressRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckRepository
 
 class GetDeck(
     private val deckRepository: DeckRepository,
-    private val cardProgressRepository: CardProgressRepository,
+    private val cardsAndProgressRepository: CardsAndProgressRepository,
 ) {
 
     suspend fun getDeck(
@@ -29,7 +29,7 @@ class GetDeck(
         val requiredWords = deckWords + requiredCards.filterIsInstance<CardDTO.WordCardDTO>()
         val kanaCards = deckKana + requiredCards.filterIsInstance<CardDTO.KanaCardDTO>()
 
-        val progresses = cardProgressRepository.getCardProgressFor(deck.id).associateBy { it.cardId }
+        val progresses = cardsAndProgressRepository.getCardProgressFor(deck.id).associateBy { it.cardId }
 
         val cards = deckResponse.cards.map { card ->
             val progress = progresses[card.id]

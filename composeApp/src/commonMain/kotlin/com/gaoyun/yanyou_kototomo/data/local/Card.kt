@@ -9,7 +9,7 @@ sealed interface Card {
     val front: String
     val transcription: String
 
-    fun translationOrEmpty(prefix: String = ""): String = when(this) {
+    fun translationOrEmpty(prefix: String = ""): String = when (this) {
         is KanjiCard -> "$prefix$translation"
         is PhraseCard -> "$prefix$translation"
         is WordCard -> "$prefix$translation"
@@ -62,5 +62,18 @@ sealed interface Card {
         )
     }
 }
+
+data class CardSimpleDataEntryWithProgress(
+    val id: CardId,
+    val character: String,
+    val answer: String,
+    val progress: CardProgress,
+)
+
+data class CardSimpleDataEntry(
+    val id: CardId,
+    val character: String,
+    val answer: String,
+)
 
 fun Card.withProgress(progress: CardProgress?) = CardWithProgress(card = this, progress = progress)

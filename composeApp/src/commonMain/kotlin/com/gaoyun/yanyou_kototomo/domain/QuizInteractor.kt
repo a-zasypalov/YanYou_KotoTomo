@@ -4,6 +4,8 @@ import com.gaoyun.yanyou_kototomo.data.local.QuizCardResultPersisted
 import com.gaoyun.yanyou_kototomo.data.local.QuizSession
 import com.gaoyun.yanyou_kototomo.data.local.QuizSessionId
 import com.gaoyun.yanyou_kototomo.data.local.QuizSessionWithCards
+import com.gaoyun.yanyou_kototomo.data.local.QuizSessionWithSimpleDataEntryCards
+import com.gaoyun.yanyou_kototomo.repository.CardsAndProgressRepository
 import com.gaoyun.yanyou_kototomo.repository.QuizSessionRepository
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.QuizSessionSummaryArgs
 import com.gaoyun.yanyou_kototomo.util.localDateTimeNow
@@ -15,7 +17,15 @@ class QuizInteractor(
     private val repository: QuizSessionRepository,
     private val getDeck: GetDeck,
     private val getCoursesRoot: GetCoursesRoot,
+    private val cardsRepository: CardsAndProgressRepository,
 ) {
+
+    fun getSessionsPage(page: Int): List<QuizSessionWithSimpleDataEntryCards> {
+        val sessions = repository.getQuizSessions(page)
+        val sessionsCardsIds = sessions.flatMap { it.results.map { it.card } }
+        val cards = cardsRepository.getCards(sessionsCardsIds)
+        return sessions.map { it.withDataCards(cards) }
+    }
 
     suspend fun getQuizSession(
         args: QuizSessionSummaryArgs,
