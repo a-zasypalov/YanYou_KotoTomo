@@ -24,4 +24,8 @@ sealed interface CardId {
     @Serializable
     @SerialName("alphabet")
     data class AlphabetCardId(override val identifier: String) : CardId
+
+    @Serializable
+    @SerialName("simple_data_entry")
+    data class SimpleDataEntry(override val identifier: String) : CardId
 }

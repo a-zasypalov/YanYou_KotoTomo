@@ -7,6 +7,10 @@ CREATE TABLE CardProgress (
     nextReview TEXT NOT NULL       -- LocalDate for the next review
 );
 
+getAllCardsProgress:
+SELECT * FROM CardProgress
+LIMIT :limit OFFSET :offset;
+
 getDeckProgress:
 SELECT * FROM CardProgress WHERE deck_id = ?;
 

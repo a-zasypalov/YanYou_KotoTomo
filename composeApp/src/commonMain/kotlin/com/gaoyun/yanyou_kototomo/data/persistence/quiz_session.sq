@@ -13,6 +13,10 @@ getQuizSession:
 SELECT * FROM QuizSessionsPersisted
 WHERE session_id = :sessionId;
 
+getQuizSessions:
+SELECT * FROM QuizSessionsPersisted
+LIMIT :limit OFFSET :offset;
+
 getSessionsForDeck:
 SELECT * FROM QuizSessionsPersisted
 WHERE EXISTS (

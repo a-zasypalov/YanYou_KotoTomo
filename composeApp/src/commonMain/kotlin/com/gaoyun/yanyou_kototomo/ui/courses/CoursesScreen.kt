@@ -56,6 +56,7 @@ private fun CoursesScreenContent(
             Text(
                 text = "Courses",
                 style = MaterialTheme.typography.displayLarge,
+                modifier = Modifier.padding(top = 24.dp)
             )
         }
         content?.languages?.forEachIndexed { languageIndex, language ->

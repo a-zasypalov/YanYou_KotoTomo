@@ -2,7 +2,41 @@ package com.gaoyun.yanyou_kototomo.data.remote.converters
 
 import com.gaoyun.yanyou_kototomo.data.local.Card
 import com.gaoyun.yanyou_kototomo.data.local.CardId
+import com.gaoyun.yanyou_kototomo.data.local.CardProgress
+import com.gaoyun.yanyou_kototomo.data.local.CardSimpleDataEntry
+import com.gaoyun.yanyou_kototomo.data.local.CardSimpleDataEntryWithProgress
 import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
+
+fun CardDTO.toSimpleDataEntryWithProgress(progress: CardProgress): CardSimpleDataEntryWithProgress {
+    val answer = when (this) {
+        is CardDTO.WordCardDTO -> this.translation
+        is CardDTO.KanaCardDTO -> this.transcription
+        is CardDTO.KanjiCardDTO -> this.translation
+        is CardDTO.PhraseCardDTO -> this.translation
+    }
+
+    return CardSimpleDataEntryWithProgress(
+        id = CardId.SimpleDataEntry(id),
+        character = character,
+        answer = answer,
+        progress = progress
+    )
+}
+
+fun CardDTO.toSimpleDataEntry(): CardSimpleDataEntry {
+    val answer = when (this) {
+        is CardDTO.WordCardDTO -> this.translation
+        is CardDTO.KanaCardDTO -> this.transcription
+        is CardDTO.KanjiCardDTO -> this.translation
+        is CardDTO.PhraseCardDTO -> this.translation
+    }
+
+    return CardSimpleDataEntry(
+        id = CardId.SimpleDataEntry(id),
+        character = character,
+        answer = answer,
+    )
+}
 
 fun CardDTO.PhraseCardDTO.toLocal(availableWords: List<CardDTO.WordCardDTO>): Card {
     return Card.PhraseCard(

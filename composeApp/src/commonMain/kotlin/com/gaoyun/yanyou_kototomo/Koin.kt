@@ -6,13 +6,14 @@ import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.data.persistence.platformModule
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
+import com.gaoyun.yanyou_kototomo.domain.GetCardProgress
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
 import com.gaoyun.yanyou_kototomo.network.DecksApi
 import com.gaoyun.yanyou_kototomo.network.PlatformHttpClient
-import com.gaoyun.yanyou_kototomo.repository.CardProgressRepository
+import com.gaoyun.yanyou_kototomo.repository.CardsAndProgressRepository
 import com.gaoyun.yanyou_kototomo.repository.CoursesRootComponentRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckSettingsRepository
@@ -26,6 +27,7 @@ import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewViewModel
 import com.gaoyun.yanyou_kototomo.ui.home.HomeViewModel
 import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerViewModel
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryViewModel
+import com.gaoyun.yanyou_kototomo.ui.statistics.StatisticsViewModel
 import com.gaoyun.yanyoukototomo.data.persistence.CardsPersisted
 import com.gaoyun.yanyoukototomo.data.persistence.CoursesPersisted
 import com.gaoyun.yanyoukototomo.data.persistence.QuizSessionsPersisted
@@ -55,7 +57,7 @@ val repositoryModule = module {
     single { CoursesRootComponentRepository(get(), get(), get(), get()) }
     single { DeckRepository(get(), get(), get()) }
     single { DeckUpdatesRepository(get(), get(), get()) }
-    single { CardProgressRepository(get()) }
+    single { CardsAndProgressRepository(get()) }
     single { DeckSettingsRepository(get()) }
     single { QuizSessionRepository(get()) }
 }
@@ -66,7 +68,8 @@ val useCaseModule = module {
     single { SpacedRepetitionCalculation() }
     single { CardProgressUpdater(get()) }
     single { DeckSettingsInteractor(get()) }
-    single { QuizInteractor(get(), get(), get()) }
+    single { QuizInteractor(get(), get(), get(), get()) }
+    single { GetCardProgress(get()) }
 }
 
 val viewModelModule = module {
@@ -78,6 +81,7 @@ val viewModelModule = module {
     factory { DeckOverviewViewModel(get(), get(), get(), get()) }
     factory { DeckPlayerViewModel(get(), get(), get(), get(), get()) }
     factory { QuizSessionSummaryViewModel(get()) }
+    factory { StatisticsViewModel(get(), get()) }
 }
 
 val dbModule = module {
