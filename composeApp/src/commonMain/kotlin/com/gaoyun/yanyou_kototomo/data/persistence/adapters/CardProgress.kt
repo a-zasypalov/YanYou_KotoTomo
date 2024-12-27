@@ -1,6 +1,6 @@
 package com.gaoyun.yanyou_kototomo.data.persistence.adapters
 
-import com.gaoyun.yanyou_kototomo.data.local.CardProgress
+import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
 import kotlinx.datetime.LocalDate
 
 fun com.gaoyun.yanyoukototomo.data.persistence.CardProgress.toLocal(): CardProgress {

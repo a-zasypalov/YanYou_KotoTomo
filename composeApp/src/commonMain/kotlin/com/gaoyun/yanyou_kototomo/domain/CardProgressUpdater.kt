@@ -1,7 +1,7 @@
 package com.gaoyun.yanyou_kototomo.domain
 
-import com.gaoyun.yanyou_kototomo.data.local.CardProgress
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
+import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
 import com.gaoyun.yanyou_kototomo.repository.CardsAndProgressRepository
 
 class CardProgressUpdater(private val repository: CardsAndProgressRepository) {

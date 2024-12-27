@@ -1,6 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.player
 
-import com.gaoyun.yanyou_kototomo.data.local.CardWithProgress
+import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 
 data class PlayerCardViewState(
     val card: CardWithProgress<*>?,

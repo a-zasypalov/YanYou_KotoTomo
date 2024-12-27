@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.data.local
+package com.gaoyun.yanyou_kototomo.data.local.card
 
 import com.gaoyun.yanyou_kototomo.util.localDateNow
 import kotlinx.datetime.LocalDate

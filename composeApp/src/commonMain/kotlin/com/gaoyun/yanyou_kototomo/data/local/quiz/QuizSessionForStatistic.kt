@@ -1,6 +1,6 @@
 package com.gaoyun.yanyou_kototomo.data.local.quiz
 
-import com.gaoyun.yanyou_kototomo.data.local.CardSimpleDataEntry
+import com.gaoyun.yanyou_kototomo.data.local.card.CardSimpleDataEntry
 import kotlinx.datetime.LocalDateTime
 
 data class QuizSessionForStatistic(

@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.gaoyun.yanyou_kototomo.data.local.CardSimpleDataEntryWithProgress
+import com.gaoyun.yanyou_kototomo.data.local.card.CardSimpleDataEntryWithProgress
 import com.gaoyun.yanyou_kototomo.util.toRelativeFormat
 
 @Composable

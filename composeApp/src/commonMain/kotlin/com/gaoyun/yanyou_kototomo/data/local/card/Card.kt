@@ -1,5 +1,7 @@
-package com.gaoyun.yanyou_kototomo.data.local
+package com.gaoyun.yanyou_kototomo.data.local.card
 
+import com.gaoyun.yanyou_kototomo.data.local.AlphabetType
+import com.gaoyun.yanyou_kototomo.data.local.CardId
 import com.gaoyun.yanyou_kototomo.data.local.CardId.AlphabetCardId
 import com.gaoyun.yanyou_kototomo.data.local.CardId.PhraseCardId
 import com.gaoyun.yanyou_kototomo.data.local.CardId.WordCardId

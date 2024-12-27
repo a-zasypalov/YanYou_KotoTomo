@@ -1,10 +1,10 @@
 package com.gaoyun.yanyou_kototomo.data.remote.converters
 
-import com.gaoyun.yanyou_kototomo.data.local.Card
 import com.gaoyun.yanyou_kototomo.data.local.CardId
-import com.gaoyun.yanyou_kototomo.data.local.CardProgress
-import com.gaoyun.yanyou_kototomo.data.local.CardSimpleDataEntry
-import com.gaoyun.yanyou_kototomo.data.local.CardSimpleDataEntryWithProgress
+import com.gaoyun.yanyou_kototomo.data.local.card.Card
+import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
+import com.gaoyun.yanyou_kototomo.data.local.card.CardSimpleDataEntry
+import com.gaoyun.yanyou_kototomo.data.local.card.CardSimpleDataEntryWithProgress
 import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
 
 fun CardDTO.toSimpleDataEntryWithProgress(progress: CardProgress): CardSimpleDataEntryWithProgress {
