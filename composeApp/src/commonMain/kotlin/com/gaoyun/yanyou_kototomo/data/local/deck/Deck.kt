@@ -1,5 +1,6 @@
-package com.gaoyun.yanyou_kototomo.data.local
+package com.gaoyun.yanyou_kototomo.data.local.deck
 
+import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 
 data class Deck(

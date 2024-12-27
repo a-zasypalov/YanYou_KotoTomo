@@ -1,8 +1,8 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
-import com.gaoyun.yanyou_kototomo.data.local.Deck
-import com.gaoyun.yanyou_kototomo.data.local.DeckSettings
 import com.gaoyun.yanyou_kototomo.data.local.card.countForReview
+import com.gaoyun.yanyou_kototomo.data.local.deck.Deck
+import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot

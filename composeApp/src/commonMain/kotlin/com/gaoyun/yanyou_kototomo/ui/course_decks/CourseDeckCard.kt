@@ -18,8 +18,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.gaoyun.yanyou_kototomo.data.local.Course
-import com.gaoyun.yanyou_kototomo.data.local.CourseDeck
+import com.gaoyun.yanyou_kototomo.data.local.course.Course
+import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.ui.base.courseCardColor
 

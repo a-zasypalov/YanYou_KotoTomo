@@ -1,7 +1,7 @@
 package com.gaoyun.yanyou_kototomo.ui.course_decks
 
-import com.gaoyun.yanyou_kototomo.data.local.Course
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
+import com.gaoyun.yanyou_kototomo.data.local.course.Course
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

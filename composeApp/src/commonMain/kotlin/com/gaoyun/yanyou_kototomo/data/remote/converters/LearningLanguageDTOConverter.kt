@@ -1,13 +1,13 @@
 package com.gaoyun.yanyou_kototomo.data.remote.converters
 
-import com.gaoyun.yanyou_kototomo.data.local.Course
-import com.gaoyun.yanyou_kototomo.data.local.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.LearningLanguage
 import com.gaoyun.yanyou_kototomo.data.local.RootStructure
 import com.gaoyun.yanyou_kototomo.data.local.SourceLanguage
+import com.gaoyun.yanyou_kototomo.data.local.course.Course
+import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.remote.CourseDTO
 import com.gaoyun.yanyou_kototomo.data.remote.CourseDeckDTO
 import com.gaoyun.yanyou_kototomo.data.remote.LearningLanguageDTO
