@@ -18,11 +18,13 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.DECK_OVERVIEW_ROU
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.DECK_PLAYER_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.HOME_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.QUIZ_SESSION_SUMMARY_ROUTE
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.STATISTICS_FULL_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigatorAction
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.courseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.deckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.playerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.quizSessionSummaryArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.statisticsFullListArgs
 import com.gaoyun.yanyou_kototomo.ui.base.theme.AppTheme
 import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColorsProvider
 import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksScreen
@@ -30,6 +32,7 @@ import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewScreen
 import com.gaoyun.yanyou_kototomo.ui.home.HomeScreenHost
 import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerScreen
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryScreen
+import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsFullListScreen
 import com.gaoyun.yanyou_kototomo.util.Platform
 import com.gaoyun.yanyou_kototomo.util.PlatformNames
 import kotlinx.coroutines.flow.onEach
@@ -137,6 +140,11 @@ fun App() {
                         scene(QUIZ_SESSION_SUMMARY_ROUTE) {
                             it.quizSessionSummaryArgs()?.let { safeArgs ->
                                 QuizSessionSummaryScreen(args = safeArgs, navigate = viewModel::navigate)
+                            }
+                        }
+                        scene(STATISTICS_FULL_ROUTE) {
+                            it.statisticsFullListArgs()?.let { mode ->
+                                StatisticsFullListScreen(mode = mode, navigate = viewModel::navigate)
                             }
                         }
                     }

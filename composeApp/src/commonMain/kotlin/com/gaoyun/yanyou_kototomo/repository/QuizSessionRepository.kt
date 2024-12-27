@@ -9,7 +9,9 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 
 class QuizSessionRepository(private val db: YanYouKotoTomoDatabase) {
-    private val pageSize = 50L
+    companion object {
+        const val PAGE_SIZE = 50L
+    }
 
     fun getQuizSession(sessionId: QuizSessionId): QuizSession? {
         return db.quiz_sessionQueries.getQuizSession(sessionId.identifier).executeAsOneOrNull()?.let { session ->
@@ -19,7 +21,7 @@ class QuizSessionRepository(private val db: YanYouKotoTomoDatabase) {
     }
 
     fun getQuizSessions(page: Int): List<QuizSession> {
-        return db.quiz_sessionQueries.getQuizSessions(pageSize, pageSize * page).executeAsList().map { session ->
+        return db.quiz_sessionQueries.getQuizSessions(PAGE_SIZE, PAGE_SIZE * page).executeAsList().map { session ->
             val cards = db.decksQueries.getCardsByIds(session.card_ids).executeAsList()
             session.toLocal(cards)
         }

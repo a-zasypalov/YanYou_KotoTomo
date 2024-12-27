@@ -28,6 +28,7 @@ import com.gaoyun.yanyou_kototomo.ui.home.HomeViewModel
 import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerViewModel
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryViewModel
 import com.gaoyun.yanyou_kototomo.ui.statistics.StatisticsViewModel
+import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsFullListViewModel
 import com.gaoyun.yanyoukototomo.data.persistence.CardsPersisted
 import com.gaoyun.yanyoukototomo.data.persistence.CoursesPersisted
 import com.gaoyun.yanyoukototomo.data.persistence.QuizSessionsPersisted
@@ -82,6 +83,7 @@ val viewModelModule = module {
     factory { DeckPlayerViewModel(get(), get(), get(), get(), get()) }
     factory { QuizSessionSummaryViewModel(get()) }
     factory { StatisticsViewModel(get(), get()) }
+    factory { StatisticsFullListViewModel(get(), get()) }
 }
 
 val dbModule = module {

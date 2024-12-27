@@ -14,9 +14,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToStatisticsFullList
 import com.gaoyun.yanyou_kototomo.ui.statistics.components.CardProgressStatisticsItem
 import com.gaoyun.yanyou_kototomo.ui.statistics.components.QuizSessionStatisticsItem
 import com.gaoyun.yanyou_kototomo.ui.statistics.components.SectionDividerShowMore
+import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsListMode
 import moe.tlaster.precompose.koin.koinViewModel
 
 @Composable
@@ -33,8 +35,8 @@ fun StatisticsScreen(
     StatisticsScreenContent(
         content = viewModel.viewState.collectAsState().value,
         modifier = modifier,
-        onShowMoreCards = {},
-        onShowMoreQuizzes = {}
+        onShowMoreCards = { navigate(ToStatisticsFullList(StatisticsListMode.Cards)) },
+        onShowMoreQuizzes = { navigate(ToStatisticsFullList(StatisticsListMode.Quizzes)) }
     )
 }
 
