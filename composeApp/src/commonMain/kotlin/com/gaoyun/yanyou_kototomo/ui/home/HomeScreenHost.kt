@@ -1,5 +1,7 @@
 package com.gaoyun.yanyou_kototomo.ui.home
 
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.navigationBars
@@ -32,6 +34,7 @@ import moe.tlaster.precompose.navigation.NavOptions
 import moe.tlaster.precompose.navigation.Navigator
 import moe.tlaster.precompose.navigation.PopUpTo
 import moe.tlaster.precompose.navigation.rememberNavigator
+import moe.tlaster.precompose.navigation.transition.NavTransition
 
 @Composable
 fun HomeScreenHost(navigate: (NavigationSideEffect) -> Unit) {
@@ -46,6 +49,12 @@ fun HomeScreenHost(navigate: (NavigationSideEffect) -> Unit) {
         NavHost(
             navigator = navigator,
             initialRoute = HOME_ROUTE,
+            navTransition = NavTransition(
+                createTransition = fadeIn(),
+                destroyTransition = fadeOut(),
+                pauseTransition = fadeOut(),
+                resumeTransition = fadeIn(),
+            )
         ) {
             scene(HOME_ROUTE) { HomeScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
             scene(COURSES_ROUTE) { CoursesScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
