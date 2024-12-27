@@ -1,5 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.base.navigation
 
+import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsListMode
 import org.koin.core.component.KoinComponent
 
 sealed class NavigatorAction {
@@ -17,6 +18,7 @@ class AppNavigator() : KoinComponent {
         is ToCourse -> NavigatorAction.NavigateTo(AppRoutes.COURSE_DECKS_ROUTE(args = call.args))
         is ToDeck -> NavigatorAction.NavigateTo(AppRoutes.DECK_OVERVIEW_ROUTE(args = call.args))
         is ToDeckPlayer -> NavigatorAction.NavigateTo(AppRoutes.DECK_PLAYER_ROUTE(args = call.args))
+        is ToStatisticsFullList -> NavigatorAction.NavigateTo(AppRoutes.STATISTICS_FULL_ROUTE(mode = call.mode))
         is ToQuizSessionSummary -> NavigatorAction.NavigateToWithBackHandler(
             path = AppRoutes.QUIZ_SESSION_SUMMARY_ROUTE(args = call.args),
             popupTo = AppRoutes.DECK_OVERVIEW_ROUTE
@@ -30,3 +32,4 @@ class ToCourse(val args: CourseScreenArgs) : NavigationSideEffect
 class ToDeck(val args: DeckScreenArgs) : NavigationSideEffect
 class ToDeckPlayer(val args: PlayerScreenArgs) : NavigationSideEffect
 class ToQuizSessionSummary(val args: QuizSessionSummaryArgs) : NavigationSideEffect
+class ToStatisticsFullList(val mode: StatisticsListMode) : NavigationSideEffect

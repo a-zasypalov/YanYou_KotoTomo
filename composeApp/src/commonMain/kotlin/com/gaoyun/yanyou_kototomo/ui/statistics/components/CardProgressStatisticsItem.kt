@@ -44,7 +44,7 @@ fun CardProgressStatisticsItem(card: CardSimpleDataEntryWithProgress) {
                     style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Medium),
                 )
                 Text(
-                    text = "(${card.answer})(${card.answer})(${card.answer})(${card.answer})(${card.answer})(${card.answer})(${card.answer})(${card.answer})(${card.answer})",
+                    text = "(${card.answer})",
                     style = MaterialTheme.typography.titleSmall,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,

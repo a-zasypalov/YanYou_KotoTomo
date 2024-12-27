@@ -1,5 +1,7 @@
 package com.gaoyun.yanyou_kototomo.ui.base.navigation
 
+import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsListMode
+
 @Suppress("FunctionName")
 object AppRoutes {
     object Arg {
@@ -9,6 +11,7 @@ object AppRoutes {
         const val SOURCE_LANGUAGE_ID = "SOURCE_LANGUAGE_ID"
         const val PLAYER_MODE = "PLAYER_MODE"
         const val QUIZ_SESSION_ID = "QUIZ_SESSION_ID"
+        const val STATISTICS_MODE = "STATISTICS_MODE"
     }
 
     const val HOME_ROUTE = "/HOME_ROUTE"
@@ -33,5 +36,8 @@ object AppRoutes {
     const val QUIZ_SESSION_SUMMARY_ROUTE = "$DECK_PLAYER_ROUTE/{${Arg.QUIZ_SESSION_ID}}"
     fun QUIZ_SESSION_SUMMARY_ROUTE(args: QuizSessionSummaryArgs) =
         "$COURSES_ROUTE/${args.learningLanguageId.identifier}/${args.sourceLanguageId.identifier}/${args.courseId.identifier}/${args.deckId.identifier}/${args.playerMode.name}/${args.sessionId.identifier}"
+
+    const val STATISTICS_FULL_ROUTE = "$STATISTICS_ROUTE/{${Arg.STATISTICS_MODE}}"
+    fun STATISTICS_FULL_ROUTE(mode: StatisticsListMode) = "$STATISTICS_ROUTE/$mode"
 
 }

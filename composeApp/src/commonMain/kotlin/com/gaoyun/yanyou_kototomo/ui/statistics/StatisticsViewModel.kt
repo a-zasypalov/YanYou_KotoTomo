@@ -1,7 +1,5 @@
 package com.gaoyun.yanyou_kototomo.ui.statistics
 
-import com.gaoyun.yanyou_kototomo.data.local.CardSimpleDataEntryWithProgress
-import com.gaoyun.yanyou_kototomo.data.local.QuizSessionWithSimpleDataEntryCards
 import com.gaoyun.yanyou_kototomo.domain.GetCardProgress
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
@@ -13,19 +11,11 @@ class StatisticsViewModel(
     private val quizInteractor: QuizInteractor,
     private val getCardProgress: GetCardProgress,
 ) : BaseViewModel() {
-    private val quizPage = MutableStateFlow(0)
-    private val cardsProgressPage = MutableStateFlow(0)
-
     override val viewState = MutableStateFlow<StatisticsViewState?>(null)
 
     fun getStatistics() = viewModelScope.launch {
-        val sessions = quizInteractor.getSessionsPage(quizPage.value)
-        val cardsProgress = getCardProgress.getCardProgressPage(cardsProgressPage.value)
+        val sessions = quizInteractor.getSessionsPage(0).toSet()
+        val cardsProgress = getCardProgress.getCardProgressPage(0).toSet()
         viewState.value = StatisticsViewState(sessions, cardsProgress)
     }
 }
-
-data class StatisticsViewState(
-    val sessions: List<QuizSessionWithSimpleDataEntryCards>,
-    val cardsProgress: List<CardSimpleDataEntryWithProgress>,
-)

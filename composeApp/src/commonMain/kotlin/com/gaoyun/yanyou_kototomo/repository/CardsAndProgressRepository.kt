@@ -10,7 +10,9 @@ import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
 class CardsAndProgressRepository(
     private val db: YanYouKotoTomoDatabase,
 ) {
-    private val pageLimit = 50L
+    companion object {
+        const val PAGE_SIZE = 50L
+    }
 
     fun getCardProgressFor(deckId: DeckId): List<CardProgress> {
         val progress = db.card_progressQueries.getDeckProgress(deckId.identifier).executeAsList()
@@ -18,7 +20,8 @@ class CardsAndProgressRepository(
     }
 
     fun getCardProgressPage(page: Int): List<CardProgress> {
-        val progress = db.card_progressQueries.getAllCardsProgress(pageLimit, pageLimit * page).executeAsList()
+        println("here for cards")
+        val progress = db.card_progressQueries.getAllCardsProgress(PAGE_SIZE, PAGE_SIZE * page).executeAsList()
         return progress.map { it.toLocal() }
     }
 

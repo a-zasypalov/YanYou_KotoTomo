@@ -4,6 +4,7 @@ import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.QuizSessionId
+import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsListMode
 import moe.tlaster.precompose.navigation.BackStackEntry
 import moe.tlaster.precompose.navigation.path
 
@@ -117,4 +118,9 @@ internal fun BackStackEntry.quizSessionSummaryArgs(): QuizSessionSummaryArgs? {
         playerMode = PlayerMode.valueOf(playerMode),
         sessionId = QuizSessionId(quizSessionId)
     )
+}
+
+internal fun BackStackEntry.statisticsFullListArgs(): StatisticsListMode? {
+    val modeString = path<String>(AppRoutes.Arg.STATISTICS_MODE) ?: return null
+    return StatisticsListMode.valueOf(modeString)
 }
