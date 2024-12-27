@@ -32,7 +32,7 @@ class QuizSessionRepository(private val db: YanYouKotoTomoDatabase) {
             sessionId = session.sessionId.identifier,
             startTime = session.startTime.toString(),
             endTime = session.endTime.toString(),
-            cardIds = session.results.map { it.card },
+            cardIds = session.results.map { it.cardId },
             cardResults = Json.encodeToString(ListSerializer(QuizCardResultPersisted.serializer()), session.results)
         )
     }

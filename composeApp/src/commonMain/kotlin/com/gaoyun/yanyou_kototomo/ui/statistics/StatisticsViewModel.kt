@@ -14,8 +14,8 @@ class StatisticsViewModel(
     override val viewState = MutableStateFlow<StatisticsViewState?>(null)
 
     fun getStatistics() = viewModelScope.launch {
-        val sessions = quizInteractor.getSessionsPage(0).toSet()
-        val cardsProgress = getCardProgress.getCardProgressPage(0).toSet()
+        val sessions = quizInteractor.getSessionsPage(0).sortedByDescending { it.startTime }.toSet()
+        val cardsProgress = getCardProgress.getCardProgressPage(0).sortedBy { it.progress.nextReview }.toSet()
         viewState.value = StatisticsViewState(sessions, cardsProgress)
     }
 }

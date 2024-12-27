@@ -88,6 +88,9 @@ FROM CoursesPersisted
 LEFT JOIN CourseDecksPersisted ON CoursesPersisted.id = CourseDecksPersisted.course_id
 WHERE CoursesPersisted.id = :courseId;
 
+getDeckNames:
+SELECT id, name FROM CourseDecksPersisted WHERE id IN ?;
+
 clearCache:
 DELETE FROM LanguagesPersisted;
 DELETE FROM SourceLanguagesPersisted;

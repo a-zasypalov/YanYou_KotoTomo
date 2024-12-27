@@ -69,6 +69,12 @@ fun QuizSessionStatisticsItem(session: QuizSessionWithSimpleDataEntryCards) {
             )
         }
         Text(
+            text = session.deckNames.joinToString(", "),
+            style = MaterialTheme.typography.bodyLarge,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1,
+        )
+        Text(
             text = sessionCharacters,
             style = MaterialTheme.typography.bodyLarge,
             overflow = TextOverflow.Ellipsis,
