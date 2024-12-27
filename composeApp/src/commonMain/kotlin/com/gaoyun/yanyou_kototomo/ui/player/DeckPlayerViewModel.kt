@@ -6,9 +6,9 @@ import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.Deck
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
-import com.gaoyun.yanyou_kototomo.data.local.QuizCardResultPersisted
-import com.gaoyun.yanyou_kototomo.data.local.QuizSessionId
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
 import com.gaoyun.yanyou_kototomo.data.local.countForReview
+import com.gaoyun.yanyou_kototomo.data.persistence.QuizCardResultPersisted
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck

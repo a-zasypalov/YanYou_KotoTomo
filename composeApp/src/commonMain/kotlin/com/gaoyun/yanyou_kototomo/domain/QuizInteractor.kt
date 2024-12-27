@@ -1,10 +1,10 @@
 package com.gaoyun.yanyou_kototomo.domain
 
-import com.gaoyun.yanyou_kototomo.data.local.QuizCardResultPersisted
-import com.gaoyun.yanyou_kototomo.data.local.QuizSession
-import com.gaoyun.yanyou_kototomo.data.local.QuizSessionId
-import com.gaoyun.yanyou_kototomo.data.local.QuizSessionWithCards
-import com.gaoyun.yanyou_kototomo.data.local.QuizSessionWithSimpleDataEntryCards
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSession
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionWithCards
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionForStatistic
+import com.gaoyun.yanyou_kototomo.data.persistence.QuizCardResultPersisted
 import com.gaoyun.yanyou_kototomo.repository.CardsAndProgressRepository
 import com.gaoyun.yanyou_kototomo.repository.QuizSessionRepository
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.QuizSessionSummaryArgs
@@ -20,7 +20,7 @@ class QuizInteractor(
     private val cardsRepository: CardsAndProgressRepository,
 ) {
 
-    fun getSessionsPage(page: Int): List<QuizSessionWithSimpleDataEntryCards> {
+    fun getSessionsPage(page: Int): List<QuizSessionForStatistic> {
         val sessions = repository.getQuizSessions(page)
         val sessionsCardsIds = sessions.flatMap { it.results.map { it.cardId } }
         val cardsAndDeckNames = cardsRepository.getCards(sessionsCardsIds)
