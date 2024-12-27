@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.gaoyun.yanyou_kototomo.data.local.QuizCardResult
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizCardResult
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import org.jetbrains.compose.resources.painterResource
 import yanyou_kototomo.composeapp.generated.resources.Res

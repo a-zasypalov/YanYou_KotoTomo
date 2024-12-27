@@ -19,13 +19,13 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import com.gaoyun.yanyou_kototomo.data.local.QuizSessionWithSimpleDataEntryCards
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionForStatistic
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColors
 import com.gaoyun.yanyou_kototomo.util.formatDateTimeStatistics
 
 @Composable
-fun QuizSessionStatisticsItem(session: QuizSessionWithSimpleDataEntryCards) {
+fun QuizSessionStatisticsItem(session: QuizSessionForStatistic) {
     val correctAnswers = session.results.count { it.isCorrect }
     val wrongAnswers = session.results.size - correctAnswers
     val correctAnswersPercentage = (correctAnswers.toDouble() / session.results.size.toDouble() * 100).toInt()

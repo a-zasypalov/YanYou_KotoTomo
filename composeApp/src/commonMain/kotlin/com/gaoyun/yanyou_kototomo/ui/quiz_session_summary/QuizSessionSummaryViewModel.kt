@@ -1,6 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.quiz_session_summary
 
-import com.gaoyun.yanyou_kototomo.data.local.QuizSessionWithCards
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionWithCards
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.QuizSessionSummaryArgs

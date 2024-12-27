@@ -3,7 +3,7 @@ package com.gaoyun.yanyou_kototomo.ui.base.navigation
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
-import com.gaoyun.yanyou_kototomo.data.local.QuizSessionId
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
 import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsListMode
 import moe.tlaster.precompose.navigation.BackStackEntry
 import moe.tlaster.precompose.navigation.path

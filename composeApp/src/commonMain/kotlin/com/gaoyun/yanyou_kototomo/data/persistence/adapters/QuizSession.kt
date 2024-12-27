@@ -1,8 +1,8 @@
 package com.gaoyun.yanyou_kototomo.data.persistence.adapters
 
-import com.gaoyun.yanyou_kototomo.data.local.QuizCardResultPersisted
-import com.gaoyun.yanyou_kototomo.data.local.QuizSession
-import com.gaoyun.yanyou_kototomo.data.local.QuizSessionId
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSession
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
+import com.gaoyun.yanyou_kototomo.data.persistence.QuizCardResultPersisted
 import com.gaoyun.yanyoukototomo.data.persistence.CardsPersisted
 import com.gaoyun.yanyoukototomo.data.persistence.QuizSessionsPersisted
 import kotlinx.datetime.LocalDateTime

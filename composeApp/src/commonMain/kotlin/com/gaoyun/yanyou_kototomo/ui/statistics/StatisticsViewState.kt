@@ -1,9 +1,9 @@
 package com.gaoyun.yanyou_kototomo.ui.statistics
 
 import com.gaoyun.yanyou_kototomo.data.local.CardSimpleDataEntryWithProgress
-import com.gaoyun.yanyou_kototomo.data.local.QuizSessionWithSimpleDataEntryCards
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionForStatistic
 
 data class StatisticsViewState(
-    val sessions: Set<QuizSessionWithSimpleDataEntryCards>,
+    val sessions: Set<QuizSessionForStatistic>,
     val cardsProgress: Set<CardSimpleDataEntryWithProgress>,
 )

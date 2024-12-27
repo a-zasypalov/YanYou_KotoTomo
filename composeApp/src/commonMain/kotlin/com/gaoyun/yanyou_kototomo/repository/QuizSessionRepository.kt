@@ -1,8 +1,8 @@
 package com.gaoyun.yanyou_kototomo.repository
 
-import com.gaoyun.yanyou_kototomo.data.local.QuizCardResultPersisted
-import com.gaoyun.yanyou_kototomo.data.local.QuizSession
-import com.gaoyun.yanyou_kototomo.data.local.QuizSessionId
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSession
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
+import com.gaoyun.yanyou_kototomo.data.persistence.QuizCardResultPersisted
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.data.persistence.adapters.toLocal
 import kotlinx.serialization.builtins.ListSerializer
