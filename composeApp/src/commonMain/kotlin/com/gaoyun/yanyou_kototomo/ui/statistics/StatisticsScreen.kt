@@ -55,7 +55,7 @@ private fun StatisticsScreenContent(
             Text(
                 text = "Statistics",
                 style = MaterialTheme.typography.displayLarge,
-                modifier = Modifier.padding(vertical = 8.dp)
+                modifier = Modifier.padding(top = 24.dp, bottom = 8.dp)
             )
         }
         if (!content?.sessions.isNullOrEmpty()) {
