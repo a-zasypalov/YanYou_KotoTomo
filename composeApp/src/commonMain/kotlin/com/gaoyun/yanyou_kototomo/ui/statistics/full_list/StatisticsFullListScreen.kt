@@ -60,11 +60,12 @@ private fun StatisticsFullListScreenContent(
                 text = if (mode == StatisticsListMode.Quizzes) "Quizzes" else "Spacial repetition",
                 fontSizeRange = FontSizeRange(min = 16.sp, max = MaterialTheme.typography.displayLarge.fontSize),
                 style = MaterialTheme.typography.displayLarge,
-                maxLines = 1
+                maxLines = 1,
+                modifier = Modifier.padding(bottom = 16.dp)
             )
         }
         if (!content?.sessions.isNullOrEmpty()) {
-            content.sessions.forEach { session -> item { QuizSessionStatisticsItem(session) } }
+            content.sessions.forEach { session -> item { QuizSessionStatisticsItem(session, true) } }
         }
 
         if (!content?.cardsProgress.isNullOrEmpty()) {
