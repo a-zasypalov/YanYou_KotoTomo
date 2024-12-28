@@ -1,5 +1,6 @@
 package com.gaoyun.yanyou_kototomo.repository
 
+import com.gaoyun.yanyou_kototomo.data.local.CardId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
@@ -46,4 +47,6 @@ class CardsAndProgressRepository(
     fun resetDeck(deckId: DeckId) {
         db.card_progressQueries.removeProgressForDeck(deckId.identifier)
     }
+
+    fun getFullCardsFromCache(cardIds: List<CardId>) = db.decksQueries.getCardsByIds(cardIds.map { it.identifier }).executeAsList()
 }

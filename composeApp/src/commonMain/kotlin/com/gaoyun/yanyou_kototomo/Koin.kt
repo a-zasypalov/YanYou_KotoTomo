@@ -4,11 +4,14 @@ import com.gaoyun.yanyou_kototomo.data.persistence.DriverFactory
 import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.data.persistence.platformModule
+import com.gaoyun.yanyou_kototomo.domain.BookmarksInteractor
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
 import com.gaoyun.yanyou_kototomo.domain.GetCardProgress
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
+import com.gaoyun.yanyou_kototomo.domain.GetDeckFromCache
+import com.gaoyun.yanyou_kototomo.domain.GetHomeState
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
 import com.gaoyun.yanyou_kototomo.network.DecksApi
@@ -66,11 +69,14 @@ val repositoryModule = module {
 val useCaseModule = module {
     single { GetCoursesRoot(get()) }
     single { GetDeck(get(), get()) }
+    single { GetDeckFromCache(get(), get()) }
     single { SpacedRepetitionCalculation() }
     single { CardProgressUpdater(get()) }
     single { DeckSettingsInteractor(get()) }
     single { QuizInteractor(get(), get(), get(), get()) }
     single { GetCardProgress(get()) }
+    single { GetHomeState(get(), get()) }
+    single { BookmarksInteractor(get()) }
 }
 
 val viewModelModule = module {

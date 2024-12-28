@@ -46,6 +46,13 @@ class DeckRepository(
         )
     }
 
+    fun getDeckFromCache(deckId: DeckId): DeckDTO? = runCatching {
+        println("Getting deck $deckId from cache")
+        db.decksQueries.getCardsForDeck(deckId.identifier).executeAsList()
+            .convertCardsToDTO(deckId = deckId.identifier)
+            .takeIf { it.cards.isNotEmpty() }
+    }.getOrNull()
+
     private suspend fun fetchDeck(
         learningLanguage: LanguageId,
         sourceLanguage: LanguageId,
@@ -59,13 +66,6 @@ class DeckRepository(
             cacheDeck(it, deckId)
         }
     }
-
-    private fun getDeckFromCache(deckId: DeckId): DeckDTO? = runCatching {
-        println("Getting deck $deckId from cache")
-        db.decksQueries.getCardsForDeck(deckId.identifier).executeAsList()
-            .convertCardsToDTO(deckId = deckId.identifier)
-            .takeIf { it.cards.isNotEmpty() }
-    }.getOrNull()
 
     private fun cacheDeck(deckDTO: DeckDTO, deckId: DeckId) {
         println("Caching deck $deckId from API")

@@ -64,3 +64,22 @@ fun CourseDeckDTO.toLocal(): CourseDeck {
         }
     }
 }
+
+fun CourseDeck.toDTO(): CourseDeckDTO {
+    return when (this) {
+        is CourseDeck.Normal -> CourseDeckDTO.Normal(
+            id = this.id.identifier,
+            name = this.name,
+            preview = this.preview,
+            version = this.version
+        )
+
+        is CourseDeck.Alphabet -> CourseDeckDTO.Alphabet(
+            id = this.id.identifier,
+            name = this.name,
+            preview = this.preview,
+            version = this.version,
+            alphabet = this.alphabet.name.lowercase()
+        )
+    }
+}
