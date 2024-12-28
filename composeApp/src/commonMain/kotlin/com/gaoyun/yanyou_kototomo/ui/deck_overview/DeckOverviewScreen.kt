@@ -60,7 +60,9 @@ fun DeckOverviewScreen(
             onPlayDeckClick = { mode -> navigate(ToDeckPlayer(args.toPlayerArgs(mode))) },
             updateTranslationSettings = viewModel::updateTranslationSettings,
             updateTranscriptionSettings = viewModel::updateTranscriptionSettings,
-            updateReadingSettings = viewModel::updateReadingSettings
+            updateReadingSettings = viewModel::updateReadingSettings,
+            updateBookmarkedState = viewModel::updateBookmarkedState,
+            updateLearnedState = viewModel::updateLearnedState,
         )
         CardDetailsView(cardDetailState, args.learningLanguageId) { cardDetailState.value = null }
     }
@@ -74,6 +76,8 @@ private fun DeckOverviewContent(
     updateTranslationSettings: (Boolean) -> Unit,
     updateTranscriptionSettings: (Boolean) -> Unit,
     updateReadingSettings: (Boolean) -> Unit,
+    updateBookmarkedState: (Boolean) -> Unit,
+    updateLearnedState: (Boolean) -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         viewState?.let {
@@ -93,7 +97,9 @@ private fun DeckOverviewContent(
                         viewState = viewState,
                         updateTranslationSettings = updateTranslationSettings,
                         updateTranscriptionSettings = updateTranscriptionSettings,
-                        updateReadingSettings = updateReadingSettings
+                        updateReadingSettings = updateReadingSettings,
+                        updateBookmarkedState = updateBookmarkedState,
+                        updateLearnedState = updateLearnedState,
                     )
                 }
 

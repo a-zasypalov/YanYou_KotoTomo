@@ -1,16 +1,24 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.BookmarkBorder
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.StarBorder
 import androidx.compose.material.icons.filled.Subtitles
 import androidx.compose.material.icons.filled.Translate
 import androidx.compose.material.icons.filled.ViewColumn
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedIconToggleButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,6 +33,8 @@ fun DeckOverviewHeader(
     updateTranslationSettings: (Boolean) -> Unit,
     updateTranscriptionSettings: (Boolean) -> Unit,
     updateReadingSettings: (Boolean) -> Unit,
+    updateBookmarkedState: (Boolean) -> Unit,
+    updateLearnedState: (Boolean) -> Unit,
 ) {
     val deck = viewState.deck
 
@@ -65,6 +75,50 @@ fun DeckOverviewHeader(
                     Icon(Icons.Default.ViewColumn, null)
                 }
             }
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            OutlinedIconToggleButton(
+                checked = viewState.isBookmarked,
+                onCheckedChange = updateBookmarkedState,
+            ) {
+                Icon(Icons.Default.BookmarkBorder, null)
+            }
+
+            LearnButton(isLearned = viewState.isCurrentlyLearned, onClick = { updateLearnedState(!viewState.isCurrentlyLearned) })
+        }
+    }
+}
+
+@Composable
+fun LearnButton(
+    isLearned: Boolean,
+    onClick: () -> Unit
+) {
+    Button(
+        onClick = onClick,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = if (isLearned) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surface,
+            contentColor = if (isLearned) MaterialTheme.colorScheme.onSecondaryContainer else MaterialTheme.colorScheme.onSurface,
+            disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+            disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant
+        ),
+        border = BorderStroke(
+            width = 1.dp,
+            color = if (isLearned) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.outlineVariant
+        )
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Icon(
+                imageVector = if (isLearned) Icons.Default.Star else Icons.Default.StarBorder,
+                contentDescription = null
+            )
+            Text(
+                text = if (isLearned) "Learning" else "Learn"
+            )
         }
     }
 }
