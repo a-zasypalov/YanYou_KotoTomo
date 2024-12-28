@@ -3,10 +3,11 @@ package com.gaoyun.yanyou_kototomo.ui.base
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.course.Course
 
 @Composable
-fun Course.courseCardColor(): Color = when (this.id.identifier) {
+fun CourseId.courseCardColor(): Color = when (identifier) {
     "hsk1_en" -> Color(0xFFFBB41E)
     "hsk2_en" -> Color(0xFF1294AB)
     "hsk3_en" -> Color(0xFFF2781A)

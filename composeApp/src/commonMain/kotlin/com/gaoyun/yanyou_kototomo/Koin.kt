@@ -75,7 +75,7 @@ val useCaseModule = module {
     single { DeckSettingsInteractor(get()) }
     single { QuizInteractor(get(), get(), get(), get()) }
     single { GetCardProgress(get()) }
-    single { GetHomeState(get(), get()) }
+    single { GetHomeState(get(), get(), get(), get(), get()) }
     single { BookmarksInteractor(get()) }
 }
 

@@ -31,7 +31,7 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun CourseCard(course: Course, toCourse: () -> Unit) {
     val courseTextColor = Color(0xFFEDE1D4)
-    val courseCardColor = course.courseCardColor()
+    val courseCardColor = course.id.courseCardColor()
     ElevatedCard(
         modifier = Modifier.fillMaxWidth().platformStyleClickable { toCourse() },
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp),
@@ -44,16 +44,16 @@ fun CourseCard(course: Course, toCourse: () -> Unit) {
             Column(modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)) {
                 Text(
                     text = course.courseName,
-                    color = Color(0xFFEDE1D4),
+                    color = courseTextColor,
                     style = MaterialTheme.typography.headlineMedium,
                 )
                 Text(
                     text = "Decks in course: ${course.decks.count()}",
-                    color = Color(0xFFEDE1D4),
+                    color = courseTextColor,
                     style = MaterialTheme.typography.bodyLarge,
                 )
                 Image(
-                    painter = painterResource(course.getCourseMascot()),
+                    painter = painterResource(course.id.getCourseMascot()),
                     contentDescription = null,
                     colorFilter = ColorFilter.tint(courseTextColor),
                     modifier = Modifier.size(24.dp).padding(top = 8.dp)
