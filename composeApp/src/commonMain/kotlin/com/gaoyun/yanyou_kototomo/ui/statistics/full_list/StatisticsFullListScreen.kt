@@ -1,12 +1,14 @@
 package com.gaoyun.yanyou_kototomo.ui.statistics.full_list
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -65,7 +67,22 @@ private fun StatisticsFullListScreenContent(
             )
         }
         if (!content?.sessions.isNullOrEmpty()) {
-            content.sessions.forEach { session -> item { QuizSessionStatisticsItem(session, true) } }
+            item {
+                Surface(
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = MaterialTheme.shapes.medium,
+                    tonalElevation = 8.dp,
+                ) {
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(4.dp),
+                        modifier = Modifier.fillMaxWidth().padding(8.dp),
+                    ) {
+                        content.sessions.forEachIndexed { index, session ->
+                            QuizSessionStatisticsItem(session, index < content.sessions.size-1)
+                        }
+                    }
+                }
+            }
         }
 
         if (!content?.cardsProgress.isNullOrEmpty()) {
