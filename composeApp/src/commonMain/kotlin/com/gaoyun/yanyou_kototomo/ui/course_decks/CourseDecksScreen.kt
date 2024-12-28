@@ -91,7 +91,7 @@ private fun CourseDecksContent(course: Course?, toDeck: (DeckId) -> Unit) {
 
         course?.let {
             Image(
-                painter = painterResource(course.getCourseMascot()),
+                painter = painterResource(course.id.getCourseMascot()),
                 contentDescription = null,
                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
                 modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 64.dp).size(48.dp).alpha(0.2f)

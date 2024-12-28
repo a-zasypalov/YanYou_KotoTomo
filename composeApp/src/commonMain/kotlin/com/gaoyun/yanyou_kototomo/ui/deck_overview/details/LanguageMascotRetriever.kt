@@ -1,5 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview.details
 
+import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.course.Course
 import org.jetbrains.compose.resources.DrawableResource
@@ -79,21 +80,20 @@ fun LanguageId.getRandomMascotImage(): DrawableResource {
     }
 }
 
-fun Course.getCourseMascot(): DrawableResource {
-    val id = this.id.identifier
+fun CourseId.getCourseMascot(): DrawableResource {
     return when {
-        id.contains("hsk1") -> Res.drawable.tea
-        id.contains("hsk2") -> Res.drawable.rice
-        id.contains("hsk3") -> Res.drawable.lantern
-        id.contains("hsk4") -> Res.drawable.knot
-        id.contains("hsk5") -> Res.drawable.wonton
-        id.contains("hsk6") -> Res.drawable.temple
-        id.contains("kana") -> Res.drawable.sakura
-        id.contains("jlpt5") -> Res.drawable.bamboo
-        id.contains("jlpt4") -> Res.drawable.koinobori
-        id.contains("jlpt3") -> Res.drawable.fuji_mountain
-        id.contains("jlpt2") -> Res.drawable.maneki_neko
-        id.contains("jlpt1") -> Res.drawable.shrine
+        identifier.contains("hsk1") -> Res.drawable.tea
+        identifier.contains("hsk2") -> Res.drawable.rice
+        identifier.contains("hsk3") -> Res.drawable.lantern
+        identifier.contains("hsk4") -> Res.drawable.knot
+        identifier.contains("hsk5") -> Res.drawable.wonton
+        identifier.contains("hsk6") -> Res.drawable.temple
+        identifier.contains("kana") -> Res.drawable.sakura
+        identifier.contains("jlpt5") -> Res.drawable.bamboo
+        identifier.contains("jlpt4") -> Res.drawable.koinobori
+        identifier.contains("jlpt3") -> Res.drawable.fuji_mountain
+        identifier.contains("jlpt2") -> Res.drawable.maneki_neko
+        identifier.contains("jlpt1") -> Res.drawable.shrine
         else -> Res.drawable.sakura
     }
 }

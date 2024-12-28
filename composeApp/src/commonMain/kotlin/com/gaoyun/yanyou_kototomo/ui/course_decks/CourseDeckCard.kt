@@ -26,7 +26,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.courseCardColor
 @Composable
 fun CourseDeckCard(course: Course, deck: CourseDeck, modifier: Modifier = Modifier, toCourse: () -> Unit) {
     val courseTextColor = Color(0xFFEDE1D4)
-    val courseCardColor = course.courseCardColor()
+    val courseCardColor = course.id.courseCardColor()
     ElevatedCard(
         modifier = modifier.fillMaxWidth().platformStyleClickable { toCourse() },
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp),

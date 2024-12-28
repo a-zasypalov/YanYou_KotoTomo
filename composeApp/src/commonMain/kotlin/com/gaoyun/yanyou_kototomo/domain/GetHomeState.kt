@@ -1,11 +1,11 @@
 package com.gaoyun.yanyou_kototomo.domain
 
+import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.HomeState
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.withProgress
-import com.gaoyun.yanyou_kototomo.data.local.course.Course
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.persistence.adapters.toCardsDTO
 import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
@@ -25,79 +25,23 @@ class GetHomeState(
         val rootStructure = getCoursesRoot.getCourses()
         val courses = rootStructure.languages.flatMap { it.sourceLanguages.flatMap { l -> l.courses } }
 
-        val learningDeck = bookmarksInteractor.getLearningDeck()?.let { learningDeck ->
-            val requiredDecks = courses.find { it.decks.contains(learningDeck) }?.requiredDecks ?: listOf()
-            getDeckFromCache.getDeck(learningDeck, requiredDecks)
-        }
-        val bookmarkedDecks = bookmarksInteractor.getBookmarkedDecks().mapNotNull { bookmarkedDeck ->
-            val requiredDecks = courses.find { it.decks.contains(bookmarkedDeck) }?.requiredDecks ?: listOf()
-            getDeckFromCache.getDeck(bookmarkedDeck, requiredDecks)
-        }
-
-        val recentlyReviewedCards = getRecentlyReviewedCardsWithProgress(courses)
-
-        return HomeState(currentlyLearn = learningDeck, bookmarks = bookmarkedDecks, recentlyReviewed = recentlyReviewedCards)
-
-    }
-
-    private fun getRecentlyReviewedCardsWithProgress(courses: List<Course>): List<CardWithProgress<Card>> {
-        val cardsWithProgresses = getCardProgress.getCardProgressPage(0)
-        val progresses = cardsWithProgresses.map { it.progress }.associateBy { it.cardId }
-
-        val recentlyReviewedCards = cardsRepository.getFullCardsFromCache(cardsWithProgresses.map { it.id })
-        val recentlyReviewedCardDeckIds = recentlyReviewedCards.map { it.deck_id }
-        val recentlyReviewedCardsDto = recentlyReviewedCards.map { it.toCardsDTO() }
-
-        val requiredDeckIds = courses
-            .filter { course -> course.decks.any { it.id.identifier in recentlyReviewedCardDeckIds } }
-            .flatMap { it.requiredDecks.orEmpty() }
-            .distinct()
-
-        val requiredCards = requiredDeckIds
-            .mapNotNull { getDeckFromCache.getDeckWithoutName(it, requiredDeckIds) }
-            .flatMap { it.cards }
-
-        val requiredWords = requiredCards.filterIsInstance<CardDTO.WordCardDTO>()
-        val kanaCards = requiredCards.filterIsInstance<CardDTO.KanaCardDTO>()
-
-        return recentlyReviewedCardsDto.map { card ->
-            val progress = progresses[card.id]
-
-            when (card) {
-                is CardDTO.WordCardDTO -> card.toLocal().withProgress(progress)
-                is CardDTO.KanaCardDTO -> card.toLocal(kanaCards).withProgress(progress)
-                is CardDTO.KanjiCardDTO -> card.toLocal(kanaCards).withProgress(progress)
-                is CardDTO.PhraseCardDTO -> card.toLocal(requiredWords).withProgress(progress)
-            }
-        }
-    }
-}
-
-class OptimizedGetHomeState(
-    private val bookmarksInteractor: BookmarksInteractor,
-    private val getDeckFromCache: GetDeckFromCache,
-    private val getCoursesRoot: GetCoursesRoot,
-    private val getCardProgress: GetCardProgress,
-    private val cardsRepository: CardsAndProgressRepository,
-) {
-
-    suspend fun getHomeState(): HomeState? {
-        val rootStructure = getCoursesRoot.getCourses()
-        val courses = rootStructure.languages.flatMap { it.sourceLanguages.flatMap { l -> l.courses } }
-
-        // Pre-build a map of decks for fast lookup
+        // Pre-build lookup maps for fast access
         val courseDeckMap = courses.flatMap { course -> course.decks.map { it to course.requiredDecks.orEmpty() } }.toMap()
+        val deckToCourseIdMap = courses.flatMap { course -> course.decks.map { it to course.id } }.toMap()
 
         // Fetch the learning deck, if available
         val learningDeck = bookmarksInteractor.getLearningDeck()?.let { learningDeck ->
+            val courseId = deckToCourseIdMap[learningDeck] ?: CourseId("")
             val requiredDecks = courseDeckMap[learningDeck] ?: emptyList()
-            getDeckFromCache.getDeck(learningDeck, requiredDecks)
+            courseId to getDeckFromCache.getDeck(learningDeck, requiredDecks)
         }
 
         // Fetch bookmarked decks
         val bookmarkedDecks = bookmarksInteractor.getBookmarkedDecks().mapNotNull { bookmarkedDeck ->
+            val courseId = deckToCourseIdMap[bookmarkedDeck] ?: CourseId("")
             val requiredDecks = courseDeckMap[bookmarkedDeck] ?: emptyList()
-            getDeckFromCache.getDeck(bookmarkedDeck, requiredDecks)
+            val deck = getDeckFromCache.getDeck(bookmarkedDeck, requiredDecks) ?: return@mapNotNull null
+            courseId to deck
         }
 
         // Fetch recently reviewed cards with progress
