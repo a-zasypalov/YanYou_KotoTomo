@@ -1,14 +1,18 @@
 package com.gaoyun.yanyou_kototomo.ui.home
 
-import com.gaoyun.yanyou_kototomo.data.local.RootStructure
-import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
+import com.gaoyun.yanyou_kototomo.data.local.HomeState
+import com.gaoyun.yanyou_kototomo.domain.GetHomeState
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
+import moe.tlaster.precompose.viewmodel.viewModelScope
 
 class HomeViewModel(
-    private val getCoursesRoot: GetCoursesRoot,
+    private val getHomeState: GetHomeState,
 ) : BaseViewModel() {
 
-    override val viewState = MutableStateFlow<RootStructure?>(null)
+    override val viewState = MutableStateFlow<HomeState?>(null)
+
+    fun getHomeState() = viewModelScope.launch { viewState.value = getHomeState.getHomeState() }
 
 }

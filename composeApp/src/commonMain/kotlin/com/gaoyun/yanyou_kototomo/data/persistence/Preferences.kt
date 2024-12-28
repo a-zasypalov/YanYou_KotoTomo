@@ -3,6 +3,8 @@ package com.gaoyun.yanyou_kototomo.data.persistence
 object PreferencesKeys {
     const val UPDATES_STRUCTURE_REFRESHED = "UPDATES_STRUCTURE_REFRESHED"
     const val UPDATES_COURSES_REFRESHED = "UPDATES_COURSES_REFRESHED"
+    const val LEARNING_DECK = "LEARNING_DECK"
+    const val BOOKMARKED_DECKS = "BOOKMARKED_DECKS"
 }
 
 expect class Preferences(name: String? = null) {
