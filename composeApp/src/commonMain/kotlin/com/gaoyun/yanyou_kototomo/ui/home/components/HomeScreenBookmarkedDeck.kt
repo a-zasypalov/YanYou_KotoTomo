@@ -1,7 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.home.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,13 +8,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckWithCourseInfo
@@ -34,24 +36,25 @@ fun HomeScreenBookmarkedDeck(bookmark: DeckWithCourseInfo, onCourseClick: (DeckW
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp),
         colors = CardDefaults.elevatedCardColors(containerColor = courseCardColor)
     ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-            modifier = Modifier.fillMaxSize().background(Color(0x33000000)).padding(vertical = 8.dp)
-        ) {
+        Column(modifier = Modifier.fillMaxSize().background(Color(0x33000000)).padding(vertical = 4.dp)) {
             AutoResizeText(
                 text = bookmark.deck.name,
                 fontSizeRange = FontSizeRange(min = 16.sp, max = MaterialTheme.typography.titleLarge.fontSize),
                 color = courseTextColor,
                 maxLines = 1,
                 style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.padding(horizontal = 8.dp),
+                modifier = Modifier.padding(horizontal = 8.dp).padding(bottom = 4.dp),
             )
-            Box(modifier = Modifier.fillMaxWidth().height(1.dp).background(courseTextColor).padding(horizontal = 8.dp))
+            Box(modifier = Modifier.fillMaxWidth().height(1.dp).background(courseTextColor).padding(horizontal = 8.dp, vertical = 4.dp))
             Text(
                 text = bookmark.info.preview,
                 color = courseTextColor.copy(alpha = 0.35f),
                 maxLines = 3,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp),
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+                    .weight(1f)
+                    .wrapContentHeight(align = Alignment.CenterVertically)
+                    .padding(horizontal = 4.dp),
                 style = MaterialTheme.typography.bodyMedium
             )
             Text(
