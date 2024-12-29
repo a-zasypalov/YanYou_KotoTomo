@@ -21,7 +21,10 @@ class AppNavigator() : KoinComponent {
         is ToStatisticsFullList -> NavigatorAction.NavigateTo(AppRoutes.STATISTICS_FULL_ROUTE(mode = call.mode))
         is ToQuizSessionSummary -> NavigatorAction.NavigateToWithBackHandler(
             path = AppRoutes.QUIZ_SESSION_SUMMARY_ROUTE(args = call.args),
-            popupTo = AppRoutes.DECK_OVERVIEW_ROUTE
+            popupTo = when (call.popupTo) {
+                PlayerBackRoute.Deck -> AppRoutes.DECK_OVERVIEW_ROUTE
+                PlayerBackRoute.Home -> AppRoutes.HOME_HOST_ROUTE
+            }
         )
 
         else -> null
@@ -31,5 +34,5 @@ class AppNavigator() : KoinComponent {
 class ToCourse(val args: CourseScreenArgs) : NavigationSideEffect
 class ToDeck(val args: DeckScreenArgs) : NavigationSideEffect
 class ToDeckPlayer(val args: PlayerScreenArgs) : NavigationSideEffect
-class ToQuizSessionSummary(val args: QuizSessionSummaryArgs) : NavigationSideEffect
+class ToQuizSessionSummary(val args: QuizSessionSummaryArgs, val popupTo: PlayerBackRoute) : NavigationSideEffect
 class ToStatisticsFullList(val mode: StatisticsListMode) : NavigationSideEffect
