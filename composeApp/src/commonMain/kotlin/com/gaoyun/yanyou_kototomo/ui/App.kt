@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.COURSE_DECKS_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.DECK_OVERVIEW_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.DECK_PLAYER_ROUTE
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.HOME_ROUTE
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.HOME_HOST_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.QUIZ_SESSION_SUMMARY_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.STATISTICS_FULL_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigatorAction
@@ -77,7 +77,7 @@ fun App() {
 
                     NavHost(
                         navigator = navigator,
-                        initialRoute = HOME_ROUTE,
+                        initialRoute = HOME_HOST_ROUTE,
                         swipeProperties = if (Platform.name == PlatformNames.IOS) remember {
                             SwipeProperties(
                                 positionalThreshold = { distance: Float -> distance * 0.9f },
@@ -119,7 +119,7 @@ fun App() {
                             )
                         }
                     ) {
-                        scene(HOME_ROUTE) {
+                        scene(HOME_HOST_ROUTE) {
                             HomeScreenHost(viewModel::navigate)
                         }
                         scene(COURSE_DECKS_ROUTE) {

@@ -14,6 +14,7 @@ object AppRoutes {
         const val STATISTICS_MODE = "STATISTICS_MODE"
     }
 
+    const val HOME_HOST_ROUTE = "/HOME_HOST_ROUTE"
     const val HOME_ROUTE = "/HOME_ROUTE"
     const val COURSES_ROUTE = "/COURSES_ROUTE"
     const val STATISTICS_ROUTE = "/STATISTICS_ROUTE"
