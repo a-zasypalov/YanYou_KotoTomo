@@ -25,7 +25,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColors
 import com.gaoyun.yanyou_kototomo.util.formatDateTimeStatistics
 
 @Composable
-fun QuizSessionStatisticsItem(session: QuizSessionForStatistic, addDivider: Boolean) {
+fun QuizSessionStatisticsItem(session: QuizSessionForStatistic, addDivider: Boolean, modifier: Modifier = Modifier) {
     val correctAnswers = session.results.count { it.isCorrect }
     val wrongAnswers = session.results.size - correctAnswers
     val correctAnswersPercentage = (correctAnswers.toDouble() / session.results.size.toDouble() * 100).toInt()
@@ -50,7 +50,7 @@ fun QuizSessionStatisticsItem(session: QuizSessionForStatistic, addDivider: Bool
 
 
     Column(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Row(

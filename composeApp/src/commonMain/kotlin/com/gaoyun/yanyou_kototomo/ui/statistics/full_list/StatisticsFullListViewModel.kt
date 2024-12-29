@@ -1,5 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.statistics.full_list
 
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
 import com.gaoyun.yanyou_kototomo.domain.GetCardProgress
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.repository.CardsAndProgressRepository
@@ -38,5 +39,12 @@ class StatisticsFullListViewModel(
             }
         }
         page++
+    }
+
+    fun onSessionDelete(id: QuizSessionId) = viewModelScope.launch {
+        quizInteractor.deleteSession(id)
+        viewState.value = viewState.value.copy(
+            sessions = viewState.value.sessions.filterNot { it.sessionId == id }.toSet()
+        )
     }
 }

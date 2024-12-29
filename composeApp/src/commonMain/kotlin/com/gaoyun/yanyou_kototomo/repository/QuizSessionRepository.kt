@@ -36,4 +36,8 @@ class QuizSessionRepository(private val db: YanYouKotoTomoDatabase) {
             cardResults = Json.encodeToString(ListSerializer(QuizCardResultPersisted.serializer()), session.results)
         )
     }
+
+    fun deleteQuizSession(id: QuizSessionId) {
+        db.quiz_sessionQueries.deleteSession(id.identifier)
+    }
 }

@@ -33,3 +33,7 @@ insertQuizSession:
 INSERT OR REPLACE INTO QuizSessionsPersisted (session_id, start_time, end_time, card_ids, card_results)
 VALUES (:sessionId, :startTime, :endTime, :cardIds, :cardResults);
 
+deleteSession:
+DELETE FROM QuizSessionsPersisted
+WHERE session_id = ?;
+
