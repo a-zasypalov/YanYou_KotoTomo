@@ -30,7 +30,7 @@ import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewViewModel
 import com.gaoyun.yanyou_kototomo.ui.home.HomeViewModel
 import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerViewModel
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryViewModel
-import com.gaoyun.yanyou_kototomo.ui.settings.SettingsViewModel
+import com.gaoyun.yanyou_kototomo.ui.settings.sections.SettingsViewModel
 import com.gaoyun.yanyou_kototomo.ui.statistics.StatisticsViewModel
 import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsFullListViewModel
 import com.gaoyun.yanyoukototomo.data.persistence.CardsPersisted

@@ -13,6 +13,7 @@ object AppRoutes {
         const val PLAYER_MODE = "PLAYER_MODE"
         const val QUIZ_SESSION_ID = "QUIZ_SESSION_ID"
         const val STATISTICS_MODE = "STATISTICS_MODE"
+        const val SETTINGS_SECTION = "SETTINGS_SECTION"
     }
 
     const val HOME_HOST_ROUTE = "/HOME_HOST_ROUTE"
@@ -41,5 +42,8 @@ object AppRoutes {
 
     const val STATISTICS_FULL_ROUTE = "$STATISTICS_ROUTE/{${Arg.STATISTICS_MODE}}"
     fun STATISTICS_FULL_ROUTE(mode: StatisticsListMode) = "$STATISTICS_ROUTE/$mode"
+
+    const val SETTINGS_SECTION_ROUTE = "$SETTINGS_ROUTE/{${Arg.SETTINGS_SECTION}}"
+    fun SETTINGS_SECTION_ROUTE(section: SettingsSections) = "$SETTINGS_ROUTE/${section.name}"
 
 }

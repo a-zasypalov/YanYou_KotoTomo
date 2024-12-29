@@ -18,12 +18,14 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.DECK_OVERVIEW_ROU
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.DECK_PLAYER_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.HOME_HOST_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.QUIZ_SESSION_SUMMARY_ROUTE
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.SETTINGS_SECTION_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.STATISTICS_FULL_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigatorAction
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.courseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.deckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.playerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.quizSessionSummaryArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.settingsSectionArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.statisticsFullListArgs
 import com.gaoyun.yanyou_kototomo.ui.base.theme.AppTheme
 import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColorsProvider
@@ -32,6 +34,7 @@ import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewScreen
 import com.gaoyun.yanyou_kototomo.ui.home.HomeScreenHost
 import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerScreen
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryScreen
+import com.gaoyun.yanyou_kototomo.ui.settings.sections.SectionSettingsScreen
 import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsFullListScreen
 import com.gaoyun.yanyou_kototomo.util.Platform
 import com.gaoyun.yanyou_kototomo.util.PlatformNames
@@ -145,6 +148,11 @@ fun App() {
                         scene(STATISTICS_FULL_ROUTE) {
                             it.statisticsFullListArgs()?.let { mode ->
                                 StatisticsFullListScreen(mode = mode, navigate = viewModel::navigate)
+                            }
+                        }
+                        scene(SETTINGS_SECTION_ROUTE) {
+                            it.settingsSectionArgs()?.let { section ->
+                                SectionSettingsScreen(section = section, navigate = viewModel::navigate)
                             }
                         }
                     }

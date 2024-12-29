@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui.settings
+package com.gaoyun.yanyou_kototomo.ui.settings.sections
 
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

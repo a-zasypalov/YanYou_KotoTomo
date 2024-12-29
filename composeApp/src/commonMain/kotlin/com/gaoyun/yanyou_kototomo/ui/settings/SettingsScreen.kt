@@ -14,40 +14,31 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
-import moe.tlaster.precompose.koin.koinViewModel
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSections
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToSettingsSection
 
 @Composable
 fun SettingsScreen(
     navigate: (NavigationSideEffect) -> Unit,
     modifier: Modifier,
 ) {
-    val viewModel = koinViewModel(vmClass = SettingsViewModel::class)
-
-    LaunchedEffect(Unit) {
-        viewModel.getSettings()
-    }
-
     SettingsScreenContent(
-        content = viewModel.viewState.collectAsState().value,
         modifier = modifier,
-        onAppIconClick = {},
-        onColorThemeClick = {},
-        onAboutAppClick = {},
+        onAppIconClick = { navigate(ToSettingsSection(SettingsSections.AppIcon)) },
+        onColorThemeClick = { navigate(ToSettingsSection(SettingsSections.ColorTheme)) },
+        onAboutAppClick = { navigate(ToSettingsSection(SettingsSections.AboutApp)) },
         onResetClick = {}
     )
 }
 
 @Composable
 private fun SettingsScreenContent(
-    content: SettingsViewState?,
     modifier: Modifier,
     onAppIconClick: () -> Unit,
     onColorThemeClick: () -> Unit,
