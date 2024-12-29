@@ -61,6 +61,9 @@ enum class PlayerBackRoute {
     Home, Deck
 }
 
+enum class SettingsSections {
+    AppIcon, ColorTheme, AboutApp
+}
 
 data class QuizSessionSummaryArgs(
     val learningLanguageId: LanguageId,
@@ -136,4 +139,9 @@ internal fun BackStackEntry.quizSessionSummaryArgs(): QuizSessionSummaryArgs? {
 internal fun BackStackEntry.statisticsFullListArgs(): StatisticsListMode? {
     val modeString = path<String>(AppRoutes.Arg.STATISTICS_MODE) ?: return null
     return StatisticsListMode.valueOf(modeString)
+}
+
+internal fun BackStackEntry.settingsSectionArgs(): SettingsSections? {
+    val sectionString = path<String>(AppRoutes.Arg.SETTINGS_SECTION) ?: return null
+    return SettingsSections.valueOf(sectionString)
 }
