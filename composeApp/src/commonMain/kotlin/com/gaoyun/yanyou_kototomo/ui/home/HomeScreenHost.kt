@@ -28,6 +28,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.SETTINGS_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.STATISTICS_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.courses.CoursesScreen
+import com.gaoyun.yanyou_kototomo.ui.settings.SettingsScreen
 import com.gaoyun.yanyou_kototomo.ui.statistics.StatisticsScreen
 import moe.tlaster.precompose.navigation.NavHost
 import moe.tlaster.precompose.navigation.NavOptions
@@ -59,7 +60,7 @@ fun HomeScreenHost(navigate: (NavigationSideEffect) -> Unit) {
             scene(HOME_ROUTE) { HomeScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
             scene(COURSES_ROUTE) { CoursesScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
             scene(STATISTICS_ROUTE) { StatisticsScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
-            scene(SETTINGS_ROUTE) {}
+            scene(SETTINGS_ROUTE) { SettingsScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
         }
     }
 }
