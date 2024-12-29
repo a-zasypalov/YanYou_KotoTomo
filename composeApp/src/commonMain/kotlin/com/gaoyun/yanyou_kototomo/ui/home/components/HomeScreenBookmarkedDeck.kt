@@ -28,7 +28,6 @@ import com.gaoyun.yanyou_kototomo.ui.base.courseCardColor
 fun HomeScreenBookmarkedDeck(bookmark: DeckWithCourseInfo, onCourseClick: (DeckWithCourseInfo) -> Unit) {
     val courseCardColor = bookmark.info.courseId.courseCardColor()
     val courseTextColor = Color(0xFFEDE1D4)
-    val preview = bookmark.deck.cards.joinToString(" ") { it.card.front }
 
     ElevatedCard(
         modifier = Modifier.platformStyleClickable { onCourseClick(bookmark) }.height(150.dp).widthIn(max = 150.dp),
@@ -37,7 +36,7 @@ fun HomeScreenBookmarkedDeck(bookmark: DeckWithCourseInfo, onCourseClick: (DeckW
     ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(4.dp),
-            modifier = Modifier.fillMaxSize().background(Color(0x33000000)).padding(8.dp)
+            modifier = Modifier.fillMaxSize().background(Color(0x33000000)).padding(vertical = 8.dp)
         ) {
             AutoResizeText(
                 text = bookmark.deck.name,
@@ -45,14 +44,22 @@ fun HomeScreenBookmarkedDeck(bookmark: DeckWithCourseInfo, onCourseClick: (DeckW
                 color = courseTextColor,
                 maxLines = 1,
                 style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.padding(horizontal = 8.dp),
             )
-            Box(modifier = Modifier.fillMaxWidth().height(1.dp).background(courseTextColor))
+            Box(modifier = Modifier.fillMaxWidth().height(1.dp).background(courseTextColor).padding(horizontal = 8.dp))
             Text(
-                text = preview,
-                color = courseTextColor.copy(alpha = 0.8f),
-                maxLines = 1,
-                modifier = Modifier.fillMaxWidth(),
+                text = bookmark.info.preview,
+                color = courseTextColor.copy(alpha = 0.35f),
+                maxLines = 3,
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 4.dp),
                 style = MaterialTheme.typography.bodyMedium
+            )
+            Text(
+                text = "Cards: ${bookmark.deck.cards.size}",
+                color = courseTextColor,
+                maxLines = 1,
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
+                style = MaterialTheme.typography.bodyLarge
             )
         }
     }
