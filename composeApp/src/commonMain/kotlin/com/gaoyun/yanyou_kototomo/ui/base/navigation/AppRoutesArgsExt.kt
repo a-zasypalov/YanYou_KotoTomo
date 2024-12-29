@@ -20,13 +20,14 @@ data class DeckScreenArgs(
     val courseId: CourseId,
     val deckId: DeckId,
 ) {
-    fun toPlayerArgs(mode: PlayerMode): PlayerScreenArgs {
+    fun toPlayerArgs(mode: PlayerMode, backToRoute: PlayerBackRoute): PlayerScreenArgs {
         return PlayerScreenArgs(
             learningLanguageId = learningLanguageId,
             sourceLanguageId = sourceLanguageId,
             courseId = courseId,
             deckId = deckId,
-            playerMode = mode
+            playerMode = mode,
+            backToRoute = backToRoute
         )
     }
 }
@@ -36,6 +37,7 @@ data class PlayerScreenArgs(
     val sourceLanguageId: LanguageId,
     val courseId: CourseId,
     val deckId: DeckId,
+    val backToRoute: PlayerBackRoute,
     val playerMode: PlayerMode,
 ) {
     fun toQuizSummaryArgs(sessionId: QuizSessionId): QuizSessionSummaryArgs {
@@ -45,6 +47,7 @@ data class PlayerScreenArgs(
             courseId = courseId,
             deckId = deckId,
             playerMode = playerMode,
+            backToRoute = backToRoute,
             sessionId = sessionId
         )
     }
@@ -54,11 +57,17 @@ enum class PlayerMode {
     SpacialRepetition, Quiz
 }
 
+enum class PlayerBackRoute {
+    Home, Deck
+}
+
+
 data class QuizSessionSummaryArgs(
     val learningLanguageId: LanguageId,
     val sourceLanguageId: LanguageId,
     val courseId: CourseId,
     val deckId: DeckId,
+    val backToRoute: PlayerBackRoute,
     val playerMode: PlayerMode,
     val sessionId: QuizSessionId,
 )
@@ -92,13 +101,15 @@ internal fun BackStackEntry.playerScreenArgs(): PlayerScreenArgs? {
     val sourceLanguageId = path<String>(AppRoutes.Arg.SOURCE_LANGUAGE_ID) ?: return null
     val courseId = path<String>(AppRoutes.Arg.COURSE_ID) ?: return null
     val deckId = path<String>(AppRoutes.Arg.DECK_ID) ?: return null
+    val backToRoute = path<String>(AppRoutes.Arg.BACK_TO_ROUTE) ?: return null
     (path<String>(AppRoutes.Arg.PLAYER_MODE))?.let { playerMode ->
         return PlayerScreenArgs(
             learningLanguageId = LanguageId(learningLanguageId),
             sourceLanguageId = LanguageId(sourceLanguageId),
             courseId = CourseId(courseId),
             deckId = DeckId(deckId),
-            playerMode = PlayerMode.valueOf(playerMode)
+            playerMode = PlayerMode.valueOf(playerMode),
+            backToRoute = PlayerBackRoute.valueOf(backToRoute)
         )
     } ?: return null
 }
@@ -110,12 +121,14 @@ internal fun BackStackEntry.quizSessionSummaryArgs(): QuizSessionSummaryArgs? {
     val deckId = path<String>(AppRoutes.Arg.DECK_ID) ?: return null
     val playerMode = path<String>(AppRoutes.Arg.PLAYER_MODE) ?: return null
     val quizSessionId = path<String>(AppRoutes.Arg.QUIZ_SESSION_ID) ?: return null
+    val backToRoute = path<String>(AppRoutes.Arg.BACK_TO_ROUTE) ?: return null
     return QuizSessionSummaryArgs(
         learningLanguageId = LanguageId(learningLanguageId),
         sourceLanguageId = LanguageId(sourceLanguageId),
         courseId = CourseId(courseId),
         deckId = DeckId(deckId),
         playerMode = PlayerMode.valueOf(playerMode),
+        backToRoute = PlayerBackRoute.valueOf(backToRoute),
         sessionId = QuizSessionId(quizSessionId)
     )
 }

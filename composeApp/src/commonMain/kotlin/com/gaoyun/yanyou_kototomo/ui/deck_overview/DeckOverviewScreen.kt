@@ -26,6 +26,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
 import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
@@ -57,7 +58,7 @@ fun DeckOverviewScreen(
         DeckOverviewContent(
             viewState = viewModel.viewState.collectAsState().value,
             onCardClick = { cardToShow -> cardDetailState.value = cardToShow },
-            onPlayDeckClick = { mode -> navigate(ToDeckPlayer(args.toPlayerArgs(mode))) },
+            onPlayDeckClick = { mode -> navigate(ToDeckPlayer(args.toPlayerArgs(mode, PlayerBackRoute.Deck))) },
             updateTranslationSettings = viewModel::updateTranslationSettings,
             updateTranscriptionSettings = viewModel::updateTranscriptionSettings,
             updateReadingSettings = viewModel::updateReadingSettings,

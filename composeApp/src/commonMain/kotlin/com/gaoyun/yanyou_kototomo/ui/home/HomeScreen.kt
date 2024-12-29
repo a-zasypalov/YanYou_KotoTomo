@@ -26,7 +26,11 @@ import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckWithCourseInfo
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
 import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenBookmarkedDeck
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenCharacterCard
@@ -65,7 +69,35 @@ fun HomeScreen(
                         learningLanguageId = deckWithInfo.info.learningLanguageId,
                         sourceLanguageId = deckWithInfo.info.sourceLanguageId,
                         courseId = deckWithInfo.info.courseId,
-                        deckWithInfo.deck.id
+                        deckId = deckWithInfo.deck.id
+                    )
+                )
+            )
+        },
+        onReviewClick = { deckWithInfo ->
+            navigate(
+                ToDeckPlayer(
+                    PlayerScreenArgs(
+                        learningLanguageId = deckWithInfo.info.learningLanguageId,
+                        sourceLanguageId = deckWithInfo.info.sourceLanguageId,
+                        courseId = deckWithInfo.info.courseId,
+                        deckId = deckWithInfo.deck.id,
+                        playerMode = PlayerMode.SpacialRepetition,
+                        backToRoute = PlayerBackRoute.Home
+                    )
+                )
+            )
+        },
+        onQuizClick = { deckWithInfo ->
+            navigate(
+                ToDeckPlayer(
+                    PlayerScreenArgs(
+                        learningLanguageId = deckWithInfo.info.learningLanguageId,
+                        sourceLanguageId = deckWithInfo.info.sourceLanguageId,
+                        courseId = deckWithInfo.info.courseId,
+                        deckId = deckWithInfo.deck.id,
+                        playerMode = PlayerMode.Quiz,
+                        backToRoute = PlayerBackRoute.Home
                     )
                 )
             )
@@ -80,6 +112,8 @@ private fun HomeScreenContent(
     modifier: Modifier,
     onCardDetailsClick: (CardWithProgress<*>, LanguageId) -> Unit,
     onCourseClick: (DeckWithCourseInfo) -> Unit,
+    onReviewClick: (DeckWithCourseInfo) -> Unit,
+    onQuizClick: (DeckWithCourseInfo) -> Unit,
 ) {
     LazyColumn(
         verticalArrangement = Arrangement.spacedBy(16.dp),
@@ -88,20 +122,14 @@ private fun HomeScreenContent(
         item { HomeScreenTitle() }
 
         content?.currentlyLearn?.let { deckWithInfo ->
-            item { HomeScreenCurrentlyLearningDeck(deckWithInfo, onCourseClick) }
-
             item {
-                LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    item { Spacer(Modifier.size(8.dp)) }
-                    items(deckWithInfo.deck.cards) { card ->
-                        HomeScreenCharacterCard(
-                            card = card,
-                            languageId = deckWithInfo.info.learningLanguageId,
-                            onClick = onCardDetailsClick
-                        )
-                    }
-                    item { Spacer(Modifier.size(8.dp)) }
-                }
+                HomeScreenCurrentlyLearningDeck(
+                    deckWithInfo = deckWithInfo,
+                    onCourseClick = onCourseClick,
+                    onCardDetailsClick = onCardDetailsClick,
+                    onReviewClick = onReviewClick,
+                    onQuizClick = onQuizClick
+                )
             }
         }
 

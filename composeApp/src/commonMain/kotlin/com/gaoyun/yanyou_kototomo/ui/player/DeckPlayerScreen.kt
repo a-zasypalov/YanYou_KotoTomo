@@ -55,7 +55,7 @@ fun DeckPlayerScreen(
                 playerMode = args.playerMode,
                 deckId = deckId,
                 finishCallback = { sessionId ->
-                    sessionId?.let { navigate(ToQuizSessionSummary(args.toQuizSummaryArgs(sessionId))) }
+                    sessionId?.let { navigate(ToQuizSessionSummary(args.toQuizSummaryArgs(sessionId), backToRoute)) }
                         ?: navigate(BackNavigationEffect)
                 }
             )
