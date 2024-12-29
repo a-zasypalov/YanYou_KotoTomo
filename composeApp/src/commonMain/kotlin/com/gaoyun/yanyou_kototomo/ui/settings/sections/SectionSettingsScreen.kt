@@ -50,7 +50,7 @@ fun SectionSettingsScreen(
 
             when (section) {
                 SettingsSections.AppIcon -> AppIconSettingScreenContent()
-                SettingsSections.ColorTheme -> {}
+                SettingsSections.ColorTheme -> ColorThemeSettingScreenContent()
                 SettingsSections.AboutApp -> {}
             }
         }
