@@ -1,9 +1,9 @@
 package com.gaoyun.yanyou_kototomo.domain
 
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSession
+import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionForStatistic
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionWithCards
-import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionForStatistic
 import com.gaoyun.yanyou_kototomo.data.persistence.QuizCardResultPersisted
 import com.gaoyun.yanyou_kototomo.repository.CardsAndProgressRepository
 import com.gaoyun.yanyou_kototomo.repository.QuizSessionRepository
@@ -25,6 +25,10 @@ class QuizInteractor(
         val sessionsCardsIds = sessions.flatMap { it.results.map { it.cardId } }
         val cardsAndDeckNames = cardsRepository.getCards(sessionsCardsIds)
         return sessions.map { it.withDataCards(cardsAndDeckNames) }
+    }
+
+    fun deleteSession(id: QuizSessionId) {
+        repository.deleteQuizSession(id)
     }
 
     suspend fun getQuizSession(
