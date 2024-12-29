@@ -39,7 +39,8 @@ class GetHomeState(
                 courseDeck.id to DeckCourseInfo(
                     learningLanguageId = learningLangId,
                     sourceLanguageId = sourceLangId,
-                    courseId = course.id
+                    courseId = course.id,
+                    preview = course.preview
                 )
             }
         }.toMap()

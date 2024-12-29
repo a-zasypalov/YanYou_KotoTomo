@@ -27,4 +27,5 @@ data class DeckCourseInfo(
     val learningLanguageId: LanguageId,
     val sourceLanguageId: LanguageId,
     val courseId: CourseId,
+    val preview: String,
 )
