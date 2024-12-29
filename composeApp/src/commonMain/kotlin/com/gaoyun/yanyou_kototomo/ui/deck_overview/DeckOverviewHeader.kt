@@ -1,11 +1,15 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BookmarkBorder
 import androidx.compose.material.icons.filled.Star
@@ -49,34 +53,12 @@ fun DeckOverviewHeader(
             style = MaterialTheme.typography.displayLarge,
         )
         Row(
-            horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.Start),
+            horizontalArrangement = Arrangement.spacedBy(0.dp, Alignment.Start),
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            if (deck.isKanaDeck() == false) {
-                OutlinedIconToggleButton(
-                    checked = viewState.settings.showTranslation,
-                    onCheckedChange = updateTranslationSettings,
-                ) {
-                    Icon(Icons.Default.Translate, null)
-                }
-            }
-            OutlinedIconToggleButton(
-                checked = viewState.settings.showTranscription,
-                onCheckedChange = updateTranscriptionSettings,
-            ) {
-                Icon(Icons.Default.Subtitles, null)
-            }
-            if (deck.isJlptDeck() == true) {
-                OutlinedIconToggleButton(
-                    checked = viewState.settings.showReading,
-                    onCheckedChange = updateReadingSettings,
-                ) {
-                    Icon(Icons.Default.ViewColumn, null)
-                }
-            }
 
-            Spacer(modifier = Modifier.weight(1f))
+            LearnButton(isLearned = viewState.isCurrentlyLearned, onClick = { updateLearnedState(!viewState.isCurrentlyLearned) })
 
             OutlinedIconToggleButton(
                 checked = viewState.isBookmarked,
@@ -85,7 +67,36 @@ fun DeckOverviewHeader(
                 Icon(Icons.Default.BookmarkBorder, null)
             }
 
-            LearnButton(isLearned = viewState.isCurrentlyLearned, onClick = { updateLearnedState(!viewState.isCurrentlyLearned) })
+
+            Spacer(modifier = Modifier.weight(1f))
+            Box(modifier = Modifier.height(32.dp).width(1.dp).background(MaterialTheme.colorScheme.onSurface))
+            Spacer(modifier = Modifier.weight(1f))
+
+            if (deck.isKanaDeck() == false) {
+
+                OutlinedIconToggleButton(
+                    checked = viewState.settings.showTranslation,
+                    onCheckedChange = updateTranslationSettings,
+                ) {
+                    Icon(Icons.Default.Translate, null)
+                }
+            }
+
+            OutlinedIconToggleButton(
+                checked = viewState.settings.showTranscription,
+                onCheckedChange = updateTranscriptionSettings,
+            ) {
+                Icon(Icons.Default.Subtitles, null)
+            }
+            if (deck.isJlptDeck() == true) {
+
+                OutlinedIconToggleButton(
+                    checked = viewState.settings.showReading,
+                    onCheckedChange = updateReadingSettings,
+                ) {
+                    Icon(Icons.Default.ViewColumn, null)
+                }
+            }
         }
     }
 }
@@ -93,7 +104,7 @@ fun DeckOverviewHeader(
 @Composable
 fun LearnButton(
     isLearned: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Button(
         onClick = onClick,
