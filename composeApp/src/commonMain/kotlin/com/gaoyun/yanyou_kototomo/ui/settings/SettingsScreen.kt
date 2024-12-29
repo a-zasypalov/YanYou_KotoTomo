@@ -98,7 +98,6 @@ private fun SettingsSectionItem(section: SettingsSection) {
                 }
             }
         }
-//        Divider(height = 1.dp, modifier = Modifier.padding(horizontal = 16.dp))
     }
 }
 
@@ -107,5 +106,5 @@ data class SettingsSection(
     val subtitle: String,
     val icon: ImageVector,
     val onClick: () -> Unit,
-    val isDestructive: Boolean = false, // For special styles like "Reset"
+    val isDestructive: Boolean = false,
 )

@@ -1,9 +1,10 @@
 package com.gaoyun.yanyou_kototomo.ui.settings.sections
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -35,19 +36,20 @@ fun SectionSettingsScreen(
         backHandler = { navigate(BackNavigationEffect) },
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            modifier = Modifier.fillMaxWidth(),
         ) {
             AutoResizeText(
                 text = section.title(),
                 fontSizeRange = FontSizeRange(min = 16.sp, max = MaterialTheme.typography.displayLarge.fontSize),
                 style = MaterialTheme.typography.displayLarge,
                 maxLines = 1,
-                modifier = Modifier.fillMaxWidth().wrapContentHeight(align = Alignment.CenterVertically)
+                modifier = Modifier.fillMaxWidth().wrapContentHeight(align = Alignment.CenterVertically).padding(horizontal = 16.dp)
             )
 
+            Spacer(modifier = Modifier.size(16.dp))
+
             when (section) {
-                SettingsSections.AppIcon -> {}
+                SettingsSections.AppIcon -> AppIconSettingScreenContent()
                 SettingsSections.ColorTheme -> {}
                 SettingsSections.AboutApp -> {}
             }
