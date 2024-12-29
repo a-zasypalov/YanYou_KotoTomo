@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui.deck_overview.details
+package com.gaoyun.yanyou_kototomo.ui.card_details
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement

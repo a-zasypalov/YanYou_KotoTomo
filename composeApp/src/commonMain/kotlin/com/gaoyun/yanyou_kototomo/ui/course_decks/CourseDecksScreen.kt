@@ -29,7 +29,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
-import com.gaoyun.yanyou_kototomo.ui.deck_overview.details.getCourseMascot
+import com.gaoyun.yanyou_kototomo.ui.card_details.getCourseMascot
 import moe.tlaster.precompose.koin.koinViewModel
 import org.jetbrains.compose.resources.painterResource
 
