@@ -50,7 +50,7 @@ private fun SettingsScreenContent(
             Text(
                 text = "Settings",
                 style = MaterialTheme.typography.displayLarge,
-                modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 24.dp, bottom = 24.dp)
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 24.dp)
             )
         }
 
