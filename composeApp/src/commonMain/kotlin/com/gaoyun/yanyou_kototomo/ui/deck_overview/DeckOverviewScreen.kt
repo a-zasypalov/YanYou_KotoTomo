@@ -28,7 +28,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
-import com.gaoyun.yanyou_kototomo.ui.deck_overview.details.CardDetailsView
+import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
 import moe.tlaster.precompose.koin.koinViewModel
 
 

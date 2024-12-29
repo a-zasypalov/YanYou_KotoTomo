@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.course.Course
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.ui.base.courseCardColor
-import com.gaoyun.yanyou_kototomo.ui.deck_overview.details.getCourseMascot
+import com.gaoyun.yanyou_kototomo.ui.card_details.getCourseMascot
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
