@@ -57,9 +57,21 @@ fun HomeScreenHost(navigate: (NavigationSideEffect) -> Unit) {
                 resumeTransition = fadeIn(),
             )
         ) {
-            scene(HOME_ROUTE) { HomeScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
+            scene(HOME_ROUTE) {
+                HomeScreen(
+                    navigate = navigate,
+                    modifier = Modifier.padding(bottom = tabBarPadding),
+                    onCoursesClick = { navigator.navigate(COURSES_ROUTE) }
+                )
+            }
+            scene(STATISTICS_ROUTE) {
+                StatisticsScreen(
+                    navigate = navigate,
+                    modifier = Modifier.padding(bottom = tabBarPadding),
+                    onCoursesClick = { navigator.navigate(COURSES_ROUTE) }
+                )
+            }
             scene(COURSES_ROUTE) { CoursesScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
-            scene(STATISTICS_ROUTE) { StatisticsScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
             scene(SETTINGS_ROUTE) { SettingsScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
         }
     }
