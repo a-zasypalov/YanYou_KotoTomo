@@ -41,6 +41,24 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
+/**
+ * iOS Koin initialisation entry point
+ */
+fun initKoin(appDeclaration: IOSAppDeclaration) = startKoin {
+    val iosDependenciesModule = module {
+        single { appDeclaration.themeChanger }
+    }
+    modules(
+        platformModule(),
+        iosDependenciesModule,
+        networkModule,
+        repositoryModule,
+        useCaseModule,
+        viewModelModule,
+        dbModule
+    )
+}
+
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
     appDeclaration()
     modules(

@@ -3,9 +3,15 @@ import YanYouKotoTomoComposeApp
 
 @main
 struct iOSApp: App {
+    @ObservedObject var themeChanger = ThemeChangerIOS()
+
     init()
     {
-        KoinKt.doInitKoin(appDeclaration: {_ in })
+        let appDeclaration = YanYouKotoTomoComposeApp.IOSAppDeclaration(
+            themeChanger: themeChanger
+        )
+
+        KoinKt.doInitKoin(appDeclaration: appDeclaration)
     }
     var body: some Scene {
         WindowGroup {
