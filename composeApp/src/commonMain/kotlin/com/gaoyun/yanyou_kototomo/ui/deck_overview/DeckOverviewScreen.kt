@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -22,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
+import com.gaoyun.yanyou_kototomo.ui.base.composables.FullScreenLoader
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
@@ -80,12 +80,12 @@ private fun DeckOverviewContent(
     updateBookmarkedState: (Boolean) -> Unit,
     updateLearnedState: (Boolean) -> Unit,
 ) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        viewState?.let {
-            val deck = viewState.deck
-            val cellsNumber = if (deck.isKanaDeck() == true) 5 else 2
-            val cellsSpacer = if (deck.isKanaDeck() == true) 8.dp else 16.dp
+    viewState?.let {
+        val deck = viewState.deck
+        val cellsNumber = if (deck.isKanaDeck() == true) 5 else 2
+        val cellsSpacer = if (deck.isKanaDeck() == true) 8.dp else 16.dp
 
+        Box(modifier = Modifier.fillMaxSize()) {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(cellsNumber),
                 contentPadding = PaddingValues(horizontal = 16.dp),
@@ -153,6 +153,6 @@ private fun DeckOverviewContent(
 
             }
             DeckOverviewActionButtons(viewState.cardsDueToReview, onPlayDeckClick)
-        } ?: CircularProgressIndicator()
-    }
+        }
+    } ?: FullScreenLoader()
 }
