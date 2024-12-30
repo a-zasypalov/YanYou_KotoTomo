@@ -23,6 +23,7 @@ import com.gaoyun.yanyou_kototomo.repository.DeckSettingsRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckUpdatesRepository
 import com.gaoyun.yanyou_kototomo.repository.QuizSessionRepository
 import com.gaoyun.yanyou_kototomo.ui.AppViewModel
+import com.gaoyun.yanyou_kototomo.ui.base.ColorsProvider
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppNavigator
 import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksViewModel
 import com.gaoyun.yanyou_kototomo.ui.courses.CoursesViewModel
@@ -96,11 +97,12 @@ val useCaseModule = module {
     single { GetCardProgress(get()) }
     single { GetHomeState(get(), get(), get(), get(), get()) }
     single { BookmarksInteractor(get(), get()) }
+    single { ColorsProvider(get()) }
 }
 
 val viewModelModule = module {
     single { AppNavigator() }
-    factory { AppViewModel(get()) }
+    factory { AppViewModel(get(), get()) }
     factory { HomeViewModel(get()) }
     factory { CoursesViewModel(get()) }
     factory { CourseDecksViewModel(get()) }
@@ -109,7 +111,7 @@ val viewModelModule = module {
     factory { QuizSessionSummaryViewModel(get()) }
     factory { StatisticsViewModel(get(), get()) }
     factory { StatisticsFullListViewModel(get(), get()) }
-    factory { SettingsViewModel(get()) }
+    factory { SettingsViewModel(get(), get()) }
 }
 
 val dbModule = module {
