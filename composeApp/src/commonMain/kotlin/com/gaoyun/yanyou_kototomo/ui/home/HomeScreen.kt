@@ -24,6 +24,7 @@ import com.gaoyun.yanyou_kototomo.data.local.HomeState
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckWithCourseInfo
+import com.gaoyun.yanyou_kototomo.ui.base.composables.FullScreenLoader
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
@@ -115,53 +116,52 @@ private fun HomeScreenContent(
     onReviewClick: (DeckWithCourseInfo) -> Unit,
     onQuizClick: (DeckWithCourseInfo) -> Unit,
 ) {
-    LazyColumn(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = modifier.fillMaxWidth(),
-    ) {
-        item { HomeScreenTitle() }
-
-        content?.currentlyLearn?.let { deckWithInfo ->
-            item {
-                HomeScreenCurrentlyLearningDeck(
-                    deckWithInfo = deckWithInfo,
-                    onCourseClick = onCourseClick,
-                    onCardDetailsClick = onCardDetailsClick,
-                    onReviewClick = onReviewClick,
-                    onQuizClick = onQuizClick
-                )
-            }
-        }
-
-        content?.bookmarks?.let { bookmarks ->
-            if (bookmarks.isNotEmpty()) item { HomeScreenSectionTitle("Bookmarks") }
-
-            item {
-                LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    item { Spacer(Modifier.size(8.dp)) }
-                    items(bookmarks) { bookmark -> HomeScreenBookmarkedDeck(bookmark, onCourseClick) }
-                    item { Spacer(Modifier.size(8.dp)) }
+    content?.let {
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = modifier.fillMaxWidth(),
+        ) {
+            item { HomeScreenTitle() }
+            it.currentlyLearn?.let { deckWithInfo ->
+                item {
+                    HomeScreenCurrentlyLearningDeck(
+                        deckWithInfo = deckWithInfo,
+                        onCourseClick = onCourseClick,
+                        onCardDetailsClick = onCardDetailsClick,
+                        onReviewClick = onReviewClick,
+                        onQuizClick = onQuizClick
+                    )
                 }
             }
-        }
 
-        content?.recentlyReviewed?.let {
-            if (it.isNotEmpty()) item { HomeScreenSectionTitle("Recently reviewed") }
+            it.bookmarks.let { bookmarks ->
+                if (bookmarks.isNotEmpty()) item { HomeScreenSectionTitle("Bookmarks") }
 
-            item {
-                LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    item { Spacer(Modifier.size(8.dp)) }
-                    items(it.sortedByDescending { pair -> pair.second.progress?.lastReviewed }) { pair ->
-                        HomeScreenCharacterCard(card = pair.second, languageId = pair.first, onClick = onCardDetailsClick)
+                item {
+                    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        item { Spacer(Modifier.size(8.dp)) }
+                        items(bookmarks) { bookmark -> HomeScreenBookmarkedDeck(bookmark, onCourseClick) }
+                        item { Spacer(Modifier.size(8.dp)) }
                     }
-                    item { Spacer(Modifier.size(8.dp)) }
                 }
             }
-        }
 
-        item { Spacer(Modifier.size(32.dp)) }
+            it.recentlyReviewed.let {
+                if (it.isNotEmpty()) item { HomeScreenSectionTitle("Recently reviewed") }
 
-        content?.let {
+                item {
+                    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        item { Spacer(Modifier.size(8.dp)) }
+                        items(it.sortedByDescending { pair -> pair.second.progress?.lastReviewed }) { pair ->
+                            HomeScreenCharacterCard(card = pair.second, languageId = pair.first, onClick = onCardDetailsClick)
+                        }
+                        item { Spacer(Modifier.size(8.dp)) }
+                    }
+                }
+            }
+
+            item { Spacer(Modifier.size(32.dp)) }
+
             item {
                 Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
                     Image(
@@ -172,9 +172,8 @@ private fun HomeScreenContent(
                     )
                 }
             }
+
+            item { Spacer(Modifier.size(32.dp)) }
         }
-
-
-        item { Spacer(Modifier.size(32.dp)) }
-    }
+    } ?: FullScreenLoader()
 }
