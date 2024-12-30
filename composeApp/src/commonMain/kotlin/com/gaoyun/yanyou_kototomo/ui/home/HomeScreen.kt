@@ -36,6 +36,7 @@ import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenBookmarkedDeck
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenCharacterCard
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenCurrentlyLearningDeck
+import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenEmptyState
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenSectionTitle
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenTitle
 import moe.tlaster.precompose.koin.koinViewModel
@@ -46,6 +47,7 @@ import yanyou_kototomo.composeapp.generated.resources.maneki_neko
 @Composable
 fun HomeScreen(
     navigate: (NavigationSideEffect) -> Unit,
+    onCoursesClick: () -> Unit,
     modifier: Modifier,
 ) {
     val viewModel = koinViewModel(vmClass = HomeViewModel::class)
@@ -102,7 +104,8 @@ fun HomeScreen(
                     )
                 )
             )
-        }
+        },
+        onCoursesClick = onCoursesClick
     )
     CardDetailsView(cardDetailState, cardDetailLanguageState.value) { cardDetailState.value = null }
 }
@@ -115,65 +118,71 @@ private fun HomeScreenContent(
     onCourseClick: (DeckWithCourseInfo) -> Unit,
     onReviewClick: (DeckWithCourseInfo) -> Unit,
     onQuizClick: (DeckWithCourseInfo) -> Unit,
+    onCoursesClick: () -> Unit,
 ) {
     content?.let {
-        LazyColumn(
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            modifier = modifier.fillMaxWidth(),
-        ) {
-            item { HomeScreenTitle() }
-            it.currentlyLearn?.let { deckWithInfo ->
-                item {
-                    HomeScreenCurrentlyLearningDeck(
-                        deckWithInfo = deckWithInfo,
-                        onCourseClick = onCourseClick,
-                        onCardDetailsClick = onCardDetailsClick,
-                        onReviewClick = onReviewClick,
-                        onQuizClick = onQuizClick
-                    )
-                }
-            }
+        if (it.currentlyLearn == null && it.bookmarks.isEmpty() && it.recentlyReviewed.isEmpty()) {
+            HomeScreenEmptyState(onCoursesClick)
+        } else {
+            LazyColumn(
+                verticalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = modifier.fillMaxWidth(),
+            ) {
+                item { HomeScreenTitle() }
 
-            it.bookmarks.let { bookmarks ->
-                if (bookmarks.isNotEmpty()) item { HomeScreenSectionTitle("Bookmarks") }
-
-                item {
-                    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        item { Spacer(Modifier.size(8.dp)) }
-                        items(bookmarks) { bookmark -> HomeScreenBookmarkedDeck(bookmark, onCourseClick) }
-                        item { Spacer(Modifier.size(8.dp)) }
+                it.currentlyLearn?.let { deckWithInfo ->
+                    item {
+                        HomeScreenCurrentlyLearningDeck(
+                            deckWithInfo = deckWithInfo,
+                            onCourseClick = onCourseClick,
+                            onCardDetailsClick = onCardDetailsClick,
+                            onReviewClick = onReviewClick,
+                            onQuizClick = onQuizClick
+                        )
                     }
                 }
-            }
 
-            it.recentlyReviewed.let {
-                if (it.isNotEmpty()) item { HomeScreenSectionTitle("Recently reviewed") }
+                it.bookmarks.let { bookmarks ->
+                    if (bookmarks.isNotEmpty()) item { HomeScreenSectionTitle("Bookmarks") }
 
-                item {
-                    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        item { Spacer(Modifier.size(8.dp)) }
-                        items(it.sortedByDescending { pair -> pair.second.progress?.lastReviewed }) { pair ->
-                            HomeScreenCharacterCard(card = pair.second, languageId = pair.first, onClick = onCardDetailsClick)
+                    item {
+                        LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            item { Spacer(Modifier.size(8.dp)) }
+                            items(bookmarks) { bookmark -> HomeScreenBookmarkedDeck(bookmark, onCourseClick) }
+                            item { Spacer(Modifier.size(8.dp)) }
                         }
-                        item { Spacer(Modifier.size(8.dp)) }
                     }
                 }
-            }
 
-            item { Spacer(Modifier.size(32.dp)) }
+                it.recentlyReviewed.let {
+                    if (it.isNotEmpty()) item { HomeScreenSectionTitle("Recently reviewed") }
 
-            item {
-                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                    Image(
-                        painter = painterResource(Res.drawable.maneki_neko),
-                        contentDescription = null,
-                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
-                        modifier = Modifier.size(48.dp).alpha(0.4f)
-                    )
+                    item {
+                        LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                            item { Spacer(Modifier.size(8.dp)) }
+                            items(it.sortedByDescending { pair -> pair.second.progress?.lastReviewed }) { pair ->
+                                HomeScreenCharacterCard(card = pair.second, languageId = pair.first, onClick = onCardDetailsClick)
+                            }
+                            item { Spacer(Modifier.size(8.dp)) }
+                        }
+                    }
                 }
-            }
 
-            item { Spacer(Modifier.size(32.dp)) }
+                item { Spacer(Modifier.size(32.dp)) }
+
+                item {
+                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                        Image(
+                            painter = painterResource(Res.drawable.maneki_neko),
+                            contentDescription = null,
+                            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
+                            modifier = Modifier.size(48.dp).alpha(0.4f)
+                        )
+                    }
+                }
+
+                item { Spacer(Modifier.size(32.dp)) }
+            }
         }
     } ?: FullScreenLoader()
 }
