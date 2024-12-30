@@ -31,7 +31,7 @@ fun ColumnScope.AppIconSettingScreenContent(onIconSetClick: (AppIcon) -> Unit) {
     val icons = listOf(
         AppIconVariants(AppIcon.Original, Res.drawable.app_icon_variant_1, "Main icon", "Original inspiration"),
         AppIconVariants(AppIcon.Clip, Res.drawable.app_icon_variant_2, "Notebook clip", "When stickers not needed"),
-        AppIconVariants(AppIcon.VerticalHalf, Res.drawable.app_icon_variant_3, "Borderline accent", "Never loose it again"),
+        AppIconVariants(AppIcon.VerticalHalf, Res.drawable.app_icon_variant_3, "Vertical", "If your day needs a turn"),
     )
 
     icons.forEach { item ->
