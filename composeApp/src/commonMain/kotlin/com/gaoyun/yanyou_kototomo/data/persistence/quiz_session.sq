@@ -37,3 +37,5 @@ deleteSession:
 DELETE FROM QuizSessionsPersisted
 WHERE session_id = ?;
 
+deleteAll:
+DELETE FROM QuizSessionsPersisted;

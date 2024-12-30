@@ -20,3 +20,6 @@ VALUES (?, ?, ?, ?, ?, ?);
 
 removeProgressForDeck:
 DELETE FROM CardProgress WHERE deck_id = ?;
+
+deleteAll:
+DELETE FROM CardProgress;

@@ -9,3 +9,6 @@ SELECT * FROM DeckUpdates WHERE deck_id = ?;
 updateDeck:
 INSERT OR REPLACE INTO DeckUpdates (deck_id, version)
 VALUES (?, ?);
+
+deleteAll:
+DELETE FROM DeckUpdates;

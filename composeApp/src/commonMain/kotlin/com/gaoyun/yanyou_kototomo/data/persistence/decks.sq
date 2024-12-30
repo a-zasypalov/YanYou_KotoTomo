@@ -44,3 +44,6 @@ WHERE id IN ?;
 clearDeckCache:
 DELETE FROM DecksPersisted
 WHERE id = :deck_id;
+
+deleteAll:
+DELETE FROM DecksPersisted;

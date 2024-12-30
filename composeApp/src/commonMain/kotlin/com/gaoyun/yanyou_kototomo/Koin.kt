@@ -4,6 +4,7 @@ import com.gaoyun.yanyou_kototomo.data.persistence.DriverFactory
 import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 import com.gaoyun.yanyou_kototomo.data.persistence.platformModule
+import com.gaoyun.yanyou_kototomo.domain.AllDataReset
 import com.gaoyun.yanyou_kototomo.domain.BookmarksInteractor
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
@@ -98,6 +99,7 @@ val useCaseModule = module {
     single { GetHomeState(get(), get(), get(), get(), get()) }
     single { BookmarksInteractor(get(), get()) }
     single { ColorsProvider(get()) }
+    single { AllDataReset(get(), get()) }
 }
 
 val viewModelModule = module {
@@ -111,7 +113,7 @@ val viewModelModule = module {
     factory { QuizSessionSummaryViewModel(get()) }
     factory { StatisticsViewModel(get(), get()) }
     factory { StatisticsFullListViewModel(get(), get()) }
-    factory { SettingsViewModel(get(), get()) }
+    factory { SettingsViewModel(get(), get(), get()) }
 }
 
 val dbModule = module {
