@@ -49,7 +49,7 @@ fun SectionSettingsScreen(
             Spacer(modifier = Modifier.size(16.dp))
 
             when (section) {
-                SettingsSections.AppIcon -> AppIconSettingScreenContent()
+                SettingsSections.AppIcon -> AppIconSettingScreenContent(viewModel::setAppIcon)
                 SettingsSections.ColorTheme -> ColorThemeSettingScreenContent()
                 SettingsSections.AboutApp -> {}
             }
