@@ -91,7 +91,7 @@ val viewModelModule = module {
     factory { QuizSessionSummaryViewModel(get()) }
     factory { StatisticsViewModel(get(), get()) }
     factory { StatisticsFullListViewModel(get(), get()) }
-    factory { SettingsViewModel() }
+    factory { SettingsViewModel(get()) }
 }
 
 val dbModule = module {
