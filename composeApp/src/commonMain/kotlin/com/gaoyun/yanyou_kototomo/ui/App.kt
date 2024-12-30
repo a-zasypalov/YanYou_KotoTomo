@@ -55,7 +55,7 @@ fun App() {
     PreComposeApp {
         val viewModel = koinViewModel(vmClass = AppViewModel::class)
 
-        AppTheme {
+        AppTheme(viewModel.colorScheme()) {
             YanYouColorsProvider {
                 Surface(
                     tonalElevation = 1.dp,

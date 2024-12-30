@@ -8,3 +8,7 @@ interface ThemeChanger {
 enum class AppIcon {
     Original, Clip, VerticalHalf
 }
+
+enum class AppTheme {
+    Original, Green, Blue
+}

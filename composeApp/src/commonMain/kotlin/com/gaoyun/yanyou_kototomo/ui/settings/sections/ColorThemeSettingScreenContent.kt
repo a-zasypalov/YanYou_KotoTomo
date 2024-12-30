@@ -19,13 +19,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
+import com.gaoyun.yanyou_kototomo.util.AppTheme
 
 @Composable
-fun ColumnScope.ColorThemeSettingScreenContent() {
+fun ColumnScope.ColorThemeSettingScreenContent(onThemeSet: (AppTheme) -> Unit) {
     val themes = listOf(
-        ColorThemeVariants(Color(0xFFFFF8F3), "Paper", "Original inspiration"),
-        ColorThemeVariants(Color(0xFFb1d8f2), "Cold screen", "Modern and fresh"),
-        ColorThemeVariants(Color(0xFFd6f2b1), "Fresh green", "Soft and cozy"),
+        ColorThemeVariants(AppTheme.Original, Color(0xFFFFF8F3), "Paper", "Original inspiration"),
+        ColorThemeVariants(AppTheme.Blue, Color(0xFFb1d8f2), "Cold screen", "Modern and fresh"),
+        ColorThemeVariants(AppTheme.Green, Color(0xFFd6f2b1), "Fresh green", "Soft and cozy"),
     )
 
     themes.forEach { item ->
@@ -33,7 +34,7 @@ fun ColumnScope.ColorThemeSettingScreenContent() {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .platformStyleClickable(onClick = {})
+                    .platformStyleClickable(onClick = { onThemeSet(item.theme) })
                     .padding(horizontal = 24.dp, vertical = 20.dp)
             ) {
                 Row(
@@ -67,6 +68,7 @@ fun ColumnScope.ColorThemeSettingScreenContent() {
 }
 
 private data class ColorThemeVariants(
+    val theme: AppTheme,
     val color: Color,
     val title: String,
     val subtitle: String,

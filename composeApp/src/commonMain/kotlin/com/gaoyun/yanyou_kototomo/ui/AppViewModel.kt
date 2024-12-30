@@ -1,5 +1,7 @@
 package com.gaoyun.yanyou_kototomo.ui
 
+import androidx.compose.runtime.Composable
+import com.gaoyun.yanyou_kototomo.ui.base.ColorsProvider
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppNavigator
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
@@ -15,6 +17,7 @@ const val LAUNCH_LISTEN_FOR_EFFECTS = "app-launch-listen-to-effects"
 
 class AppViewModel(
     private val appNavigator: AppNavigator,
+    private val colorsProvider: ColorsProvider,
 ) : ViewModel() {
     private val _event: MutableSharedFlow<NavigationSideEffect> = MutableSharedFlow()
     private val _effect: Channel<NavigatorAction> = Channel()
@@ -30,6 +33,9 @@ class AppViewModel(
             }
         }
     }
+
+    @Composable
+    fun colorScheme() = colorsProvider.getCurrentScheme()
 
     private fun setEffect(builder: () -> NavigatorAction) {
         val effectValue = builder()
