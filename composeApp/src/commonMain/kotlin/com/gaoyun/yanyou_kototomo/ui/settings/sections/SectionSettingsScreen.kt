@@ -35,24 +35,44 @@ fun SectionSettingsScreen(
     SurfaceScaffold(
         backHandler = { navigate(BackNavigationEffect) },
     ) {
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            AutoResizeText(
-                text = section.title(),
-                fontSizeRange = FontSizeRange(min = 16.sp, max = MaterialTheme.typography.displayLarge.fontSize),
-                style = MaterialTheme.typography.displayLarge,
-                maxLines = 1,
-                modifier = Modifier.fillMaxWidth().wrapContentHeight(align = Alignment.CenterVertically).padding(horizontal = 16.dp)
-            )
+        when (section) {
+            SettingsSections.AppIcon -> {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    AutoResizeText(
+                        text = section.title(),
+                        fontSizeRange = FontSizeRange(min = 16.sp, max = MaterialTheme.typography.displayLarge.fontSize),
+                        style = MaterialTheme.typography.displayLarge,
+                        maxLines = 1,
+                        modifier = Modifier.fillMaxWidth().wrapContentHeight(align = Alignment.CenterVertically)
+                            .padding(horizontal = 16.dp)
+                    )
 
-            Spacer(modifier = Modifier.size(16.dp))
-
-            when (section) {
-                SettingsSections.AppIcon -> AppIconSettingScreenContent(viewModel::setAppIcon)
-                SettingsSections.ColorTheme -> ColorThemeSettingScreenContent(viewModel::setAppTheme)
-                SettingsSections.AboutApp -> {}
+                    Spacer(modifier = Modifier.size(16.dp))
+                    AppIconSettingScreenContent(viewModel::setAppIcon)
+                }
             }
+
+            SettingsSections.ColorTheme -> {
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    AutoResizeText(
+                        text = section.title(),
+                        fontSizeRange = FontSizeRange(min = 16.sp, max = MaterialTheme.typography.displayLarge.fontSize),
+                        style = MaterialTheme.typography.displayLarge,
+                        maxLines = 1,
+                        modifier = Modifier.fillMaxWidth().wrapContentHeight(align = Alignment.CenterVertically)
+                            .padding(horizontal = 16.dp)
+                    )
+
+                    Spacer(modifier = Modifier.size(16.dp))
+                    ColorThemeSettingScreenContent(viewModel::setAppTheme)
+                }
+            }
+
+            SettingsSections.AboutApp -> AboutAppSettingScreenContent()
         }
     }
 }
