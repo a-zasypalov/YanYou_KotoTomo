@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
+import com.gaoyun.yanyou_kototomo.util.AppIcon
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 import yanyou_kototomo.composeapp.generated.resources.Res
@@ -26,11 +27,11 @@ import yanyou_kototomo.composeapp.generated.resources.app_icon_variant_2
 import yanyou_kototomo.composeapp.generated.resources.app_icon_variant_3
 
 @Composable
-fun ColumnScope.AppIconSettingScreenContent() {
+fun ColumnScope.AppIconSettingScreenContent(onIconSetClick: (AppIcon) -> Unit) {
     val icons = listOf(
-        AppIconVariants(Res.drawable.app_icon_variant_1, "Main icon", "Original inspiration"),
-        AppIconVariants(Res.drawable.app_icon_variant_2, "Notebook clip", "When stickers not needed"),
-        AppIconVariants(Res.drawable.app_icon_variant_3, "Borderline accent", "Never loose it again"),
+        AppIconVariants(AppIcon.Original, Res.drawable.app_icon_variant_1, "Main icon", "Original inspiration"),
+        AppIconVariants(AppIcon.Clip, Res.drawable.app_icon_variant_2, "Notebook clip", "When stickers not needed"),
+        AppIconVariants(AppIcon.VerticalHalf, Res.drawable.app_icon_variant_3, "Borderline accent", "Never loose it again"),
     )
 
     icons.forEach { item ->
@@ -38,7 +39,7 @@ fun ColumnScope.AppIconSettingScreenContent() {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .platformStyleClickable(onClick = {})
+                    .platformStyleClickable(onClick = { onIconSetClick(item.iconType) })
                     .padding(horizontal = 24.dp, vertical = 20.dp)
             ) {
                 Row(
@@ -73,6 +74,7 @@ fun ColumnScope.AppIconSettingScreenContent() {
 }
 
 private data class AppIconVariants(
+    val iconType: AppIcon,
     val icon: DrawableResource,
     val title: String,
     val subtitle: String,
