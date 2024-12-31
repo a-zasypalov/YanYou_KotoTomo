@@ -1,0 +1,105 @@
+{
+    "deck_id": "hsk1_3_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "hsk1_3_en_1",
+            "character": "叫",
+            "transcription": "jiào",
+            "translation": "To call",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_3_en_2",
+            "character": "吗",
+            "transcription": "ma",
+            "translation": "(question tag)",
+            "additional_info": "",
+            "speech_part": "particle"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_3_en_3",
+            "character": "老师",
+            "transcription": "lǎo shī",
+            "translation": "teacher",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_3_en_4",
+            "character": "人",
+            "transcription": "rén",
+            "translation": "man",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_3_en_5",
+            "character": "什么",
+            "transcription": "shén me",
+            "translation": "what?",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_3_en_6",
+            "character": "名字",
+            "transcription": "míng zi",
+            "translation": "name (of a person or thing)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_3_en_7",
+            "character": "我",
+            "transcription": "wǒ",
+            "translation": "I",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_3_en_8",
+            "character": "学生",
+            "transcription": "xué sheng",
+            "translation": "student",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_3_en_9",
+            "character": "是",
+            "transcription": "shì",
+            "translation": "to be",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_3_en_10",
+            "character": "中国",
+            "transcription": "zhōng guó",
+            "translation": "China",
+            "additional_info": "",
+            "speech_part": "name_or_place"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_3_en_11",
+            "character": "美国",
+            "transcription": "měi guó",
+            "translation": "USA",
+            "additional_info": "",
+            "speech_part": "name_or_place"
+        }
+    ]
+}

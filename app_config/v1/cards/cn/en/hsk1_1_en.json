@@ -1,113 +1,141 @@
 {
-  "deck_id": "hsk1_1_en",
-  "version": 1,
-  "cards": [
-    {
-      "type": "phrase",
-      "id": "hsk1_1_en_1",
-      "character": "你好",
-      "transcription": "nǐ hǎo",
-      "translation": "Hello",
-      "additional_info": "Common greeting used in Chinese.",
-      "words": [
-        "hsk1_1_en_2",
-        "hsk1_1_en_3"
-      ]
-    },
-    {
-      "type": "word",
-      "id": "hsk1_1_en_2",
-      "character": "你",
-      "transcription": "nǐ",
-      "translation": "You",
-      "additional_info": "Pronoun for 'you' (informal).",
-      "speech_part": "pronoun"
-    },
-    {
-      "type": "word",
-      "id": "hsk1_1_en_3",
-      "character": "好",
-      "transcription": "hǎo",
-      "translation": "Good",
-      "additional_info": "Adjective meaning good. But can be also a verb.",
-      "speech_part": "adjective"
-    },
-    {
-      "type": "word",
-      "id": "hsk1_1_en_4",
-      "character": "我",
-      "transcription": "wǒ",
-      "translation": "I, me",
-      "additional_info": "Pronoun for 'I' or 'me'. Common in basic sentences.",
-      "speech_part": "pronoun"
-    },
-    {
-      "type": "word",
-      "id": "hsk1_1_en_5",
-      "character": "很",
-      "transcription": "hěn",
-      "translation": "Very",
-      "additional_info": "Used as an adverb to intensify adjectives.",
-      "speech_part": "adverb"
-    },
-    {
-      "type": "phrase",
-      "id": "hsk1_1_en_6",
-      "character": "谢谢",
-      "transcription": "xièxie",
-      "translation": "Thank you",
-      "additional_info": "Polite expression to show gratitude.",
-      "words": [
-        "hsk1_1_en_7"
-      ]
-    },
-    {
-      "type": "word",
-      "id": "hsk1_1_en_7",
-      "character": "谢",
-      "transcription": "xiè",
-      "translation": "To thank",
-      "additional_info": "Used to express gratitude.",
-      "speech_part": "verb"
-    },
-    {
-      "type": "phrase",
-      "id": "hsk1_1_en_8",
-      "character": "再见",
-      "transcription": "zàijiàn",
-      "translation": "Goodbye",
-      "additional_info": "Common farewell phrase.",
-      "words": [
-        "hsk1_1_en_9",
-        "hsk1_1_en_10"
-      ]
-    },
-    {
-      "type": "word",
-      "id": "hsk1_1_en_9",
-      "character": "再",
-      "transcription": "zài",
-      "translation": "Again",
-      "additional_info": "Used to indicate repetition.",
-      "speech_part": "adverb"
-    },
-    {
-      "type": "word",
-      "id": "hsk1_1_en_10",
-      "character": "见",
-      "transcription": "jiàn",
-      "translation": "To see",
-      "additional_info": "Used to mean 'to meet' or 'to see'.",
-      "speech_part": "verb"
-    },
-    {
-      "type": "word",
-      "id": "hsk1_1_en_11",
-      "character": "是",
-      "transcription": "shì",
-      "translation": "To be",
-      "additional_info": "Basic linking verb for identifying or equating subjects.",
-      "speech_part": "verb"
-    }
-  ]
+    "deck_id": "hsk1_1_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "hsk1_1_en_1",
+            "character": "对不起",
+            "transcription": "duì bu qǐ",
+            "translation": "Excuse me",
+            "additional_info": "",
+            "speech_part": "phrase"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_2",
+            "character": "二",
+            "transcription": "èr",
+            "translation": "two",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_3",
+            "character": "没关系",
+            "transcription": "méi guān xi",
+            "translation": "it doesn't matter",
+            "additional_info": "",
+            "speech_part": "phrase"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_4",
+            "character": "你",
+            "transcription": "nǐ",
+            "translation": "you (informal)",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_5",
+            "character": "好",
+            "transcription": "hǎo",
+            "translation": "good",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_6",
+            "character": "六",
+            "transcription": "liù",
+            "translation": "six",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_7",
+            "character": "你好",
+            "transcription": "nǐ hǎo",
+            "translation": "Hello",
+            "additional_info": "",
+            "speech_part": "phrase"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_8",
+            "character": "三",
+            "transcription": "sān",
+            "translation": "three",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_9",
+            "character": "十",
+            "transcription": "shí",
+            "translation": "ten",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_10",
+            "character": "八",
+            "transcription": "bā",
+            "translation": "eight",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_11",
+            "character": "您好",
+            "transcription": "nǐn hǎo",
+            "translation": "Hello (formal)",
+            "additional_info": "",
+            "speech_part": "phrase"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_12",
+            "character": "一",
+            "transcription": "yī",
+            "translation": "one",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_13",
+            "character": "你们",
+            "transcription": "nǐmen",
+            "translation": "You (plural)",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_14",
+            "character": "你们好",
+            "transcription": "nǐmen hǎo",
+            "translation": "Hello (everyone)",
+            "additional_info": "",
+            "speech_part": "phrase"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_15",
+            "character": "们",
+            "transcription": "men",
+            "translation": "plural particle",
+            "additional_info": "",
+            "speech_part": "suffix"
+        }
+    ]
 }

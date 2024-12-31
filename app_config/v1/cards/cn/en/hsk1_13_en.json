@@ -1,0 +1,87 @@
+{
+    "deck_id": "hsk1_13_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "hsk1_13_en_1",
+            "character": "打电话",
+            "transcription": "dǎ diàn huà",
+            "translation": "to make a telephone call",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_13_en_2",
+            "character": "日",
+            "transcription": "rì",
+            "translation": "sun",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_13_en_3",
+            "character": "电视",
+            "transcription": "diàn shì",
+            "translation": "television",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_13_en_4",
+            "character": "上午",
+            "transcription": "shàng wǔ",
+            "translation": "morning",
+            "additional_info": "",
+            "speech_part": "time_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_13_en_5",
+            "character": "睡觉",
+            "transcription": "shuì jiào",
+            "translation": "To go to bed",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_13_en_6",
+            "character": "喂",
+            "transcription": "wèi",
+            "translation": "hey, hello",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_13_en_7",
+            "character": "学校",
+            "transcription": "xué xiào",
+            "translation": "school",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_13_en_8",
+            "character": "也",
+            "transcription": "yě",
+            "translation": "also, too",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_13_en_9",
+            "character": "喜欢",
+            "transcription": "xǐ huan",
+            "translation": "to like",
+            "additional_info": "",
+            "speech_part": "verb"
+        }
+    ]
+}
