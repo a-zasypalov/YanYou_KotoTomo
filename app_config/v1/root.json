@@ -16,7 +16,105 @@
                   "id": "hsk1_1_en",
                   "name": "HSK1 Chapter 1",
                   "version": 1,
-                  "deck_preview": "你 谢谢 好 我 很 是"
+                  "deck_preview": "对不起 二 没关系 你 好 六 你好 三 十 八"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_2_en",
+                  "name": "HSK1 Chapter 2",
+                  "version": 1,
+                  "deck_preview": "不谢 谢谢 不客气 再见 不"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_3_en",
+                  "name": "HSK1 Chapter 3",
+                  "version": 1,
+                  "deck_preview": "叫 吗 老师 人 什么 名字 我 学生 是 中国"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_4_en",
+                  "name": "HSK1 Chapter 4",
+                  "version": 1,
+                  "deck_preview": "的 七 汉语 朋友 呢 哪 九 同学 他 她"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_5_en",
+                  "name": "HSK1 Chapter 5",
+                  "version": 1,
+                  "deck_preview": "大 女儿 了 多 家 几 年 岁 有 口"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_6_en",
+                  "name": "HSK1 Chapter 6",
+                  "version": 1,
+                  "deck_preview": "很 读 菜 写 说话 会 怎么 妈妈 做 汉字"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_7_en",
+                  "name": "HSK1 Chapter 7",
+                  "version": 1,
+                  "deck_preview": "今天 请 明天 看 去 书 五 四 星期 月"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_8_en",
+                  "name": "HSK1 Chapter 8",
+                  "version": 1,
+                  "deck_preview": "茶 吃 杯子 买 个 块 多少 喝 米饭 这"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_9_en",
+                  "name": "HSK1 Chapter 9",
+                  "version": 1,
+                  "deck_preview": "爸爸 儿子 工作 猫 狗 椅子 小 医生 医院 下"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_10_en",
+                  "name": "HSK1 Chapter 10",
+                  "version": 1,
+                  "deck_preview": "电脑 本 后面 里 和 能 前面 没 电 上"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_11_en",
+                  "name": "HSK1 Chapter 11",
+                  "version": 1,
+                  "deck_preview": "北京 电影 分钟 点 回 零 现在 我们 时候 前"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_12_en",
+                  "name": "HSK1 Chapter 12",
+                  "version": 1,
+                  "deck_preview": "来 爱 热 冷 水果 水 太 天气 太 … 了 下"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_13_en",
+                  "name": "HSK1 Chapter 13",
+                  "version": 1,
+                  "deck_preview": "打电话 日 电视 上午 睡觉 喂 学校 也 喜欢"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_14_en",
+                  "name": "HSK1 Chapter 14",
+                  "version": 1,
+                  "deck_preview": "东西 都 开 漂亮 衣服 苹果 先生 少 看见 啊"
+                },
+                {
+                  "type": "normal",
+                  "id": "hsk1_15_en",
+                  "name": "HSK1 Chapter 15",
+                  "version": 1,
+                  "deck_preview": "出租车 认识 饭馆 飞机 听 车 高兴 一起 大学 饭店"
                 }
               ]
             },
