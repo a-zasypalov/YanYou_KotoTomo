@@ -7,7 +7,7 @@
             "id": "hsk1_12_en_1",
             "character": "来",
             "transcription": "lái",
-            "translation": "to come",
+            "translation": "To come",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -16,7 +16,7 @@
             "id": "hsk1_12_en_2",
             "character": "爱",
             "transcription": "ài",
-            "translation": "to like, to love",
+            "translation": "To like, to love",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -25,7 +25,7 @@
             "id": "hsk1_12_en_3",
             "character": "热",
             "transcription": "rè",
-            "translation": "hot",
+            "translation": "Hot",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -34,7 +34,7 @@
             "id": "hsk1_12_en_4",
             "character": "冷",
             "transcription": "lěng",
-            "translation": "cold",
+            "translation": "Cold",
             "additional_info": "",
             "speech_part": "adjective"
         },
@@ -43,7 +43,7 @@
             "id": "hsk1_12_en_5",
             "character": "水果",
             "transcription": "shuǐ guǒ",
-            "translation": "fruit",
+            "translation": "Fruit",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -52,7 +52,7 @@
             "id": "hsk1_12_en_6",
             "character": "水",
             "transcription": "shuǐ",
-            "translation": "water",
+            "translation": "Water",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -61,7 +61,7 @@
             "id": "hsk1_12_en_7",
             "character": "太",
             "transcription": "tài",
-            "translation": "too, excessively",
+            "translation": "Too, excessively",
             "additional_info": "",
             "speech_part": "pronoun"
         },
@@ -70,7 +70,7 @@
             "id": "hsk1_12_en_8",
             "character": "天气",
             "transcription": "tiān qì",
-            "translation": "weather",
+            "translation": "Weather",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -79,7 +79,7 @@
             "id": "hsk1_12_en_9",
             "character": "太 … 了",
             "transcription": "tài le",
-            "translation": "too, extremely",
+            "translation": "Too, extremely",
             "additional_info": "",
             "speech_part": "pronoun"
         },
@@ -88,7 +88,7 @@
             "id": "hsk1_12_en_10",
             "character": "下",
             "transcription": "xià",
-            "translation": "down",
+            "translation": "Down",
             "additional_info": "",
             "speech_part": "adverb"
         },
@@ -97,7 +97,7 @@
             "id": "hsk1_12_en_11",
             "character": "小姐",
             "transcription": "xiǎo jie",
-            "translation": "miss",
+            "translation": "Miss",
             "additional_info": "",
             "speech_part": "pronoun"
         },
@@ -106,7 +106,7 @@
             "id": "hsk1_12_en_12",
             "character": "下雨",
             "transcription": "xià yǔ",
-            "translation": "to rain",
+            "translation": "To rain",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -115,7 +115,7 @@
             "id": "hsk1_12_en_13",
             "character": "些",
             "transcription": "xiē",
-            "translation": "some",
+            "translation": "Some",
             "additional_info": "",
             "speech_part": "quantifier"
         },
@@ -124,7 +124,7 @@
             "id": "hsk1_12_en_14",
             "character": "怎么样",
             "transcription": "zěn me yàng",
-            "translation": "how?",
+            "translation": "How?",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         },
@@ -133,7 +133,7 @@
             "id": "hsk1_12_en_15",
             "character": "身体",
             "transcription": "shēn tǐ",
-            "translation": "body",
+            "translation": "Body",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -142,7 +142,7 @@
             "id": "hsk1_12_en_16",
             "character": "雨",
             "transcription": "yǔ",
-            "translation": "rain",
+            "translation": "Rain",
             "additional_info": "",
             "speech_part": "noun"
         }

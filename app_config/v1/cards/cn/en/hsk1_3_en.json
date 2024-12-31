@@ -25,7 +25,7 @@
             "id": "hsk1_3_en_3",
             "character": "老师",
             "transcription": "lǎo shī",
-            "translation": "teacher",
+            "translation": "Teacher",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -34,7 +34,7 @@
             "id": "hsk1_3_en_4",
             "character": "人",
             "transcription": "rén",
-            "translation": "man",
+            "translation": "Man",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -43,7 +43,7 @@
             "id": "hsk1_3_en_5",
             "character": "什么",
             "transcription": "shén me",
-            "translation": "what?",
+            "translation": "What?",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         },
@@ -52,7 +52,7 @@
             "id": "hsk1_3_en_6",
             "character": "名字",
             "transcription": "míng zi",
-            "translation": "name (of a person or thing)",
+            "translation": "Name (of a person or thing)",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -70,7 +70,7 @@
             "id": "hsk1_3_en_8",
             "character": "学生",
             "transcription": "xué sheng",
-            "translation": "student",
+            "translation": "Student",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -79,7 +79,7 @@
             "id": "hsk1_3_en_9",
             "character": "是",
             "transcription": "shì",
-            "translation": "to be",
+            "translation": "To be",
             "additional_info": "",
             "speech_part": "verb"
         },

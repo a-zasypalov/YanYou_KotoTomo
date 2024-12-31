@@ -7,7 +7,7 @@
             "id": "hsk1_4_en_1",
             "character": "的",
             "transcription": "de",
-            "translation": "of",
+            "translation": "Of",
             "additional_info": "",
             "speech_part": "particle"
         },
@@ -16,7 +16,7 @@
             "id": "hsk1_4_en_2",
             "character": "七",
             "transcription": "qī",
-            "translation": "seven",
+            "translation": "Seven",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -34,7 +34,7 @@
             "id": "hsk1_4_en_4",
             "character": "朋友",
             "transcription": "péng you",
-            "translation": "friend",
+            "translation": "Friend",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -44,7 +44,7 @@
             "character": "呢",
             "transcription": "ne",
             "translation": "What about ...?",
-            "additional_info": "particle indicating that a previously asked question is to be applied to the preceding word (\"What about ...?\"",
+            "additional_info": "Particle indicating that a previously asked question is to be applied to the preceding word (\"What about ...?\"",
             "speech_part": "particle"
         },
         {
@@ -52,7 +52,7 @@
             "id": "hsk1_4_en_6",
             "character": "哪",
             "transcription": "nǎ",
-            "translation": "which",
+            "translation": "Which",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         },
@@ -61,7 +61,7 @@
             "id": "hsk1_4_en_7",
             "character": "九",
             "transcription": "jiǔ",
-            "translation": "nine",
+            "translation": "Nine",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -79,7 +79,7 @@
             "id": "hsk1_4_en_9",
             "character": "他",
             "transcription": "tā",
-            "translation": "he or him",
+            "translation": "He or him",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         },
@@ -88,7 +88,7 @@
             "id": "hsk1_4_en_10",
             "character": "她",
             "transcription": "tā",
-            "translation": "she",
+            "translation": "She",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         },
@@ -106,7 +106,7 @@
             "id": "hsk1_4_en_12",
             "character": "谁",
             "transcription": "shéi",
-            "translation": "who",
+            "translation": "Who",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         }

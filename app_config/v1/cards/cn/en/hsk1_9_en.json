@@ -7,7 +7,7 @@
             "id": "hsk1_9_en_1",
             "character": "爸爸",
             "transcription": "bà ba",
-            "translation": "father",
+            "translation": "Father",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -16,7 +16,7 @@
             "id": "hsk1_9_en_2",
             "character": "儿子",
             "transcription": "ér zi",
-            "translation": "son",
+            "translation": "Son",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -25,7 +25,7 @@
             "id": "hsk1_9_en_3",
             "character": "工作",
             "transcription": "gōng zuò",
-            "translation": "to work",
+            "translation": "To work",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -34,7 +34,7 @@
             "id": "hsk1_9_en_4",
             "character": "猫",
             "transcription": "māo",
-            "translation": "cat",
+            "translation": "Cat",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -43,7 +43,7 @@
             "id": "hsk1_9_en_5",
             "character": "狗",
             "transcription": "gǒu",
-            "translation": "dog",
+            "translation": "Dog",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -52,7 +52,7 @@
             "id": "hsk1_9_en_6",
             "character": "椅子",
             "transcription": "yǐ zi",
-            "translation": "chair",
+            "translation": "Chair",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -61,7 +61,7 @@
             "id": "hsk1_9_en_7",
             "character": "小",
             "transcription": "xiǎo",
-            "translation": "small",
+            "translation": "Small",
             "additional_info": "",
             "speech_part": "adjective"
         },
@@ -70,7 +70,7 @@
             "id": "hsk1_9_en_8",
             "character": "医生",
             "transcription": "yī shēng",
-            "translation": "doctor",
+            "translation": "Doctor",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -79,7 +79,7 @@
             "id": "hsk1_9_en_9",
             "character": "医院",
             "transcription": "yī yuàn",
-            "translation": "hospital",
+            "translation": "Hospital",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -88,7 +88,7 @@
             "id": "hsk1_9_en_10",
             "character": "下",
             "transcription": "xià",
-            "translation": "down",
+            "translation": "Down",
             "additional_info": "",
             "speech_part": "adverb"
         },
@@ -97,7 +97,7 @@
             "id": "hsk1_9_en_11",
             "character": "哪儿",
             "transcription": "nǎr",
-            "translation": "where",
+            "translation": "Where",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         },
@@ -106,7 +106,7 @@
             "id": "hsk1_9_en_12",
             "character": "那儿",
             "transcription": "nàr",
-            "translation": "there",
+            "translation": "There",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         },
@@ -115,7 +115,7 @@
             "id": "hsk1_9_en_13",
             "character": "在",
             "transcription": "zài",
-            "translation": "to be in/on/at",
+            "translation": "To be in/on/at",
             "additional_info": "",
             "speech_part": "preposition"
         },
@@ -124,7 +124,7 @@
             "id": "hsk1_9_en_14",
             "character": "下面",
             "transcription": "xià miàn",
-            "translation": "under, below",
+            "translation": "Under, below",
             "additional_info": "",
             "speech_part": "preposition"
         }

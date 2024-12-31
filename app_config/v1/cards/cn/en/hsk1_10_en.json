@@ -7,7 +7,7 @@
             "id": "hsk1_10_en_1",
             "character": "电脑",
             "transcription": "diàn nǎo",
-            "translation": "computer",
+            "translation": "Computer",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -16,7 +16,7 @@
             "id": "hsk1_10_en_2",
             "character": "本",
             "transcription": "běn",
-            "translation": "measure word for books",
+            "translation": "Measure word for books",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         },
@@ -25,7 +25,7 @@
             "id": "hsk1_10_en_3",
             "character": "后面",
             "transcription": "hòu mian",
-            "translation": "back",
+            "translation": "Back",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -34,7 +34,7 @@
             "id": "hsk1_10_en_4",
             "character": "里",
             "transcription": "lǐ",
-            "translation": "inside, inner",
+            "translation": "Inside, inner",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -43,7 +43,7 @@
             "id": "hsk1_10_en_5",
             "character": "和",
             "transcription": "hé",
-            "translation": "and",
+            "translation": "And",
             "additional_info": "",
             "speech_part": "conjunction"
         },
@@ -52,7 +52,7 @@
             "id": "hsk1_10_en_6",
             "character": "能",
             "transcription": "néng",
-            "translation": "can, may",
+            "translation": "Can, may",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -61,7 +61,7 @@
             "id": "hsk1_10_en_7",
             "character": "前面",
             "transcription": "qián miàn",
-            "translation": "front",
+            "translation": "Front",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -79,7 +79,7 @@
             "id": "hsk1_10_en_9",
             "character": "电",
             "transcription": "diàn",
-            "translation": "electricity",
+            "translation": "Electricity",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -88,7 +88,7 @@
             "id": "hsk1_10_en_10",
             "character": "上",
             "transcription": "shàng",
-            "translation": "up, above",
+            "translation": "Up, above",
             "additional_info": "",
             "speech_part": "adverb"
         },
@@ -97,7 +97,7 @@
             "id": "hsk1_10_en_11",
             "character": "没有",
             "transcription": "méi yǒu",
-            "translation": "there is not",
+            "translation": "There is not",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -106,7 +106,7 @@
             "id": "hsk1_10_en_12",
             "character": "桌子",
             "transcription": "zhuō zi",
-            "translation": "table",
+            "translation": "Table",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -115,7 +115,7 @@
             "id": "hsk1_10_en_13",
             "character": "这儿",
             "transcription": "zhèr",
-            "translation": "here",
+            "translation": "Here",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         },
@@ -124,7 +124,7 @@
             "id": "hsk1_10_en_14",
             "character": "坐",
             "transcription": "zuò",
-            "translation": "to sit",
+            "translation": "To sit",
             "additional_info": "",
             "speech_part": "verb"
         }

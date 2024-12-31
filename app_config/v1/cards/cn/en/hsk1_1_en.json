@@ -16,7 +16,7 @@
             "id": "hsk1_1_en_2",
             "character": "二",
             "transcription": "èr",
-            "translation": "two",
+            "translation": "Two",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -25,7 +25,7 @@
             "id": "hsk1_1_en_3",
             "character": "没关系",
             "transcription": "méi guān xi",
-            "translation": "it doesn't matter",
+            "translation": "It doesn't matter",
             "additional_info": "",
             "speech_part": "phrase"
         },
@@ -34,7 +34,7 @@
             "id": "hsk1_1_en_4",
             "character": "你",
             "transcription": "nǐ",
-            "translation": "you (informal)",
+            "translation": "You (informal",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         },
@@ -43,7 +43,7 @@
             "id": "hsk1_1_en_5",
             "character": "好",
             "transcription": "hǎo",
-            "translation": "good",
+            "translation": "Good",
             "additional_info": "",
             "speech_part": "adjective"
         },
@@ -52,7 +52,7 @@
             "id": "hsk1_1_en_6",
             "character": "六",
             "transcription": "liù",
-            "translation": "six",
+            "translation": "Six",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -70,7 +70,7 @@
             "id": "hsk1_1_en_8",
             "character": "三",
             "transcription": "sān",
-            "translation": "three",
+            "translation": "Three",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -79,7 +79,7 @@
             "id": "hsk1_1_en_9",
             "character": "十",
             "transcription": "shí",
-            "translation": "ten",
+            "translation": "Ten",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -88,7 +88,7 @@
             "id": "hsk1_1_en_10",
             "character": "八",
             "transcription": "bā",
-            "translation": "eight",
+            "translation": "Eight",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -106,7 +106,7 @@
             "id": "hsk1_1_en_12",
             "character": "一",
             "transcription": "yī",
-            "translation": "one",
+            "translation": "One",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -133,7 +133,7 @@
             "id": "hsk1_1_en_15",
             "character": "们",
             "transcription": "men",
-            "translation": "plural particle",
+            "translation": "Plural particle",
             "additional_info": "",
             "speech_part": "suffix"
         }
