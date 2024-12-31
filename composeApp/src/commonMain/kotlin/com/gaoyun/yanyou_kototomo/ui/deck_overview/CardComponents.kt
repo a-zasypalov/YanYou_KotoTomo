@@ -40,9 +40,12 @@ internal fun Transcription(transcription: String, preformatted: Boolean = false)
 
 @Composable
 internal fun Translation(translation: String) {
-    Text(
+    AutoResizeText(
         text = translation,
-        style = MaterialTheme.typography.bodyLarge
+        fontSizeRange = FontSizeRange(min = 12.sp, max = MaterialTheme.typography.bodyLarge.fontSize),
+        style = MaterialTheme.typography.bodyLarge,
+        maxLines = 1,
+        textAlign = TextAlign.Center,
     )
 }
 
@@ -54,7 +57,7 @@ internal fun ColumnScope.CardFront(
     modifier: Modifier = Modifier,
     rightAttachment: @Composable BoxScope.() -> Unit = {},
 ) {
-    Box(contentAlignment = Alignment.Center) {
+    Box(contentAlignment = Alignment.Center, modifier = modifier.weight(1f)) {
         AutoResizeText(
             text = front,
             fontSizeRange = FontSizeRange(min = 16.sp, max = fontSizeMax),
@@ -62,6 +65,7 @@ internal fun ColumnScope.CardFront(
                 fontWeight = FontWeight.Medium,
                 fontSize = fontSizeMax
             ),
+            maxLines = 1,
             textAlign = TextAlign.Center,
             modifier = modifier.wrapContentHeight(align = Alignment.CenterVertically)
         )

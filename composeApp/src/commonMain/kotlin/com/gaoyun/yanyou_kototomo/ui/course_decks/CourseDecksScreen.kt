@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -62,6 +63,15 @@ fun CourseDecksScreen(
 @Composable
 private fun CourseDecksContent(course: Course?, toDeck: (DeckId) -> Unit) {
     Box(Modifier.fillMaxSize()) {
+        if(course != null && course.decks.size < 5){
+            Image(
+                painter = painterResource(course.id.getCourseMascot()),
+                contentDescription = null,
+                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
+                modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 64.dp).size(48.dp).alpha(0.2f)
+            )
+        }
+
         LazyColumn(Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
             course?.let {
                 item {
@@ -80,22 +90,26 @@ private fun CourseDecksContent(course: Course?, toDeck: (DeckId) -> Unit) {
                     ) { toDeck(deck.id) }
                 }
 
-                item {
-                    Spacer(modifier = Modifier.height(64.dp))
+                if(course.decks.size >= 5){
+                    item {
+                        Box(Modifier.fillMaxWidth().navigationBarsPadding().padding(vertical = 32.dp)) {
+                            Image(
+                                painter = painterResource(course.id.getCourseMascot()),
+                                contentDescription = null,
+                                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
+                                modifier = Modifier.align(Alignment.BottomCenter).size(48.dp).alpha(0.2f)
+                            )
+                        }
+                    }
+                } else {
+                    item {
+                        Spacer(modifier = Modifier.height(64.dp))
+                    }
                 }
 
             } ?: item {
                 CircularProgressIndicator()
             }
-        }
-
-        course?.let {
-            Image(
-                painter = painterResource(course.id.getCourseMascot()),
-                contentDescription = null,
-                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
-                modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 64.dp).size(48.dp).alpha(0.2f)
-            )
         }
     }
 }
