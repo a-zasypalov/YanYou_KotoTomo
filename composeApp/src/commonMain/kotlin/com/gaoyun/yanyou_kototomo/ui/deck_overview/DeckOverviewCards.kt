@@ -1,6 +1,8 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,7 +19,7 @@ fun DeckOverviewWordCard(
     showTranscription: Boolean,
     onClick: () -> Unit, modifier: Modifier = Modifier,
 ) {
-    DeckCard(onClick = onClick, modifier = modifier) {
+    DeckCard(onClick = onClick, modifier = modifier.height(180.dp)) {
         CardFront(card.front)
         AnimatedVisibility(visible = showTranscription) { Transcription(card.transcription) }
         AnimatedVisibility(visible = showTranscription && showTranslation) {
@@ -34,7 +36,7 @@ fun DeckOverviewKanaCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    DeckCard(onClick = onClick, modifier = modifier, contentPadding = 0.dp) {
+    DeckCard(onClick = onClick, modifier = modifier.heightIn(max = 100.dp), contentPadding = 0.dp) {
         CardFront(front = card.front, fontSizeMax = 48.sp)
         AnimatedVisibility(visible = showTranscription) {
             Transcription(
@@ -55,7 +57,7 @@ fun DeckOverviewKanjiCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    DeckCard(onClick = onClick, modifier = modifier) {
+    DeckCard(onClick = onClick, modifier = modifier.height(180.dp)) {
         CardFront(card.front, modifier = Modifier.weight(1f).padding(horizontal = 24.dp)) {
             this@DeckCard.AnimatedVisibility(visible = showReading, modifier = modifier.align(Alignment.CenterEnd)) {
                 Reading(card.reading.on)
@@ -77,7 +79,7 @@ fun DeckOverviewPhraseCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    DeckCard(onClick = onClick, modifier = modifier) {
+    DeckCard(onClick = onClick, modifier = modifier.height(180.dp)) {
         CardFront(card.front)
         AnimatedVisibility(visible = showTranscription) { Transcription(card.transcription) }
         AnimatedVisibility(visible = showTranscription && showTranslation) {
