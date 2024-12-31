@@ -7,7 +7,7 @@
             "id": "hsk1_8_en_1",
             "character": "茶",
             "transcription": "chá",
-            "translation": "tea",
+            "translation": "Tea",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -16,7 +16,7 @@
             "id": "hsk1_8_en_2",
             "character": "吃",
             "transcription": "chī",
-            "translation": "to eat",
+            "translation": "To eat",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -25,7 +25,7 @@
             "id": "hsk1_8_en_3",
             "character": "杯子",
             "transcription": "bēi zi",
-            "translation": "cup",
+            "translation": "Cup",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -34,7 +34,7 @@
             "id": "hsk1_8_en_4",
             "character": "买",
             "transcription": "mǎi",
-            "translation": "to buy",
+            "translation": "To buy",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -43,7 +43,7 @@
             "id": "hsk1_8_en_5",
             "character": "个",
             "transcription": "gè",
-            "translation": "general measure word",
+            "translation": "General measure word",
             "additional_info": "",
             "speech_part": "quantifier"
         },
@@ -52,7 +52,7 @@
             "id": "hsk1_8_en_6",
             "character": "块",
             "transcription": "kuài",
-            "translation": "unit of money (yuan)",
+            "translation": "Unit of money (yuan)",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -70,7 +70,7 @@
             "id": "hsk1_8_en_8",
             "character": "喝",
             "transcription": "hē",
-            "translation": "to drink",
+            "translation": "To drink",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -88,7 +88,7 @@
             "id": "hsk1_8_en_10",
             "character": "这",
             "transcription": "zhè",
-            "translation": "this",
+            "translation": "This",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         },
@@ -97,7 +97,7 @@
             "id": "hsk1_8_en_11",
             "character": "想",
             "transcription": "xiǎng",
-            "translation": "to want, would like",
+            "translation": "To want, would like",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -106,7 +106,7 @@
             "id": "hsk1_8_en_12",
             "character": "下午",
             "transcription": "xià wǔ",
-            "translation": "afternoon",
+            "translation": "Afternoon",
             "additional_info": "",
             "speech_part": "time_word"
         },
@@ -124,7 +124,7 @@
             "id": "hsk1_8_en_14",
             "character": "商店",
             "transcription": "shāng diàn",
-            "translation": "store",
+            "translation": "Store",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -133,7 +133,7 @@
             "id": "hsk1_8_en_15",
             "character": "那",
             "transcription": "nà",
-            "translation": "that",
+            "translation": "That",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         }

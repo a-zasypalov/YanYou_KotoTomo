@@ -16,7 +16,7 @@
             "id": "hsk1_11_en_2",
             "character": "电影",
             "transcription": "diàn yǐng",
-            "translation": "movie",
+            "translation": "Movie",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -25,7 +25,7 @@
             "id": "hsk1_11_en_3",
             "character": "分钟",
             "transcription": "fēn zhōng",
-            "translation": "minute",
+            "translation": "Minute",
             "additional_info": "",
             "speech_part": "quantifier"
         },
@@ -34,7 +34,7 @@
             "id": "hsk1_11_en_4",
             "character": "点",
             "transcription": "diǎn",
-            "translation": "o’clock",
+            "translation": "O’clock",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -43,7 +43,7 @@
             "id": "hsk1_11_en_5",
             "character": "回",
             "transcription": "huí",
-            "translation": "to return",
+            "translation": "To return",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -52,7 +52,7 @@
             "id": "hsk1_11_en_6",
             "character": "零",
             "transcription": "líng",
-            "translation": "zero",
+            "translation": "Zero",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -61,7 +61,7 @@
             "id": "hsk1_11_en_7",
             "character": "现在",
             "transcription": "xiàn zài",
-            "translation": "now",
+            "translation": "Now",
             "additional_info": "",
             "speech_part": "time_word"
         },
@@ -70,7 +70,7 @@
             "id": "hsk1_11_en_8",
             "character": "我们",
             "transcription": "wǒ men",
-            "translation": "we",
+            "translation": "We",
             "additional_info": "",
             "speech_part": "pronoun_informal"
         },
@@ -79,7 +79,7 @@
             "id": "hsk1_11_en_9",
             "character": "时候",
             "transcription": "shí hou",
-            "translation": "time",
+            "translation": "Time",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -88,7 +88,7 @@
             "id": "hsk1_11_en_10",
             "character": "前",
             "transcription": "qián",
-            "translation": "before, earlier",
+            "translation": "Before, earlier",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -97,7 +97,7 @@
             "id": "hsk1_11_en_11",
             "character": "吃饭",
             "transcription": "chī fàn",
-            "translation": "to eat a meal",
+            "translation": "To eat a meal",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -106,7 +106,7 @@
             "id": "hsk1_11_en_12",
             "character": "住",
             "transcription": "zhù",
-            "translation": "to live",
+            "translation": "To live",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -115,7 +115,7 @@
             "id": "hsk1_11_en_13",
             "character": "中午",
             "transcription": "zhōng wǔ",
-            "translation": "noon",
+            "translation": "Noon",
             "additional_info": "",
             "speech_part": "time_word"
         }

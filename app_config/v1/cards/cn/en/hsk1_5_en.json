@@ -7,7 +7,7 @@
             "id": "hsk1_5_en_1",
             "character": "大",
             "transcription": "dà",
-            "translation": "big",
+            "translation": "Big",
             "additional_info": "",
             "speech_part": "adjective"
         },
@@ -16,7 +16,7 @@
             "id": "hsk1_5_en_2",
             "character": "女儿",
             "transcription": "nǚ ér",
-            "translation": "daughter",
+            "translation": "Daughter",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -34,7 +34,7 @@
             "id": "hsk1_5_en_4",
             "character": "多",
             "transcription": "duō",
-            "translation": "many",
+            "translation": "Many",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -43,7 +43,7 @@
             "id": "hsk1_5_en_5",
             "character": "家",
             "transcription": "jiā",
-            "translation": "home",
+            "translation": "Home",
             "additional_info": "",
             "speech_part": "quantifier"
         },
@@ -52,7 +52,7 @@
             "id": "hsk1_5_en_6",
             "character": "几",
             "transcription": "jǐ",
-            "translation": "how many",
+            "translation": "How many",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -61,7 +61,7 @@
             "id": "hsk1_5_en_7",
             "character": "年",
             "transcription": "nián",
-            "translation": "year",
+            "translation": "Year",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -70,7 +70,7 @@
             "id": "hsk1_5_en_8",
             "character": "岁",
             "transcription": "suì",
-            "translation": "classifier for years (of age)",
+            "translation": "Classifier for years (of age)",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -79,7 +79,7 @@
             "id": "hsk1_5_en_9",
             "character": "有",
             "transcription": "yǒu",
-            "translation": "to have",
+            "translation": "To have",
             "additional_info": "",
             "speech_part": "verb"
         },

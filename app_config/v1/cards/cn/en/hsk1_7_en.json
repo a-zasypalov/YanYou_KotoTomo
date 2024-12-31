@@ -7,7 +7,7 @@
             "id": "hsk1_7_en_1",
             "character": "今天",
             "transcription": "jīn tiān",
-            "translation": "today",
+            "translation": "Today",
             "additional_info": "",
             "speech_part": "time_word"
         },
@@ -16,7 +16,7 @@
             "id": "hsk1_7_en_2",
             "character": "请",
             "transcription": "qǐng",
-            "translation": "to ask",
+            "translation": "To ask",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -25,7 +25,7 @@
             "id": "hsk1_7_en_3",
             "character": "明天",
             "transcription": "míng tiān",
-            "translation": "tomorrow",
+            "translation": "Tomorrow",
             "additional_info": "",
             "speech_part": "time_word"
         },
@@ -34,7 +34,7 @@
             "id": "hsk1_7_en_4",
             "character": "看",
             "transcription": "kàn",
-            "translation": "to look, watch, read",
+            "translation": "To look, watch, read",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -43,7 +43,7 @@
             "id": "hsk1_7_en_5",
             "character": "去",
             "transcription": "qù",
-            "translation": "to go",
+            "translation": "To go",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -52,7 +52,7 @@
             "id": "hsk1_7_en_6",
             "character": "书",
             "transcription": "shū",
-            "translation": "book",
+            "translation": "Book",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -61,7 +61,7 @@
             "id": "hsk1_7_en_7",
             "character": "五",
             "transcription": "wǔ",
-            "translation": "five",
+            "translation": "Five",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -70,7 +70,7 @@
             "id": "hsk1_7_en_8",
             "character": "四",
             "transcription": "sì",
-            "translation": "four",
+            "translation": "Four",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -79,7 +79,7 @@
             "id": "hsk1_7_en_9",
             "character": "星期",
             "transcription": "xīng qī",
-            "translation": "week",
+            "translation": "Week",
             "additional_info": "",
             "speech_part": "time_word"
         },
@@ -88,7 +88,7 @@
             "id": "hsk1_7_en_10",
             "character": "月",
             "transcription": "yuè",
-            "translation": "month, moon",
+            "translation": "Month, moon",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -97,7 +97,7 @@
             "id": "hsk1_7_en_11",
             "character": "学习",
             "transcription": "xué xí",
-            "translation": "to learn",
+            "translation": "To learn",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -106,7 +106,7 @@
             "id": "hsk1_7_en_12",
             "character": "号",
             "transcription": "hào",
-            "translation": "date of month",
+            "translation": "Date of month",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -124,7 +124,7 @@
             "id": "hsk1_7_en_14",
             "character": "昨天",
             "transcription": "zuó tiān",
-            "translation": "yesterday",
+            "translation": "Yesterday",
             "additional_info": "",
             "speech_part": "time_word"
         }

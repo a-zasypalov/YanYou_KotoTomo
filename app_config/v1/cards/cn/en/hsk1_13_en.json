@@ -7,7 +7,7 @@
             "id": "hsk1_13_en_1",
             "character": "打电话",
             "transcription": "dǎ diàn huà",
-            "translation": "to make a telephone call",
+            "translation": "To make a telephone call",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -16,7 +16,7 @@
             "id": "hsk1_13_en_2",
             "character": "日",
             "transcription": "rì",
-            "translation": "sun",
+            "translation": "Sun",
             "additional_info": "",
             "speech_part": "measure_word"
         },
@@ -25,7 +25,7 @@
             "id": "hsk1_13_en_3",
             "character": "电视",
             "transcription": "diàn shì",
-            "translation": "television",
+            "translation": "Television",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -34,7 +34,7 @@
             "id": "hsk1_13_en_4",
             "character": "上午",
             "transcription": "shàng wǔ",
-            "translation": "morning",
+            "translation": "Morning",
             "additional_info": "",
             "speech_part": "time_word"
         },
@@ -52,7 +52,7 @@
             "id": "hsk1_13_en_6",
             "character": "喂",
             "transcription": "wèi",
-            "translation": "hey, hello",
+            "translation": "Hey, hello",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -61,7 +61,7 @@
             "id": "hsk1_13_en_7",
             "character": "学校",
             "transcription": "xué xiào",
-            "translation": "school",
+            "translation": "School",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -70,7 +70,7 @@
             "id": "hsk1_13_en_8",
             "character": "也",
             "transcription": "yě",
-            "translation": "also, too",
+            "translation": "Also, too",
             "additional_info": "",
             "speech_part": "pronoun"
         },
@@ -79,7 +79,7 @@
             "id": "hsk1_13_en_9",
             "character": "喜欢",
             "transcription": "xǐ huan",
-            "translation": "to like",
+            "translation": "To like",
             "additional_info": "",
             "speech_part": "verb"
         }
