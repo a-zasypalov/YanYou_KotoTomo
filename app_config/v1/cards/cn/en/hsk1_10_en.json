@@ -1,0 +1,132 @@
+{
+    "deck_id": "hsk1_10_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "hsk1_10_en_1",
+            "character": "电脑",
+            "transcription": "diàn nǎo",
+            "translation": "computer",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_2",
+            "character": "本",
+            "transcription": "běn",
+            "translation": "measure word for books",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_3",
+            "character": "后面",
+            "transcription": "hòu mian",
+            "translation": "back",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_4",
+            "character": "里",
+            "transcription": "lǐ",
+            "translation": "inside, inner",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_5",
+            "character": "和",
+            "transcription": "hé",
+            "translation": "and",
+            "additional_info": "",
+            "speech_part": "conjunction"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_6",
+            "character": "能",
+            "transcription": "néng",
+            "translation": "can, may",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_7",
+            "character": "前面",
+            "transcription": "qián miàn",
+            "translation": "front",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_8",
+            "character": "没",
+            "transcription": "méi",
+            "translation": "(negative prefix for verbs)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_9",
+            "character": "电",
+            "transcription": "diàn",
+            "translation": "electricity",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_10",
+            "character": "上",
+            "transcription": "shàng",
+            "translation": "up, above",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_11",
+            "character": "没有",
+            "transcription": "méi yǒu",
+            "translation": "there is not",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_12",
+            "character": "桌子",
+            "transcription": "zhuō zi",
+            "translation": "table",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_13",
+            "character": "这儿",
+            "transcription": "zhèr",
+            "translation": "here",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_14",
+            "character": "坐",
+            "transcription": "zuò",
+            "translation": "to sit",
+            "additional_info": "",
+            "speech_part": "verb"
+        }
+    ]
+}

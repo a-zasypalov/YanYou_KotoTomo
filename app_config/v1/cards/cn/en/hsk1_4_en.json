@@ -1,0 +1,114 @@
+{
+    "deck_id": "hsk1_4_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "hsk1_4_en_1",
+            "character": "的",
+            "transcription": "de",
+            "translation": "of",
+            "additional_info": "",
+            "speech_part": "particle"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_4_en_2",
+            "character": "七",
+            "transcription": "qī",
+            "translation": "seven",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_4_en_3",
+            "character": "汉语",
+            "transcription": "hàn yǔ",
+            "translation": "Chinese language",
+            "additional_info": "",
+            "speech_part": "phrase"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_4_en_4",
+            "character": "朋友",
+            "transcription": "péng you",
+            "translation": "friend",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_4_en_5",
+            "character": "呢",
+            "transcription": "ne",
+            "translation": "What about ...?",
+            "additional_info": "particle indicating that a previously asked question is to be applied to the preceding word (\"What about ...?\"",
+            "speech_part": "particle"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_4_en_6",
+            "character": "哪",
+            "transcription": "nǎ",
+            "translation": "which",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_4_en_7",
+            "character": "九",
+            "transcription": "jiǔ",
+            "translation": "nine",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_4_en_8",
+            "character": "同学",
+            "transcription": "tóng xué",
+            "translation": "Classmate",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_4_en_9",
+            "character": "他",
+            "transcription": "tā",
+            "translation": "he or him",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_4_en_10",
+            "character": "她",
+            "transcription": "tā",
+            "translation": "she",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_4_en_11",
+            "character": "国",
+            "transcription": "guó",
+            "translation": "Country, nation",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_4_en_12",
+            "character": "谁",
+            "transcription": "shéi",
+            "translation": "who",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
+        }
+    ]
+}
