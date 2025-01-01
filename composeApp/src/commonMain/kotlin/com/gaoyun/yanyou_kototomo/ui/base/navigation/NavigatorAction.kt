@@ -17,6 +17,7 @@ object BackNavigationEffect : NavigationSideEffect
 
 class AppNavigator() : KoinComponent {
     fun navigate(call: NavigationSideEffect): NavigatorAction? = when (call) {
+        is ToOnboarding -> NavigatorAction.NavigateTo(ONBOARDING_ROUTE)
         is ToCourse -> NavigatorAction.NavigateTo(AppRoutes.COURSE_DECKS_ROUTE(args = call.args))
         is ToDeck -> NavigatorAction.NavigateTo(AppRoutes.DECK_OVERVIEW_ROUTE(args = call.args))
         is ToDeckPlayer -> NavigatorAction.NavigateTo(AppRoutes.DECK_PLAYER_ROUTE(args = call.args))
@@ -41,6 +42,7 @@ class AppNavigator() : KoinComponent {
 }
 
 object ToHomeScreen : NavigationSideEffect
+object ToOnboarding : NavigationSideEffect
 class ToCourse(val args: CourseScreenArgs) : NavigationSideEffect
 class ToDeck(val args: DeckScreenArgs) : NavigationSideEffect
 class ToDeckPlayer(val args: PlayerScreenArgs) : NavigationSideEffect
