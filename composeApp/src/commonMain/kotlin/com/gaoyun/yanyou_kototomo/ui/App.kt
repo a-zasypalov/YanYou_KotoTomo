@@ -17,6 +17,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.COURSE_DECKS_ROUT
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.DECK_OVERVIEW_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.DECK_PLAYER_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.HOME_HOST_ROUTE
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.ONBOARDING_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.QUIZ_SESSION_SUMMARY_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.SETTINGS_SECTION_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.STATISTICS_FULL_ROUTE
@@ -32,6 +33,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColorsProvider
 import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksScreen
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewScreen
 import com.gaoyun.yanyou_kototomo.ui.home.HomeScreenHost
+import com.gaoyun.yanyou_kototomo.ui.onboarding.OnboardingScreen
 import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerScreen
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryScreen
 import com.gaoyun.yanyou_kototomo.ui.settings.sections.SectionSettingsScreen
@@ -70,7 +72,7 @@ fun App() {
                                 is NavigatorAction.NavigateTo -> navigator.navigate(destination.path)
                                 is NavigatorAction.NavigateToWithBackHandler -> navigator.navigate(
                                     route = destination.path,
-                                    options = NavOptions(popUpTo = PopUpTo(destination.popupTo, false))
+                                    options = NavOptions(popUpTo = PopUpTo(destination.popupTo, destination.inclusive))
                                 )
                             }
                         }.collect {
@@ -80,7 +82,7 @@ fun App() {
 
                     NavHost(
                         navigator = navigator,
-                        initialRoute = HOME_HOST_ROUTE,
+                        initialRoute = ONBOARDING_ROUTE,
                         swipeProperties = if (Platform.name == PlatformNames.IOS) remember {
                             SwipeProperties(
                                 positionalThreshold = { distance: Float -> distance * 0.9f },
@@ -122,6 +124,9 @@ fun App() {
                             )
                         }
                     ) {
+                        scene(ONBOARDING_ROUTE) {
+                            OnboardingScreen(viewModel::navigate)
+                        }
                         scene(HOME_HOST_ROUTE) {
                             HomeScreenHost(viewModel::navigate)
                         }

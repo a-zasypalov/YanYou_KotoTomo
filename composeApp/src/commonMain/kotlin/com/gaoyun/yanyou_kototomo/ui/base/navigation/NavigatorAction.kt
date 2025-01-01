@@ -1,12 +1,13 @@
 package com.gaoyun.yanyou_kototomo.ui.base.navigation
 
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.ONBOARDING_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.SETTINGS_SECTION_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsListMode
 import org.koin.core.component.KoinComponent
 
 sealed class NavigatorAction {
     class NavigateTo(val path: String) : NavigatorAction()
-    class NavigateToWithBackHandler(val path: String, val popupTo: String) : NavigatorAction()
+    class NavigateToWithBackHandler(val path: String, val popupTo: String, val inclusive: Boolean = false) : NavigatorAction()
     data object NavigateBack : NavigatorAction()
     class PopTo(val path: String, val inclusive: Boolean) : NavigatorAction()
 }
@@ -29,10 +30,17 @@ class AppNavigator() : KoinComponent {
             }
         )
 
+        is ToHomeScreen -> NavigatorAction.NavigateToWithBackHandler(
+            path = AppRoutes.HOME_HOST_ROUTE,
+            popupTo = ONBOARDING_ROUTE,
+            inclusive = true
+        )
+
         else -> null
     }
 }
 
+object ToHomeScreen : NavigationSideEffect
 class ToCourse(val args: CourseScreenArgs) : NavigationSideEffect
 class ToDeck(val args: DeckScreenArgs) : NavigationSideEffect
 class ToDeckPlayer(val args: PlayerScreenArgs) : NavigationSideEffect

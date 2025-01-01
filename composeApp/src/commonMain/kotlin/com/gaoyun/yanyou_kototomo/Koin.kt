@@ -30,6 +30,7 @@ import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksViewModel
 import com.gaoyun.yanyou_kototomo.ui.courses.CoursesViewModel
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewViewModel
 import com.gaoyun.yanyou_kototomo.ui.home.HomeViewModel
+import com.gaoyun.yanyou_kototomo.ui.onboarding.OnboardingViewModel
 import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerViewModel
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryViewModel
 import com.gaoyun.yanyou_kototomo.ui.settings.sections.SettingsViewModel
@@ -114,6 +115,7 @@ val viewModelModule = module {
     factory { StatisticsViewModel(get(), get()) }
     factory { StatisticsFullListViewModel(get(), get()) }
     factory { SettingsViewModel(get(), get(), get()) }
+    factory { OnboardingViewModel() }
 }
 
 val dbModule = module {
