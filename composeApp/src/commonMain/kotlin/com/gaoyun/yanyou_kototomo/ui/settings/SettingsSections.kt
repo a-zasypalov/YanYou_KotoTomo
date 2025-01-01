@@ -2,14 +2,19 @@ package com.gaoyun.yanyou_kototomo.ui.settings
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.LocalLibrary
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Photo
 import androidx.compose.material.icons.filled.RestartAlt
+import androidx.compose.material.icons.filled.Translate
 
 internal fun settingsSections(
+    primaryLanguage: String,
+    onPrimaryLanguageChangeClick: () -> Unit,
     onAppIconClick: () -> Unit,
     onColorThemeClick: () -> Unit,
     onAboutAppClick: () -> Unit,
+    onOnboardingClick: () -> Unit,
     onResetClick: () -> Unit,
 ) = listOf(
     SettingsSection(
@@ -23,6 +28,18 @@ internal fun settingsSections(
         subtitle = "Customize your theme",
         icon = Icons.Default.Palette,
         onClick = onColorThemeClick
+    ),
+    SettingsSection(
+        title = "Primary Language",
+        subtitle = primaryLanguage,
+        icon = Icons.Default.Translate,
+        onClick = onPrimaryLanguageChangeClick
+    ),
+    SettingsSection(
+        title = "Show Onboarding",
+        subtitle = "If you want to see the tutorial again",
+        icon = Icons.Default.LocalLibrary,
+        onClick = onOnboardingClick
     ),
     SettingsSection(
         title = "About App",

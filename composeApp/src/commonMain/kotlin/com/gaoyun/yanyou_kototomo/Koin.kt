@@ -116,7 +116,7 @@ val viewModelModule = module {
     factory { QuizSessionSummaryViewModel(get()) }
     factory { StatisticsViewModel(get(), get()) }
     factory { StatisticsFullListViewModel(get(), get()) }
-    factory { SettingsViewModel(get(), get(), get()) }
+    factory { SettingsViewModel(get(), get(), get(), get()) }
     factory { OnboardingViewModel(get()) }
 }
 
