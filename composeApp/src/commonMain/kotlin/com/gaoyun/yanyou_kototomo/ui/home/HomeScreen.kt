@@ -182,7 +182,7 @@ private fun HomeScreenContent(
                     }
                 }
 
-                item { Spacer(Modifier.navigationBarsPadding().size(32.dp)) }
+                item { Spacer(Modifier.navigationBarsPadding().size(24.dp)) }
             }
         }
     } ?: FullScreenLoader()
