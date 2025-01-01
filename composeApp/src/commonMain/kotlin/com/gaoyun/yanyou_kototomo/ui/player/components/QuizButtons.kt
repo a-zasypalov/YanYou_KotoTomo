@@ -18,6 +18,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -32,6 +34,10 @@ internal fun BoxScope.QuizButtons(
     onAnswerClick: (String) -> Unit,
     onNextCardClick: () -> Unit,
 ) {
+    val quizButtonColors = ButtonDefaults.elevatedButtonColors(
+        containerColor = MaterialTheme.colorScheme.secondaryContainer,
+        contentColor = MaterialTheme.colorScheme.onSecondaryContainer
+    )
     Row(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier
@@ -66,6 +72,7 @@ internal fun BoxScope.QuizButtons(
                         PrimaryElevatedMarqueeButton(
                             text = answer,
                             modifier = Modifier.fillMaxWidth(),
+                            colors = quizButtonColors,
                             onClick = { onAnswerClick(answer) }
                         )
                     }
@@ -78,6 +85,7 @@ internal fun BoxScope.QuizButtons(
                     Spacer(modifier = Modifier.height(56.dp))
                     PrimaryElevatedButton(
                         text = "Next card",
+                        colors = quizButtonColors,
                         modifier = Modifier.fillMaxWidth().padding(bottom = 64.dp).padding(horizontal = 24.dp),
                         onClick = onNextCardClick
                     )
