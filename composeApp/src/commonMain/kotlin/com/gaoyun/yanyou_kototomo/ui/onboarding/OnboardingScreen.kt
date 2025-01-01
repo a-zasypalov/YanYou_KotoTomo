@@ -20,10 +20,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToHomeScreen
+import com.gaoyun.yanyou_kototomo.ui.onboarding.pages.OnboardingLanguageChooserPage
+import com.gaoyun.yanyou_kototomo.ui.onboarding.pages.OnboardingWelcomePage
 import kotlinx.coroutines.launch
 import moe.tlaster.precompose.koin.koinViewModel
 
@@ -32,16 +35,22 @@ fun OnboardingScreen(navigate: (NavigationSideEffect) -> Unit) {
     val viewModel = koinViewModel(vmClass = OnboardingViewModel::class)
 
     SurfaceScaffold {
-        OnboardingScreenContent {
-            viewModel.finishOnboarding()
-            navigate(ToHomeScreen)
-        }
+        OnboardingScreenContent(
+            onPrimaryLanguageChosen = viewModel::onPrimaryLanguageChosen,
+            onFinish = {
+                viewModel.finishOnboarding()
+                navigate(ToHomeScreen)
+            }
+        )
     }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-private fun OnboardingScreenContent(onFinish: () -> Unit) {
+private fun OnboardingScreenContent(
+    onPrimaryLanguageChosen: (LanguageId) -> Unit,
+    onFinish: () -> Unit,
+) {
     val state = rememberPagerState(pageCount = { return@rememberPagerState 3 })
     val scope = rememberCoroutineScope()
 
@@ -53,8 +62,8 @@ private fun OnboardingScreenContent(onFinish: () -> Unit) {
                 .padding(bottom = 72.dp)
         ) { page ->
             when (page) {
-                0 -> Box(modifier = Modifier.fillMaxSize())
-                1 -> Box(modifier = Modifier.fillMaxSize())
+                0 -> OnboardingWelcomePage()
+                1 -> OnboardingLanguageChooserPage(onPrimaryLanguageChosen)
                 2 -> Box(modifier = Modifier.fillMaxSize())
             }
         }
