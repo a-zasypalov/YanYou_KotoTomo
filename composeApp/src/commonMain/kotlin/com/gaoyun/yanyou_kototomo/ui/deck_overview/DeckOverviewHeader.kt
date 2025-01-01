@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Bookmark
 import androidx.compose.material.icons.filled.BookmarkBorder
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
@@ -64,7 +65,11 @@ fun DeckOverviewHeader(
                 checked = viewState.isBookmarked,
                 onCheckedChange = updateBookmarkedState,
             ) {
-                Icon(Icons.Default.BookmarkBorder, null)
+                if (viewState.isBookmarked) {
+                    Icon(Icons.Default.Bookmark, null)
+                } else {
+                    Icon(Icons.Default.BookmarkBorder, null)
+                }
             }
 
 

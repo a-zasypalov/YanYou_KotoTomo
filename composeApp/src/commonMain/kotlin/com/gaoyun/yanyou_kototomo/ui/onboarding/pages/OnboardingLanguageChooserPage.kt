@@ -41,8 +41,6 @@ fun OnboardingLanguageChooserPage(
             .padding(bottom = 64.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.size(32.dp))
-
         Text(
             text = "Which language do you want to choose as primary?",
             textAlign = TextAlign.Center,
