@@ -29,42 +29,47 @@ fun CardProgressStatisticsItem(card: CardSimpleDataEntryWithProgress) {
         shape = MaterialTheme.shapes.medium,
         tonalElevation = 8.dp,
     ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(4.dp),
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(8.dp),
+        ProgressStatisticsItem(card)
+    }
+}
+
+@Composable
+fun ProgressStatisticsItem(card: CardSimpleDataEntryWithProgress) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(8.dp),
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                Text(
-                    text = card.character,
-                    style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Medium),
-                )
-                Text(
-                    text = "(${card.answer})",
-                    style = MaterialTheme.typography.titleSmall,
-                    overflow = TextOverflow.Ellipsis,
-                    maxLines = 1,
-                )
-            }
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                Icon(
-                    imageVector = Icons.Default.EventRepeat,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                    modifier = Modifier.size(16.dp)
-                )
-                Text(
-                    text = card.progress.nextReview.toRelativeFormat(),
-                    style = MaterialTheme.typography.bodySmall,
-                )
-            }
+            Text(
+                text = card.character,
+                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Medium),
+            )
+            Text(
+                text = "(${card.answer})",
+                style = MaterialTheme.typography.titleSmall,
+                overflow = TextOverflow.Ellipsis,
+                maxLines = 1,
+            )
+        }
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Default.EventRepeat,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                modifier = Modifier.size(16.dp)
+            )
+            Text(
+                text = card.progress.nextReview.toRelativeFormat(),
+                style = MaterialTheme.typography.bodySmall,
+            )
         }
     }
 }

@@ -5,8 +5,10 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -25,12 +27,13 @@ import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionForStatistic
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
 import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
+import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.statistics.StatisticsViewState
-import com.gaoyun.yanyou_kototomo.ui.statistics.components.CardProgressStatisticsItem
+import com.gaoyun.yanyou_kototomo.ui.statistics.components.ProgressStatisticsItem
 import moe.tlaster.precompose.koin.koinViewModel
 
 @Composable
@@ -83,8 +86,7 @@ private fun StatisticsFullListScreenContent(
 
     LazyColumn(
         state = listState,
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+        modifier = Modifier.fillMaxWidth(),
     ) {
         item {
             AutoResizeText(
@@ -92,7 +94,7 @@ private fun StatisticsFullListScreenContent(
                 fontSizeRange = FontSizeRange(min = 16.sp, max = MaterialTheme.typography.displayLarge.fontSize),
                 style = MaterialTheme.typography.displayLarge,
                 maxLines = 1,
-                modifier = Modifier.padding(bottom = 16.dp)
+                modifier = Modifier.padding(bottom = 16.dp).padding(horizontal = 16.dp)
             )
         }
         if (!content?.sessions.isNullOrEmpty()) {
@@ -113,12 +115,20 @@ private fun StatisticsFullListScreenContent(
 
         if (!content?.cardsProgress.isNullOrEmpty()) {
             content.cardsProgress.forEach { cardProgress ->
-                item { CardProgressStatisticsItem(cardProgress) }
+                item {
+                    Column(
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        ProgressStatisticsItem(cardProgress)
+                        Divider(height = 1.dp)
+                    }
+                }
             }
         }
 
         if (canRequestNewPage) item { LaunchedEffect(Unit) { nextPage() } }
 
-        item { Spacer(Modifier.size(32.dp)) }
+        item { Spacer(Modifier.navigationBarsPadding().size(32.dp)) }
     }
 }

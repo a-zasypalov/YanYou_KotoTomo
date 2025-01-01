@@ -90,14 +90,14 @@ fun SwipeToDismissQuizSessionItem(session: QuizSessionForStatistic, onDelete: ()
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(MaterialTheme.colorScheme.errorContainer)
+                    .background(MaterialTheme.colorScheme.error)
                     .padding(horizontal = 16.dp),
                 contentAlignment = Alignment.CenterEnd
             ) {
                 Icon(
                     imageVector = Icons.Default.Delete,
                     contentDescription = "Delete",
-                    tint = MaterialTheme.colorScheme.onErrorContainer
+                    tint = MaterialTheme.colorScheme.onError
                 )
             }
         },
@@ -105,7 +105,10 @@ fun SwipeToDismissQuizSessionItem(session: QuizSessionForStatistic, onDelete: ()
             QuizSessionStatisticsItem(
                 session = session,
                 addDivider = addDivider,
-                modifier = Modifier.background(MaterialTheme.colorScheme.surfaceColorAtElevation(8.dp))
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.surfaceColorAtElevation(8.dp))
+                    .padding(horizontal = 16.dp)
+                    .padding(top = 8.dp)
             )
         }
     )

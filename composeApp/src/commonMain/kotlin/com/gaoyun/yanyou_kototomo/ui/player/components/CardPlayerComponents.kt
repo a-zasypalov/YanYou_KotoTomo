@@ -9,6 +9,7 @@ import androidx.compose.animation.scaleOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.MaterialTheme
@@ -86,7 +87,7 @@ internal fun ColumnScope.CardPlayerFront(
             ),
             textAlign = TextAlign.Center,
             maxLines = 1,
-            modifier = modifier.fillMaxWidth().wrapContentHeight(align = Alignment.CenterVertically)
+            modifier = modifier.fillMaxWidth().heightIn(min = 215.dp).wrapContentHeight(align = Alignment.CenterVertically)
         )
     }
 }

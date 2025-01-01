@@ -14,6 +14,8 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -108,7 +110,9 @@ private fun DeckPlayerScreenContent(
                 tonalElevation = 8.dp,
                 shadowElevation = 8.dp,
                 shape = MaterialTheme.shapes.large,
-                modifier = Modifier.fillMaxHeight(fraction = 0.75f).padding(horizontal = 24.dp).padding(top = 24.dp)
+                modifier = Modifier.fillMaxHeight(fraction = 0.78f)
+                    .verticalScroll(rememberScrollState())
+                    .padding(24.dp)
             ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
