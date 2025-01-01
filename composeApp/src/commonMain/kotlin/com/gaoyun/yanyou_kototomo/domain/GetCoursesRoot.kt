@@ -2,10 +2,21 @@ package com.gaoyun.yanyou_kototomo.domain
 
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.RootStructure
+import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
+import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toLocal
 import com.gaoyun.yanyou_kototomo.repository.CoursesRootComponentRepository
 
-class GetCoursesRoot(private val repository: CoursesRootComponentRepository) {
-    suspend fun getCourses(): RootStructure = repository.getCoursesRoot().toLocal()
+class GetCoursesRoot(
+    private val repository: CoursesRootComponentRepository,
+    private val preferences: Preferences,
+) {
+    suspend fun getCourses(): RootStructure {
+        val primaryLanguageId = preferences.getString(PreferencesKeys.PRIMARY_LANGUAGE_ID, "cn")
+        return repository.getCoursesRoot().toLocal().let {
+            it.copy(languages = it.languages.sortedBy { language -> if (language.id.identifier == primaryLanguageId) 0 else 1 })
+        }
+    }
+
     suspend fun getCourseDecks(courseId: CourseId) = repository.getCourse(courseId).toLocal()
 }
