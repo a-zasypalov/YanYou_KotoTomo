@@ -82,7 +82,7 @@ fun App() {
 
                     NavHost(
                         navigator = navigator,
-                        initialRoute = ONBOARDING_ROUTE,
+                        initialRoute = viewModel.getStartRoute(),
                         swipeProperties = if (Platform.name == PlatformNames.IOS) remember {
                             SwipeProperties(
                                 positionalThreshold = { distance: Float -> distance * 0.9f },

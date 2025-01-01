@@ -6,6 +6,8 @@ object PreferencesKeys {
     const val LEARNING_DECK = "LEARNING_DECK"
     const val BOOKMARKED_DECKS = "BOOKMARKED_DECKS"
     const val COLOR_THEME = "COLOR_THEME"
+    const val ONBOARDING_IS_SHOWN = "ONBOARDING_IS_SHOWN"
+    const val PRIMARY_LANGUAGE_ID = "PRIMARY_LANGUAGE_ID"
 }
 
 expect class Preferences(name: String? = null) {

@@ -13,6 +13,7 @@ import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.domain.GetDeckFromCache
 import com.gaoyun.yanyou_kototomo.domain.GetHomeState
+import com.gaoyun.yanyou_kototomo.domain.OnboardingInteractor
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
 import com.gaoyun.yanyou_kototomo.network.DecksApi
@@ -89,7 +90,7 @@ val repositoryModule = module {
 }
 
 val useCaseModule = module {
-    single { GetCoursesRoot(get()) }
+    single { GetCoursesRoot(get(), get()) }
     single { GetDeck(get(), get()) }
     single { GetDeckFromCache(get(), get()) }
     single { SpacedRepetitionCalculation() }
@@ -101,11 +102,12 @@ val useCaseModule = module {
     single { BookmarksInteractor(get(), get()) }
     single { ColorsProvider(get()) }
     single { AllDataReset(get(), get()) }
+    single { OnboardingInteractor(get()) }
 }
 
 val viewModelModule = module {
     single { AppNavigator() }
-    factory { AppViewModel(get(), get()) }
+    factory { AppViewModel(get(), get(), get()) }
     factory { HomeViewModel(get()) }
     factory { CoursesViewModel(get()) }
     factory { CourseDecksViewModel(get()) }
@@ -115,7 +117,7 @@ val viewModelModule = module {
     factory { StatisticsViewModel(get(), get()) }
     factory { StatisticsFullListViewModel(get(), get()) }
     factory { SettingsViewModel(get(), get(), get()) }
-    factory { OnboardingViewModel() }
+    factory { OnboardingViewModel(get()) }
 }
 
 val dbModule = module {
