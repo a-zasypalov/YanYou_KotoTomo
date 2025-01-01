@@ -16,6 +16,7 @@ object AppRoutes {
         const val SETTINGS_SECTION = "SETTINGS_SECTION"
     }
 
+    const val ONBOARDING_ROUTE = "/ONBOARDING_ROUTE"
     const val HOME_HOST_ROUTE = "/HOME_HOST_ROUTE"
     const val HOME_ROUTE = "/HOME_ROUTE"
     const val COURSES_ROUTE = "/COURSES_ROUTE"
