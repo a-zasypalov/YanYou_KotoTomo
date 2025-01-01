@@ -33,7 +33,7 @@ fun AboutAppSettingScreenContent() {
         ) {
             Spacer(modifier = Modifier.size(32.dp))
 
-            Surface(shadowElevation = 16.dp, shape = MaterialTheme.shapes.medium) {
+            Surface(shadowElevation = 16.dp, shape = MaterialTheme.shapes.large) {
                 Image(
                     painter = painterResource(Res.drawable.app_icon_variant_1),
                     contentDescription = null,
