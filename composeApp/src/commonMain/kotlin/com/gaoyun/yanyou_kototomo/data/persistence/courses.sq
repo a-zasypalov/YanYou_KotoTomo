@@ -96,10 +96,8 @@ SELECT
     d.id AS deck_id,
     c.language_id,
     c.source_language_id
-FROM
-    CourseDecksPersisted d
-JOIN
-    CoursesPersisted c ON d.course_id = c.id;
+FROM CourseDecksPersisted d
+JOIN CoursesPersisted c ON d.course_id = c.id;
 
 clearCache:
 DELETE FROM LanguagesPersisted;

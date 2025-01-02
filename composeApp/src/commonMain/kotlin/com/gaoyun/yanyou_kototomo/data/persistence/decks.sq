@@ -36,6 +36,9 @@ SELECT * FROM CardsPersisted WHERE deck_id = ?;
 getCard:
 SELECT * FROM CardsPersisted WHERE id = ?;
 
+getDownloadedDeckIds:
+SELECT id FROM DecksPersisted;
+
 getCardsByIds:
 SELECT *
 FROM CardsPersisted
@@ -47,3 +50,4 @@ WHERE id = :deck_id;
 
 deleteAll:
 DELETE FROM DecksPersisted;
+DELETE FROM CardsPersisted;
