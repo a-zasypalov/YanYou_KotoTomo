@@ -90,7 +90,7 @@ val repositoryModule = module {
 }
 
 val useCaseModule = module {
-    single { GetCoursesRoot(get(), get()) }
+    single { GetCoursesRoot(get(), get(), get()) }
     single { GetDeck(get(), get()) }
     single { GetDeckFromCache(get(), get()) }
     single { SpacedRepetitionCalculation() }
