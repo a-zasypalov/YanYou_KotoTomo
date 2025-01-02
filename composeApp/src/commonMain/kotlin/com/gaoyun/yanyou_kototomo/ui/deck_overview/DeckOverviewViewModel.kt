@@ -30,26 +30,27 @@ class DeckOverviewViewModel(
     fun getDeck(args: DeckScreenArgs) = viewModelScope.launch {
         val course = getCoursesRoot.getCourseDecks(args.courseId)
         course.decks.find { it.id == args.deckId }?.let { deckInCourse ->
-            val deck = getDeck.getDeck(
+            getDeck.getDeck(
                 learningLanguage = args.learningLanguageId,
                 sourceLanguage = args.sourceLanguageId,
                 deck = deckInCourse,
                 requiredDecks = course.requiredDecks ?: listOf()
-            )
-            val settings = deckSettingsInteractor.getDeckSettings(args.deckId) ?: DeckSettings.DEFAULT(args.deckId)
-            val cardsDueToReview = deck.cards.count { it.progress.countForReview() }
+            )?.let { deck ->
+                val settings = deckSettingsInteractor.getDeckSettings(args.deckId) ?: DeckSettings.DEFAULT(args.deckId)
+                val cardsDueToReview = deck.cards.count { it.progress.countForReview() }
 
-            val bookmarks = bookmarksInteractor.getBookmarkedDecks()
-            bookmarksState.value = bookmarks.toMutableList()
-            bookmarkState.value = bookmarks.find { it.id == deck.id }
+                val bookmarks = bookmarksInteractor.getBookmarkedDecks()
+                bookmarksState.value = bookmarks.toMutableList()
+                bookmarkState.value = bookmarks.find { it.id == deck.id }
 
-            viewState.value = DeckOverviewState(
-                deck = deck,
-                settings = settings,
-                cardsDueToReview = cardsDueToReview,
-                isBookmarked = bookmarkState.value != null,
-                isCurrentlyLearned = bookmarksInteractor.getLearningDeck()?.id == deck.id
-            )
+                viewState.value = DeckOverviewState(
+                    deck = deck,
+                    settings = settings,
+                    cardsDueToReview = cardsDueToReview,
+                    isBookmarked = bookmarkState.value != null,
+                    isCurrentlyLearned = bookmarksInteractor.getLearningDeck()?.id == deck.id
+                )
+            }
         }
     }
 

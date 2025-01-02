@@ -23,18 +23,28 @@ class DecksApi(private val client: HttpClient) {
     internal suspend fun getDeck(
         learningLanguageId: String,
         sourceLanguage: String,
-        deckId: String
-    ): DeckDTO {
+        deckId: String,
+    ): DeckDTO? {
         val responseString: String = client.requestAndCatch {
             get("${YanYouKotoTomoApi.GITHUB_ENDPOINT}/app_config/$API_VERSION/cards/${learningLanguageId}/${sourceLanguage}/${deckId}.json").body()
         }
-        return Json.decodeFromString(responseString)
+        return try {
+            Json.decodeFromString(responseString)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
     }
 
-    internal suspend fun getDeckUpdates(): DeckUpdatesDTO {
+    internal suspend fun getDeckUpdates(): DeckUpdatesDTO? {
         val responseString: String = client.requestAndCatch {
             get("${YanYouKotoTomoApi.GITHUB_ENDPOINT}/app_config/$API_VERSION/deck_updates.json").body()
         }
-        return Json.decodeFromString(responseString)
+        return try {
+            Json.decodeFromString(responseString)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
     }
 }

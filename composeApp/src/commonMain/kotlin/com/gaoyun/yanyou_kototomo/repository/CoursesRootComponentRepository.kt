@@ -1,6 +1,8 @@
 package com.gaoyun.yanyou_kototomo.repository
 
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
+import com.gaoyun.yanyou_kototomo.data.local.DeckId
+import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
 import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys
 import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
@@ -17,6 +19,7 @@ class CoursesRootComponentRepository(
     private val api: DecksApi,
     private val db: YanYouKotoTomoDatabase,
     private val prefs: Preferences,
+    private val deckRepository: DeckRepository,
     private val deckUpdatesRepository: DeckUpdatesRepository,
 ) {
 
@@ -49,9 +52,10 @@ class CoursesRootComponentRepository(
         db.coursesQueries.getRootData().executeAsList().mapToRootStructureDTO()
     }.getOrNull()
 
-    private fun cacheCourses(response: RootStructureDTO) {
+    private suspend fun cacheCourses(response: RootStructureDTO) {
         println("Caching courses from api")
         db.coursesQueries.clearCache()
+        reloadDecks()
 
         response.languages.forEach { learningLanguage ->
             db.coursesQueries.insertLanguage(learningLanguage.id)
@@ -84,6 +88,19 @@ class CoursesRootComponentRepository(
                     }
                 }
             }
+        }
+    }
+
+    private suspend fun reloadDecks() {
+        val decks = db.coursesQueries.getCachedDecks().executeAsList()
+        db.decksQueries.deleteAll()
+
+        decks.forEach {
+            deckRepository.fetchDeck(
+                learningLanguage = LanguageId(it.language_id),
+                sourceLanguage = LanguageId(it.source_language_id),
+                deckId = DeckId(it.deck_id)
+            )
         }
     }
 }

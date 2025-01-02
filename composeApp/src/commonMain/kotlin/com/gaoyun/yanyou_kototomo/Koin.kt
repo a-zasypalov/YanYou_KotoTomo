@@ -81,7 +81,7 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    single { CoursesRootComponentRepository(get(), get(), get(), get()) }
+    single { CoursesRootComponentRepository(get(), get(), get(), get(), get()) }
     single { DeckRepository(get(), get(), get()) }
     single { DeckUpdatesRepository(get(), get(), get()) }
     single { CardsAndProgressRepository(get()) }

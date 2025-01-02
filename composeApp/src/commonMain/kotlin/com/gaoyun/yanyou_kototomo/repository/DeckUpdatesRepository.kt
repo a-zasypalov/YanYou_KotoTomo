@@ -29,8 +29,8 @@ class DeckUpdatesRepository(
             getLatestVersionForDeck(deckId)
         } else {
             //Check newest version from api
-            fetchUpdatesFromApi().updates
-                .find { it.deckId == deckId.identifier }?.version
+            fetchUpdatesFromApi()?.updates
+                ?.find { it.deckId == deckId.identifier }?.version
                 ?: Int.MAX_VALUE
         }
 
@@ -54,7 +54,7 @@ class DeckUpdatesRepository(
     private suspend fun check(lastUpdate: LocalDateTime): Boolean {
         return if (shouldRefresh(lastUpdate)) {
             //updated config, check if updated later than devices last update
-            val updated = fetchUpdatesFromApi().coursesUpdated
+            val updated = fetchUpdatesFromApi()?.coursesUpdated ?: return false
             updated > lastUpdate
         } else false
     }
@@ -67,7 +67,7 @@ class DeckUpdatesRepository(
 
     private suspend fun fetchUpdatesFromApi() = api.getDeckUpdates().also {
         prefs.setString(PreferencesKeys.UPDATES_STRUCTURE_REFRESHED, localDateTimeNow().toString())
-        insertDeckUpdates(it.updates)
+        it?.updates?.let { insertDeckUpdates(it) }
     }
 
     private fun getLatestVersionForDeck(deckId: DeckId): Int {

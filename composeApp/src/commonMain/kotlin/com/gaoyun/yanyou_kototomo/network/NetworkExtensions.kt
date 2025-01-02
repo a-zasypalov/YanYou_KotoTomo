@@ -27,6 +27,7 @@ internal fun Throwable.handleDefaultApiErrors(): Nothing =
             HttpStatusCode.BadRequest -> throw this
             HttpStatusCode.Unauthorized -> throw this
             HttpStatusCode.UpgradeRequired -> throw this
+            HttpStatusCode.NotFound -> throw this
             else -> throw this
         }
     } else {

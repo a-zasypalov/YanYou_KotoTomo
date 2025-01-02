@@ -91,6 +91,16 @@ WHERE CoursesPersisted.id = :courseId;
 getDeckNames:
 SELECT id, name FROM CourseDecksPersisted WHERE id IN ?;
 
+getCachedDecks:
+SELECT
+    d.id AS deck_id,
+    c.language_id,
+    c.source_language_id
+FROM
+    CourseDecksPersisted d
+JOIN
+    CoursesPersisted c ON d.course_id = c.id;
+
 clearCache:
 DELETE FROM LanguagesPersisted;
 DELETE FROM SourceLanguagesPersisted;
