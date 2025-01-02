@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -65,6 +66,7 @@ fun SettingsScreen(
             onOnboardingClick = { navigate(ToOnboarding) },
             onPrimaryLanguageChange = viewModel::setPrimaryLanguageId,
             availableLanguages = viewState.availableLanguages.map { it to stringResource(it.toStringRes()) },
+            onReloadCoursesClick = viewModel::reloadCourses,
             onResetClick = { showDialog.value = true },
         )
     }
@@ -83,6 +85,7 @@ private fun SettingsScreenContent(
     onAboutAppClick: () -> Unit,
     onOnboardingClick: () -> Unit,
     onPrimaryLanguageChange: (LanguageId) -> Unit,
+    onReloadCoursesClick: () -> Unit,
     onResetClick: () -> Unit,
 ) {
     val showDialog = remember { mutableStateOf(false) }
@@ -109,10 +112,15 @@ private fun SettingsScreenContent(
                 onColorThemeClick,
                 onAboutAppClick,
                 onOnboardingClick,
+                onReloadCoursesClick,
                 onResetClick
             )
         ) { section ->
             SettingsSectionItem(section = section)
+        }
+
+        item {
+            Spacer(modifier = Modifier.navigationBarsPadding().size(32.dp))
         }
     }
 
