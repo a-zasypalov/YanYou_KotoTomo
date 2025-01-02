@@ -8,6 +8,15 @@ import androidx.compose.material.icons.filled.Photo
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.RestartAlt
 import androidx.compose.material.icons.filled.Translate
+import androidx.compose.ui.graphics.vector.ImageVector
+
+data class SettingsSection(
+    val title: String,
+    val subtitle: String,
+    val icon: ImageVector,
+    val onClick: () -> Unit,
+    val isDestructive: Boolean = false,
+)
 
 internal fun settingsSections(
     primaryLanguage: String,
