@@ -44,7 +44,7 @@ class QuizInteractor(
                 deck = deckInCourse,
                 requiredDecks = course.requiredDecks ?: listOf()
             )
-            deck.cards
+            deck?.cards
         }?.filter { cardIds.contains(it.card.id.identifier) } ?: listOf()
         return session.withCards(cards)
     }

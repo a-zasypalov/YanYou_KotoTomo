@@ -53,18 +53,19 @@ class DeckPlayerViewModel(
         this@DeckPlayerViewModel.playerMode.value = playerMode
         val course = getCoursesRoot.getCourseDecks(courseId)
         course.decks.find { it.id == deckId }?.let { deckInCourse ->
-            val result = getDeck.getDeck(
+            getDeck.getDeck(
                 learningLanguage = learningLanguageId,
                 sourceLanguage = sourceLanguageId,
                 deck = deckInCourse,
                 requiredDecks = course.requiredDecks ?: listOf()
-            )
-            val cardForPlayer = when (playerMode) {
-                PlayerMode.SpacialRepetition -> result.cards.filter { it.progress.countForReview() }.shuffled()
-                PlayerMode.Quiz -> result.cards.shuffled().also { quizStart.value = localDateTimeNow() }
+            )?.let { result ->
+                val cardForPlayer = when (playerMode) {
+                    PlayerMode.SpacialRepetition -> result.cards.filter { it.progress.countForReview() }.shuffled()
+                    PlayerMode.Quiz -> result.cards.shuffled().also { quizStart.value = localDateTimeNow() }
+                }
+                deckState.value = result.copy(cards = cardForPlayer)
+                nextCard()
             }
-            deckState.value = result.copy(cards = cardForPlayer)
-            nextCard()
         }
     }
 

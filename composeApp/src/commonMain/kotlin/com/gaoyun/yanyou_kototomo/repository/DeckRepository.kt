@@ -18,7 +18,7 @@ class DeckRepository(
         learningLanguage: LanguageId,
         sourceLanguage: LanguageId,
         deckId: DeckId,
-    ): DeckDTO {
+    ): DeckDTO? {
         val cache = getDeckFromCache(deckId)?.let {
             val shouldRefresh = deckUpdatesRepository.shouldRefreshDeck(deckId, it.version)
             if (!shouldRefresh) it else null
@@ -35,7 +35,7 @@ class DeckRepository(
         learningLanguage: LanguageId,
         sourceLanguage: LanguageId,
         deck: CourseDeck,
-    ): DeckDTO {
+    ): DeckDTO? {
         val shouldRefresh = deckUpdatesRepository.shouldRefreshDeck(deck.id, deck.version)
         val cache = if (!shouldRefresh) getDeckFromCache(deck.id) else null
 
@@ -53,16 +53,16 @@ class DeckRepository(
             .takeIf { it.cards.isNotEmpty() }
     }.getOrNull()
 
-    private suspend fun fetchDeck(
+    internal suspend fun fetchDeck(
         learningLanguage: LanguageId,
         sourceLanguage: LanguageId,
         deckId: DeckId,
-    ): DeckDTO {
+    ): DeckDTO? {
         return api.getDeck(
             learningLanguage.identifier,
             sourceLanguage.identifier,
             deckId.identifier
-        ).also {
+        )?.also {
             cacheDeck(it, deckId)
         }
     }

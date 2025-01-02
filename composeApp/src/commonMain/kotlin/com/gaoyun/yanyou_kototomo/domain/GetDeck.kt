@@ -20,9 +20,9 @@ class GetDeck(
         sourceLanguage: LanguageId,
         deck: CourseDeck,
         requiredDecks: List<DeckId> = listOf(),
-    ): Deck {
+    ): Deck? {
         val deckResponse = deckRepository.getDeck(learningLanguage, sourceLanguage, deck)
-        val deckWords = deckResponse.cards.filterIsInstance<CardDTO.WordCardDTO>()
+        val deckWords = deckResponse?.cards?.filterIsInstance<CardDTO.WordCardDTO>() ?: return null
         val deckKana = deckResponse.cards.filterIsInstance<CardDTO.KanaCardDTO>()
 
         val requiredCards = getRequiredCards(learningLanguage, sourceLanguage, requiredDecks)
@@ -50,5 +50,5 @@ class GetDeck(
         requiredDecks: List<DeckId>,
     ): List<CardDTO> = requiredDecks
         .map { deckRepository.getDeck(learningLanguage, sourceLanguage, it) }
-        .flatMap { it.cards }
+        .flatMap { it?.cards ?: listOf() }
 }
