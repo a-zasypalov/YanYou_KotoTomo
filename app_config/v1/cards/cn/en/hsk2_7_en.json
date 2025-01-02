@@ -1,0 +1,123 @@
+{
+    "deck_id": "hsk2_7_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "hsk2_7_en_1",
+            "character": "公共汽车",
+            "transcription": "gōng gòng qì chē",
+            "translation": "Bus",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_7_en_2",
+            "character": "公司",
+            "transcription": "gōng sī",
+            "translation": "Company",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_7_en_3",
+            "character": "机场",
+            "transcription": "jī chǎng",
+            "translation": "Airport",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_7_en_4",
+            "character": "路",
+            "transcription": "lù",
+            "translation": "Road",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_7_en_5",
+            "character": "教室",
+            "transcription": "jiào shì",
+            "translation": "Classroom",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_7_en_6",
+            "character": "小时",
+            "transcription": "xiǎo shí",
+            "translation": "Hour",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_7_en_7",
+            "character": "到",
+            "transcription": "dào",
+            "translation": "To arrive",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_7_en_8",
+            "character": "离",
+            "transcription": "lí",
+            "translation": "To be away from",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_7_en_9",
+            "character": "走",
+            "transcription": "zǒu",
+            "translation": "To walk",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_7_en_10",
+            "character": "过",
+            "transcription": "guò",
+            "translation": "To spend (time)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_7_en_11",
+            "character": "快",
+            "transcription": "kuài",
+            "translation": "Fast",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_7_en_12",
+            "character": "慢",
+            "transcription": "màn",
+            "translation": "Slow",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_7_en_13",
+            "character": "远",
+            "transcription": "yuǎn",
+            "translation": "Far",
+            "additional_info": "",
+            "speech_part": "adjective"
+        }
+    ]
+}

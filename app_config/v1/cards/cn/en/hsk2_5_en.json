@@ -1,0 +1,132 @@
+{
+    "deck_id": "hsk2_5_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "hsk2_5_en_1",
+            "character": "考试",
+            "transcription": "kǎo shì",
+            "translation": "Exam",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_5_en_2",
+            "character": "咖啡",
+            "transcription": "kā fēi",
+            "translation": "Coffee",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_5_en_3",
+            "character": "外面",
+            "transcription": "wài miàn",
+            "translation": "Outside",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_5_en_4",
+            "character": "以后",
+            "transcription": "yǐ hòu",
+            "translation": "After, later",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_5_en_5",
+            "character": "意思",
+            "transcription": "yì si",
+            "translation": "Meaning",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_5_en_6",
+            "character": "鱼",
+            "transcription": "yú",
+            "translation": "Fish",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_5_en_7",
+            "character": "还",
+            "transcription": "hái",
+            "translation": "Rather",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_5_en_8",
+            "character": "就",
+            "transcription": "jiù",
+            "translation": "Indicates conclusion",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_5_en_9",
+            "character": "准备",
+            "transcription": "zhǔn bèi",
+            "translation": "To plan",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_5_en_10",
+            "character": "不错",
+            "transcription": "bú cuò",
+            "translation": "Not bad",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_5_en_11",
+            "character": "件",
+            "transcription": "jiàn",
+            "translation": "Piece (of clothes)",
+            "additional_info": "",
+            "speech_part": "preposition"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_5_en_12",
+            "character": "对",
+            "transcription": "duì",
+            "translation": "To, for",
+            "additional_info": "",
+            "speech_part": "preposition"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_5_en_13",
+            "character": "可以",
+            "transcription": "kě yǐ",
+            "translation": "Not bad",
+            "additional_info": "",
+            "speech_part": "conjunction"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_5_en_14",
+            "character": "吧",
+            "transcription": "ba",
+            "translation": "Indicates suggestion",
+            "additional_info": "",
+            "speech_part": "particle"
+        }
+    ]
+}
