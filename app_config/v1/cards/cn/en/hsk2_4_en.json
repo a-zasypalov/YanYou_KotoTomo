@@ -1,0 +1,123 @@
+{
+    "deck_id": "hsk2_4_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "hsk2_4_en_1",
+            "character": "问",
+            "transcription": "wèn",
+            "translation": "To ask",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_4_en_2",
+            "character": "非常",
+            "transcription": "fēi cháng",
+            "translation": "Very, extremely",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_4_en_3",
+            "character": "已经",
+            "transcription": "yǐ jīng",
+            "translation": "Already",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_4_en_4",
+            "character": "两",
+            "transcription": "liǎng",
+            "translation": "Two",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_4_en_5",
+            "character": "介绍",
+            "transcription": "jiè shào",
+            "translation": "To introduce",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_4_en_6",
+            "character": "开始",
+            "transcription": "kāi shǐ",
+            "translation": "To begin",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_4_en_7",
+            "character": "接",
+            "transcription": "jiē",
+            "translation": "To receive",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_4_en_8",
+            "character": "帮",
+            "transcription": "bāng",
+            "translation": "Help",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_4_en_9",
+            "character": "长",
+            "transcription": "cháng",
+            "translation": "Length",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_4_en_10",
+            "character": "快乐",
+            "transcription": "kuài lè",
+            "translation": "Happy",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_4_en_11",
+            "character": "生日",
+            "transcription": "shēng rì",
+            "translation": "Birthday",
+            "additional_info": "",
+            "speech_part": "time_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_4_en_12",
+            "character": "晚上",
+            "transcription": "wǎn shang",
+            "translation": "Evening",
+            "additional_info": "",
+            "speech_part": "time_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_4_en_13",
+            "character": "给",
+            "transcription": "gěi",
+            "translation": "To, for",
+            "additional_info": "",
+            "speech_part": "preposition"
+        }
+    ]
+}

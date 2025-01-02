@@ -1,0 +1,87 @@
+{
+    "deck_id": "hsk2_10_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "hsk2_10_en_1",
+            "character": "鸡蛋",
+            "transcription": "jī dàn",
+            "translation": "Egg (chicken)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_10_en_2",
+            "character": "哥哥",
+            "transcription": "gē ge",
+            "translation": "Older brother",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_10_en_3",
+            "character": "手机",
+            "transcription": "shǒu jī",
+            "translation": "Cell phone",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_10_en_4",
+            "character": "西瓜",
+            "transcription": "xī guā",
+            "translation": "Watermelon",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_10_en_5",
+            "character": "课",
+            "transcription": "kè",
+            "translation": "Lesson",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_10_en_6",
+            "character": "帮助",
+            "transcription": "bāng zhù",
+            "translation": "To help",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_10_en_7",
+            "character": "洗",
+            "transcription": "xǐ",
+            "translation": "To wash",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_10_en_8",
+            "character": "别",
+            "transcription": "bié",
+            "translation": "Don’t",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_10_en_9",
+            "character": "正在",
+            "transcription": "zhèng zài",
+            "translation": "In the process of",
+            "additional_info": "",
+            "speech_part": "time_word"
+        }
+    ]
+}

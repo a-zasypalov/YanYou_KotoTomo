@@ -1,0 +1,69 @@
+{
+    "deck_id": "hsk2_14_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "hsk2_14_en_1",
+            "character": "百",
+            "transcription": "bǎi",
+            "translation": "Hundred",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_14_en_2",
+            "character": "玩儿",
+            "transcription": "wánr",
+            "translation": "To have fun",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_14_en_3",
+            "character": "晴",
+            "transcription": "qíng",
+            "translation": "Sunny",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_14_en_4",
+            "character": "有意思",
+            "transcription": "yǒu yì si",
+            "translation": "Interesting",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_14_en_5",
+            "character": "次",
+            "transcription": "cì",
+            "translation": "Time",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_14_en_6",
+            "character": "虽然",
+            "transcription": "suī rán",
+            "translation": "Although",
+            "additional_info": "",
+            "speech_part": "conjunction"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_14_en_7",
+            "character": "但是",
+            "transcription": "dàn shì",
+            "translation": "But",
+            "additional_info": "",
+            "speech_part": "conjunction"
+        }
+    ]
+}
