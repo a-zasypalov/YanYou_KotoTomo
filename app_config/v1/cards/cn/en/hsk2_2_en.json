@@ -116,7 +116,8 @@
             "character": "米",
             "transcription": "mǐ",
             "translation": "Meter",
-            "additional_info": ""
+            "additional_info": "",
+            "speech_part": "noun"
         },
         {
             "type": "word",
