@@ -55,7 +55,7 @@ class CoursesRootComponentRepository(
     private suspend fun cacheCourses(response: RootStructureDTO) {
         println("Caching courses from api")
         db.coursesQueries.clearCache()
-        reloadDecks()
+        reloadDecks(response)
 
         response.languages.forEach { learningLanguage ->
             db.coursesQueries.insertLanguage(learningLanguage.id)
@@ -91,8 +91,14 @@ class CoursesRootComponentRepository(
         }
     }
 
-    private suspend fun reloadDecks() {
+    private suspend fun reloadDecks(response: RootStructureDTO) {
+        val responseDeckIds = response.languages.flatMap { it.sourceLanguages }.flatMap { it.courses }.flatMap { it.decks }.map { it.id }
+        val downloadedDecks = db.decksQueries.getDownloadedDeckIds().executeAsList()
         val decks = db.coursesQueries.getCachedDecks().executeAsList()
+            .filter { downloadedDecks.contains(it.deck_id) }
+            .filter { responseDeckIds.contains(it.deck_id) }
+
+
         db.decksQueries.deleteAll()
 
         decks.forEach {
