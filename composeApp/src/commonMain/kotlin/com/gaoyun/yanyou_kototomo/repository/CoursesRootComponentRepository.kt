@@ -98,7 +98,6 @@ class CoursesRootComponentRepository(
             .filter { downloadedDecks.contains(it.deck_id) }
             .filter { responseDeckIds.contains(it.deck_id) }
 
-
         db.decksQueries.deleteAll()
 
         decks.forEach {

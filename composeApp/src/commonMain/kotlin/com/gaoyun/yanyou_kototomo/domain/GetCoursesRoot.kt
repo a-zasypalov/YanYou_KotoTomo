@@ -11,10 +11,18 @@ import com.gaoyun.yanyou_kototomo.repository.CoursesRootComponentRepository
 class GetCoursesRoot(
     private val repository: CoursesRootComponentRepository,
     private val preferences: Preferences,
+    private val bookmarksInteractor: BookmarksInteractor,
 ) {
     suspend fun getCourses(force: Boolean = false): RootStructure {
         val primaryLanguageId = preferences.getString(PreferencesKeys.PRIMARY_LANGUAGE_ID, "cn")
         return repository.getCoursesRoot(force).toLocal().let {
+            val responseDeckIds = it.languages.flatMap { it.sourceLanguages }.flatMap { it.courses }.flatMap { it.decks }.map { it.id }
+
+            bookmarksInteractor.getBookmarkedDecks().filter { responseDeckIds.contains(it.id) }
+                .let { bookmarksInteractor.saveBookmarkedDecks(it) }
+            bookmarksInteractor.getLearningDeck()?.takeIf { !responseDeckIds.contains(it.id) }
+                ?.let { bookmarksInteractor.setLearningDeckId(null) }
+
             it.copy(languages = it.languages.sortedBy { language -> if (language.id.identifier == primaryLanguageId) 0 else 1 })
         }
     }
