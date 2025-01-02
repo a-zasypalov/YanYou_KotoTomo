@@ -12,14 +12,14 @@ class GetCoursesRoot(
     private val repository: CoursesRootComponentRepository,
     private val preferences: Preferences,
 ) {
-    suspend fun getCourses(): RootStructure {
+    suspend fun getCourses(force: Boolean = false): RootStructure {
         val primaryLanguageId = preferences.getString(PreferencesKeys.PRIMARY_LANGUAGE_ID, "cn")
-        return repository.getCoursesRoot().toLocal().let {
+        return repository.getCoursesRoot(force).toLocal().let {
             it.copy(languages = it.languages.sortedBy { language -> if (language.id.identifier == primaryLanguageId) 0 else 1 })
         }
     }
 
-    suspend fun getCourseLanguages(): List<LanguageId> = repository.getCoursesRoot().toLocal().languages.map { it.id }
+    suspend fun getCourseLanguages(): List<LanguageId> = repository.getCoursesRoot(false).toLocal().languages.map { it.id }
 
     suspend fun getCourseDecks(courseId: CourseId) = repository.getCourse(courseId).toLocal()
 }

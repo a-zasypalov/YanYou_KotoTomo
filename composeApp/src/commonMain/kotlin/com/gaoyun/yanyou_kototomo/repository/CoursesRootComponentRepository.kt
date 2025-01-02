@@ -20,8 +20,8 @@ class CoursesRootComponentRepository(
     private val deckUpdatesRepository: DeckUpdatesRepository,
 ) {
 
-    suspend fun getCoursesRoot(): RootStructureDTO {
-        val shouldRefresh = deckUpdatesRepository.shouldRefreshCourses()
+    suspend fun getCoursesRoot(force: Boolean): RootStructureDTO {
+        val shouldRefresh = force || deckUpdatesRepository.shouldRefreshCourses()
         val cache = if (!shouldRefresh) getCoursesFromCache() else null
         return cache ?: fetchCoursesFromApi()
     }

@@ -66,7 +66,7 @@ class BookmarksInteractor(
     }
 
     private suspend fun getCourseDecks(): List<CourseDeck> {
-        return coursesRootComponentRepository.getCoursesRoot()
+        return coursesRootComponentRepository.getCoursesRoot(force = false)
             .toLocal().languages
             .flatMap { it.sourceLanguages.flatMap { s -> s.courses.flatMap { c -> c.decks } } }
             .also { this.courseDecks.value = it }

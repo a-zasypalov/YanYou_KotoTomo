@@ -5,6 +5,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.LocalLibrary
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Photo
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.RestartAlt
 import androidx.compose.material.icons.filled.Translate
 
@@ -15,6 +16,7 @@ internal fun settingsSections(
     onColorThemeClick: () -> Unit,
     onAboutAppClick: () -> Unit,
     onOnboardingClick: () -> Unit,
+    onReloadCoursesClick: () -> Unit,
     onResetClick: () -> Unit,
 ) = listOf(
     SettingsSection(
@@ -40,6 +42,12 @@ internal fun settingsSections(
         subtitle = "If you want to see the tutorial again",
         icon = Icons.Default.LocalLibrary,
         onClick = onOnboardingClick
+    ),
+    SettingsSection(
+        title = "Reload courses",
+        subtitle = "Force update courses",
+        icon = Icons.Default.Refresh,
+        onClick = onReloadCoursesClick
     ),
     SettingsSection(
         title = "About App",

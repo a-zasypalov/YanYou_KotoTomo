@@ -38,6 +38,10 @@ class SettingsViewModel(
         dataReset.resetApp()
     }
 
+    fun reloadCourses() = viewModelScope.launch {
+        getCoursesRoot.getCourses(force = true)
+    }
+
     private fun getPrimaryLanguageId(): LanguageId = LanguageId(preferences.getString(PreferencesKeys.PRIMARY_LANGUAGE_ID, "cn"))
     fun setPrimaryLanguageId(id: LanguageId) {
         preferences.setString(PreferencesKeys.PRIMARY_LANGUAGE_ID, id.identifier)
