@@ -1,0 +1,1275 @@
+{
+    "deck_id": "genki1_4_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "genki1_4_en_1",
+            "character": "はんとし",
+            "transcription": "hantoshi",
+            "translation": "Half a year",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_2",
+            "character": "はんがく",
+            "transcription": "hangaku",
+            "translation": "Half price",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_3",
+            "character": "ちゅうがく",
+            "transcription": "chuugaku",
+            "translation": "Junior high school",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_4",
+            "character": "さんじはん",
+            "transcription": "sanji han",
+            "translation": "Half past three",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_5",
+            "character": "いちねんじゅう",
+            "transcription": "ichinenjuu",
+            "translation": "All year round",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_6",
+            "character": "はんぶん",
+            "transcription": "hanbun",
+            "translation": "Half",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_7",
+            "character": "のぼる",
+            "transcription": "noboru",
+            "translation": "To go up",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_8",
+            "character": "へたな",
+            "transcription": "heta na",
+            "translation": "Poor at",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_9",
+            "character": "ください",
+            "transcription": "kudasai",
+            "translation": "Please give/do...",
+            "additional_info": "",
+            "speech_part": "auxiliary"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_10",
+            "character": "ようび",
+            "transcription": "youbi",
+            "translation": "Day of the week",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_11",
+            "character": "おくじょう",
+            "transcription": "okujou",
+            "translation": "Rooftop",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_12",
+            "character": "じょうずな",
+            "transcription": "jouzu na",
+            "translation": "Good at",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_13",
+            "character": "ねんど",
+            "transcription": "nendo",
+            "translation": "Clay",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_14",
+            "character": "どようび",
+            "transcription": "doyoubi",
+            "translation": "Saturday",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_15",
+            "character": "とち",
+            "transcription": "tochi",
+            "translation": "Land",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_16",
+            "character": "つち",
+            "transcription": "tsuchi",
+            "translation": "Soil",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_17",
+            "character": "みずぎ",
+            "transcription": "mizugi",
+            "translation": "Bathing suit",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_18",
+            "character": "りょうきん",
+            "transcription": "ryoukin",
+            "translation": "Charge",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_19",
+            "character": "きむらさん",
+            "transcription": "kimura san",
+            "translation": "Mr./Ms. Kimura",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_20",
+            "character": "き",
+            "transcription": "ki",
+            "translation": "Tree",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_21",
+            "character": "すいえい",
+            "transcription": "suiei",
+            "translation": "Swimming",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_22",
+            "character": "かせい",
+            "transcription": "kasei",
+            "translation": "Mars",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_23",
+            "character": "みず",
+            "transcription": "mizu",
+            "translation": "Water",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_24",
+            "character": "すいどう",
+            "transcription": "suidou",
+            "translation": "Water supply",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_25",
+            "character": "はなび",
+            "transcription": "hanabi",
+            "translation": "Fireworks",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_26",
+            "character": "いっかげつ",
+            "transcription": "ichi ka gatsu",
+            "translation": "One month",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_27",
+            "character": "ひ",
+            "transcription": "hi",
+            "translation": "Fire",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_28",
+            "character": "かざん",
+            "transcription": "kazan",
+            "translation": "Volcano",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_29",
+            "character": "つき",
+            "transcription": "gatsu",
+            "translation": "Moon",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_30",
+            "character": "さんにん",
+            "transcription": "sannin",
+            "translation": "Three people",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_31",
+            "character": "やまもとさん",
+            "transcription": "yamamoto san",
+            "translation": "Mr./Ms. Yamamoto",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_32",
+            "character": "このひと",
+            "transcription": "kono nin",
+            "translation": "This person",
+            "additional_info": "",
+            "speech_part": "determiner"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_33",
+            "character": "にっき",
+            "transcription": "nikki",
+            "translation": "Diary",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_34",
+            "character": "じゅうにがつ",
+            "transcription": "juunigatsu",
+            "translation": "December",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_35",
+            "character": "ははのひ",
+            "transcription": "hahanohi",
+            "translation": "Mother's day",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_36",
+            "character": "にちようび",
+            "transcription": "nichiyoubi",
+            "translation": "Sunday",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_37",
+            "character": "まいにち",
+            "transcription": "mainichi",
+            "translation": "Every day",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_38",
+            "character": "くがつ",
+            "transcription": "kugatsu",
+            "translation": "September",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_39",
+            "character": "はちがつ",
+            "transcription": "hachigatsu",
+            "translation": "August",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_40",
+            "character": "じゅういちがつ",
+            "transcription": "juuichigatsu",
+            "translation": "November",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_41",
+            "character": "じゅうがつ",
+            "transcription": "juugatsu",
+            "translation": "October",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_42",
+            "character": "さんがつ",
+            "transcription": "sangatsu",
+            "translation": "March",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_43",
+            "character": "ろくがつ",
+            "transcription": "rokugatsu",
+            "translation": "June",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_44",
+            "character": "しちがつ",
+            "transcription": "shichigatsu",
+            "translation": "July",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_45",
+            "character": "ごがつ",
+            "transcription": "gogatsu",
+            "translation": "May",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_46",
+            "character": "しがつ",
+            "transcription": "shigatsu",
+            "translation": "April",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_47",
+            "character": "いちがつ",
+            "transcription": "ichigatsu",
+            "translation": "January",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_48",
+            "character": "さんじゅういちにち",
+            "transcription": "sanjuuichinichi",
+            "translation": "Thirty-first day of the month",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_49",
+            "character": "にがつ",
+            "transcription": "nigatsu",
+            "translation": "February",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_50",
+            "character": "さんじゅうにち",
+            "transcription": "sanjuunichi",
+            "translation": "Thirtieth day of the month",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_51",
+            "character": "にじゅうろくにち",
+            "transcription": "nijuurokunichi",
+            "translation": "Twenty-sixth day of the month",
+            "additional_info": "",
+            "speech_part": "adposition"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_52",
+            "character": "にじゅうくにち",
+            "transcription": "nijuukunichi",
+            "translation": "Twenty-ninth day of the month",
+            "additional_info": "",
+            "speech_part": "adposition"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_53",
+            "character": "にじゅうしちにち",
+            "transcription": "nijuushichinichi",
+            "translation": "Twenty-seventh day of the month",
+            "additional_info": "",
+            "speech_part": "adposition"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_54",
+            "character": "にじゅうはちにち",
+            "transcription": "nijuuhachinichi",
+            "translation": "Twenty-eighth day of the month",
+            "additional_info": "",
+            "speech_part": "adposition"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_55",
+            "character": "にじゅうさんにち",
+            "transcription": "nijuusannichi",
+            "translation": "Twenty-third day of the month",
+            "additional_info": "",
+            "speech_part": "adposition"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_56",
+            "character": "にじゅうよっか",
+            "transcription": "nijuuyokka",
+            "translation": "Twenty-fourth day of the month",
+            "additional_info": "",
+            "speech_part": "adposition"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_57",
+            "character": "にじゅうににち",
+            "transcription": "nijuuninichi",
+            "translation": "Twenty-second day of the month",
+            "additional_info": "",
+            "speech_part": "adposition"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_58",
+            "character": "にじゅうごにち",
+            "transcription": "nijuugonichi",
+            "translation": "Twenty-fifth day of the month",
+            "additional_info": "",
+            "speech_part": "adposition"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_59",
+            "character": "じゅうくにち",
+            "transcription": "juukunichi",
+            "translation": "Nineteenth day of the month",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_60",
+            "character": "じゅうはちにち",
+            "transcription": "juuhachinichi",
+            "translation": "Eighteenth day of the month",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_61",
+            "character": "にじゅういちにち",
+            "transcription": "nijuuichinichi",
+            "translation": "Twenty-first day of the month",
+            "additional_info": "",
+            "speech_part": "adposition"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_62",
+            "character": "はつか",
+            "transcription": "hatsuka",
+            "translation": "Twentieth day of the month",
+            "additional_info": "",
+            "speech_part": "adposition"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_63",
+            "character": "じゅうごにち",
+            "transcription": "juugonichi",
+            "translation": "Fifteenth day of the month",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_64",
+            "character": "じゅうしちにち",
+            "transcription": "juushichinichi",
+            "translation": "Seventeenth day of the month",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_65",
+            "character": "じゅうろくにち",
+            "transcription": "juurokunichi",
+            "translation": "Sixteenth day of the month",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_66",
+            "character": "じゅうよっか",
+            "transcription": "juuyokka",
+            "translation": "Fourteenth day of the month",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_67",
+            "character": "じゅうににち",
+            "transcription": "juuninichi",
+            "translation": "Twelfth day of the month",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_68",
+            "character": "とおか",
+            "transcription": "tooka",
+            "translation": "Tenth day of the month",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_69",
+            "character": "じゅうさんにち",
+            "transcription": "juusannichi",
+            "translation": "Thirteenth day of the month",
+            "additional_info": "",
+            "speech_part": "coordinating conjunction"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_70",
+            "character": "じゅういちにち",
+            "transcription": "juuichinichi",
+            "translation": "Eleventh day of the month",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_71",
+            "character": "むいか",
+            "transcription": "muika",
+            "translation": "Sixth day of the month",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_72",
+            "character": "ここのか",
+            "transcription": "kokonoka",
+            "translation": "Ninth day of the month",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_73",
+            "character": "ようか",
+            "transcription": "youka",
+            "translation": "Eighth day of the month",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_74",
+            "character": "なのか",
+            "transcription": "nanoka",
+            "translation": "Seventh day of the month",
+            "additional_info": "",
+            "speech_part": "auxiliary"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_75",
+            "character": "いつか",
+            "transcription": "itsuka",
+            "translation": "Fifth day of the month",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_76",
+            "character": "ふつか",
+            "transcription": "futsuka",
+            "translation": "Second day of the month",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_77",
+            "character": "よっか",
+            "transcription": "yokka",
+            "translation": "Fourth day of the month",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_78",
+            "character": "みっか",
+            "transcription": "mikka",
+            "translation": "Third day of the month",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_79",
+            "character": "となり",
+            "transcription": "tonari",
+            "translation": "Next (～の)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_80",
+            "character": "ちかく",
+            "transcription": "chikaku",
+            "translation": "Near",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_81",
+            "character": "ついたち",
+            "transcription": "tsuitachi",
+            "translation": "First day of the month",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_82",
+            "character": "あいだ",
+            "transcription": "kan",
+            "translation": "Between (A と B の)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_83",
+            "character": "した",
+            "transcription": "shita",
+            "translation": "Under (～の)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_84",
+            "character": "うえ",
+            "transcription": "ue",
+            "translation": "On (～の)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_85",
+            "character": "なか",
+            "transcription": "naka",
+            "translation": "Inside (～の)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_86",
+            "character": "うしろ",
+            "transcription": "ushiro",
+            "translation": "Back (～の)",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_87",
+            "character": "ひとりで",
+            "transcription": "hitori de",
+            "translation": "Alone",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_88",
+            "character": "まえ",
+            "transcription": "mae",
+            "translation": "Front (～の)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_89",
+            "character": "どうして",
+            "transcription": "doushite",
+            "translation": "Why",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_90",
+            "character": "～と",
+            "transcription": "~ to",
+            "translation": "Together with (a person)",
+            "additional_info": "",
+            "speech_part": "auxiliary"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_91",
+            "character": "もしもし",
+            "transcription": "moshimoshi",
+            "translation": "Hello? (used on the phone)",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_92",
+            "character": "たくさん",
+            "transcription": "takusan",
+            "translation": "Many",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_93",
+            "character": "ごめんなさい",
+            "transcription": "gomennasai",
+            "translation": "I'm sorry.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_94",
+            "character": "だから",
+            "transcription": "dakara",
+            "translation": "So",
+            "additional_info": "",
+            "speech_part": "coordinating conjunction"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_95",
+            "character": "それから",
+            "transcription": "sorekara",
+            "translation": "And then",
+            "additional_info": "",
+            "speech_part": "coordinating conjunction"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_96",
+            "character": "まつ",
+            "transcription": "matsu",
+            "translation": "To wait (～を)",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_97",
+            "character": "わかる",
+            "transcription": "wakaru",
+            "translation": "To understand (～が)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_98",
+            "character": "～ぐらい",
+            "transcription": "~ gurai",
+            "translation": "About (approximate measurement)",
+            "additional_info": "",
+            "speech_part": "auxiliary"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_99",
+            "character": "とる",
+            "transcription": "toru",
+            "translation": "To take (a picture) (～を)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_100",
+            "character": "きんようび",
+            "transcription": "kinyoubi",
+            "translation": "Friday",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_101",
+            "character": "かく",
+            "transcription": "kaku",
+            "translation": "To write (person に thing を)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_102",
+            "character": "ある",
+            "transcription": "aru",
+            "translation": "There is... (place に thing が)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_103",
+            "character": "あう",
+            "transcription": "au",
+            "translation": "To meet",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_104",
+            "character": "すいようび",
+            "transcription": "suiyoubi",
+            "translation": "Wednesday",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_105",
+            "character": "げつようび",
+            "transcription": "getsuyoubi",
+            "translation": "Monday",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_106",
+            "character": "もくようび",
+            "transcription": "mokuyoubi",
+            "translation": "Thursday",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_107",
+            "character": "かようび",
+            "transcription": "kayoubi",
+            "translation": "Tuesday",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_108",
+            "character": "とき",
+            "transcription": "toki",
+            "translation": "When...",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_109",
+            "character": "～じかん",
+            "transcription": "~ jikan",
+            "translation": "...hours",
+            "additional_info": "",
+            "speech_part": "auxiliary"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_110",
+            "character": "レストラン",
+            "transcription": "resutoran",
+            "translation": "Restaurant",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_111",
+            "character": "いちじかん",
+            "transcription": "ichijikan",
+            "translation": "One hour",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_112",
+            "character": "ホテル",
+            "transcription": "hoteru",
+            "translation": "Hotel",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_113",
+            "character": "バスてい",
+            "transcription": "basu tei",
+            "translation": "Bus stop",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_114",
+            "character": "ほんや",
+            "transcription": "honya",
+            "translation": "Bookstore",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_115",
+            "character": "びょういん",
+            "transcription": "byouin",
+            "translation": "Hospital",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_116",
+            "character": "スーパー",
+            "transcription": "suupaa",
+            "translation": "Supermarket",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_117",
+            "character": "こうえん",
+            "transcription": "kouen",
+            "translation": "Park",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_118",
+            "character": "クラス",
+            "transcription": "kurasu",
+            "translation": "Class",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_119",
+            "character": "バイト",
+            "transcription": "baito",
+            "translation": "Part-time job (colloquial)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_120",
+            "character": "おてら",
+            "transcription": "o tera",
+            "translation": "Temple",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_121",
+            "character": "アルバイト",
+            "transcription": "arubaito",
+            "translation": "Part-time job",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_122",
+            "character": "ゲーム",
+            "transcription": "geemu",
+            "translation": "Game",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_123",
+            "character": "きょねん",
+            "transcription": "kyonen",
+            "translation": "Last year",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_124",
+            "character": "さらいねん",
+            "transcription": "sarainen",
+            "translation": "The year after next",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_125",
+            "character": "おととし",
+            "transcription": "ototoshi",
+            "translation": "The year before last",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_126",
+            "character": "さらいげつ",
+            "transcription": "saraigetsu",
+            "translation": "The month after next",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_127",
+            "character": "さらいしゅう",
+            "transcription": "saraishuu",
+            "translation": "The week after next",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_128",
+            "character": "にかげつまえ",
+            "transcription": "ni ka getsumae",
+            "translation": "Two months ago",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_129",
+            "character": "あした",
+            "transcription": "ashita",
+            "translation": "Tomorrow",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_130",
+            "character": "にしゅうかんまえ",
+            "transcription": "nishuukanmae",
+            "translation": "Two weeks ago",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_131",
+            "character": "きのう",
+            "transcription": "kinou",
+            "translation": "Yesterday",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_132",
+            "character": "おととい",
+            "transcription": "ototoi",
+            "translation": "The day before yesterday",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_133",
+            "character": "はな",
+            "transcription": "hana",
+            "translation": "Flower",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_134",
+            "character": "レポート",
+            "transcription": "repooto",
+            "translation": "(term) paper",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_135",
+            "character": "パン",
+            "transcription": "pan",
+            "translation": "Bread",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_136",
+            "character": "あなた",
+            "transcription": "anata",
+            "translation": "You",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_137",
+            "character": "しゃしん",
+            "transcription": "shashin",
+            "translation": "Picture",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_138",
+            "character": "ひと",
+            "transcription": "nin",
+            "translation": "Person",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_139",
+            "character": "こども",
+            "transcription": "kodomo",
+            "translation": "Child",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_140",
+            "character": "いぬ",
+            "transcription": "inu",
+            "translation": "Dog",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_4_en_141",
+            "character": "ねこ",
+            "transcription": "neko",
+            "translation": "Cat",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        }
+    ]
+}

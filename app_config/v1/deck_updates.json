@@ -146,10 +146,6 @@
       "version": 1
     },
     {
-      "deck_id": "jlpt5_1_en",
-      "version": 1
-    },
-    {
       "deck_id": "jlpt4_1_en",
       "version": 1
     },
@@ -163,6 +159,54 @@
     },
     {
       "deck_id": "jlpt1_1_en",
+      "version": 1
+    },
+    {
+      "deck_id": "genki1_1_en",
+      "version": 1
+    },
+    {
+      "deck_id": "genki1_2_en",
+      "version": 1
+    },
+    {
+      "deck_id": "genki1_3_en",
+      "version": 1
+    },
+    {
+      "deck_id": "genki1_4_en",
+      "version": 1
+    },
+    {
+      "deck_id": "genki1_5_en",
+      "version": 1
+    },
+    {
+      "deck_id": "genki1_6_en",
+      "version": 1
+    },
+    {
+      "deck_id": "genki1_7_en",
+      "version": 1
+    },
+    {
+      "deck_id": "genki1_8_en",
+      "version": 1
+    },
+    {
+      "deck_id": "genki1_9_en",
+      "version": 1
+    },
+    {
+      "deck_id": "genki1_10_en",
+      "version": 1
+    },
+    {
+      "deck_id": "genki1_11_en",
+      "version": 1
+    },
+    {
+      "deck_id": "genki1_12_en",
       "version": 1
     }
   ]
