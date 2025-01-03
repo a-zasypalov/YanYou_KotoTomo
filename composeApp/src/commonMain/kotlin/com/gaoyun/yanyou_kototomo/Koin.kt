@@ -16,6 +16,7 @@ import com.gaoyun.yanyou_kototomo.domain.GetHomeState
 import com.gaoyun.yanyou_kototomo.domain.OnboardingInteractor
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
+import com.gaoyun.yanyou_kototomo.domain.SpacialRepetitionSettingsInteractor
 import com.gaoyun.yanyou_kototomo.network.DecksApi
 import com.gaoyun.yanyou_kototomo.network.PlatformHttpClient
 import com.gaoyun.yanyou_kototomo.repository.CardsAndProgressRepository
@@ -34,7 +35,8 @@ import com.gaoyun.yanyou_kototomo.ui.home.HomeViewModel
 import com.gaoyun.yanyou_kototomo.ui.onboarding.OnboardingViewModel
 import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerViewModel
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryViewModel
-import com.gaoyun.yanyou_kototomo.ui.settings.sections.SettingsViewModel
+import com.gaoyun.yanyou_kototomo.ui.settings.SettingsViewModel
+import com.gaoyun.yanyou_kototomo.ui.settings.sections.SettingsSectionsViewModel
 import com.gaoyun.yanyou_kototomo.ui.statistics.StatisticsViewModel
 import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsFullListViewModel
 import com.gaoyun.yanyoukototomo.data.persistence.CardsPersisted
@@ -93,7 +95,7 @@ val useCaseModule = module {
     single { GetCoursesRoot(get(), get(), get()) }
     single { GetDeck(get(), get()) }
     single { GetDeckFromCache(get(), get()) }
-    single { SpacedRepetitionCalculation() }
+    single { SpacedRepetitionCalculation(get()) }
     single { CardProgressUpdater(get()) }
     single { DeckSettingsInteractor(get()) }
     single { QuizInteractor(get(), get(), get(), get()) }
@@ -103,6 +105,7 @@ val useCaseModule = module {
     single { ColorsProvider(get()) }
     single { AllDataReset(get(), get()) }
     single { OnboardingInteractor(get()) }
+    single { SpacialRepetitionSettingsInteractor(get()) }
 }
 
 val viewModelModule = module {
@@ -116,7 +119,8 @@ val viewModelModule = module {
     factory { QuizSessionSummaryViewModel(get()) }
     factory { StatisticsViewModel(get(), get()) }
     factory { StatisticsFullListViewModel(get(), get()) }
-    factory { SettingsViewModel(get(), get(), get(), get()) }
+    factory { SettingsSectionsViewModel(get(), get(), get(), get()) }
+    factory { SettingsViewModel(get(), get(), get()) }
     factory { OnboardingViewModel(get()) }
 }
 

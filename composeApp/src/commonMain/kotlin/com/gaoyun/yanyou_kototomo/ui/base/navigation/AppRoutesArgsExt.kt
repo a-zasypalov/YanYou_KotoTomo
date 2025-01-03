@@ -62,7 +62,7 @@ enum class PlayerBackRoute {
 }
 
 enum class SettingsSections {
-    AppIcon, ColorTheme, AboutApp
+    AppIcon, ColorTheme, AboutApp, SpacialRepetition
 }
 
 data class QuizSessionSummaryArgs(

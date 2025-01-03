@@ -3,12 +3,16 @@ package com.gaoyun.yanyou_kototomo.ui.settings.sections
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -19,6 +23,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSections
+import com.gaoyun.yanyou_kototomo.ui.player.SpacedRepetitionIntervalsInDays
 import moe.tlaster.precompose.koin.koinViewModel
 
 @Composable
@@ -26,7 +31,7 @@ fun SectionSettingsScreen(
     section: SettingsSections,
     navigate: (NavigationSideEffect) -> Unit,
 ) {
-    val viewModel = koinViewModel(vmClass = SettingsViewModel::class)
+    val viewModel = koinViewModel(vmClass = SettingsSectionsViewModel::class)
 
     LaunchedEffect(Unit) {
         viewModel.getSettings()
@@ -73,6 +78,39 @@ fun SectionSettingsScreen(
             }
 
             SettingsSections.AboutApp -> AboutAppSettingScreenContent()
+            SettingsSections.SpacialRepetition -> {
+                Column(
+                    modifier = Modifier.fillMaxWidth()
+                        .verticalScroll(rememberScrollState())
+                        .navigationBarsPadding()
+                        .padding(horizontal = 16.dp),
+                ) {
+                    AutoResizeText(
+                        text = section.title(),
+                        fontSizeRange = FontSizeRange(min = 16.sp, max = MaterialTheme.typography.displayLarge.fontSize),
+                        style = MaterialTheme.typography.displayLarge,
+                        maxLines = 1,
+                        modifier = Modifier.fillMaxWidth().wrapContentHeight(align = Alignment.CenterVertically)
+                    )
+
+                    Spacer(modifier = Modifier.size(16.dp))
+                    viewModel.viewState.collectAsState().value?.let {
+                        SpacedRepetitionSettingScreenContent(
+                            currentRepetitionValues = it.currentIntervals.let {
+                                SpacedRepetitionIntervalsInDays(
+                                    easy = it.first.third,
+                                    good = it.second.third,
+                                    hard = it.third.third
+                                )
+                            },
+                            onSliderValuesChanged = viewModel::setRepetitionSettings,
+                            onSampleButtonClick = viewModel::onSampleRepetitionClick,
+                            sliderPositions = it.slidersPosition
+                        )
+                    }
+                    Spacer(modifier = Modifier.size(32.dp))
+                }
+            }
         }
     }
 }
@@ -81,4 +119,5 @@ private fun SettingsSections.title() = when (this) {
     SettingsSections.AppIcon -> "App icon"
     SettingsSections.ColorTheme -> "Color theme"
     SettingsSections.AboutApp -> "About app"
+    SettingsSections.SpacialRepetition -> "Spacial repetition"
 }

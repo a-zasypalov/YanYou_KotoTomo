@@ -32,7 +32,6 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToSettingsSection
 import com.gaoyun.yanyou_kototomo.ui.settings.dialogs.CoursesReloadDialog
 import com.gaoyun.yanyou_kototomo.ui.settings.dialogs.PrimaryLanguageChooser
 import com.gaoyun.yanyou_kototomo.ui.settings.dialogs.ResetDialog
-import com.gaoyun.yanyou_kototomo.ui.settings.sections.SettingsViewModel
 import moe.tlaster.precompose.koin.koinViewModel
 import org.jetbrains.compose.resources.stringResource
 
@@ -67,6 +66,7 @@ fun SettingsScreen(
             onAppIconClick = { navigate(ToSettingsSection(SettingsSections.AppIcon)) },
             onColorThemeClick = { navigate(ToSettingsSection(SettingsSections.ColorTheme)) },
             onAboutAppClick = { navigate(ToSettingsSection(SettingsSections.AboutApp)) },
+            onSpacialRepetitionSettingsClick = { navigate(ToSettingsSection(SettingsSections.SpacialRepetition)) },
             onOnboardingClick = { navigate(ToOnboarding) },
             onPrimaryLanguageChange = onPrimaryLanguageChangeClick,
             onReloadCoursesClick = { showReloadConfirmation.value = true },
@@ -98,6 +98,7 @@ private fun SettingsScreenContent(
     onPrimaryLanguageChange: () -> Unit,
     onReloadCoursesClick: () -> Unit,
     onResetClick: () -> Unit,
+    onSpacialRepetitionSettingsClick: () -> Unit,
 ) {
 
     LazyColumn(modifier = modifier.fillMaxWidth()) {
@@ -118,7 +119,8 @@ private fun SettingsScreenContent(
                 onAboutAppClick,
                 onOnboardingClick,
                 onReloadCoursesClick,
-                onResetClick
+                onResetClick,
+                onSpacialRepetitionSettingsClick
             )
         ) { section ->
             SettingsSectionItem(section = section)
