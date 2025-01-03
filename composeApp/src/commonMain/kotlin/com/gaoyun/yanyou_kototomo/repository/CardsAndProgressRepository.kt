@@ -37,7 +37,7 @@ class CardsAndProgressRepository(
         db.card_progressQueries.updateCardProgress(
             lastReviewed = progress.lastReviewed.toString(),
             interval = progress.interval.toLong(),
-            easeFactor = progress.easeFactor,
+            easeFactor = progress.easeFactor.toDouble(),
             nextReview = progress.nextReview.toString(),
             card_id = progress.cardId,
             deck_id = deckId.identifier

@@ -8,4 +8,11 @@ data class PlayerCardViewState(
     val cardNumOutOf: Pair<Int, Int>,
     val answerOpened: Boolean = false,
     val answerIsCorrect: Boolean? = null,
+    val intervalsInDays: SpacedRepetitionIntervalsInDays? = null,
+)
+
+data class SpacedRepetitionIntervalsInDays(
+    val easy: Int,
+    val good: Int,
+    val hard: Int,
 )

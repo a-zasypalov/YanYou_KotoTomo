@@ -8,7 +8,7 @@ fun com.gaoyun.yanyoukototomo.data.persistence.CardProgress.toLocal(): CardProgr
         cardId = this.card_id,
         lastReviewed = LocalDate.parse(this.lastReviewed),
         interval = this.interval.toInt(),
-        easeFactor = this.easeFactor,
+        easeFactor = this.easeFactor.toFloat(),
         nextReview = LocalDate.parse(this.nextReview),
     )
 }

@@ -12,7 +12,7 @@ data class CardProgress(
     val cardId: String,
     val lastReviewed: LocalDate,
     val interval: Int,
-    val easeFactor: Double,
+    val easeFactor: Float,
     val nextReview: LocalDate,
 )
 

@@ -84,10 +84,16 @@ class DeckPlayerViewModel(
 
         val deck = deckState.value ?: return@launch
         val card = deck.cards.getOrNull(newCardIndex) ?: return@launch
+
+        val intervals = if (playerMode.value == PlayerMode.SpacialRepetition) {
+            spacedRepetitionCalculation.calculateNextIntervals(card.progress?.nextReview, card.progress?.easeFactor)
+        } else null
+
         viewState.value = PlayerCardViewState(
             card = card,
             possibleAnswers = getPossibleAnswersFor(card.card, deck),
-            cardNumOutOf = newCardIndex + 1 to totalNumOfCards
+            cardNumOutOf = newCardIndex + 1 to totalNumOfCards,
+            intervalsInDays = intervals
         )
     }
 

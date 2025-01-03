@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.LocalLibrary
 import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.Photo
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Repeat
 import androidx.compose.material.icons.filled.RestartAlt
 import androidx.compose.material.icons.filled.Translate
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -27,6 +28,7 @@ internal fun settingsSections(
     onOnboardingClick: () -> Unit,
     onReloadCoursesClick: () -> Unit,
     onResetClick: () -> Unit,
+    onSpacialRepetitionSettingsClick: () -> Unit,
 ) = listOf(
     SettingsSection(
         title = "App Icon",
@@ -45,6 +47,12 @@ internal fun settingsSections(
         subtitle = primaryLanguage,
         icon = Icons.Default.Translate,
         onClick = onPrimaryLanguageChangeClick
+    ),
+    SettingsSection(
+        title = "Spacial repetition",
+        subtitle = "Adjust review algorithm settings",
+        icon = Icons.Default.Repeat,
+        onClick = onSpacialRepetitionSettingsClick
     ),
     SettingsSection(
         title = "Show Onboarding",

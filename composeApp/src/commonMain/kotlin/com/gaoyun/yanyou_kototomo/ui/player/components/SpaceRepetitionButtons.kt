@@ -8,6 +8,7 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,10 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColors
@@ -22,7 +27,8 @@ import com.gaoyun.yanyou_kototomo.ui.player.PlayerCardViewState
 
 @Composable
 internal fun BoxScope.SpaceRepetitionButtons(
-    currentCardState: PlayerCardViewState, onCardOpenClick: () -> Unit,
+    currentCardState: PlayerCardViewState,
+    onCardOpenClick: () -> Unit,
     onRepetitionClick: (RepetitionAnswer) -> Unit,
 ) {
     Row(
@@ -57,8 +63,31 @@ internal fun BoxScope.SpaceRepetitionButtons(
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     modifier = Modifier.fillMaxWidth().padding(bottom = 64.dp).padding(horizontal = 24.dp)
                 ) {
+                    val easyButtonLabel = buildAnnotatedString {
+                        withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) { append("Easy") }
+                        currentCardState.intervalsInDays?.let {
+                            withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) { append("\n${it.easy}d") }
+                        }
+                    }
+
+                    val goodButtonLabel = buildAnnotatedString {
+                        withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) { append("Good") }
+                        currentCardState.intervalsInDays?.let {
+                            withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) { append("\n${it.good}d") }
+                        }
+                    }
+
+                    val hardButtonLabel = buildAnnotatedString {
+                        withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) { append("Hard") }
+                        currentCardState.intervalsInDays?.let {
+                            withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) { append("\n${it.hard}d") }
+                        }
+                    }
+
                     PrimaryElevatedButton(
-                        text = "Easy",
+                        text = easyButtonLabel,
+                        contentPadding = PaddingValues(8.dp),
+                        maxLines = 2,
                         modifier = Modifier.weight(1f),
                         onClick = { onRepetitionClick(RepetitionAnswer.Easy) },
                         colors = ButtonDefaults.elevatedButtonColors(
@@ -68,7 +97,9 @@ internal fun BoxScope.SpaceRepetitionButtons(
                     )
 
                     PrimaryElevatedButton(
-                        text = "Good",
+                        text = goodButtonLabel,
+                        contentPadding = PaddingValues(8.dp),
+                        maxLines = 2,
                         modifier = Modifier.weight(1f),
                         onClick = { onRepetitionClick(RepetitionAnswer.Good) },
                         colors = ButtonDefaults.elevatedButtonColors(
@@ -78,7 +109,9 @@ internal fun BoxScope.SpaceRepetitionButtons(
                     )
 
                     PrimaryElevatedButton(
-                        text = "Hard",
+                        text = hardButtonLabel,
+                        contentPadding = PaddingValues(8.dp),
+                        maxLines = 2,
                         modifier = Modifier.weight(1f),
                         onClick = { onRepetitionClick(RepetitionAnswer.Hard) },
                         colors = ButtonDefaults.elevatedButtonColors(
