@@ -1,0 +1,897 @@
+{
+    "deck_id": "genki1_1_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "genki1_1_en_1",
+            "character": "よんじ(ゅ)っさい",
+            "transcription": "yonji ( yu ) ssai",
+            "translation": "Forty years old",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_2",
+            "character": "さんじゅうごさい",
+            "transcription": "sanjuugosai",
+            "translation": "Thirty-five years old",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_3",
+            "character": "じ(ゅ)っさい",
+            "transcription": "ji ( yu ) ssai",
+            "translation": "Ten years old",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_4",
+            "character": "じゅういっさい",
+            "transcription": "juuissai",
+            "translation": "Eleven years old",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_5",
+            "character": "はたち／にじ(ゅ)っさい",
+            "transcription": "hatachi / niji ( yu ) ssai",
+            "translation": "Twenty years old",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_6",
+            "character": "にじゅういっさい",
+            "transcription": "nijuuissai",
+            "translation": "Twenty-one years old",
+            "additional_info": "",
+            "speech_part": "adposition"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_7",
+            "character": "ななさい",
+            "transcription": "nanasai",
+            "translation": "Seven years old",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_8",
+            "character": "ろくさい",
+            "transcription": "rokusai",
+            "translation": "Six years old",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_9",
+            "character": "ごさい",
+            "transcription": "gosai",
+            "translation": "Five years old",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_10",
+            "character": "はっさい",
+            "transcription": "hassai",
+            "translation": "Eight years old",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_11",
+            "character": "きゅうさい",
+            "transcription": "kyuusai",
+            "translation": "Nine years old",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_12",
+            "character": "さんさい",
+            "transcription": "sansai",
+            "translation": "Three years old",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_13",
+            "character": "よんさい",
+            "transcription": "yonsai",
+            "translation": "Four years old",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_14",
+            "character": "にさい",
+            "transcription": "nisai",
+            "translation": "Two years old",
+            "additional_info": "",
+            "speech_part": "adposition"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_15",
+            "character": "いっさい",
+            "transcription": "issai",
+            "translation": "One year old",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_16",
+            "character": "ごねんせい",
+            "transcription": "gonensei",
+            "translation": "Fifth-year student",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_17",
+            "character": "よねんせい",
+            "transcription": "yonensei",
+            "translation": "Fourth-year student",
+            "additional_info": "",
+            "speech_part": "particle"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_18",
+            "character": "にねんせい",
+            "transcription": "ninensei",
+            "translation": "Second-year student",
+            "additional_info": "",
+            "speech_part": "adposition"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_19",
+            "character": "ろくねんせい",
+            "transcription": "rokunensei",
+            "translation": "Sixth-year student",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_20",
+            "character": "いもうと",
+            "transcription": "imouto",
+            "translation": "Younger sister",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_21",
+            "character": "おにいさん",
+            "transcription": "oniisan",
+            "translation": "Older brother",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_22",
+            "character": "おとうと",
+            "transcription": "otouto",
+            "translation": "Younger brother",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_23",
+            "character": "かぞく",
+            "transcription": "kazoku",
+            "translation": "Family",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_24",
+            "character": "おねえさん",
+            "transcription": "oneesan",
+            "translation": "Older sister",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_25",
+            "character": "こうこうせい",
+            "transcription": "koukousei",
+            "translation": "High school student",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_26",
+            "character": "べんごし",
+            "transcription": "bengoshi",
+            "translation": "Lawyer",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_27",
+            "character": "しゅふ",
+            "transcription": "shufu",
+            "translation": "Housewife",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_28",
+            "character": "だいがくいんせい",
+            "transcription": "daigakuinsei",
+            "translation": "Graduate student",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_29",
+            "character": "せいじ",
+            "transcription": "seiji",
+            "translation": "Politics",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_30",
+            "character": "せいぶつがく",
+            "transcription": "seibutsugaku",
+            "translation": "Biology",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_31",
+            "character": "ぶんがく",
+            "transcription": "bungaku",
+            "translation": "Literature",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_32",
+            "character": "かんごし",
+            "transcription": "kangoshi",
+            "translation": "Nurse",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_33",
+            "character": "フィリピン",
+            "transcription": "firipin",
+            "translation": "Philippines",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_34",
+            "character": "こくさいかんけい",
+            "transcription": "kokusaikankei",
+            "translation": "International relations",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_35",
+            "character": "アジアけんきゅう",
+            "transcription": "ajia kenkyuu",
+            "translation": "Asian studies",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_36",
+            "character": "こうがく",
+            "transcription": "kougaku",
+            "translation": "Engineering",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_37",
+            "character": "オーストラリア",
+            "transcription": "oosutoraria",
+            "translation": "Australia",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_38",
+            "character": "カナダ",
+            "transcription": "kanada",
+            "translation": "Canada",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_39",
+            "character": "インド",
+            "transcription": "indo",
+            "translation": "India",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_40",
+            "character": "エジプト",
+            "transcription": "ejiputo",
+            "translation": "Egypt",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_41",
+            "character": "あのう",
+            "transcription": "anou",
+            "translation": "Um...",
+            "additional_info": "",
+            "speech_part": "determiner"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_42",
+            "character": "はい",
+            "transcription": "hai",
+            "translation": "Yes",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_43",
+            "character": "そうです",
+            "transcription": "soudesu",
+            "translation": "That's right.",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_44",
+            "character": "そうですか",
+            "transcription": "soudesuka",
+            "translation": "I see.",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_45",
+            "character": "なん／なに",
+            "transcription": "nan / nani",
+            "translation": "What",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_46",
+            "character": "なまえ",
+            "transcription": "namae",
+            "translation": "Name",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_47",
+            "character": "ばんごう",
+            "transcription": "bangou",
+            "translation": "Number",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_48",
+            "character": "～ばん",
+            "transcription": "~ ban",
+            "translation": "Number...",
+            "additional_info": "",
+            "speech_part": "auxiliary"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_49",
+            "character": "～さい",
+            "transcription": "~ sai",
+            "translation": "...years old",
+            "additional_info": "",
+            "speech_part": "auxiliary"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_50",
+            "character": "にほんご",
+            "transcription": "nihongo",
+            "translation": "Japanese language",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_51",
+            "character": "アメリカ",
+            "transcription": "amerika",
+            "translation": "U.S.A.",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_52",
+            "character": "にほん",
+            "transcription": "nihon",
+            "translation": "Japan",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_53",
+            "character": "にじはん",
+            "transcription": "nijihan",
+            "translation": "Half past two",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_54",
+            "character": "～じ",
+            "transcription": "~ ji",
+            "translation": "O'clock",
+            "additional_info": "",
+            "speech_part": "auxiliary"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_55",
+            "character": "ごご",
+            "transcription": "gogo",
+            "translation": "P.M.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_56",
+            "character": "はん",
+            "transcription": "han",
+            "translation": "Half",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_57",
+            "character": "ごぜん",
+            "transcription": "gozen",
+            "translation": "A.M.",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_58",
+            "character": "～さん",
+            "transcription": "~ san",
+            "translation": "Mr./Ms. ...",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_59",
+            "character": "にほんじん",
+            "transcription": "nihonjin",
+            "translation": "Japanese people",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_60",
+            "character": "ともだち",
+            "transcription": "tomodachi",
+            "translation": "Friend",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_61",
+            "character": "～じん",
+            "transcription": "~ jin",
+            "translation": "...people",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_62",
+            "character": "さんじ(ゅ)っぷん",
+            "transcription": "sanji ( yu ) ppun",
+            "translation": "00:30",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_63",
+            "character": "じゅうはっぷん／じゅうはちふん",
+            "transcription": "juuhappun / juuhachifun",
+            "translation": "00:18",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_64",
+            "character": "じゅうきゅうふん",
+            "transcription": "juukyuufun",
+            "translation": "00:19",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_65",
+            "character": "にじ(ゅ)っぷん",
+            "transcription": "niji ( yu ) ppun",
+            "translation": "00:20",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_66",
+            "character": "じゅうごふん",
+            "transcription": "juugofun",
+            "translation": "00:15",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_67",
+            "character": "じゅうろっぷん",
+            "transcription": "juuroppun",
+            "translation": "00:16",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_68",
+            "character": "じゅうななふん",
+            "transcription": "juunanafun",
+            "translation": "00:17",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_69",
+            "character": "じゅうよんぷん",
+            "transcription": "juuyonpun",
+            "translation": "00:14",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_70",
+            "character": "じゅうさんぷん",
+            "transcription": "juusanpun",
+            "translation": "00:13",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_71",
+            "character": "じ(ゅ)っぷん",
+            "transcription": "ji ( yu ) ppun",
+            "translation": "00:10",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_72",
+            "character": "じゅういっぷん",
+            "transcription": "juuippun",
+            "translation": "00:11",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_73",
+            "character": "じゅうにふん",
+            "transcription": "juunifun",
+            "translation": "00:12",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_74",
+            "character": "ろっぷん",
+            "transcription": "roppun",
+            "translation": "00:06",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_75",
+            "character": "ななふん",
+            "transcription": "nanafun",
+            "translation": "00:07",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_76",
+            "character": "きゅうふん",
+            "transcription": "kyuufun",
+            "translation": "00:09",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_77",
+            "character": "はっぷん／はちふん",
+            "transcription": "happun / hachifun",
+            "translation": "00:08",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_78",
+            "character": "さんぷん",
+            "transcription": "sanpun",
+            "translation": "00:03",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_79",
+            "character": "よんぷん",
+            "transcription": "yonpun",
+            "translation": "00:04",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_80",
+            "character": "いっぷん",
+            "transcription": "ippun",
+            "translation": "00:01",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_81",
+            "character": "にふん",
+            "transcription": "nifun",
+            "translation": "00:02",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_82",
+            "character": "いちじはん",
+            "transcription": "ichijihan",
+            "translation": "01:30",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_83",
+            "character": "じゅうにじ",
+            "transcription": "juuniji",
+            "translation": "12:00",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_84",
+            "character": "じゅういちじ",
+            "transcription": "juuichiji",
+            "translation": "11:00",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_85",
+            "character": "じゅうじ",
+            "transcription": "juuji",
+            "translation": "10:00",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_86",
+            "character": "しちじ",
+            "transcription": "shichiji",
+            "translation": "07:00",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_87",
+            "character": "ろくじ",
+            "transcription": "rokuji",
+            "translation": "06:00",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_88",
+            "character": "くじ",
+            "transcription": "kuji",
+            "translation": "09:00",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_89",
+            "character": "はちじ",
+            "transcription": "hachiji",
+            "translation": "08:00",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_90",
+            "character": "よじ",
+            "transcription": "yoji",
+            "translation": "04:00",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_91",
+            "character": "ごじ",
+            "transcription": "goji",
+            "translation": "05:00",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_92",
+            "character": "にじ",
+            "transcription": "niji",
+            "translation": "02:00",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_93",
+            "character": "さんじ",
+            "transcription": "sanji",
+            "translation": "03:00",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_94",
+            "character": "せんこう",
+            "transcription": "senkou",
+            "translation": "Major",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_95",
+            "character": "いちねんせい",
+            "transcription": "ichinensei",
+            "translation": "First-year student",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_96",
+            "character": "いちじ",
+            "transcription": "ichiji",
+            "translation": "01:00",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_97",
+            "character": "～ねんせい",
+            "transcription": "~ nensei",
+            "translation": "...year student",
+            "additional_info": "",
+            "speech_part": "auxiliary"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_98",
+            "character": "りゅうがくせい",
+            "transcription": "ryuugakusei",
+            "translation": "International student",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_1_en_99",
+            "character": "こうこう",
+            "transcription": "koukou",
+            "translation": "High school",
+            "additional_info": "",
+            "speech_part": "adverb"
+        }
+    ]
+}

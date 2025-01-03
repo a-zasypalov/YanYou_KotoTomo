@@ -1,0 +1,1041 @@
+{
+    "deck_id": "genki1_12_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "genki1_12_en_1",
+            "character": "あおぞら",
+            "transcription": "aozora",
+            "translation": "Blue sky",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_2",
+            "character": "けしき",
+            "transcription": "keshiki",
+            "translation": "Scenery",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_3",
+            "character": "とくしょく",
+            "transcription": "tokushoku",
+            "translation": "Characteristic",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_4",
+            "character": "せいねん",
+            "transcription": "seinen",
+            "translation": "Youth",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_5",
+            "character": "せきどう",
+            "transcription": "sekidou",
+            "translation": "The equator",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_6",
+            "character": "あお",
+            "transcription": "ao",
+            "translation": "Blue color",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_7",
+            "character": "せきじゅうじ",
+            "transcription": "sekijuuji",
+            "translation": "The Red Cross",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_8",
+            "character": "あかちゃん",
+            "transcription": "akachan",
+            "translation": "Baby",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_9",
+            "character": "たいど",
+            "transcription": "taido",
+            "translation": "Attitude",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_10",
+            "character": "あか",
+            "transcription": "aka",
+            "translation": "Red color",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_11",
+            "character": "さんじゅうど",
+            "transcription": "sanjuu do",
+            "translation": "30 degrees",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_12",
+            "character": "いちど",
+            "transcription": "ichido",
+            "translation": "Once",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_13",
+            "character": "おんど",
+            "transcription": "ondo",
+            "translation": "Temperature",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_14",
+            "character": "べつべつに",
+            "transcription": "betsubetsu ni",
+            "translation": "Separately",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_15",
+            "character": "とくべつな",
+            "transcription": "tokubetsu na",
+            "translation": "Special",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_16",
+            "character": "さべつ",
+            "transcription": "sabetsu",
+            "translation": "Discrimination",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_17",
+            "character": "れんきゅう",
+            "transcription": "renkyuu",
+            "translation": "Consecutive holidays",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_18",
+            "character": "ともばたらき",
+            "transcription": "tomobataraki",
+            "translation": "Both husband and wife working",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_19",
+            "character": "ろうどう",
+            "transcription": "roudou",
+            "translation": "Labor",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_20",
+            "character": "こくれん",
+            "transcription": "kokuren",
+            "translation": "United Nations",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_21",
+            "character": "つれてかえる",
+            "transcription": "tsure te kaeru",
+            "translation": "To bring (a person) back",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_22",
+            "character": "こうし",
+            "transcription": "koushi",
+            "translation": "Calf",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_23",
+            "character": "たいし",
+            "transcription": "taishi",
+            "translation": "Ambassador",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_24",
+            "character": "おつかい",
+            "transcription": "o tsukai",
+            "translation": "Errand",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_25",
+            "character": "しようちゅう",
+            "transcription": "shiyouchuu",
+            "translation": "\"Occupied\"",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_26",
+            "character": "うし",
+            "transcription": "ushi",
+            "translation": "Cow",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_27",
+            "character": "おこす",
+            "transcription": "oko su",
+            "translation": "To wake someone up",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_28",
+            "character": "はやおきする",
+            "transcription": "hayaoki suru",
+            "translation": "To get up early",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_29",
+            "character": "さいきどう",
+            "transcription": "saikidou",
+            "translation": "Reboot",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_30",
+            "character": "そうちょう",
+            "transcription": "souchou",
+            "translation": "Early morning",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_31",
+            "character": "しんとう",
+            "transcription": "shintou",
+            "translation": "Shinto",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_32",
+            "character": "ひとびと",
+            "transcription": "hitobito",
+            "translation": "People",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_33",
+            "character": "かみさま",
+            "transcription": "kami sama",
+            "translation": "God",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_34",
+            "character": "いろいろな",
+            "transcription": "iroiro na",
+            "translation": "Various",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_35",
+            "character": "こうべし",
+            "transcription": "koubeshi",
+            "translation": "Kobe City",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_36",
+            "character": "むかしばなし",
+            "transcription": "mukashibanashi",
+            "translation": "Old tale",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_37",
+            "character": "むかし",
+            "transcription": "mukashi",
+            "translation": "Old times",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_38",
+            "character": "おおむかし",
+            "transcription": "oomukashi",
+            "translation": "Ancient times",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_39",
+            "character": "むかしむかし",
+            "transcription": "mukashimukashi",
+            "translation": "Once upon a time",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_40",
+            "character": "ちゅうしゃ",
+            "transcription": "chuusha",
+            "translation": "Injection",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_41",
+            "character": "しゅじゅつ",
+            "transcription": "shujutsu",
+            "translation": "Operation",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_42",
+            "character": "たいおんけい",
+            "transcription": "taionkei",
+            "translation": "Thermometer",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_43",
+            "character": "てんてき",
+            "transcription": "tenteki",
+            "translation": "Intravenous feeding",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_44",
+            "character": "じびか",
+            "transcription": "jibika",
+            "translation": "Otorhinolaryngologist",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_45",
+            "character": "しか／はいしゃ",
+            "transcription": "shika / haisha",
+            "translation": "Dentist",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_46",
+            "character": "レントゲン",
+            "transcription": "rentogen",
+            "translation": "X-ray",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_47",
+            "character": "こうせいぶっしつ",
+            "transcription": "kouseibusshitsu",
+            "translation": "Antibiotic",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_48",
+            "character": "せいけいげか",
+            "transcription": "seikeigeka",
+            "translation": "Orthopedic surgeon",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_49",
+            "character": "さんふじんか",
+            "transcription": "sanfujinka",
+            "translation": "Obstetrician and gynecologist",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_50",
+            "character": "げか",
+            "transcription": "geka",
+            "translation": "Surgeon",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_51",
+            "character": "がんか／めいしゃ",
+            "transcription": "ganka / meisha",
+            "translation": "Ophthalmologist",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_52",
+            "character": "ひふか",
+            "transcription": "hifuka",
+            "translation": "Dermatologist",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_53",
+            "character": "けがをしました。",
+            "transcription": "kegawoshimashita .",
+            "translation": "I hurt myself.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_54",
+            "character": "あしをこっせつしました。",
+            "transcription": "ashi wo kossetsu shimashita .",
+            "translation": "I broke my leg.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_55",
+            "character": "ないか",
+            "transcription": "naika",
+            "translation": "Physician",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_56",
+            "character": "やけどをしました。",
+            "transcription": "yakedowoshimashita .",
+            "translation": "I burned myself.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_57",
+            "character": "めまいがします。",
+            "transcription": "memaigashimasu .",
+            "translation": "I feel dizzy.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_58",
+            "character": "はきました。",
+            "transcription": "haki mashita .",
+            "translation": "I threw up.",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_59",
+            "character": "はっしんがあります。",
+            "transcription": "hasshin gaarimasu .",
+            "translation": "I have rashes.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_60",
+            "character": "きぶんがわるいです。",
+            "transcription": "kibun ga warui desu .",
+            "translation": "I am not feeling well.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_61",
+            "character": "はなみずがでます。",
+            "transcription": "hanamizu ga dema su .",
+            "translation": "I have a runny nose.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_62",
+            "character": "くしゃみがでます。",
+            "transcription": "kushamiga dema su .",
+            "translation": "I sneeze.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_63",
+            "character": "せなかがかゆいです。",
+            "transcription": "senaka gakayuidesu .",
+            "translation": "My back itches.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_64",
+            "character": "むしばがあります。",
+            "transcription": "mushiba gaarimasu .",
+            "translation": "I have a bad tooth.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_65",
+            "character": "べんぴです。",
+            "transcription": "benpi desu .",
+            "translation": "I am constipated.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_66",
+            "character": "（～に）アレルギーがあります。",
+            "transcription": "( ~ ni ) arerugii gaarimasu .",
+            "translation": "I have an allergy to...",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_67",
+            "character": "せいりです。",
+            "transcription": "seiri desu .",
+            "translation": "I have my period.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_68",
+            "character": "かふんしょうです。",
+            "transcription": "kafunshou desu .",
+            "translation": "I have hay fever.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_69",
+            "character": "げりです。",
+            "transcription": "geri desu .",
+            "translation": "I have diarrhea",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_70",
+            "character": "にさんにち",
+            "transcription": "nisannichi",
+            "translation": "For two to three days",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_71",
+            "character": "おなじ",
+            "transcription": "onaji",
+            "translation": "Same",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_72",
+            "character": "それに",
+            "transcription": "soreni",
+            "translation": "Moreover...",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_73",
+            "character": "はじめて",
+            "transcription": "hajimete",
+            "translation": "For the first time",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_74",
+            "character": "もうすぐ",
+            "transcription": "mousugu",
+            "translation": "Very soon",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_75",
+            "character": "たぶん",
+            "transcription": "tabun",
+            "translation": "Probably",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_76",
+            "character": "できるだけ",
+            "transcription": "dekirudake",
+            "translation": "As much as possible",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_77",
+            "character": "わかれる",
+            "transcription": "wakare ru",
+            "translation": "To break up",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_78",
+            "character": "げんきがない",
+            "transcription": "genki ganai",
+            "translation": "Don't look well",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_79",
+            "character": "きんちょうする",
+            "transcription": "kinchousu ru",
+            "translation": "To get nervous",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_80",
+            "character": "しんぱいする",
+            "transcription": "shinpai suru",
+            "translation": "To worry",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_81",
+            "character": "おだいじに",
+            "transcription": "o daiji ni",
+            "translation": "Get well soon.",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_82",
+            "character": "はらう",
+            "transcription": "harau",
+            "translation": "To pay (～を)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_83",
+            "character": "なくす",
+            "transcription": "nakusu",
+            "translation": "To lose (～を)",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_84",
+            "character": "せきがでる",
+            "transcription": "sekiga deru",
+            "translation": "To cough",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_85",
+            "character": "きょうみがある",
+            "transcription": "kyoumi gaaru",
+            "translation": "To be interested (in...) (topic に)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_86",
+            "character": "のどがかわく",
+            "transcription": "nodoga kawaku",
+            "translation": "To become thirsty",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_87",
+            "character": "ねつがある",
+            "transcription": "netsu gaaru",
+            "translation": "To have a fever",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_88",
+            "character": "あるく",
+            "transcription": "aruku",
+            "translation": "To walk",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_89",
+            "character": "かぜをひく",
+            "transcription": "kaze wohiku",
+            "translation": "To catch a cold",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_90",
+            "character": "わるい",
+            "transcription": "warui",
+            "translation": "Bad",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_91",
+            "character": "いたい",
+            "transcription": "itai",
+            "translation": "Hurt",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_92",
+            "character": "おおい",
+            "transcription": "ooi",
+            "translation": "There are many",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_93",
+            "character": "すてき（な）",
+            "transcription": "suteki",
+            "translation": "Nice",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_94",
+            "character": "あまい",
+            "transcription": "amai",
+            "translation": "Sweet",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_95",
+            "character": "ひろい",
+            "transcription": "hiroi",
+            "translation": "Wide",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_96",
+            "character": "せまい",
+            "transcription": "semai",
+            "translation": "Narrow",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_97",
+            "character": "かれ",
+            "transcription": "kare",
+            "translation": "He",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_98",
+            "character": "かれし",
+            "transcription": "kareshi",
+            "translation": "Boyfriend",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_99",
+            "character": "しあい",
+            "transcription": "shiai",
+            "translation": "Match",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_100",
+            "character": "ようじ",
+            "transcription": "youji",
+            "translation": "Business to take care of",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_101",
+            "character": "せいせき",
+            "transcription": "seiseki",
+            "translation": "Grade (on a test, etc.)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_102",
+            "character": "おてあらい",
+            "transcription": "o tearai",
+            "translation": "Restroom",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_103",
+            "character": "かのじょ",
+            "transcription": "kanojo",
+            "translation": "She",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_104",
+            "character": "～だい",
+            "transcription": "~ dai",
+            "translation": "Charge",
+            "additional_info": "",
+            "speech_part": "auxiliary"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_105",
+            "character": "プレゼント",
+            "transcription": "purezento",
+            "translation": "Present",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_106",
+            "character": "きっぷ",
+            "transcription": "kippu",
+            "translation": "Train ticket",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_107",
+            "character": "もの",
+            "transcription": "mono",
+            "translation": "Thing (concrete object)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_108",
+            "character": "ホームシック",
+            "transcription": "hoomushikku",
+            "translation": "Homesickness",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_109",
+            "character": "ふく",
+            "transcription": "fuku",
+            "translation": "Clothes",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_110",
+            "character": "アレルギー",
+            "transcription": "arerugii",
+            "translation": "Allergy",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_111",
+            "character": "かぜ",
+            "transcription": "kaze",
+            "translation": "Cold",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_112",
+            "character": "ふつかよい",
+            "transcription": "futsukayoi",
+            "translation": "Hangover",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_113",
+            "character": "インフルエンザ",
+            "transcription": "infuruenza",
+            "translation": "Influenza",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_114",
+            "character": "せき",
+            "transcription": "seki",
+            "translation": "Cough",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_12_en_115",
+            "character": "のど",
+            "transcription": "nodo",
+            "translation": "Throat",
+            "additional_info": "",
+            "speech_part": "verb"
+        }
+    ]
+}

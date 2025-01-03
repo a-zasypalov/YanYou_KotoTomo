@@ -1,0 +1,969 @@
+{
+    "deck_id": "genki1_6_en",
+    "version": 1,
+    "cards": [
+        {
+            "type": "word",
+            "id": "genki1_6_en_1",
+            "character": "かんこく",
+            "transcription": "kankoku",
+            "translation": "South Korea",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_2",
+            "character": "こっかい",
+            "transcription": "kokkai",
+            "translation": "The Diet",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_3",
+            "character": "そと",
+            "transcription": "soto",
+            "translation": "Outside",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_4",
+            "character": "がいこくじん",
+            "transcription": "gaikokujin",
+            "translation": "Foreigner",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_5",
+            "character": "かいがい",
+            "transcription": "kaigai",
+            "translation": "Overseas",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_6",
+            "character": "ちゅうごく",
+            "transcription": "chuugoku",
+            "translation": "China",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_7",
+            "character": "がいこく",
+            "transcription": "gaikoku",
+            "translation": "Foreign country",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_8",
+            "character": "まなぶ",
+            "transcription": "manabu",
+            "translation": "To study",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_9",
+            "character": "がっこう",
+            "transcription": "gakkou",
+            "translation": "School",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_10",
+            "character": "がくぶ",
+            "transcription": "gakubu",
+            "translation": "Department",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_11",
+            "character": "おおきい",
+            "transcription": "ookii",
+            "translation": "Big",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_12",
+            "character": "おとな",
+            "transcription": "otona",
+            "translation": "Adult",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_13",
+            "character": "たいへんな",
+            "transcription": "taihen na",
+            "translation": "Tough",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_14",
+            "character": "だいがく",
+            "transcription": "daigaku",
+            "translation": "University",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_15",
+            "character": "たいしかん",
+            "transcription": "taishikan",
+            "translation": "Embassy",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_16",
+            "character": "いっしょうにいちど",
+            "transcription": "isshou ni ichido",
+            "translation": "Once in a life time",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_17",
+            "character": "うまれる",
+            "transcription": "umare ru",
+            "translation": "To be born",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_18",
+            "character": "だいがくせい",
+            "transcription": "daigakusei",
+            "translation": "College student",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_19",
+            "character": "がくせい",
+            "transcription": "gakusei",
+            "translation": "Student",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_20",
+            "character": "せんげつ",
+            "transcription": "sengetsu",
+            "translation": "Last month",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_21",
+            "character": "さきに",
+            "transcription": "sakini",
+            "translation": "Ahead",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_22",
+            "character": "せんぱい",
+            "transcription": "senpai",
+            "translation": "Senior member",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_23",
+            "character": "じゅっぷん／じっぷん",
+            "transcription": "juubun",
+            "translation": "Ten minutes",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_24",
+            "character": "せんせい",
+            "transcription": "sensei",
+            "translation": "Teacher",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_25",
+            "character": "わける",
+            "transcription": "wake ru",
+            "translation": "To divide",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_26",
+            "character": "せんしゅう",
+            "transcription": "senshuu",
+            "translation": "Last week",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_27",
+            "character": "ひだりきき",
+            "transcription": "hidarikiki",
+            "translation": "Left-handed",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_28",
+            "character": "ひだりて",
+            "transcription": "hidarite",
+            "translation": "Left hand",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_29",
+            "character": "させつ",
+            "transcription": "sasetsu",
+            "translation": "Left turn",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_30",
+            "character": "ごふん",
+            "transcription": "gobu",
+            "translation": "Five minutes",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_31",
+            "character": "みぎがわ",
+            "transcription": "migigawa",
+            "translation": "Right side",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_32",
+            "character": "さゆう",
+            "transcription": "sayuu",
+            "translation": "Right and left",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_33",
+            "character": "みぎて",
+            "transcription": "migite",
+            "translation": "Right hand",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_34",
+            "character": "ひだり",
+            "transcription": "hidari",
+            "translation": "Left",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_35",
+            "character": "しゅっせき",
+            "transcription": "shusseki",
+            "translation": "Attendance",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_36",
+            "character": "うせつ",
+            "transcription": "usetsu",
+            "translation": "Right turn",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_37",
+            "character": "みぎ",
+            "transcription": "migi",
+            "translation": "Right",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_38",
+            "character": "だす",
+            "transcription": "dasu",
+            "translation": "To take something out",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_39",
+            "character": "ゆしゅつ",
+            "transcription": "yushutsu",
+            "translation": "Export",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_40",
+            "character": "くち",
+            "transcription": "kuchi",
+            "translation": "Mouth",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_41",
+            "character": "でかける",
+            "transcription": "deka keru",
+            "translation": "To go out",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_42",
+            "character": "でる",
+            "transcription": "deru",
+            "translation": "To exit",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_43",
+            "character": "じんこう",
+            "transcription": "jinkou",
+            "translation": "Population",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_44",
+            "character": "ほっきょく",
+            "transcription": "hokkyoku",
+            "translation": "North Pole",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_45",
+            "character": "とうなんアジア",
+            "transcription": "tounan'ajia",
+            "translation": "Southeast Asia",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_46",
+            "character": "きたぐち",
+            "transcription": "kitaguchi",
+            "translation": "North exit",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_47",
+            "character": "とうほく",
+            "transcription": "touhoku",
+            "translation": "Tohoku area",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_48",
+            "character": "なんとう",
+            "transcription": "nantou",
+            "translation": "Southeast",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_49",
+            "character": "なんきょく",
+            "transcription": "nankyoku",
+            "translation": "Antarctica",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_50",
+            "character": "みなみぐち",
+            "transcription": "minamiguchi",
+            "translation": "South exit",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_51",
+            "character": "ほくせい",
+            "transcription": "hokusei",
+            "translation": "Northwest",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_52",
+            "character": "かんさい",
+            "transcription": "kansai",
+            "translation": "Kansai area",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_53",
+            "character": "せいよう",
+            "transcription": "seiyou",
+            "translation": "The West",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_54",
+            "character": "にしぐち",
+            "transcription": "nishiguchi",
+            "translation": "West exit",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_55",
+            "character": "とうよう",
+            "transcription": "touyou",
+            "translation": "The East",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_56",
+            "character": "とうきょう",
+            "transcription": "toukyou",
+            "translation": "Tokyo",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_57",
+            "character": "かんとう",
+            "transcription": "kantou",
+            "translation": "Kanto area",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_58",
+            "character": "ひがしぐち",
+            "transcription": "higashiguchi",
+            "translation": "East exit",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_59",
+            "character": "ひがし",
+            "transcription": "higashi",
+            "translation": "East",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_60",
+            "character": "にし",
+            "transcription": "nishi",
+            "translation": "West",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_61",
+            "character": "みなみ",
+            "transcription": "minami",
+            "translation": "South",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_62",
+            "character": "きた",
+            "transcription": "kita",
+            "translation": "North",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_63",
+            "character": "みぎにまがる",
+            "transcription": "migi ni magaru",
+            "translation": "Turn right",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_64",
+            "character": "みちをわたる",
+            "transcription": "michi wo wataru",
+            "translation": "Cross the street",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_65",
+            "character": "みちのひだりがわ",
+            "transcription": "michi no hidarigawa",
+            "translation": "Left side of the street",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_66",
+            "character": "みちのみぎがわ",
+            "transcription": "michi no migigawa",
+            "translation": "Right side of the street",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_67",
+            "character": "みちをきく",
+            "transcription": "michi wo kiku",
+            "translation": "To ask for directions",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_68",
+            "character": "まっすぐいく",
+            "transcription": "massugu iku",
+            "translation": "Go straight",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_69",
+            "character": "ほんとうですか",
+            "transcription": "hontou desuka",
+            "translation": "Really?",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_70",
+            "character": "ひだりにまがる",
+            "transcription": "hidari ni magaru",
+            "translation": "Turn left",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_71",
+            "character": "あとで",
+            "transcription": "atode",
+            "translation": "Later on",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_72",
+            "character": "すぐ",
+            "transcription": "sugu",
+            "translation": "Right away",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_73",
+            "character": "けっこうです",
+            "transcription": "kekkou desu",
+            "translation": "That would be fine.",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_74",
+            "character": "ゆっくり",
+            "transcription": "yukkuri",
+            "translation": "Slowly",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_75",
+            "character": "つける",
+            "transcription": "tsukeru",
+            "translation": "To turn on (～を)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_76",
+            "character": "つれてくる",
+            "transcription": "tsure tekuru",
+            "translation": "To bring (a person) (～を)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_77",
+            "character": "シャワーをあびる",
+            "transcription": "shawaa wo abi ru",
+            "translation": "To take a shower",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_78",
+            "character": "でんわする",
+            "transcription": "denwa suru",
+            "translation": "To call (～に)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_79",
+            "character": "わすれる",
+            "transcription": "wasure ru",
+            "translation": "To forget",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_80",
+            "character": "おしえる",
+            "transcription": "oshie ru",
+            "translation": "To teach",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_81",
+            "character": "おりる",
+            "transcription": "ori ru",
+            "translation": "To get off (～を)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_82",
+            "character": "かりる",
+            "transcription": "kari ru",
+            "translation": "To borrow (person に thing を)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_83",
+            "character": "はいる",
+            "transcription": "iru",
+            "translation": "To enter (～に)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_84",
+            "character": "てつだう",
+            "transcription": "tetsudau",
+            "translation": "To help (person/task を)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_85",
+            "character": "しめる",
+            "transcription": "shime ru",
+            "translation": "To close (something) (～を)",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_86",
+            "character": "あける",
+            "transcription": "hirake ru",
+            "translation": "To open (something) (～を)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_87",
+            "character": "しぬ",
+            "transcription": "shinu",
+            "translation": "To die",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_88",
+            "character": "すわる",
+            "transcription": "suwaru",
+            "translation": "To sit down (seat に)",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_89",
+            "character": "たばこをすう",
+            "transcription": "tabakowo suu",
+            "translation": "To smoke",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_90",
+            "character": "つかう",
+            "transcription": "tsukau",
+            "translation": "To use (～を)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_91",
+            "character": "けす",
+            "transcription": "kesu",
+            "translation": "To turn off",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_92",
+            "character": "かえす",
+            "transcription": "kaesu",
+            "translation": "To return (a thing) (person に thing を)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_93",
+            "character": "いそぐ",
+            "transcription": "isogu",
+            "translation": "To hurry",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_94",
+            "character": "あそぶ",
+            "transcription": "asobu",
+            "translation": "To play",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_95",
+            "character": "たいへん（な）",
+            "transcription": "taihen",
+            "translation": "Tough (situation)",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_96",
+            "character": "こんしゅう",
+            "transcription": "konshuu",
+            "translation": "This week",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_97",
+            "character": "らいしゅう",
+            "transcription": "raishuu",
+            "translation": "Next week",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_98",
+            "character": "くに",
+            "transcription": "kuni",
+            "translation": "Country",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_99",
+            "character": "まど",
+            "transcription": "mado",
+            "translation": "Window",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_100",
+            "character": "シャワー",
+            "transcription": "shawaa",
+            "translation": "Shower",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_101",
+            "character": "エアコン",
+            "transcription": "eakon",
+            "translation": "Air conditioner",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_102",
+            "character": "パソコン",
+            "transcription": "pasokon",
+            "translation": "Personal computer",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_103",
+            "character": "ページ",
+            "transcription": "peeji",
+            "translation": "Page",
+            "additional_info": "",
+            "speech_part": "proper noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_104",
+            "character": "きょうかしょ",
+            "transcription": "kyoukasho",
+            "translation": "Textbook",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_105",
+            "character": "にもつ",
+            "transcription": "nimotsu",
+            "translation": "Baggage",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_106",
+            "character": "おかね",
+            "transcription": "o kin",
+            "translation": "Money",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "genki1_6_en_107",
+            "character": "かんじ",
+            "transcription": "kanji",
+            "translation": "Kanji",
+            "additional_info": "",
+            "speech_part": "noun"
+        }
+    ]
+}
