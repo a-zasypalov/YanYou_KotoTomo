@@ -116,6 +116,30 @@ class DeckOverviewViewModel(
         }
         viewState.value = viewState.value?.copy(isCurrentlyLearned = learned)
     }
+
+    fun updateShowNewCards(show: Boolean) = viewModelScope.launch {
+        viewState.value?.let { viewStateSafe ->
+            val newSettings = viewStateSafe.settings.copy(showNewCards = show)
+            deckSettingsInteractor.updateDeckSettings(newSettings)
+            viewState.value = viewStateSafe.copy(settings = newSettings)
+        }
+    }
+
+    fun updateShowToReviewCards(show: Boolean) = viewModelScope.launch {
+        viewState.value?.let { viewStateSafe ->
+            val newSettings = viewStateSafe.settings.copy(showToReviewCards = show)
+            deckSettingsInteractor.updateDeckSettings(newSettings)
+            viewState.value = viewStateSafe.copy(settings = newSettings)
+        }
+    }
+
+    fun updateShowPausedCards(show: Boolean) = viewModelScope.launch {
+        viewState.value?.let { viewStateSafe ->
+            val newSettings = viewStateSafe.settings.copy(showPausedCards = show)
+            deckSettingsInteractor.updateDeckSettings(newSettings)
+            viewState.value = viewStateSafe.copy(settings = newSettings)
+        }
+    }
 }
 
 data class DeckOverviewState(

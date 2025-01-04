@@ -13,6 +13,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -74,6 +75,9 @@ fun DeckOverviewScreen(
             updateReadingSettings = viewModel::updateReadingSettings,
             updateBookmarkedState = viewModel::updateBookmarkedState,
             updateLearnedState = viewModel::updateLearnedState,
+            updateShowNewCards = viewModel::updateShowNewCards,
+            updateShowToReviewCards = viewModel::updateShowToReviewCards,
+            updateShowPausedCards = viewModel::updateShowPausedCards,
         )
         CardDetailsView(cardDetailState, args.learningLanguageId) { cardDetailState.value = null }
     }
@@ -89,6 +93,9 @@ private fun DeckOverviewContent(
     updateReadingSettings: (Boolean) -> Unit,
     updateBookmarkedState: (Boolean) -> Unit,
     updateLearnedState: (Boolean) -> Unit,
+    updateShowNewCards: (Boolean) -> Unit,
+    updateShowToReviewCards: (Boolean) -> Unit,
+    updateShowPausedCards: (Boolean) -> Unit,
 ) {
     viewState?.let {
         val cellsNumber = if (viewState.deckId.isKanaDeck() == true) 5 else 2
@@ -113,34 +120,46 @@ private fun DeckOverviewContent(
                     )
                 }
 
-                if(viewState.newCards.isNotEmpty()) {
+                if (viewState.newCards.isNotEmpty()) {
                     item(span = { GridItemSpan(cellsNumber) }) {
-                        DeckOverviewCategoryHeader(name = "New", isOpen = true, onOpenToggle = {})
+                        DeckOverviewCategoryHeader(
+                            name = "New",
+                            isOpen = viewState.settings.showNewCards,
+                            onOpenToggle = updateShowNewCards
+                        )
                     }
 
-                    viewState.newCards.forEach {
+                    if(viewState.settings.showNewCards) viewState.newCards.forEach {
                         item { DeckOverviewCard(it, viewState.settings, onCardClick) }
                         (0..<it.card.emptySpacesAfter()).forEach { item {} }
                     }
                 }
 
-                if(viewState.cardsToReview.isNotEmpty()) {
+                if (viewState.cardsToReview.isNotEmpty()) {
                     item(span = { GridItemSpan(cellsNumber) }) {
-                        DeckOverviewCategoryHeader(name = "To Review", isOpen = true, onOpenToggle = {})
+                        DeckOverviewCategoryHeader(
+                            name = "To Review",
+                            isOpen = viewState.settings.showToReviewCards,
+                            onOpenToggle = updateShowToReviewCards
+                        )
                     }
 
-                    viewState.cardsToReview.forEach {
+                    if(viewState.settings.showToReviewCards) viewState.cardsToReview.forEach {
                         item { DeckOverviewCard(it, viewState.settings, onCardClick) }
                         (0..<it.card.emptySpacesAfter()).forEach { item {} }
                     }
                 }
 
-                if(viewState.pausedCards.isNotEmpty()) {
+                if (viewState.pausedCards.isNotEmpty()) {
                     item(span = { GridItemSpan(cellsNumber) }) {
-                        DeckOverviewCategoryHeader(name = "Paused", isOpen = true, onOpenToggle = {})
+                        DeckOverviewCategoryHeader(
+                            name = "Paused",
+                            isOpen = viewState.settings.showPausedCards,
+                            onOpenToggle = updateShowPausedCards
+                        )
                     }
 
-                    viewState.pausedCards.forEach {
+                    if(viewState.settings.showPausedCards) viewState.pausedCards.forEach {
                         item { DeckOverviewCard(it, viewState.settings, onCardClick) }
                         (0..<it.card.emptySpacesAfter()).forEach { item {} }
                     }
@@ -157,13 +176,13 @@ private fun DeckOverviewContent(
 }
 
 @Composable
-fun DeckOverviewCategoryHeader(name: String, isOpen: Boolean, onOpenToggle: () -> Unit) {
+fun DeckOverviewCategoryHeader(name: String, isOpen: Boolean, onOpenToggle: (Boolean) -> Unit) {
     Column(modifier = Modifier.fillMaxWidth()) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Text(name, style = MaterialTheme.typography.headlineMedium)
-            IconButton(onClick = onOpenToggle) {
-                if(isOpen) {
-                    Icon(Icons.Default.ExpandMore, "")
+            IconButton(onClick = { onOpenToggle(!isOpen) }) {
+                if (isOpen) {
+                    Icon(Icons.Default.ExpandLess, "")
                 } else {
                     Icon(Icons.Default.ExpandMore, "")
                 }
