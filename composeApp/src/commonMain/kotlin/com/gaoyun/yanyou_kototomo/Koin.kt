@@ -41,6 +41,7 @@ import com.gaoyun.yanyou_kototomo.ui.statistics.StatisticsViewModel
 import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsFullListViewModel
 import com.gaoyun.yanyoukototomo.data.persistence.CardsPersisted
 import com.gaoyun.yanyoukototomo.data.persistence.CoursesPersisted
+import com.gaoyun.yanyoukototomo.data.persistence.DeckSettings
 import com.gaoyun.yanyoukototomo.data.persistence.QuizSessionsPersisted
 import com.squareup.sqldelight.ColumnAdapter
 import org.koin.core.context.startKoin
@@ -133,6 +134,7 @@ val dbModule = module {
             CardsPersistedAdapter = CardsPersisted.Adapter(get(), get(), get()),
             CoursesPersistedAdapter = CoursesPersisted.Adapter(get()),
             QuizSessionsPersistedAdapter = QuizSessionsPersisted.Adapter(get()),
+            DeckSettingsAdapter = DeckSettings.Adapter(get()),
         )
     }
     single<ColumnAdapter<List<String>, String>> {
