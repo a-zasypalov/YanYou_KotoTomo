@@ -110,7 +110,7 @@ internal fun DeckCard(
     }
 }
 
-internal fun Card.KanaCard.emptySpacesAfter(): Int {
+internal fun Card.emptySpacesAfter(): Int {
     val oneSpaceFor = listOf("や", "ゆ", "ヤ", "ユ")
     val threeSpacesFor = listOf("わ", "ワ")
     return when {

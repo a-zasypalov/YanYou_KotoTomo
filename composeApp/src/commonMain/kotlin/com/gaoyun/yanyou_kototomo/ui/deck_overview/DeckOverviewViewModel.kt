@@ -1,5 +1,7 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
+import com.gaoyun.yanyou_kototomo.data.local.DeckId
+import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.countForReview
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.deck.Deck
@@ -43,8 +45,13 @@ class DeckOverviewViewModel(
                 bookmarksState.value = bookmarks.toMutableList()
                 bookmarkState.value = bookmarks.find { it.id == deck.id }
 
+                val (newCards, cardsToReview, pausedCards) = splitDeckToNewReviewPaused(deck)
                 viewState.value = DeckOverviewState(
-                    deck = deck,
+                    deckId = deck.id,
+                    deckName = deck.name,
+                    newCards = newCards,
+                    cardsToReview = cardsToReview,
+                    pausedCards = pausedCards,
                     settings = settings,
                     cardsDueToReview = cardsDueToReview,
                     isBookmarked = bookmarkState.value != null,
@@ -52,6 +59,14 @@ class DeckOverviewViewModel(
                 )
             }
         }
+    }
+
+    fun splitDeckToNewReviewPaused(deck: Deck): Triple<List<CardWithProgress<*>>, List<CardWithProgress<*>>, List<CardWithProgress<*>>> {
+        val newCards = deck.cards.filter { it.progress == null }
+        val cardsToReview = deck.cards.filter { it.progress != null }
+        val pausedCards = deck.cards.filter { it.progress?.isPaused == true }
+
+        return Triple(newCards, cardsToReview, pausedCards)
     }
 
     fun updateTranslationSettings(show: Boolean) = viewModelScope.launch {
@@ -79,13 +94,13 @@ class DeckOverviewViewModel(
     }
 
     fun resetDeck(args: DeckScreenArgs) = viewModelScope.launch {
-        viewState.value?.deck?.id?.let { cardProgressUpdater.resetDeck(it) }
+        viewState.value?.deckId?.let { cardProgressUpdater.resetDeck(it) }
         getDeck(args)
     }
 
     fun updateBookmarkedState(bookmarked: Boolean) = viewModelScope.launch {
         if (bookmarked) {
-            viewState.value?.deck?.id?.let { bookmarksInteractor.addDeck(it, bookmarksState.value) }
+            viewState.value?.deckId?.let { bookmarksInteractor.addDeck(it, bookmarksState.value) }
         } else {
             bookmarksState.value.remove(bookmarkState.value)
             bookmarksInteractor.saveBookmarkedDecks(bookmarksState.value)
@@ -95,7 +110,7 @@ class DeckOverviewViewModel(
 
     fun updateLearnedState(learned: Boolean) = viewModelScope.launch {
         if (learned) {
-            viewState.value?.deck?.id?.let { bookmarksInteractor.setLearningDeckId(it) }
+            viewState.value?.deckId?.let { bookmarksInteractor.setLearningDeckId(it) }
         } else {
             bookmarksInteractor.setLearningDeckId(null)
         }
@@ -104,7 +119,11 @@ class DeckOverviewViewModel(
 }
 
 data class DeckOverviewState(
-    val deck: Deck,
+    val deckId: DeckId,
+    val deckName: String,
+    val newCards: List<CardWithProgress<*>>,
+    val cardsToReview: List<CardWithProgress<*>>,
+    val pausedCards: List<CardWithProgress<*>>,
     val settings: DeckSettings,
     val cardsDueToReview: Int,
     val isCurrentlyLearned: Boolean,
