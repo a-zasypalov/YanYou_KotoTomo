@@ -1,5 +1,9 @@
+@file:Suppress("FunctionName")
+
 package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,9 +15,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,6 +30,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
@@ -83,6 +89,7 @@ fun DeckOverviewScreen(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun DeckOverviewContent(
     viewState: DeckOverviewState?,
@@ -120,49 +127,17 @@ private fun DeckOverviewContent(
                     )
                 }
 
-                if (viewState.newCards.isNotEmpty()) {
-                    item(span = { GridItemSpan(cellsNumber) }) {
-                        DeckOverviewCategoryHeader(
-                            name = "New",
-                            isOpen = viewState.settings.showNewCards,
-                            onOpenToggle = updateShowNewCards
-                        )
-                    }
-
-                    if(viewState.settings.showNewCards) viewState.newCards.forEach {
-                        item { DeckOverviewCard(it, viewState.settings, onCardClick) }
-                        (0..<it.card.emptySpacesAfter()).forEach { item {} }
-                    }
-                }
-
-                if (viewState.cardsToReview.isNotEmpty()) {
-                    item(span = { GridItemSpan(cellsNumber) }) {
-                        DeckOverviewCategoryHeader(
-                            name = "To Review",
-                            isOpen = viewState.settings.showToReviewCards,
-                            onOpenToggle = updateShowToReviewCards
-                        )
-                    }
-
-                    if(viewState.settings.showToReviewCards) viewState.cardsToReview.forEach {
-                        item { DeckOverviewCard(it, viewState.settings, onCardClick) }
-                        (0..<it.card.emptySpacesAfter()).forEach { item {} }
-                    }
-                }
-
-                if (viewState.pausedCards.isNotEmpty()) {
-                    item(span = { GridItemSpan(cellsNumber) }) {
-                        DeckOverviewCategoryHeader(
-                            name = "Paused",
-                            isOpen = viewState.settings.showPausedCards,
-                            onOpenToggle = updateShowPausedCards
-                        )
-                    }
-
-                    if(viewState.settings.showPausedCards) viewState.pausedCards.forEach {
-                        item { DeckOverviewCard(it, viewState.settings, onCardClick) }
-                        (0..<it.card.emptySpacesAfter()).forEach { item {} }
-                    }
+                if (viewState.deckId.isKanaDeck()) {
+                    DeckOverviewKanaDeck(viewState, onCardClick)
+                } else {
+                    DeckOverviewNormalSegmentedDeck(
+                        viewState = viewState,
+                        cellsNumber = cellsNumber,
+                        onCardClick = onCardClick,
+                        updateShowNewCards = updateShowNewCards,
+                        updateShowToReviewCards = updateShowToReviewCards,
+                        updateShowPausedCards = updateShowPausedCards
+                    )
                 }
 
                 item(span = { GridItemSpan(cellsNumber) }) {
@@ -175,17 +150,75 @@ private fun DeckOverviewContent(
     } ?: FullScreenLoader()
 }
 
+fun LazyGridScope.DeckOverviewKanaDeck(
+    viewState: DeckOverviewState,
+    onCardClick: (CardWithProgress<*>) -> Unit,
+) {
+    viewState.allCards.forEach {
+        item {
+            DeckOverviewCard(
+                cardWithProgress = it,
+                settings = viewState.settings,
+                onCardClick = onCardClick,
+            )
+        }
+        (0..<it.card.emptySpacesAfter()).forEach { item {} }
+    }
+}
+
+
+fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
+    viewState: DeckOverviewState,
+    cellsNumber: Int,
+    onCardClick: (CardWithProgress<*>) -> Unit,
+    updateShowNewCards: (Boolean) -> Unit,
+    updateShowToReviewCards: (Boolean) -> Unit,
+    updateShowPausedCards: (Boolean) -> Unit,
+) {
+    data class Category(
+        val name: String,
+        val cards: List<CardWithProgress<*>>,
+        val isShown: Boolean,
+        val visibilityToggle: (Boolean) -> Unit,
+    )
+
+    val categories = listOf(
+        Category("New", viewState.newCards, viewState.settings.showNewCards, updateShowNewCards),
+        Category("To Review", viewState.cardsToReview, viewState.settings.showToReviewCards, updateShowToReviewCards),
+        Category("Paused", viewState.pausedCards, viewState.settings.showPausedCards, updateShowPausedCards)
+    )
+
+    categories.forEach { (name, cards, isVisible, onToggle) ->
+        if (cards.isNotEmpty()) {
+            item(span = { GridItemSpan(cellsNumber) }) {
+                DeckOverviewCategoryHeader(
+                    name = name,
+                    isOpen = isVisible,
+                    onOpenToggle = onToggle
+                )
+            }
+
+            if (isVisible) {
+                items(cards, key = { it.card.id.identifier }) {
+                    DeckOverviewCard(
+                        cardWithProgress = it,
+                        settings = viewState.settings,
+                        onCardClick = onCardClick,
+                    )
+                }
+            }
+        }
+    }
+}
+
 @Composable
 fun DeckOverviewCategoryHeader(name: String, isOpen: Boolean, onOpenToggle: (Boolean) -> Unit) {
+    val expandIconAngle = animateFloatAsState(targetValue = if (isOpen) 180f else 0f)
     Column(modifier = Modifier.fillMaxWidth()) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Text(name, style = MaterialTheme.typography.headlineMedium)
             IconButton(onClick = { onOpenToggle(!isOpen) }) {
-                if (isOpen) {
-                    Icon(Icons.Default.ExpandLess, "")
-                } else {
-                    Icon(Icons.Default.ExpandMore, "")
-                }
+                Icon(Icons.Default.ExpandMore, "", modifier = Modifier.rotate(expandIconAngle.value))
             }
         }
         Divider(1.dp, modifier = Modifier.fillMaxWidth())
@@ -193,7 +226,12 @@ fun DeckOverviewCategoryHeader(name: String, isOpen: Boolean, onOpenToggle: (Boo
 }
 
 @Composable
-fun DeckOverviewCard(cardWithProgress: CardWithProgress<*>, settings: DeckSettings, onCardClick: (CardWithProgress<*>) -> Unit) {
+fun DeckOverviewCard(
+    cardWithProgress: CardWithProgress<*>,
+    settings: DeckSettings,
+    onCardClick: (CardWithProgress<*>) -> Unit,
+    modifier: Modifier = Modifier,
+) {
     val card = cardWithProgress.card
     when (card) {
         is Card.WordCard ->
@@ -201,7 +239,8 @@ fun DeckOverviewCard(cardWithProgress: CardWithProgress<*>, settings: DeckSettin
                 card = card,
                 showTranscription = settings.showTranscription,
                 showTranslation = settings.showTranslation,
-                onClick = { onCardClick(cardWithProgress) }
+                onClick = { onCardClick(cardWithProgress) },
+                modifier = modifier
             )
 
         is Card.PhraseCard ->
@@ -209,7 +248,8 @@ fun DeckOverviewCard(cardWithProgress: CardWithProgress<*>, settings: DeckSettin
                 card = card,
                 showTranscription = settings.showTranscription,
                 showTranslation = settings.showTranslation,
-                onClick = { onCardClick(cardWithProgress) }
+                onClick = { onCardClick(cardWithProgress) },
+                modifier = modifier
             )
 
         is Card.KanjiCard ->
@@ -218,14 +258,16 @@ fun DeckOverviewCard(cardWithProgress: CardWithProgress<*>, settings: DeckSettin
                 showTranscription = settings.showTranscription,
                 showTranslation = settings.showTranslation,
                 showReading = settings.showReading,
-                onClick = { onCardClick(cardWithProgress) }
+                onClick = { onCardClick(cardWithProgress) },
+                modifier = modifier
             )
 
         is Card.KanaCard -> {
             DeckOverviewKanaCard(
                 card = card,
                 showTranscription = settings.showTranscription,
-                onClick = { onCardClick(cardWithProgress) }
+                onClick = { onCardClick(cardWithProgress) },
+                modifier = modifier
             )
         }
     }

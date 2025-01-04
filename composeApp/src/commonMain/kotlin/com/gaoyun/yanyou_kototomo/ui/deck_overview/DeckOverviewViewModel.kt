@@ -49,6 +49,7 @@ class DeckOverviewViewModel(
                 viewState.value = DeckOverviewState(
                     deckId = deck.id,
                     deckName = deck.name,
+                    allCards = deck.cards,
                     newCards = newCards,
                     cardsToReview = cardsToReview,
                     pausedCards = pausedCards,
@@ -145,6 +146,7 @@ class DeckOverviewViewModel(
 data class DeckOverviewState(
     val deckId: DeckId,
     val deckName: String,
+    val allCards: List<CardWithProgress<*>>,
     val newCards: List<CardWithProgress<*>>,
     val cardsToReview: List<CardWithProgress<*>>,
     val pausedCards: List<CardWithProgress<*>>,
