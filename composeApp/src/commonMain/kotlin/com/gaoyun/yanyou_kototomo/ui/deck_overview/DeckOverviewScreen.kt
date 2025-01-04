@@ -2,7 +2,9 @@ package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,6 +12,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -21,6 +29,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
+import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
+import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FullScreenLoader
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
@@ -81,9 +91,8 @@ private fun DeckOverviewContent(
     updateLearnedState: (Boolean) -> Unit,
 ) {
     viewState?.let {
-        val deck = viewState.deck
-        val cellsNumber = if (deck.isKanaDeck() == true) 5 else 2
-        val cellsSpacer = if (deck.isKanaDeck() == true) 8.dp else 16.dp
+        val cellsNumber = if (viewState.deckId.isKanaDeck() == true) 5 else 2
+        val cellsSpacer = if (viewState.deckId.isKanaDeck() == true) 8.dp else 16.dp
 
         Box(modifier = Modifier.fillMaxSize()) {
             LazyVerticalGrid(
@@ -104,46 +113,36 @@ private fun DeckOverviewContent(
                     )
                 }
 
-                deck.cards.forEach { card ->
-                    when (card.card) {
-                        is Card.WordCard -> item {
-                            DeckOverviewWordCard(
-                                card = card.card,
-                                showTranscription = viewState.settings.showTranscription,
-                                showTranslation = viewState.settings.showTranslation,
-                                onClick = { onCardClick(card) }
-                            )
-                        }
+                if(viewState.newCards.isNotEmpty()) {
+                    item(span = { GridItemSpan(cellsNumber) }) {
+                        DeckOverviewCategoryHeader(name = "New", isOpen = true, onOpenToggle = {})
+                    }
 
-                        is Card.PhraseCard -> item {
-                            DeckOverviewPhraseCard(
-                                card = card.card,
-                                showTranscription = viewState.settings.showTranscription,
-                                showTranslation = viewState.settings.showTranslation,
-                                onClick = { onCardClick(card) }
-                            )
-                        }
+                    viewState.newCards.forEach {
+                        item { DeckOverviewCard(it, viewState.settings, onCardClick) }
+                        (0..<it.card.emptySpacesAfter()).forEach { item {} }
+                    }
+                }
 
-                        is Card.KanjiCard -> item {
-                            DeckOverviewKanjiCard(
-                                card = card.card,
-                                showTranscription = viewState.settings.showTranscription,
-                                showTranslation = viewState.settings.showTranslation,
-                                showReading = viewState.settings.showReading,
-                                onClick = { onCardClick(card) }
-                            )
-                        }
+                if(viewState.cardsToReview.isNotEmpty()) {
+                    item(span = { GridItemSpan(cellsNumber) }) {
+                        DeckOverviewCategoryHeader(name = "To Review", isOpen = true, onOpenToggle = {})
+                    }
 
-                        is Card.KanaCard -> {
-                            item {
-                                DeckOverviewKanaCard(
-                                    card = card.card,
-                                    showTranscription = viewState.settings.showTranscription,
-                                    onClick = { onCardClick(card) }
-                                )
-                            }
-                            (0..<card.card.emptySpacesAfter()).forEach { item {} }
-                        }
+                    viewState.cardsToReview.forEach {
+                        item { DeckOverviewCard(it, viewState.settings, onCardClick) }
+                        (0..<it.card.emptySpacesAfter()).forEach { item {} }
+                    }
+                }
+
+                if(viewState.pausedCards.isNotEmpty()) {
+                    item(span = { GridItemSpan(cellsNumber) }) {
+                        DeckOverviewCategoryHeader(name = "Paused", isOpen = true, onOpenToggle = {})
+                    }
+
+                    viewState.pausedCards.forEach {
+                        item { DeckOverviewCard(it, viewState.settings, onCardClick) }
+                        (0..<it.card.emptySpacesAfter()).forEach { item {} }
                     }
                 }
 
@@ -155,4 +154,60 @@ private fun DeckOverviewContent(
             DeckOverviewActionButtons(viewState.cardsDueToReview, onPlayDeckClick)
         }
     } ?: FullScreenLoader()
+}
+
+@Composable
+fun DeckOverviewCategoryHeader(name: String, isOpen: Boolean, onOpenToggle: () -> Unit) {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Text(name, style = MaterialTheme.typography.headlineMedium)
+            IconButton(onClick = onOpenToggle) {
+                if(isOpen) {
+                    Icon(Icons.Default.ExpandMore, "")
+                } else {
+                    Icon(Icons.Default.ExpandMore, "")
+                }
+            }
+        }
+        Divider(1.dp, modifier = Modifier.fillMaxWidth())
+    }
+}
+
+@Composable
+fun DeckOverviewCard(cardWithProgress: CardWithProgress<*>, settings: DeckSettings, onCardClick: (CardWithProgress<*>) -> Unit) {
+    val card = cardWithProgress.card
+    when (card) {
+        is Card.WordCard ->
+            DeckOverviewWordCard(
+                card = card,
+                showTranscription = settings.showTranscription,
+                showTranslation = settings.showTranslation,
+                onClick = { onCardClick(cardWithProgress) }
+            )
+
+        is Card.PhraseCard ->
+            DeckOverviewPhraseCard(
+                card = card,
+                showTranscription = settings.showTranscription,
+                showTranslation = settings.showTranslation,
+                onClick = { onCardClick(cardWithProgress) }
+            )
+
+        is Card.KanjiCard ->
+            DeckOverviewKanjiCard(
+                card = card,
+                showTranscription = settings.showTranscription,
+                showTranslation = settings.showTranslation,
+                showReading = settings.showReading,
+                onClick = { onCardClick(cardWithProgress) }
+            )
+
+        is Card.KanaCard -> {
+            DeckOverviewKanaCard(
+                card = card,
+                showTranscription = settings.showTranscription,
+                onClick = { onCardClick(cardWithProgress) }
+            )
+        }
+    }
 }

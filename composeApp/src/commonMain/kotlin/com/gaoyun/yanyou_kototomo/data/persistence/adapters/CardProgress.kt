@@ -10,5 +10,6 @@ fun com.gaoyun.yanyoukototomo.data.persistence.CardProgress.toLocal(): CardProgr
         interval = this.interval.toInt(),
         easeFactor = this.easeFactor.toFloat(),
         nextReview = LocalDate.parse(this.nextReview),
+        isPaused = this.isPaused == 1L
     )
 }

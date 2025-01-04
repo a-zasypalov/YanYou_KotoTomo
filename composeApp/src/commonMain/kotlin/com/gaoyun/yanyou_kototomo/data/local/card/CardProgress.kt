@@ -14,6 +14,7 @@ data class CardProgress(
     val interval: Int,
     val easeFactor: Float,
     val nextReview: LocalDate,
+    val isPaused: Boolean,
 )
 
 fun CardProgress?.countForReview(): Boolean = this == null || this.nextReview == localDateNow()

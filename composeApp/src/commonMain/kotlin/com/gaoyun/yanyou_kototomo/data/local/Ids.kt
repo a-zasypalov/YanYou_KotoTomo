@@ -7,7 +7,12 @@ data class LanguageId(val identifier: String)
 
 data class CourseId(val identifier: String)
 
-data class DeckId(val identifier: String)
+data class DeckId(val identifier: String) {
+    private val kanaDecks = listOf("hiragana_en", "katakana_en")
+
+    fun isKanaDeck() = kanaDecks.contains(identifier)
+    fun isJlptDeck() = identifier.contains("jlpt")
+}
 
 @Serializable
 sealed interface CardId {

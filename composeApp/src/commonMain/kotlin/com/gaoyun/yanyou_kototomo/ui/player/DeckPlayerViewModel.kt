@@ -124,7 +124,8 @@ class DeckPlayerViewModel(
                 nextReview = nextReviewDate,
                 easeFactor = newEaseFactor,
                 lastReviewed = reviewDate,
-                interval = intervalDays
+                interval = intervalDays,
+                isPaused = currentCard.progress?.isPaused == true
             )
         )
         nextCard()

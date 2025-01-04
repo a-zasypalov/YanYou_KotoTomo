@@ -41,11 +41,10 @@ fun DeckOverviewHeader(
     updateBookmarkedState: (Boolean) -> Unit,
     updateLearnedState: (Boolean) -> Unit,
 ) {
-    val deck = viewState.deck
 
     Column(modifier = Modifier.fillMaxWidth()) {
         AutoResizeText(
-            text = deck.name,
+            text = viewState.deckName,
             fontSizeRange = FontSizeRange(
                 max = MaterialTheme.typography.displayLarge.fontSize,
                 min = 24.sp
@@ -77,7 +76,7 @@ fun DeckOverviewHeader(
             Box(modifier = Modifier.height(32.dp).width(1.dp).background(MaterialTheme.colorScheme.onSurface))
             Spacer(modifier = Modifier.weight(1f))
 
-            if (deck.isKanaDeck() == false) {
+            if (viewState.deckId.isKanaDeck() == false) {
 
                 OutlinedIconToggleButton(
                     checked = viewState.settings.showTranslation,
@@ -93,7 +92,7 @@ fun DeckOverviewHeader(
             ) {
                 Icon(Icons.Default.Subtitles, null)
             }
-            if (deck.isJlptDeck() == true) {
+            if (viewState.deckId.isJlptDeck() == true) {
 
                 OutlinedIconToggleButton(
                     checked = viewState.settings.showReading,
