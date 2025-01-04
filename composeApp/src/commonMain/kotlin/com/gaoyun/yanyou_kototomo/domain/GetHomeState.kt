@@ -19,6 +19,7 @@ class GetHomeState(
     private val getCoursesRoot: GetCoursesRoot,
     private val getCardProgress: GetCardProgress,
     private val cardsRepository: CardsAndProgressRepository,
+    private val deckSettingsInteractor: DeckSettingsInteractor,
 ) {
 
     suspend fun getHomeState(): HomeState? {
@@ -40,7 +41,8 @@ class GetHomeState(
                     learningLanguageId = learningLangId,
                     sourceLanguageId = sourceLangId,
                     courseId = course.id,
-                    preview = course.preview
+                    preview = course.preview,
+                    pausedCardIds = deckSettingsInteractor.getDeckSettings(courseDeck.id)?.pausedCards ?: setOf()
                 )
             }
         }.toMap()

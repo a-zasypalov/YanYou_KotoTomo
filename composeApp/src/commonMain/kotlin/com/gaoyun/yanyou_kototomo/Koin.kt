@@ -101,7 +101,7 @@ val useCaseModule = module {
     single { DeckSettingsInteractor(get()) }
     single { QuizInteractor(get(), get(), get(), get()) }
     single { GetCardProgress(get()) }
-    single { GetHomeState(get(), get(), get(), get(), get()) }
+    single { GetHomeState(get(), get(), get(), get(), get(), get()) }
     single { BookmarksInteractor(get(), get()) }
     single { ColorsProvider(get()) }
     single { AllDataReset(get(), get()) }
@@ -116,7 +116,7 @@ val viewModelModule = module {
     factory { CoursesViewModel(get()) }
     factory { CourseDecksViewModel(get()) }
     factory { DeckOverviewViewModel(get(), get(), get(), get(), get()) }
-    factory { DeckPlayerViewModel(get(), get(), get(), get(), get()) }
+    factory { DeckPlayerViewModel(get(), get(), get(), get(), get(), get()) }
     factory { QuizSessionSummaryViewModel(get()) }
     factory { StatisticsViewModel(get(), get()) }
     factory { StatisticsFullListViewModel(get(), get()) }
