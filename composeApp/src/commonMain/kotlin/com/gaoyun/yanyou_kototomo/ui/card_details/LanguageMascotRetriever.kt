@@ -88,6 +88,7 @@ fun CourseId.getCourseMascot(): DrawableResource {
         identifier.contains("hsk5") -> Res.drawable.wonton
         identifier.contains("hsk6") -> Res.drawable.temple
         identifier.contains("kana") -> Res.drawable.sakura
+        identifier.contains("genki1") -> Res.drawable.bamboo
         identifier.contains("jlpt5") -> Res.drawable.bamboo
         identifier.contains("jlpt4") -> Res.drawable.koinobori
         identifier.contains("jlpt3") -> Res.drawable.fuji_mountain
