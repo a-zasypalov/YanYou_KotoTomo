@@ -4,8 +4,7 @@ CREATE TABLE CardProgress (
     lastReviewed TEXT NOT NULL,    -- LocalDate of the last review
     interval INTEGER NOT NULL,     -- Current interval in days
     easeFactor REAL NOT NULL,      -- Ease factor (default: 2.5)
-    nextReview TEXT NOT NULL,       -- LocalDate for the next review
-    isPaused INTEGER NOT NULL DEFAULT 0
+    nextReview TEXT NOT NULL       -- LocalDate for the next review
 );
 
 getAllCardsProgress:
@@ -16,8 +15,8 @@ getDeckProgress:
 SELECT * FROM CardProgress WHERE deck_id = ?;
 
 updateCardProgress:
-INSERT OR REPLACE INTO CardProgress (card_id, deck_id, lastReviewed, interval, easeFactor, nextReview, isPaused)
-VALUES (?, ?, ?, ?, ?, ?, ?);
+INSERT OR REPLACE INTO CardProgress (card_id, deck_id, lastReviewed, interval, easeFactor, nextReview)
+VALUES (?, ?, ?, ?, ?, ?);
 
 removeProgressForDeck:
 DELETE FROM CardProgress WHERE deck_id = ?;

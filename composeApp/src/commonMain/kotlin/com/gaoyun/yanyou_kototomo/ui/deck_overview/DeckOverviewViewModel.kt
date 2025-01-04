@@ -4,7 +4,6 @@ import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.countForReview
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
-import com.gaoyun.yanyou_kototomo.data.local.deck.Deck
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.domain.BookmarksInteractor
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
@@ -45,7 +44,7 @@ class DeckOverviewViewModel(
                 bookmarksState.value = bookmarks.toMutableList()
                 bookmarkState.value = bookmarks.find { it.id == deck.id }
 
-                val (newCards, cardsToReview, pausedCards) = splitDeckToNewReviewPaused(deck)
+                val (newCards, cardsToReview, pausedCards) = splitDeckToNewReviewPaused(deck.cards, settings)
                 viewState.value = DeckOverviewState(
                     deckId = deck.id,
                     deckName = deck.name,
@@ -62,10 +61,13 @@ class DeckOverviewViewModel(
         }
     }
 
-    fun splitDeckToNewReviewPaused(deck: Deck): Triple<List<CardWithProgress<*>>, List<CardWithProgress<*>>, List<CardWithProgress<*>>> {
-        val newCards = deck.cards.filter { it.progress == null }
-        val cardsToReview = deck.cards.filter { it.progress != null }
-        val pausedCards = deck.cards.filter { it.progress?.isPaused == true }
+    fun splitDeckToNewReviewPaused(
+        cards: List<CardWithProgress<*>>,
+        settings: DeckSettings,
+    ): Triple<List<CardWithProgress<*>>, List<CardWithProgress<*>>, List<CardWithProgress<*>>> {
+        val pausedCards = cards.filter { settings.pausedCards.contains(it.card.id.identifier) }
+        val newCards = cards.filter { it.progress == null && !pausedCards.contains(it) }
+        val cardsToReview = cards.filter { it.progress != null && !pausedCards.contains(it) }.sortedBy { it.progress?.nextReview }
 
         return Triple(newCards, cardsToReview, pausedCards)
     }
@@ -97,6 +99,27 @@ class DeckOverviewViewModel(
     fun resetDeck(args: DeckScreenArgs) = viewModelScope.launch {
         viewState.value?.deckId?.let { cardProgressUpdater.resetDeck(it) }
         getDeck(args)
+    }
+
+    fun pauseCard(card: CardWithProgress<*>, pause: Boolean) = viewModelScope.launch {
+        viewState.value?.let { viewStateSafe ->
+            val newPausedCards = if (pause) {
+                viewStateSafe.settings.pausedCards.toList() + card.card.id.identifier
+            } else {
+                viewStateSafe.settings.pausedCards.toList() - card.card.id.identifier
+            }
+
+            val newSettings = viewStateSafe.settings.copy(pausedCards = newPausedCards.toSet())
+            deckSettingsInteractor.updateDeckSettings(newSettings)
+
+            val (newCards, cardsToReview, pausedCards) = splitDeckToNewReviewPaused(viewStateSafe.allCards, newSettings)
+            viewState.value = viewStateSafe.copy(
+                newCards = newCards,
+                cardsToReview = cardsToReview,
+                pausedCards = pausedCards,
+                settings = newSettings
+            )
+        }
     }
 
     fun updateBookmarkedState(bookmarked: Boolean) = viewModelScope.launch {

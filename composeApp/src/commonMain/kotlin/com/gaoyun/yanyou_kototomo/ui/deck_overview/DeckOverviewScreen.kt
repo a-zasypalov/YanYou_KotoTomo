@@ -57,6 +57,7 @@ fun DeckOverviewScreen(
 ) {
     val viewModel = koinViewModel(vmClass = DeckOverviewViewModel::class)
     val cardDetailState = remember { mutableStateOf<CardWithProgress<*>?>(null) }
+    val cardDetailPausedState = remember { mutableStateOf<Boolean>(false) }
 
     val lifecycleOwner = LocalLifecycleOwner.current
     val lifecycleState = lifecycleOwner.lifecycle.currentStateFlow.collectAsState()
@@ -74,7 +75,10 @@ fun DeckOverviewScreen(
     ) {
         DeckOverviewContent(
             viewState = viewModel.viewState.collectAsState().value,
-            onCardClick = { cardToShow -> cardDetailState.value = cardToShow },
+            onCardClick = { cardToShow, paused ->
+                cardDetailState.value = cardToShow
+                cardDetailPausedState.value = paused
+            },
             onPlayDeckClick = { mode -> navigate(ToDeckPlayer(args.toPlayerArgs(mode, PlayerBackRoute.Deck))) },
             updateTranslationSettings = viewModel::updateTranslationSettings,
             updateTranscriptionSettings = viewModel::updateTranscriptionSettings,
@@ -85,7 +89,13 @@ fun DeckOverviewScreen(
             updateShowToReviewCards = viewModel::updateShowToReviewCards,
             updateShowPausedCards = viewModel::updateShowPausedCards,
         )
-        CardDetailsView(cardDetailState, args.learningLanguageId) { cardDetailState.value = null }
+        CardDetailsView(
+            cardState = cardDetailState,
+            paused = cardDetailPausedState,
+            languageId = args.learningLanguageId,
+            onCardPause = viewModel::pauseCard,
+            onDismiss = { cardDetailState.value = null }
+        )
     }
 }
 
@@ -93,7 +103,7 @@ fun DeckOverviewScreen(
 @Composable
 private fun DeckOverviewContent(
     viewState: DeckOverviewState?,
-    onCardClick: (CardWithProgress<*>) -> Unit,
+    onCardClick: (CardWithProgress<*>, Boolean) -> Unit,
     onPlayDeckClick: (PlayerMode) -> Unit,
     updateTranslationSettings: (Boolean) -> Unit,
     updateTranscriptionSettings: (Boolean) -> Unit,
@@ -128,12 +138,12 @@ private fun DeckOverviewContent(
                 }
 
                 if (viewState.deckId.isKanaDeck()) {
-                    DeckOverviewKanaDeck(viewState, onCardClick)
+                    DeckOverviewKanaDeck(viewState, { onCardClick(it, false) })
                 } else {
                     DeckOverviewNormalSegmentedDeck(
                         viewState = viewState,
                         cellsNumber = cellsNumber,
-                        onCardClick = onCardClick,
+                        onCardClick = { onCardClick(it, viewState.pausedCards.contains(it)) },
                         updateShowNewCards = updateShowNewCards,
                         updateShowToReviewCards = updateShowToReviewCards,
                         updateShowPausedCards = updateShowPausedCards

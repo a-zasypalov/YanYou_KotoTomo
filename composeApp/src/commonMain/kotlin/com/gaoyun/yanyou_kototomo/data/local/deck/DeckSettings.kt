@@ -9,7 +9,8 @@ data class DeckSettings(
     val showReading: Boolean,
     val showNewCards: Boolean,
     val showToReviewCards: Boolean,
-    val showPausedCards: Boolean
+    val showPausedCards: Boolean,
+    val pausedCards: Set<String>,
 ) {
     companion object {
         fun DEFAULT(deckId: DeckId) = DeckSettings(
@@ -20,6 +21,7 @@ data class DeckSettings(
             showNewCards = true,
             showToReviewCards = true,
             showPausedCards = true,
+            pausedCards = setOf()
         )
     }
 }

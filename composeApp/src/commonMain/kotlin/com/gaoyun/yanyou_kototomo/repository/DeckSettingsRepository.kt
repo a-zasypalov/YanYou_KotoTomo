@@ -13,9 +13,10 @@ class DeckSettingsRepository(
             showTranslation = if (deckSettings.showTranslation) 1 else 0,
             showTranscription = if (deckSettings.showTranscription) 1 else 0,
             showReading = if (deckSettings.showReading) 1 else 0,
-            showNewCards = if(deckSettings.showNewCards) 1 else 0,
-            showToReviewCards = if(deckSettings.showToReviewCards) 1 else 0,
-            showPausedCards = if(deckSettings.showPausedCards) 1 else 0,
+            showNewCards = if (deckSettings.showNewCards) 1 else 0,
+            showToReviewCards = if (deckSettings.showToReviewCards) 1 else 0,
+            showPausedCards = if (deckSettings.showPausedCards) 1 else 0,
+            pausedCards = deckSettings.pausedCards.toList()
         )
     }
 
@@ -32,7 +33,7 @@ class DeckSettingsRepository(
                     showNewCards = it.showNewCards == 1L,
                     showToReviewCards = it.showToReviewCards == 1L,
                     showPausedCards = it.showPausedCards == 1L,
-
+                    pausedCards = it.pausedCards.toSet()
                 )
             }
     }

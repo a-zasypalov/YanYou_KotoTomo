@@ -41,7 +41,6 @@ class CardsAndProgressRepository(
             nextReview = progress.nextReview.toString(),
             card_id = progress.cardId,
             deck_id = deckId.identifier,
-            isPaused = if(progress.isPaused) 1L else 0L
         )
     }
 

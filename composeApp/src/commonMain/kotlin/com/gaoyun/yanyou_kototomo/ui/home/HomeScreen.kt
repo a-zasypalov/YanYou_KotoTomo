@@ -108,7 +108,7 @@ fun HomeScreen(
         },
         onCoursesClick = onCoursesClick
     )
-    CardDetailsView(cardDetailState, cardDetailLanguageState.value) { cardDetailState.value = null }
+    CardDetailsView(cardState = cardDetailState, languageId = cardDetailLanguageState.value) { cardDetailState.value = null }
 }
 
 @Composable
