@@ -38,13 +38,14 @@ class DeckOverviewViewModel(
                 requiredDecks = course.requiredDecks ?: listOf()
             )?.let { deck ->
                 val settings = deckSettingsInteractor.getDeckSettings(args.deckId) ?: DeckSettings.DEFAULT(args.deckId)
-                val cardsDueToReview = deck.cards.count { it.progress.countForReview() }
 
                 val bookmarks = bookmarksInteractor.getBookmarkedDecks()
                 bookmarksState.value = bookmarks.toMutableList()
                 bookmarkState.value = bookmarks.find { it.id == deck.id }
 
                 val (newCards, cardsToReview, pausedCards) = splitDeckToNewReviewPaused(deck.cards, settings)
+                val cardsDueToReview = deck.cards.count { it.progress.countForReview() && !pausedCards.contains(it) }
+
                 viewState.value = DeckOverviewState(
                     deckId = deck.id,
                     deckName = deck.name,
@@ -117,6 +118,7 @@ class DeckOverviewViewModel(
                 newCards = newCards,
                 cardsToReview = cardsToReview,
                 pausedCards = pausedCards,
+                cardsDueToReview = viewStateSafe.allCards.count { it.progress.countForReview() && !pausedCards.contains(it) },
                 settings = newSettings
             )
         }

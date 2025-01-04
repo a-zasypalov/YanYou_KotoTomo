@@ -7,9 +7,11 @@ import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.countForReview
 import com.gaoyun.yanyou_kototomo.data.local.deck.Deck
+import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
 import com.gaoyun.yanyou_kototomo.data.persistence.QuizCardResultPersisted
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
+import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
@@ -31,6 +33,7 @@ class DeckPlayerViewModel(
     private val spacedRepetitionCalculation: SpacedRepetitionCalculation,
     private val cardProgressUpdater: CardProgressUpdater,
     private val quizInteractor: QuizInteractor,
+    private val deckSettingsInteractor: DeckSettingsInteractor,
 ) : BaseViewModel() {
 
     override val viewState = MutableStateFlow<PlayerCardViewState?>(null)
@@ -59,9 +62,12 @@ class DeckPlayerViewModel(
                 deck = deckInCourse,
                 requiredDecks = course.requiredDecks ?: listOf()
             )?.let { result ->
+                val settings = deckSettingsInteractor.getDeckSettings(deckId) ?: DeckSettings.DEFAULT(deckId)
+                val filteredCards = result.cards.filterNot { settings.pausedCards.contains(it.card.id.identifier) }
+
                 val cardForPlayer = when (playerMode) {
-                    PlayerMode.SpacialRepetition -> result.cards.filter { it.progress.countForReview() }.shuffled()
-                    PlayerMode.Quiz -> result.cards.shuffled().also { quizStart.value = localDateTimeNow() }
+                    PlayerMode.SpacialRepetition -> filteredCards.filter { it.progress.countForReview() }.shuffled()
+                    PlayerMode.Quiz -> filteredCards.shuffled().also { quizStart.value = localDateTimeNow() }
                 }
                 deckState.value = result.copy(cards = cardForPlayer)
                 nextCard()

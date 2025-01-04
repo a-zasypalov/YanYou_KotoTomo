@@ -44,7 +44,9 @@ fun HomeScreenCurrentlyLearningDeck(
 ) {
     val courseCardColor = deckWithInfo.info.courseId.courseCardColor()
     val courseTextColor = Color(0xFFEDE1D4)
-    val cardsReviewToday = deckWithInfo.deck.cards.count { it.progress.countForReview() }
+    val cardsReviewToday = deckWithInfo.deck.cards.count {
+        !deckWithInfo.info.pausedCardIds.contains(it.card.id.identifier) && it.progress.countForReview()
+    }
 
     ElevatedCard(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).platformStyleClickable { onCourseClick(deckWithInfo) },
