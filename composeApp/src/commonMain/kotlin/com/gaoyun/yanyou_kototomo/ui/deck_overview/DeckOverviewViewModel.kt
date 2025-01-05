@@ -1,6 +1,7 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
+import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.countForReview
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
@@ -65,12 +66,14 @@ class DeckOverviewViewModel(
     fun splitDeckToNewReviewPaused(
         cards: List<CardWithProgress<*>>,
         settings: DeckSettings,
-    ): Triple<List<CardWithProgress<*>>, List<CardWithProgress<*>>, List<CardWithProgress<*>>> {
+    ): Triple<DeckPart, List<CardWithProgress<*>>, List<CardWithProgress<*>>> {
         val pausedCards = cards.filter { settings.pausedCards.contains(it.card.id.identifier) }
-        val newCards = cards.filter { it.progress == null && !pausedCards.contains(it) }
         val cardsToReview = cards.filter { it.progress != null && !pausedCards.contains(it) }.sortedBy { it.progress?.nextReview }
+        val newWords = cards.filter { it.progress == null && !pausedCards.contains(it) && it.card !is Card.PhraseCard }
+        val newPhrases = cards.filter { it.progress == null && !pausedCards.contains(it) && it.card is Card.PhraseCard }
+            .filterIsInstance<CardWithProgress<Card.PhraseCard>>()
 
-        return Triple(newCards, cardsToReview, pausedCards)
+        return Triple(DeckPart(words = newWords, phrases = newPhrases), cardsToReview, pausedCards)
     }
 
     fun updateTranslationSettings(show: Boolean) = viewModelScope.launch {
@@ -143,9 +146,17 @@ class DeckOverviewViewModel(
         viewState.value = viewState.value?.copy(isCurrentlyLearned = learned)
     }
 
-    fun updateShowNewCards(show: Boolean) = viewModelScope.launch {
+    fun updateShowNewWords(show: Boolean) = viewModelScope.launch {
         viewState.value?.let { viewStateSafe ->
-            val newSettings = viewStateSafe.settings.copy(showNewCards = show)
+            val newSettings = viewStateSafe.settings.copy(showNewWords = show)
+            deckSettingsInteractor.updateDeckSettings(newSettings)
+            viewState.value = viewStateSafe.copy(settings = newSettings)
+        }
+    }
+
+    fun updateShowNewPhrases(show: Boolean) = viewModelScope.launch {
+        viewState.value?.let { viewStateSafe ->
+            val newSettings = viewStateSafe.settings.copy(showNewPhrases = show)
             deckSettingsInteractor.updateDeckSettings(newSettings)
             viewState.value = viewStateSafe.copy(settings = newSettings)
         }
@@ -172,11 +183,16 @@ data class DeckOverviewState(
     val deckId: DeckId,
     val deckName: String,
     val allCards: List<CardWithProgress<*>>,
-    val newCards: List<CardWithProgress<*>>,
+    val newCards: DeckPart,
     val cardsToReview: List<CardWithProgress<*>>,
     val pausedCards: List<CardWithProgress<*>>,
     val settings: DeckSettings,
     val cardsDueToReview: Int,
     val isCurrentlyLearned: Boolean,
     val isBookmarked: Boolean,
+)
+
+data class DeckPart(
+    val words: List<CardWithProgress<*>>,
+    val phrases: List<CardWithProgress<Card.PhraseCard>>,
 )

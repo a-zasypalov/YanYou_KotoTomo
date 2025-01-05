@@ -56,15 +56,15 @@ fun DeckOverviewHeader(
             style = MaterialTheme.typography.displayLarge,
         )
 
-        if (viewState.newCards.size != viewState.allCards.size) {
+        if ((viewState.newCards.words.size + viewState.newCards.phrases.size) != viewState.allCards.size) {
             Surface(
                 tonalElevation = 8.dp,
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(vertical = 12.dp)
             ) {
                 Row(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
-                    if (viewState.newCards.isNotEmpty()) Text(
-                        text = " ${viewState.newCards.size} new",
+                    if (viewState.newCards.words.isNotEmpty() || viewState.newCards.phrases.isNotEmpty()) Text(
+                        text = " ${viewState.newCards.words.size + viewState.newCards.phrases.size} new",
                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium)
                     )
                     if (viewState.cardsToReview.isNotEmpty()) Text(
