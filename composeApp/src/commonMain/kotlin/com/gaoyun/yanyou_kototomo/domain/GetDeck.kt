@@ -2,6 +2,7 @@ package com.gaoyun.yanyou_kototomo.domain
 
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
+import com.gaoyun.yanyou_kototomo.data.local.card.deckSorted
 import com.gaoyun.yanyou_kototomo.data.local.card.withProgress
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.deck.Deck
@@ -39,7 +40,7 @@ class GetDeck(
                 is CardDTO.KanjiCardDTO -> card.toLocal(kanaCards).withProgress(progress)
                 is CardDTO.PhraseCardDTO -> card.toLocal(requiredWords).withProgress(progress)
             }
-        }
+        }.deckSorted()
 
         return deckResponse.toLocal(deck.name, cards)
     }

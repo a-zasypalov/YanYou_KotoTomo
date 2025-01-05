@@ -17,3 +17,11 @@ data class CardProgress(
 )
 
 fun CardProgress?.countForReview(): Boolean = this == null || this.nextReview == localDateNow()
+fun List<CardWithProgress<*>>.deckSorted() = this.sortedWith(compareBy { cardWithProgress ->
+    when (cardWithProgress.card) {
+        is Card.KanaCard -> 1
+        is Card.KanjiCard -> 2
+        is Card.WordCard -> 3
+        is Card.PhraseCard -> 4
+    }
+})

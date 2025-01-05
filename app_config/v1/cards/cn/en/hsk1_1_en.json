@@ -3,13 +3,13 @@
     "version": 1,
     "cards": [
         {
-            "type": "word",
+            "type": "phrase",
             "id": "hsk1_1_en_1",
             "character": "对不起",
             "transcription": "duì bu qǐ",
             "translation": "Excuse me",
             "additional_info": "",
-            "speech_part": "phrase"
+            "words": []
         },
         {
             "type": "word",
@@ -21,13 +21,13 @@
             "speech_part": "measure_word"
         },
         {
-            "type": "word",
+            "type": "phrase",
             "id": "hsk1_1_en_3",
             "character": "没关系",
             "transcription": "méi guān xi",
             "translation": "It doesn't matter",
             "additional_info": "",
-            "speech_part": "phrase"
+            "words": []
         },
         {
             "type": "word",
@@ -57,13 +57,13 @@
             "speech_part": "measure_word"
         },
         {
-            "type": "word",
+            "type": "phrase",
             "id": "hsk1_1_en_7",
             "character": "你好",
             "transcription": "nǐ hǎo",
             "translation": "Hello",
             "additional_info": "",
-            "speech_part": "phrase"
+            "words": []
         },
         {
             "type": "word",
@@ -93,13 +93,13 @@
             "speech_part": "measure_word"
         },
         {
-            "type": "word",
+            "type": "phrase",
             "id": "hsk1_1_en_11",
             "character": "您好",
             "transcription": "nǐn hǎo",
             "translation": "Hello (formal)",
             "additional_info": "",
-            "speech_part": "phrase"
+            "words": []
         },
         {
             "type": "word",
@@ -120,13 +120,13 @@
             "speech_part": "pronoun_informal"
         },
         {
-            "type": "word",
+            "type": "phrase",
             "id": "hsk1_1_en_14",
             "character": "你们好",
             "transcription": "nǐmen hǎo",
             "translation": "Hello (everyone)",
             "additional_info": "",
-            "speech_part": "phrase"
+            "words": []
         },
         {
             "type": "word",
