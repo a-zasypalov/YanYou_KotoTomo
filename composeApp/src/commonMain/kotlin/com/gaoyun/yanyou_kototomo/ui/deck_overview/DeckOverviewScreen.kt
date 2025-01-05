@@ -85,7 +85,8 @@ fun DeckOverviewScreen(
             updateReadingSettings = viewModel::updateReadingSettings,
             updateBookmarkedState = viewModel::updateBookmarkedState,
             updateLearnedState = viewModel::updateLearnedState,
-            updateShowNewCards = viewModel::updateShowNewCards,
+            updateShowNewWords = viewModel::updateShowNewWords,
+            updateShowNewPhrases = viewModel::updateShowNewPhrases,
             updateShowToReviewCards = viewModel::updateShowToReviewCards,
             updateShowPausedCards = viewModel::updateShowPausedCards,
         )
@@ -110,7 +111,8 @@ private fun DeckOverviewContent(
     updateReadingSettings: (Boolean) -> Unit,
     updateBookmarkedState: (Boolean) -> Unit,
     updateLearnedState: (Boolean) -> Unit,
-    updateShowNewCards: (Boolean) -> Unit,
+    updateShowNewWords: (Boolean) -> Unit,
+    updateShowNewPhrases: (Boolean) -> Unit,
     updateShowToReviewCards: (Boolean) -> Unit,
     updateShowPausedCards: (Boolean) -> Unit,
 ) {
@@ -144,7 +146,8 @@ private fun DeckOverviewContent(
                         viewState = viewState,
                         cellsNumber = cellsNumber,
                         onCardClick = { onCardClick(it, viewState.pausedCards.contains(it)) },
-                        updateShowNewCards = updateShowNewCards,
+                        updateShowNewWords = updateShowNewWords,
+                        updateShowNewPhrases = updateShowNewPhrases,
                         updateShowToReviewCards = updateShowToReviewCards,
                         updateShowPausedCards = updateShowPausedCards
                     )
@@ -181,7 +184,8 @@ fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
     viewState: DeckOverviewState,
     cellsNumber: Int,
     onCardClick: (CardWithProgress<*>) -> Unit,
-    updateShowNewCards: (Boolean) -> Unit,
+    updateShowNewWords: (Boolean) -> Unit,
+    updateShowNewPhrases: (Boolean) -> Unit,
     updateShowToReviewCards: (Boolean) -> Unit,
     updateShowPausedCards: (Boolean) -> Unit,
 ) {
@@ -194,8 +198,15 @@ fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
     )
 
     val categories = listOf(
-        Category("New", CardCategoryType.New, viewState.newCards, viewState.settings.showNewCards, updateShowNewCards),
-        Category("To Review", CardCategoryType.ToReview, viewState.cardsToReview, viewState.settings.showToReviewCards, updateShowToReviewCards),
+        Category("New words", CardCategoryType.New, viewState.newCards.words, viewState.settings.showNewWords, updateShowNewWords),
+        Category("New phrases", CardCategoryType.New, viewState.newCards.phrases, viewState.settings.showNewPhrases, updateShowNewPhrases),
+        Category(
+            "To Review",
+            CardCategoryType.ToReview,
+            viewState.cardsToReview,
+            viewState.settings.showToReviewCards,
+            updateShowToReviewCards
+        ),
         Category("Paused", CardCategoryType.Paused, viewState.pausedCards, viewState.settings.showPausedCards, updateShowPausedCards)
     )
 
@@ -212,7 +223,7 @@ fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
             if (isVisible) {
                 items(cards, key = { it.card.id.identifier }) {
                     DeckOverviewCard(
-                        cardWithProgress = if(type == CardCategoryType.Paused) it.copy(progress = null) else it,
+                        cardWithProgress = if (type == CardCategoryType.Paused) it.copy(progress = null) else it,
                         settings = viewState.settings,
                         onCardClick = onCardClick,
                     )
