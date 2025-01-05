@@ -56,8 +56,12 @@ fun DeckOverviewScreen(
     navigate: (NavigationSideEffect) -> Unit,
 ) {
     val viewModel = koinViewModel(vmClass = DeckOverviewViewModel::class)
+
     val cardDetailState = remember { mutableStateOf<CardWithProgress<*>?>(null) }
     val cardDetailPausedState = remember { mutableStateOf<Boolean>(false) }
+
+    val pausedCardsSettingState = remember { mutableStateOf<List<CardWithProgress<*>>?>(null) }
+    val pausedCardsState = remember { mutableStateOf<List<CardWithProgress<*>>?>(null) }
 
     val lifecycleOwner = LocalLifecycleOwner.current
     val lifecycleState = lifecycleOwner.lifecycle.currentStateFlow.collectAsState()
@@ -69,12 +73,23 @@ fun DeckOverviewScreen(
         }
     }
 
+    val viewState = viewModel.viewState.collectAsState().value
+
     SurfaceScaffold(
         backHandler = { navigate(BackNavigationEffect) },
-        actionButtons = { DeckOptionsMenu({ viewModel.resetDeck(args) }) }
+        actionButtons = {
+            DeckOptionsMenu(
+                isKanaDeck = args.deckId.isKanaDeck(),
+                onResetDeck = { viewModel.resetDeck(args) },
+                onEditDeck = {
+                    pausedCardsState.value = viewState?.pausedCards
+                    pausedCardsSettingState.value = viewState?.allCards
+                }
+            )
+        }
     ) {
         DeckOverviewContent(
-            viewState = viewModel.viewState.collectAsState().value,
+            viewState = viewState,
             onCardClick = { cardToShow, paused ->
                 cardDetailState.value = cardToShow
                 cardDetailPausedState.value = paused
@@ -96,6 +111,12 @@ fun DeckOverviewScreen(
             languageId = args.learningLanguageId,
             onCardPause = viewModel::pauseCard,
             onDismiss = { cardDetailState.value = null }
+        )
+        DeckPausedItemsSettingsView(
+            allCards = pausedCardsSettingState,
+            pausedCards = pausedCardsState,
+            onCardPause = viewModel::pauseCard,
+            onDismiss = { pausedCardsSettingState.value = null }
         )
     }
 }
