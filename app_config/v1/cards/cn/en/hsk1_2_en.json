@@ -3,40 +3,40 @@
     "version": 1,
     "cards": [
         {
-            "type": "word",
+            "type": "phrase",
             "id": "hsk1_2_en_1",
             "character": "不谢",
             "transcription": "bù xie",
             "translation": "Sure!",
             "additional_info": "",
-            "speech_part": "verb"
+            "words": []
         },
         {
-            "type": "word",
-            "id": "hsk1_2_en_2",
-            "character": "谢谢",
-            "transcription": "xiè xie",
-            "translation": "Thank you",
-            "additional_info": "",
-            "speech_part": "phrase"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_2_en_3",
-            "character": "不客气",
-            "transcription": "bù kè qi",
-            "translation": "You're welcome",
-            "additional_info": "",
-            "speech_part": "pronoun"
-        },
-        {
-            "type": "word",
+            "type": "phrase",
             "id": "hsk1_2_en_4",
             "character": "再见",
             "transcription": "zài jiàn",
             "translation": "Goodbye",
             "additional_info": "",
-            "speech_part": "verb"
+            "words": []
+        },
+        {
+            "type": "phrase",
+            "id": "hsk1_2_en_2",
+            "character": "谢谢",
+            "transcription": "xiè xie",
+            "translation": "Thank you",
+            "additional_info": "",
+            "words": []
+        },
+        {
+            "type": "phrase",
+            "id": "hsk1_2_en_3",
+            "character": "不客气",
+            "transcription": "bù kè qi",
+            "translation": "You're welcome",
+            "additional_info": "",
+            "words": []
         },
         {
             "type": "word",

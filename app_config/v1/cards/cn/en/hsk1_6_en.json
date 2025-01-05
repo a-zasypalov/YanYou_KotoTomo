@@ -4,70 +4,7 @@
     "cards": [
         {
             "type": "word",
-            "id": "hsk1_6_en_1",
-            "character": "很",
-            "transcription": "hěn",
-            "translation": "Very, quiet",
-            "additional_info": "",
-            "speech_part": "adverb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_6_en_2",
-            "character": "读",
-            "transcription": "dú",
-            "translation": "To read",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_6_en_3",
-            "character": "菜",
-            "transcription": "cài",
-            "translation": "Dish",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_6_en_4",
-            "character": "写",
-            "transcription": "xiě",
-            "translation": "To write",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
             "id": "hsk1_6_en_5",
-            "character": "说话",
-            "transcription": "shuō huà",
-            "translation": "To speak",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_6_en_6",
-            "character": "会",
-            "transcription": "huì",
-            "translation": "Can",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_6_en_7",
-            "character": "怎么",
-            "transcription": "zěn me",
-            "translation": "How",
-            "additional_info": "Indicating nature, condition or manner",
-            "speech_part": "pronoun_informal"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_6_en_8",
             "character": "妈妈",
             "transcription": "mā ma",
             "translation": "Mother",
@@ -76,16 +13,16 @@
         },
         {
             "type": "word",
-            "id": "hsk1_6_en_9",
-            "character": "做",
-            "transcription": "zuò",
-            "translation": "To make",
+            "id": "hsk1_6_en_7",
+            "character": "字",
+            "transcription": "zì",
+            "translation": "Letter",
             "additional_info": "",
-            "speech_part": "verb"
+            "speech_part": "noun"
         },
         {
             "type": "word",
-            "id": "hsk1_6_en_10",
+            "id": "hsk1_6_en_6",
             "character": "汉字",
             "transcription": "hàn zì",
             "translation": "Chinese character",
@@ -94,21 +31,84 @@
         },
         {
             "type": "word",
-            "id": "hsk1_6_en_11",
+            "id": "hsk1_6_en_4",
+            "character": "菜",
+            "transcription": "cài",
+            "translation": "Dish",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "phrase",
+            "id": "hsk1_6_en_3",
             "character": "好吃",
             "transcription": "hǎo chī",
             "translation": "Delicious, tasty",
+            "additional_info": "",
+            "words": []
+        },
+        {
+            "type": "phrase",
+            "id": "hsk1_6_en_2",
+            "character": "怎么",
+            "transcription": "zěn me",
+            "translation": "How",
+            "additional_info": "Indicating nature, condition or manner",
+            "words": []
+        },
+        {
+            "type": "word",
+            "id": "hsk1_6_en_11",
+            "character": "会",
+            "transcription": "huì",
+            "translation": "Can",
             "additional_info": "",
             "speech_part": "verb"
         },
         {
             "type": "word",
             "id": "hsk1_6_en_12",
-            "character": "字",
-            "transcription": "zì",
-            "translation": "Letter",
+            "character": "做",
+            "transcription": "zuò",
+            "translation": "To make",
             "additional_info": "",
-            "speech_part": "noun"
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_6_en_9",
+            "character": "写",
+            "transcription": "xiě",
+            "translation": "To write",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_6_en_10",
+            "character": "说话",
+            "transcription": "shuō huà",
+            "translation": "To speak",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_6_en_8",
+            "character": "读",
+            "transcription": "dú",
+            "translation": "To read",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_6_en_1",
+            "character": "很",
+            "transcription": "hěn",
+            "translation": "Very, quiet",
+            "additional_info": "",
+            "speech_part": "adverb"
         }
     ]
 }

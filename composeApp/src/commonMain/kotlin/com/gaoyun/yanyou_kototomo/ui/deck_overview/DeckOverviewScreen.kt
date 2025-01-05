@@ -18,6 +18,7 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.Icon
@@ -137,12 +138,14 @@ private fun DeckOverviewContent(
     updateShowToReviewCards: (Boolean) -> Unit,
     updateShowPausedCards: (Boolean) -> Unit,
 ) {
+    val state = rememberLazyGridState()
     viewState?.let {
         val cellsNumber = if (viewState.deckId.isKanaDeck() == true) 5 else 2
         val cellsSpacer = if (viewState.deckId.isKanaDeck() == true) 8.dp else 16.dp
 
         Box(modifier = Modifier.fillMaxSize()) {
             LazyVerticalGrid(
+                state = state,
                 columns = GridCells.Fixed(cellsNumber),
                 contentPadding = PaddingValues(horizontal = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(cellsSpacer),

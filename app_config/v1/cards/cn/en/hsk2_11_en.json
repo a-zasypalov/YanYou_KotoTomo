@@ -4,15 +4,6 @@
     "cards": [
         {
             "type": "word",
-            "id": "hsk2_11_en_1",
-            "character": "男人",
-            "transcription": "nán rén",
-            "translation": "A man",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
             "id": "hsk2_11_en_2",
             "character": "唱歌",
             "transcription": "chàng gē",
@@ -35,6 +26,15 @@
             "character": "孩子",
             "transcription": "hái zi",
             "translation": "Child",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_11_en_1",
+            "character": "男人",
+            "transcription": "nán rén",
+            "translation": "A man",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -76,21 +76,21 @@
         },
         {
             "type": "word",
-            "id": "hsk2_11_en_9",
-            "character": "去年",
-            "transcription": "qù nián",
-            "translation": "Last year",
-            "additional_info": "",
-            "speech_part": "time_word"
-        },
-        {
-            "type": "word",
             "id": "hsk2_11_en_10",
             "character": "比",
             "transcription": "bǐ",
             "translation": "Comparison particle",
             "additional_info": "",
             "speech_part": "preposition"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_11_en_9",
+            "character": "去年",
+            "transcription": "qù nián",
+            "translation": "Last year",
+            "additional_info": "",
+            "speech_part": "time_word"
         }
     ]
 }

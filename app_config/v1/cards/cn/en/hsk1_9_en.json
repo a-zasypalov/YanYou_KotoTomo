@@ -4,16 +4,7 @@
     "cards": [
         {
             "type": "word",
-            "id": "hsk1_9_en_1",
-            "character": "爸爸",
-            "transcription": "bà ba",
-            "translation": "Father",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_9_en_2",
+            "id": "hsk1_9_en_5",
             "character": "儿子",
             "transcription": "ér zi",
             "translation": "Son",
@@ -22,25 +13,43 @@
         },
         {
             "type": "word",
-            "id": "hsk1_9_en_3",
-            "character": "工作",
-            "transcription": "gōng zuò",
-            "translation": "To work",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_9_en_4",
-            "character": "猫",
-            "transcription": "māo",
-            "translation": "Cat",
+            "id": "hsk1_9_en_9",
+            "character": "医生",
+            "transcription": "yī shēng",
+            "translation": "Doctor",
             "additional_info": "",
             "speech_part": "noun"
         },
         {
             "type": "word",
-            "id": "hsk1_9_en_5",
+            "id": "hsk1_9_en_10",
+            "character": "医院",
+            "transcription": "yī yuàn",
+            "translation": "Hospital",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_9_en_8",
+            "character": "椅子",
+            "transcription": "yǐ zi",
+            "translation": "Chair",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_9_en_4",
+            "character": "爸爸",
+            "transcription": "bà ba",
+            "translation": "Father",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_9_en_7",
             "character": "狗",
             "transcription": "gǒu",
             "translation": "Dog",
@@ -50,51 +59,24 @@
         {
             "type": "word",
             "id": "hsk1_9_en_6",
-            "character": "椅子",
-            "transcription": "yǐ zi",
-            "translation": "Chair",
+            "character": "猫",
+            "transcription": "māo",
+            "translation": "Cat",
             "additional_info": "",
             "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_9_en_7",
-            "character": "小",
-            "transcription": "xiǎo",
-            "translation": "Small",
-            "additional_info": "",
-            "speech_part": "adjective"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_9_en_8",
-            "character": "医生",
-            "transcription": "yī shēng",
-            "translation": "Doctor",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_9_en_9",
-            "character": "医院",
-            "transcription": "yī yuàn",
-            "translation": "Hospital",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_9_en_10",
-            "character": "下",
-            "transcription": "xià",
-            "translation": "Down",
-            "additional_info": "",
-            "speech_part": "adverb"
         },
         {
             "type": "word",
             "id": "hsk1_9_en_11",
+            "character": "工作",
+            "transcription": "gōng zuò",
+            "translation": "To work",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_9_en_13",
             "character": "哪儿",
             "transcription": "nǎr",
             "translation": "Where",
@@ -103,7 +85,7 @@
         },
         {
             "type": "word",
-            "id": "hsk1_9_en_12",
+            "id": "hsk1_9_en_14",
             "character": "那儿",
             "transcription": "nàr",
             "translation": "There",
@@ -112,19 +94,37 @@
         },
         {
             "type": "word",
-            "id": "hsk1_9_en_13",
-            "character": "在",
-            "transcription": "zài",
-            "translation": "To be in/on/at",
+            "id": "hsk1_9_en_12",
+            "character": "小",
+            "transcription": "xiǎo",
+            "translation": "Small",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_9_en_1",
+            "character": "下",
+            "transcription": "xià",
+            "translation": "Down",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_9_en_3",
+            "character": "下面",
+            "transcription": "xià miàn",
+            "translation": "Under, below",
             "additional_info": "",
             "speech_part": "preposition"
         },
         {
             "type": "word",
-            "id": "hsk1_9_en_14",
-            "character": "下面",
-            "transcription": "xià miàn",
-            "translation": "Under, below",
+            "id": "hsk1_9_en_2",
+            "character": "在",
+            "transcription": "zài",
+            "translation": "To be in/on/at",
             "additional_info": "",
             "speech_part": "preposition"
         }

@@ -4,6 +4,33 @@
     "cards": [
         {
             "type": "phrase",
+            "id": "hsk1_1_en_3",
+            "character": "你好",
+            "transcription": "nǐ hǎo",
+            "translation": "Hello",
+            "additional_info": "",
+            "words": []
+        },
+        {
+            "type": "phrase",
+            "id": "hsk1_1_en_4",
+            "character": "您好",
+            "transcription": "nǐn hǎo",
+            "translation": "Hello (formal)",
+            "additional_info": "",
+            "words": []
+        },
+        {
+            "type": "phrase",
+            "id": "hsk1_1_en_5",
+            "character": "你们好",
+            "transcription": "nǐmen hǎo",
+            "translation": "Hello (everyone)",
+            "additional_info": "",
+            "words": []
+        },
+        {
+            "type": "phrase",
             "id": "hsk1_1_en_1",
             "character": "对不起",
             "transcription": "duì bu qǐ",
@@ -12,17 +39,8 @@
             "words": []
         },
         {
-            "type": "word",
-            "id": "hsk1_1_en_2",
-            "character": "二",
-            "transcription": "èr",
-            "translation": "Two",
-            "additional_info": "",
-            "speech_part": "measure_word"
-        },
-        {
             "type": "phrase",
-            "id": "hsk1_1_en_3",
+            "id": "hsk1_1_en_2",
             "character": "没关系",
             "transcription": "méi guān xi",
             "translation": "It doesn't matter",
@@ -31,7 +49,7 @@
         },
         {
             "type": "word",
-            "id": "hsk1_1_en_4",
+            "id": "hsk1_1_en_14",
             "character": "你",
             "transcription": "nǐ",
             "translation": "You (informal)",
@@ -40,7 +58,16 @@
         },
         {
             "type": "word",
-            "id": "hsk1_1_en_5",
+            "id": "hsk1_1_en_15",
+            "character": "你们",
+            "transcription": "nǐmen",
+            "translation": "You (plural)",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_7",
             "character": "好",
             "transcription": "hǎo",
             "translation": "Good",
@@ -49,61 +76,7 @@
         },
         {
             "type": "word",
-            "id": "hsk1_1_en_6",
-            "character": "六",
-            "transcription": "liù",
-            "translation": "Six",
-            "additional_info": "",
-            "speech_part": "measure_word"
-        },
-        {
-            "type": "phrase",
-            "id": "hsk1_1_en_7",
-            "character": "你好",
-            "transcription": "nǐ hǎo",
-            "translation": "Hello",
-            "additional_info": "",
-            "words": []
-        },
-        {
-            "type": "word",
-            "id": "hsk1_1_en_8",
-            "character": "三",
-            "transcription": "sān",
-            "translation": "Three",
-            "additional_info": "",
-            "speech_part": "measure_word"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_1_en_9",
-            "character": "十",
-            "transcription": "shí",
-            "translation": "Ten",
-            "additional_info": "",
-            "speech_part": "measure_word"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_1_en_10",
-            "character": "八",
-            "transcription": "bā",
-            "translation": "Eight",
-            "additional_info": "",
-            "speech_part": "measure_word"
-        },
-        {
-            "type": "phrase",
-            "id": "hsk1_1_en_11",
-            "character": "您好",
-            "transcription": "nǐn hǎo",
-            "translation": "Hello (formal)",
-            "additional_info": "",
-            "words": []
-        },
-        {
-            "type": "word",
-            "id": "hsk1_1_en_12",
+            "id": "hsk1_1_en_13",
             "character": "一",
             "transcription": "yī",
             "translation": "One",
@@ -112,30 +85,57 @@
         },
         {
             "type": "word",
-            "id": "hsk1_1_en_13",
-            "character": "你们",
-            "transcription": "nǐmen",
-            "translation": "You (plural)",
+            "id": "hsk1_1_en_10",
+            "character": "三",
+            "transcription": "sān",
+            "translation": "Three",
             "additional_info": "",
-            "speech_part": "pronoun_informal"
-        },
-        {
-            "type": "phrase",
-            "id": "hsk1_1_en_14",
-            "character": "你们好",
-            "transcription": "nǐmen hǎo",
-            "translation": "Hello (everyone)",
-            "additional_info": "",
-            "words": []
+            "speech_part": "measure_word"
         },
         {
             "type": "word",
-            "id": "hsk1_1_en_15",
+            "id": "hsk1_1_en_8",
+            "character": "二",
+            "transcription": "èr",
+            "translation": "Two",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_12",
+            "character": "八",
+            "transcription": "bā",
+            "translation": "Eight",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_9",
+            "character": "六",
+            "transcription": "liù",
+            "translation": "Six",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_11",
+            "character": "十",
+            "transcription": "shí",
+            "translation": "Ten",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_1_en_6",
             "character": "们",
             "transcription": "men",
             "translation": "Plural particle",
             "additional_info": "",
-            "speech_part": "suffix"
+            "speech_part": "particle"
         }
     ]
 }

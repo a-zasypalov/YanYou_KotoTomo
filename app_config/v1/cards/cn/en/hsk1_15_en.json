@@ -13,70 +13,7 @@
         },
         {
             "type": "word",
-            "id": "hsk1_15_en_2",
-            "character": "认识",
-            "transcription": "rèn shi",
-            "translation": "To know",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_15_en_3",
-            "character": "饭馆",
-            "transcription": "fàn guǎn",
-            "translation": "Restaurant",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_15_en_4",
-            "character": "飞机",
-            "transcription": "fēi jī",
-            "translation": "Airplane",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
             "id": "hsk1_15_en_5",
-            "character": "听",
-            "transcription": "tīng",
-            "translation": "To listen",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_15_en_6",
-            "character": "车",
-            "transcription": "chē",
-            "translation": "Car",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_15_en_7",
-            "character": "高兴",
-            "transcription": "gāo xìng",
-            "translation": "Happy",
-            "additional_info": "",
-            "speech_part": "adjective"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_15_en_8",
-            "character": "一起",
-            "transcription": "yī qǐ",
-            "translation": "Together",
-            "additional_info": "",
-            "speech_part": "measure_word"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_15_en_9",
             "character": "大学",
             "transcription": "dà xué",
             "translation": "University",
@@ -85,12 +22,75 @@
         },
         {
             "type": "word",
-            "id": "hsk1_15_en_10",
+            "id": "hsk1_15_en_4",
+            "character": "车",
+            "transcription": "chē",
+            "translation": "Car",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_15_en_3",
+            "character": "飞机",
+            "transcription": "fēi jī",
+            "translation": "Airplane",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_15_en_6",
             "character": "饭店",
             "transcription": "fàn diàn",
             "translation": "Hotel, restaurant",
             "additional_info": "",
             "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_15_en_2",
+            "character": "饭馆",
+            "transcription": "fàn guǎn",
+            "translation": "Restaurant",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_15_en_8",
+            "character": "听",
+            "transcription": "tīng",
+            "translation": "To listen",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_15_en_7",
+            "character": "认识",
+            "transcription": "rèn shi",
+            "translation": "To know",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_15_en_9",
+            "character": "高兴",
+            "transcription": "gāo xìng",
+            "translation": "Happy",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_15_en_10",
+            "character": "一起",
+            "transcription": "yī qǐ",
+            "translation": "Together",
+            "additional_info": "",
+            "speech_part": "measure_word"
         }
     ]
 }
