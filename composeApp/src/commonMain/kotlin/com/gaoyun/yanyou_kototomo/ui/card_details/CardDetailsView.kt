@@ -151,7 +151,7 @@ private fun ColumnScope.CardDetailsWord(card: Card.WordCard) {
     CardDetailsFront(card.front, modifier = Modifier.fillMaxWidth())
     CardDetailsTranscription(card.transcription, modifier = Modifier.fillMaxWidth())
     Divider(2.dp, Modifier.padding(vertical = 4.dp))
-    CardDetailsTranslation(card.translation)
+    CardDetailsTranslation(card.translation, modifier = Modifier.fillMaxWidth())
     card.additionalInfo?.let { CardDetailsAdditionalInfo(it) }
 }
 
@@ -172,7 +172,7 @@ private fun ColumnScope.CardDetailsKanjiCard(card: Card.KanjiCard) {
     }
     CardDetailsTranscription(card.transcription, modifier = Modifier.fillMaxWidth())
     Divider(2.dp, Modifier.padding(vertical = 4.dp))
-    CardDetailsTranslation(card.translation)
+    CardDetailsTranslation(card.translation, modifier = Modifier.fillMaxWidth())
     card.additionalInfo?.let { CardDetailsAdditionalInfo(it) }
 }
 
@@ -181,6 +181,6 @@ private fun ColumnScope.CardDetailsPhraseCard(card: Card.PhraseCard) {
     CardDetailsFront(card.front)
     CardDetailsTranscription(card.transcription, modifier = Modifier.fillMaxWidth())
     Divider(2.dp, Modifier.padding(vertical = 4.dp))
-    CardDetailsTranslation(card.translation)
+    CardDetailsTranslation(card.translation, modifier = Modifier.fillMaxWidth())
     card.additionalInfo?.let { CardDetailsAdditionalInfo(it) }
 }

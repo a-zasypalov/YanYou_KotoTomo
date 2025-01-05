@@ -36,10 +36,12 @@ internal fun CardDetailsTranscription(
 }
 
 @Composable
-internal fun CardDetailsTranslation(translation: String) {
+internal fun CardDetailsTranslation(translation: String, modifier: Modifier = Modifier) {
     Text(
         text = translation,
-        style = MaterialTheme.typography.headlineSmall
+        style = MaterialTheme.typography.headlineSmall,
+        textAlign = TextAlign.Center,
+        modifier = modifier
     )
 }
 

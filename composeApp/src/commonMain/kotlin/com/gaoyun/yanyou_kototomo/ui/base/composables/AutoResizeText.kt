@@ -27,6 +27,7 @@ fun AutoResizeText(
     textDecoration: TextDecoration? = null,
     textAlign: TextAlign? = null,
     maxLines: Int = Int.MAX_VALUE,
+    minLines: Int = 1,
     style: TextStyle = LocalTextStyle.current,
 ) {
     var calculatedFontSize by remember { mutableStateOf(fontSizeRange.max) }
@@ -60,6 +61,7 @@ fun AutoResizeText(
                     fontStyle = fontStyle,
                     textDecoration = textDecoration,
                 ),
+                minLines = minLines,
                 maxLines = maxLines,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.fillMaxWidth()

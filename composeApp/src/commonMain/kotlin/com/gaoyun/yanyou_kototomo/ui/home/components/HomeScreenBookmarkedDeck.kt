@@ -32,16 +32,17 @@ fun HomeScreenBookmarkedDeck(bookmark: DeckWithCourseInfo, onCourseClick: (DeckW
     val courseTextColor = Color(0xFFEDE1D4)
 
     ElevatedCard(
-        modifier = Modifier.platformStyleClickable { onCourseClick(bookmark) }.height(150.dp).widthIn(max = 150.dp),
+        modifier = Modifier.platformStyleClickable { onCourseClick(bookmark) }.height(180.dp).widthIn(max = 150.dp),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp),
         colors = CardDefaults.elevatedCardColors(containerColor = courseCardColor)
     ) {
         Column(modifier = Modifier.fillMaxSize().background(Color(0x33000000)).padding(vertical = 4.dp)) {
             AutoResizeText(
                 text = bookmark.deck.name,
-                fontSizeRange = FontSizeRange(min = 16.sp, max = MaterialTheme.typography.titleLarge.fontSize),
+                fontSizeRange = FontSizeRange(min = 14.sp, max = MaterialTheme.typography.titleLarge.fontSize),
                 color = courseTextColor,
-                maxLines = 1,
+                maxLines = 2,
+                minLines = 2,
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.padding(horizontal = 8.dp).padding(bottom = 4.dp),
             )
