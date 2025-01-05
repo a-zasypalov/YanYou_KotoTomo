@@ -101,7 +101,10 @@ class DeckOverviewViewModel(
     }
 
     fun resetDeck(args: DeckScreenArgs) = viewModelScope.launch {
-        viewState.value?.deckId?.let { cardProgressUpdater.resetDeck(it) }
+        viewState.value?.let { viewState ->
+            cardProgressUpdater.resetDeck(viewState.deckId)
+            deckSettingsInteractor.updateDeckSettings(viewState.settings.copy(pausedCards = setOf()))
+        }
         getDeck(args)
     }
 

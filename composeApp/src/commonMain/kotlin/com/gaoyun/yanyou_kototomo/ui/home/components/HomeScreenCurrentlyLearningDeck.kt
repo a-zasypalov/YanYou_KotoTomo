@@ -47,6 +47,7 @@ fun HomeScreenCurrentlyLearningDeck(
     val cardsReviewToday = deckWithInfo.deck.cards.count {
         !deckWithInfo.info.pausedCardIds.contains(it.card.id.identifier) && it.progress.countForReview()
     }
+    val activeCards = deckWithInfo.deck.cards.filterNot { deckWithInfo.info.pausedCardIds.contains(it.card.id.identifier) }
 
     ElevatedCard(
         modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).platformStyleClickable { onCourseClick(deckWithInfo) },
@@ -107,7 +108,7 @@ fun HomeScreenCurrentlyLearningDeck(
 
             LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 item { Spacer(Modifier.size(8.dp)) }
-                items(deckWithInfo.deck.cards) { card ->
+                items(activeCards) { card ->
                     HomeScreenCharacterCard(
                         card = card,
                         languageId = deckWithInfo.info.learningLanguageId,

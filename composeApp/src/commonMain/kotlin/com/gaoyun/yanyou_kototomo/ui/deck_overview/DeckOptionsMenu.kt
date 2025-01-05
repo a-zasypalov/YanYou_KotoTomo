@@ -1,8 +1,10 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
@@ -18,16 +20,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun DeckOptionsMenu(onResetDeck: () -> Unit) {
+fun DeckOptionsMenu(
+    isKanaDeck: Boolean,
+    onResetDeck: () -> Unit,
+    onEditDeck: () -> Unit,
+) {
     var expanded = remember { mutableStateOf(false) }
     var showDialog = remember { mutableStateOf(false) }
 
     Box {
-        IconButton(
-            modifier = Modifier.padding(horizontal = 4.dp),
-            onClick = { expanded.value = true }
-        ) {
-            Icon(Icons.Default.MoreVert, contentDescription = "options")
+        Row {
+            if(!isKanaDeck) {
+                IconButton(
+                    modifier = Modifier.padding(horizontal = 4.dp),
+                    onClick = onEditDeck
+                ) {
+                    Icon(Icons.Default.Edit, contentDescription = "edit")
+                }
+            }
+            IconButton(
+                modifier = Modifier.padding(horizontal = 4.dp),
+                onClick = { expanded.value = true }
+            ) {
+                Icon(Icons.Default.MoreVert, contentDescription = "options")
+            }
         }
 
         DropdownMenu(
