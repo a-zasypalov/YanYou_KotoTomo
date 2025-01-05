@@ -187,18 +187,19 @@ fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
 ) {
     data class Category(
         val name: String,
+        val type: CardCategoryType,
         val cards: List<CardWithProgress<*>>,
         val isShown: Boolean,
         val visibilityToggle: (Boolean) -> Unit,
     )
 
     val categories = listOf(
-        Category("New", viewState.newCards, viewState.settings.showNewCards, updateShowNewCards),
-        Category("To Review", viewState.cardsToReview, viewState.settings.showToReviewCards, updateShowToReviewCards),
-        Category("Paused", viewState.pausedCards, viewState.settings.showPausedCards, updateShowPausedCards)
+        Category("New", CardCategoryType.New, viewState.newCards, viewState.settings.showNewCards, updateShowNewCards),
+        Category("To Review", CardCategoryType.ToReview, viewState.cardsToReview, viewState.settings.showToReviewCards, updateShowToReviewCards),
+        Category("Paused", CardCategoryType.Paused, viewState.pausedCards, viewState.settings.showPausedCards, updateShowPausedCards)
     )
 
-    categories.forEach { (name, cards, isVisible, onToggle) ->
+    categories.forEach { (name, type, cards, isVisible, onToggle) ->
         if (cards.isNotEmpty()) {
             item(span = { GridItemSpan(cellsNumber) }) {
                 DeckOverviewCategoryHeader(
@@ -211,7 +212,7 @@ fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
             if (isVisible) {
                 items(cards, key = { it.card.id.identifier }) {
                     DeckOverviewCard(
-                        cardWithProgress = it,
+                        cardWithProgress = if(type == CardCategoryType.Paused) it.copy(progress = null) else it,
                         settings = viewState.settings,
                         onCardClick = onCardClick,
                     )
@@ -220,6 +221,8 @@ fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
         }
     }
 }
+
+enum class CardCategoryType { New, ToReview, Paused }
 
 @Composable
 fun DeckOverviewCategoryHeader(name: String, isOpen: Boolean, onOpenToggle: (Boolean) -> Unit) {
@@ -250,6 +253,7 @@ fun DeckOverviewCard(
                 showTranscription = settings.showTranscription,
                 showTranslation = settings.showTranslation,
                 onClick = { onCardClick(cardWithProgress) },
+                nextReviewDate = cardWithProgress.progress?.nextReview,
                 modifier = modifier
             )
 
@@ -258,6 +262,7 @@ fun DeckOverviewCard(
                 card = card,
                 showTranscription = settings.showTranscription,
                 showTranslation = settings.showTranslation,
+                nextReviewDate = cardWithProgress.progress?.nextReview,
                 onClick = { onCardClick(cardWithProgress) },
                 modifier = modifier
             )
@@ -268,6 +273,7 @@ fun DeckOverviewCard(
                 showTranscription = settings.showTranscription,
                 showTranslation = settings.showTranslation,
                 showReading = settings.showReading,
+                nextReviewDate = cardWithProgress.progress?.nextReview,
                 onClick = { onCardClick(cardWithProgress) },
                 modifier = modifier
             )
@@ -276,6 +282,7 @@ fun DeckOverviewCard(
             DeckOverviewKanaCard(
                 card = card,
                 showTranscription = settings.showTranscription,
+                nextReviewDate = cardWithProgress.progress?.nextReview,
                 onClick = { onCardClick(cardWithProgress) },
                 modifier = modifier
             )

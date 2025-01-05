@@ -25,9 +25,13 @@ import yanyou_kototomo.composeapp.generated.resources.month_oct
 import yanyou_kototomo.composeapp.generated.resources.month_sep
 import yanyou_kototomo.composeapp.generated.resources.relative_days_ago
 import yanyou_kototomo.composeapp.generated.resources.relative_in_days
+import yanyou_kototomo.composeapp.generated.resources.relative_in_days_short
 import yanyou_kototomo.composeapp.generated.resources.relative_in_months
+import yanyou_kototomo.composeapp.generated.resources.relative_in_months_short
 import yanyou_kototomo.composeapp.generated.resources.relative_in_weeks
+import yanyou_kototomo.composeapp.generated.resources.relative_in_weeks_short
 import yanyou_kototomo.composeapp.generated.resources.relative_in_years
+import yanyou_kototomo.composeapp.generated.resources.relative_in_years_short
 import yanyou_kototomo.composeapp.generated.resources.relative_months_ago
 import yanyou_kototomo.composeapp.generated.resources.relative_today
 import yanyou_kototomo.composeapp.generated.resources.relative_weeks_ago
@@ -53,6 +57,20 @@ fun LocalDate.toRelativeFormat(): String {
         daysDifference in 31..365 -> pluralStringResource(Res.plurals.relative_in_months, daysDifference / 30, daysDifference / 30)
         daysDifference < -365 -> pluralStringResource(Res.plurals.relative_years_ago, -daysDifference / 365, -daysDifference / 365)
         daysDifference > 365 -> pluralStringResource(Res.plurals.relative_in_years, daysDifference / 365, daysDifference / 365)
+        else -> this.toString() // Fallback to ISO-8601 format
+    }
+}
+
+@Composable
+fun LocalDate.toRelativeShortFormat(): String {
+    val daysDifference = localDateNow().daysUntil(this)
+
+    return when {
+        daysDifference == 0 -> stringResource(Res.string.relative_today)
+        daysDifference in 1..6 -> stringResource(Res.string.relative_in_days_short, daysDifference, daysDifference)
+        daysDifference in 7..30 -> stringResource(Res.string.relative_in_weeks_short, daysDifference / 7, daysDifference / 7)
+        daysDifference in 31..365 -> stringResource(Res.string.relative_in_months_short, daysDifference / 30, daysDifference / 30)
+        daysDifference > 365 -> stringResource(Res.string.relative_in_years_short, daysDifference / 365, daysDifference / 365)
         else -> this.toString() // Fallback to ISO-8601 format
     }
 }

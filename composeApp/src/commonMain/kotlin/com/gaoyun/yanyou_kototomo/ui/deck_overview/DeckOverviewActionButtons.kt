@@ -2,6 +2,7 @@ package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
@@ -35,6 +36,7 @@ fun BoxScope.DeckOverviewActionButtons(dueCards: Int, onPlayDeckClick: (PlayerMo
                 text = "Review: $dueCards",
                 leadingIcon = Icons.Outlined.LocalLibrary,
                 onClick = { onPlayDeckClick(PlayerMode.SpacialRepetition) },
+                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
                 modifier = Modifier.weight(1f),
             )
         }

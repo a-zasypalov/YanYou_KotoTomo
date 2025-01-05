@@ -37,6 +37,11 @@
         <item quantity="one">in %1$d year</item>
         <item quantity="other">in %1$d years</item>
     </plurals>
+
+    <string name="relative_in_days_short">%1$dd</string>
+    <string name="relative_in_weeks_short">%1$dw</string>
+    <string name="relative_in_months_short">%1$dm</string>
+    <string name="relative_in_years_short">%1$dy</string>
     <string name="relative_today">Today</string>
     <string name="relative_yesterday">Yesterday</string>
 
