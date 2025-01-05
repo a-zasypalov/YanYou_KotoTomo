@@ -31,52 +31,25 @@
         },
         {
             "type": "word",
-            "id": "hsk2_1_en_4",
-            "character": "踢足球",
-            "transcription": "tī zú qiú",
-            "translation": "To play football",
+            "id": "hsk2_1_en_9",
+            "character": "要",
+            "transcription": "yào",
+            "translation": "To want to",
             "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_1_en_5",
-            "character": "也",
-            "transcription": "yě",
-            "translation": "Also",
-            "additional_info": "",
-            "speech_part": "pronoun"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_1_en_6",
-            "character": "最",
-            "transcription": "zuì",
-            "translation": "Most",
-            "additional_info": "",
-            "speech_part": "pronoun"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_1_en_7",
-            "character": "一起",
-            "transcription": "yī qǐ",
-            "translation": "Together",
-            "additional_info": "",
-            "speech_part": "measure_word"
+            "speech_part": "verb"
         },
         {
             "type": "word",
             "id": "hsk2_1_en_8",
-            "character": "元",
-            "transcription": "yuán",
-            "translation": "Chinese monetary unit",
+            "character": "觉得",
+            "transcription": "jué de",
+            "translation": "To think",
             "additional_info": "",
-            "speech_part": "measure_word"
+            "speech_part": "verb"
         },
         {
             "type": "word",
-            "id": "hsk2_1_en_9",
+            "id": "hsk2_1_en_7",
             "character": "踢",
             "transcription": "tī",
             "translation": "To kick",
@@ -86,24 +59,24 @@
         {
             "type": "word",
             "id": "hsk2_1_en_10",
-            "character": "觉得",
-            "transcription": "jué de",
-            "translation": "To think",
+            "character": "踢足球",
+            "transcription": "tī zú qiú",
+            "translation": "To play football",
             "additional_info": "",
             "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_1_en_4",
+            "character": "它",
+            "transcription": "tā",
+            "translation": "It",
+            "additional_info": "",
+            "speech_part": "pronoun"
         },
         {
             "type": "word",
             "id": "hsk2_1_en_11",
-            "character": "要",
-            "transcription": "yào",
-            "translation": "To want to",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_1_en_12",
             "character": "新",
             "transcription": "xīn",
             "translation": "New",
@@ -112,21 +85,48 @@
         },
         {
             "type": "word",
-            "id": "hsk2_1_en_13",
-            "character": "它",
-            "transcription": "tā",
-            "translation": "It",
+            "id": "hsk2_1_en_5",
+            "character": "一起",
+            "transcription": "yī qǐ",
+            "translation": "Together",
             "additional_info": "",
-            "speech_part": "pronoun_informal"
+            "speech_part": "measure_word"
         },
         {
             "type": "word",
-            "id": "hsk2_1_en_14",
+            "id": "hsk2_1_en_6",
+            "character": "元",
+            "transcription": "yuán",
+            "translation": "Yuan",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_1_en_13",
             "character": "为什么",
             "transcription": "wèi shén me",
             "translation": "Why",
             "additional_info": "",
-            "speech_part": "pronoun_informal"
+            "speech_part": "preposition"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_1_en_12",
+            "character": "也",
+            "transcription": "yě",
+            "translation": "Also",
+            "additional_info": "",
+            "speech_part": "preposition"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_1_en_14",
+            "character": "最",
+            "transcription": "zuì",
+            "translation": "Most",
+            "additional_info": "",
+            "speech_part": "preposition"
         }
     ]
 }

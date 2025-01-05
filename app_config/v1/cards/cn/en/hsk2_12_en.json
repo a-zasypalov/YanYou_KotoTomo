@@ -4,10 +4,10 @@
     "cards": [
         {
             "type": "word",
-            "id": "hsk2_12_en_1",
-            "character": "弟弟",
-            "transcription": "dì di",
-            "translation": "Younger brother",
+            "id": "hsk2_12_en_4",
+            "character": "妻子",
+            "transcription": "qī zi",
+            "translation": "Wife",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -22,6 +22,15 @@
         },
         {
             "type": "word",
+            "id": "hsk2_12_en_1",
+            "character": "弟弟",
+            "transcription": "dì di",
+            "translation": "Younger brother",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
             "id": "hsk2_12_en_3",
             "character": "雪",
             "transcription": "xuě",
@@ -31,12 +40,12 @@
         },
         {
             "type": "word",
-            "id": "hsk2_12_en_4",
-            "character": "妻子",
-            "transcription": "qī zi",
-            "translation": "Wife",
+            "id": "hsk2_12_en_7",
+            "character": "令",
+            "transcription": "líng",
+            "translation": "Zero",
             "additional_info": "",
-            "speech_part": "noun"
+            "speech_part": "verb"
         },
         {
             "type": "word",
@@ -53,15 +62,6 @@
             "character": "进",
             "transcription": "jìn",
             "translation": "To enter",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_12_en_7",
-            "character": "令",
-            "transcription": "líng",
-            "translation": "Zero",
             "additional_info": "",
             "speech_part": "verb"
         },

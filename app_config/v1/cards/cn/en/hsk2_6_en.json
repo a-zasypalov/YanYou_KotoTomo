@@ -14,15 +14,6 @@
         {
             "type": "word",
             "id": "hsk2_6_en_2",
-            "character": "打篮球",
-            "transcription": "dá lán qiú",
-            "translation": "Play basketball",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_6_en_3",
             "character": "羊肉",
             "transcription": "yáng ròu",
             "translation": "Mutton",
@@ -31,7 +22,16 @@
         },
         {
             "type": "word",
-            "id": "hsk2_6_en_4",
+            "id": "hsk2_6_en_5",
+            "character": "自行车",
+            "transcription": "zì xíng chē",
+            "translation": "Bicycle",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_6_en_3",
             "character": "门",
             "transcription": "mén",
             "translation": "Door, gate",
@@ -40,7 +40,7 @@
         },
         {
             "type": "word",
-            "id": "hsk2_6_en_5",
+            "id": "hsk2_6_en_4",
             "character": "面条",
             "transcription": "miàn tiáo",
             "translation": "Noodles",
@@ -50,24 +50,6 @@
         {
             "type": "word",
             "id": "hsk2_6_en_6",
-            "character": "自行车",
-            "transcription": "zì xíng chē",
-            "translation": "Bicycle",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_6_en_7",
-            "character": "经常",
-            "transcription": "jīng cháng",
-            "translation": "Often",
-            "additional_info": "",
-            "speech_part": "pronoun"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_6_en_8",
             "character": "卖",
             "transcription": "mài",
             "translation": "To sell",
@@ -76,7 +58,7 @@
         },
         {
             "type": "word",
-            "id": "hsk2_6_en_9",
+            "id": "hsk2_6_en_7",
             "character": "好吃",
             "transcription": "hǎo chī",
             "translation": "Tasty",
@@ -85,7 +67,16 @@
         },
         {
             "type": "word",
-            "id": "hsk2_6_en_10",
+            "id": "hsk2_6_en_8",
+            "character": "打篮球",
+            "transcription": "dá lán qiú",
+            "translation": "Play basketball",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_6_en_9",
             "character": "游泳",
             "transcription": "yóu yǒng",
             "translation": "To swim",
@@ -94,25 +85,25 @@
         },
         {
             "type": "word",
-            "id": "hsk2_6_en_11",
-            "character": "公斤",
-            "transcription": "gōng jīn",
-            "translation": "Kilogram",
+            "id": "hsk2_6_en_14",
+            "character": "经常",
+            "transcription": "jīng cháng",
+            "translation": "Often",
             "additional_info": "",
-            "speech_part": "quantifier"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_6_en_12",
-            "character": "外",
-            "transcription": "wài miàn",
-            "translation": "Outer",
-            "additional_info": "",
-            "speech_part": "preposition"
+            "speech_part": "adverb"
         },
         {
             "type": "word",
             "id": "hsk2_6_en_13",
+            "character": "因为",
+            "transcription": "yīn wèi",
+            "translation": "Because",
+            "additional_info": "",
+            "speech_part": "conjunction"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_6_en_12",
             "character": "所以",
             "transcription": "suǒ yǐ",
             "translation": "Therefore",
@@ -121,12 +112,21 @@
         },
         {
             "type": "word",
-            "id": "hsk2_6_en_14",
-            "character": "因为",
-            "transcription": "yīn wèi",
-            "translation": "Because",
+            "id": "hsk2_6_en_11",
+            "character": "外",
+            "transcription": "wài miàn",
+            "translation": "Outer",
             "additional_info": "",
-            "speech_part": "conjunction"
+            "speech_part": "preposition"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_6_en_10",
+            "character": "公斤",
+            "transcription": "gōng jīn",
+            "translation": "Kilogram",
+            "additional_info": "",
+            "speech_part": "quantifier"
         }
     ]
 }

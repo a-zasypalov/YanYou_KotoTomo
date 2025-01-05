@@ -4,61 +4,7 @@
     "cards": [
         {
             "type": "word",
-            "id": "hsk1_10_en_1",
-            "character": "电脑",
-            "transcription": "diàn nǎo",
-            "translation": "Computer",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_10_en_2",
-            "character": "本",
-            "transcription": "běn",
-            "translation": "Measure word for books",
-            "additional_info": "",
-            "speech_part": "pronoun_informal"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_10_en_3",
-            "character": "后面",
-            "transcription": "hòu mian",
-            "translation": "Back",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_10_en_4",
-            "character": "里",
-            "transcription": "lǐ",
-            "translation": "Inside, inner",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_10_en_5",
-            "character": "和",
-            "transcription": "hé",
-            "translation": "And",
-            "additional_info": "",
-            "speech_part": "conjunction"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_10_en_6",
-            "character": "能",
-            "transcription": "néng",
-            "translation": "Can, may",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_10_en_7",
+            "id": "hsk1_10_en_8",
             "character": "前面",
             "transcription": "qián miàn",
             "translation": "Front",
@@ -67,12 +13,21 @@
         },
         {
             "type": "word",
-            "id": "hsk1_10_en_8",
-            "character": "没",
-            "transcription": "méi",
-            "translation": "(negative prefix for verbs)",
+            "id": "hsk1_10_en_6",
+            "character": "后面",
+            "transcription": "hòu mian",
+            "translation": "Back",
             "additional_info": "",
-            "speech_part": "verb"
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_10",
+            "character": "桌子",
+            "transcription": "zhuō zi",
+            "translation": "Table",
+            "additional_info": "",
+            "speech_part": "noun"
         },
         {
             "type": "word",
@@ -85,39 +40,30 @@
         },
         {
             "type": "word",
-            "id": "hsk1_10_en_10",
-            "character": "上",
-            "transcription": "shàng",
-            "translation": "Up, above",
-            "additional_info": "",
-            "speech_part": "adverb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_10_en_11",
-            "character": "没有",
-            "transcription": "méi yǒu",
-            "translation": "There is not",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_10_en_12",
-            "character": "桌子",
-            "transcription": "zhuō zi",
-            "translation": "Table",
+            "id": "hsk1_10_en_5",
+            "character": "电脑",
+            "transcription": "diàn nǎo",
+            "translation": "Computer",
             "additional_info": "",
             "speech_part": "noun"
         },
         {
             "type": "word",
-            "id": "hsk1_10_en_13",
+            "id": "hsk1_10_en_7",
+            "character": "里",
+            "transcription": "lǐ",
+            "translation": "Inside, inner",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "phrase",
+            "id": "hsk1_10_en_2",
             "character": "这儿",
             "transcription": "zhèr",
             "translation": "Here",
             "additional_info": "",
-            "speech_part": "pronoun_informal"
+            "words": []
         },
         {
             "type": "word",
@@ -127,6 +73,60 @@
             "translation": "To sit",
             "additional_info": "",
             "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_12",
+            "character": "没",
+            "transcription": "méi",
+            "translation": "(negative prefix for verbs)",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_13",
+            "character": "没有",
+            "transcription": "méi yǒu",
+            "translation": "There is not",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_11",
+            "character": "能",
+            "transcription": "néng",
+            "translation": "Can, may",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_1",
+            "character": "上",
+            "transcription": "shàng",
+            "translation": "Up, above",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_3",
+            "character": "和",
+            "transcription": "hé",
+            "translation": "And",
+            "additional_info": "",
+            "speech_part": "conjunction"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_10_en_4",
+            "character": "本",
+            "transcription": "běn",
+            "translation": "Measure word for books",
+            "additional_info": "",
+            "speech_part": "preposition"
         }
     ]
 }

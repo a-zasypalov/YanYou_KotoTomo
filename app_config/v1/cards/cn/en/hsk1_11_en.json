@@ -4,21 +4,93 @@
     "cards": [
         {
             "type": "word",
+            "id": "hsk1_11_en_8",
+            "character": "前",
+            "transcription": "qián",
+            "translation": "Before, earlier",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_11_en_7",
+            "character": "时候",
+            "transcription": "shí hou",
+            "translation": "Time",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_11_en_6",
+            "character": "电影",
+            "transcription": "diàn yǐng",
+            "translation": "Movie",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "phrase",
+            "id": "hsk1_11_en_2",
+            "character": "吃饭",
+            "transcription": "chī fàn",
+            "translation": "To eat a meal",
+            "additional_info": "",
+            "words": []
+        },
+        {
+            "type": "word",
+            "id": "hsk1_11_en_10",
+            "character": "住",
+            "transcription": "zhù",
+            "translation": "To live",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_11_en_9",
+            "character": "回",
+            "transcription": "huí",
+            "translation": "To return",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_11_en_13",
+            "character": "我们",
+            "transcription": "wǒ men",
+            "translation": "We",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_11_en_11",
+            "character": "点",
+            "transcription": "diǎn",
+            "translation": "O’clock",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_11_en_12",
+            "character": "零",
+            "transcription": "líng",
+            "translation": "Zero",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
             "id": "hsk1_11_en_1",
             "character": "北京",
             "transcription": "Běi jīng",
             "translation": "Beijing",
             "additional_info": "",
             "speech_part": "name_or_place"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_11_en_2",
-            "character": "电影",
-            "transcription": "diàn yǐng",
-            "translation": "Movie",
-            "additional_info": "",
-            "speech_part": "noun"
         },
         {
             "type": "word",
@@ -31,91 +103,19 @@
         },
         {
             "type": "word",
-            "id": "hsk1_11_en_4",
-            "character": "点",
-            "transcription": "diǎn",
-            "translation": "O’clock",
-            "additional_info": "",
-            "speech_part": "measure_word"
-        },
-        {
-            "type": "word",
             "id": "hsk1_11_en_5",
-            "character": "回",
-            "transcription": "huí",
-            "translation": "To return",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_11_en_6",
-            "character": "零",
-            "transcription": "líng",
-            "translation": "Zero",
-            "additional_info": "",
-            "speech_part": "measure_word"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_11_en_7",
-            "character": "现在",
-            "transcription": "xiàn zài",
-            "translation": "Now",
+            "character": "中午",
+            "transcription": "zhōng wǔ",
+            "translation": "Noon",
             "additional_info": "",
             "speech_part": "time_word"
         },
         {
             "type": "word",
-            "id": "hsk1_11_en_8",
-            "character": "我们",
-            "transcription": "wǒ men",
-            "translation": "We",
-            "additional_info": "",
-            "speech_part": "pronoun_informal"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_11_en_9",
-            "character": "时候",
-            "transcription": "shí hou",
-            "translation": "Time",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_11_en_10",
-            "character": "前",
-            "transcription": "qián",
-            "translation": "Before, earlier",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_11_en_11",
-            "character": "吃饭",
-            "transcription": "chī fàn",
-            "translation": "To eat a meal",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_11_en_12",
-            "character": "住",
-            "transcription": "zhù",
-            "translation": "To live",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_11_en_13",
-            "character": "中午",
-            "transcription": "zhōng wǔ",
-            "translation": "Noon",
+            "id": "hsk1_11_en_4",
+            "character": "现在",
+            "transcription": "xiàn zài",
+            "translation": "Now",
             "additional_info": "",
             "speech_part": "time_word"
         }

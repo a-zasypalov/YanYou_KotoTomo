@@ -4,15 +4,6 @@
     "cards": [
         {
             "type": "word",
-            "id": "hsk2_10_en_1",
-            "character": "鸡蛋",
-            "transcription": "jī dàn",
-            "translation": "Egg (chicken)",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
             "id": "hsk2_10_en_2",
             "character": "哥哥",
             "transcription": "gē ge",
@@ -49,6 +40,15 @@
         },
         {
             "type": "word",
+            "id": "hsk2_10_en_1",
+            "character": "鸡蛋",
+            "transcription": "jī dàn",
+            "translation": "Egg (chicken)",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
             "id": "hsk2_10_en_6",
             "character": "帮助",
             "transcription": "bāng zhù",
@@ -67,16 +67,16 @@
         },
         {
             "type": "word",
-            "id": "hsk2_10_en_8",
+            "id": "hsk2_10_en_9",
             "character": "别",
             "transcription": "bié",
             "translation": "Don’t",
             "additional_info": "",
-            "speech_part": "pronoun_informal"
+            "speech_part": "preposition"
         },
         {
             "type": "word",
-            "id": "hsk2_10_en_9",
+            "id": "hsk2_10_en_8",
             "character": "正在",
             "transcription": "zhèng zài",
             "translation": "In the process of",

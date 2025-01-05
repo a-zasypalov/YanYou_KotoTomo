@@ -4,7 +4,7 @@
     "cards": [
         {
             "type": "word",
-            "id": "hsk1_14_en_1",
+            "id": "hsk1_14_en_3",
             "character": "东西",
             "transcription": "dōng xi",
             "translation": "Thing",
@@ -13,52 +13,7 @@
         },
         {
             "type": "word",
-            "id": "hsk1_14_en_2",
-            "character": "都",
-            "transcription": "dōu",
-            "translation": "Both, all",
-            "additional_info": "",
-            "speech_part": "pronoun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_14_en_3",
-            "character": "开",
-            "transcription": "kāi",
-            "translation": "To open",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_14_en_4",
-            "character": "漂亮",
-            "transcription": "piào liang",
-            "translation": "Pretty",
-            "additional_info": "",
-            "speech_part": "adjective"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_14_en_5",
-            "character": "衣服",
-            "transcription": "yī fu",
-            "translation": "Clothes",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
             "id": "hsk1_14_en_6",
-            "character": "苹果",
-            "transcription": "píng guǒ",
-            "translation": "Apple",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_14_en_7",
             "character": "先生",
             "transcription": "xiān sheng",
             "translation": "Teacher",
@@ -67,16 +22,52 @@
         },
         {
             "type": "word",
-            "id": "hsk1_14_en_8",
-            "character": "少",
-            "transcription": "shǎo",
-            "translation": "Few",
+            "id": "hsk1_14_en_5",
+            "character": "苹果",
+            "transcription": "píng guǒ",
+            "translation": "Apple",
             "additional_info": "",
-            "speech_part": "adjective"
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_14_en_4",
+            "character": "衣服",
+            "transcription": "yī fu",
+            "translation": "Clothes",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "phrase",
+            "id": "hsk1_14_en_1",
+            "character": "这些",
+            "transcription": "zhè xiē",
+            "translation": "These",
+            "additional_info": "",
+            "words": []
+        },
+        {
+            "type": "word",
+            "id": "hsk1_14_en_11",
+            "character": "回来",
+            "transcription": "huí lai",
+            "translation": "To come back",
+            "additional_info": "",
+            "speech_part": "verb"
         },
         {
             "type": "word",
             "id": "hsk1_14_en_9",
+            "character": "开",
+            "transcription": "kāi",
+            "translation": "To open",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_14_en_10",
             "character": "看见",
             "transcription": "kàn jiàn",
             "translation": "To see",
@@ -85,16 +76,7 @@
         },
         {
             "type": "word",
-            "id": "hsk1_14_en_10",
-            "character": "啊",
-            "transcription": "a",
-            "translation": "Confirmation particle",
-            "additional_info": "",
-            "speech_part": "particle"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_14_en_11",
+            "id": "hsk1_14_en_8",
             "character": "不少",
             "transcription": "bù shǎo",
             "translation": "Many, quite a few",
@@ -103,16 +85,16 @@
         },
         {
             "type": "word",
-            "id": "hsk1_14_en_12",
-            "character": "这些",
-            "transcription": "zhè xiē",
-            "translation": "These",
+            "id": "hsk1_14_en_7",
+            "character": "都",
+            "transcription": "dōu",
+            "translation": "Both, all",
             "additional_info": "",
-            "speech_part": "pronoun_informal"
+            "speech_part": "pronoun"
         },
         {
             "type": "word",
-            "id": "hsk1_14_en_13",
+            "id": "hsk1_14_en_14",
             "character": "后",
             "transcription": "hòu",
             "translation": "After, later",
@@ -121,12 +103,30 @@
         },
         {
             "type": "word",
-            "id": "hsk1_14_en_14",
-            "character": "回来",
-            "transcription": "huí lai",
-            "translation": "To come back",
+            "id": "hsk1_14_en_13",
+            "character": "少",
+            "transcription": "shǎo",
+            "translation": "Few",
             "additional_info": "",
-            "speech_part": "verb"
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_14_en_12",
+            "character": "漂亮",
+            "transcription": "piào liang",
+            "translation": "Pretty",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_14_en_2",
+            "character": "啊",
+            "transcription": "a",
+            "translation": "Confirmation particle",
+            "additional_info": "",
+            "speech_part": "particle"
         }
     ]
 }

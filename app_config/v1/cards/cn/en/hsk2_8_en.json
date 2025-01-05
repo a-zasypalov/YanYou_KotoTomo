@@ -4,15 +4,6 @@
     "cards": [
         {
             "type": "word",
-            "id": "hsk2_8_en_1",
-            "character": "服务员",
-            "transcription": "fú wù yuán",
-            "translation": "Waiter",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
             "id": "hsk2_8_en_2",
             "character": "事情",
             "transcription": "shì qing",
@@ -22,16 +13,16 @@
         },
         {
             "type": "word",
-            "id": "hsk2_8_en_3",
-            "character": "再",
-            "transcription": "zài",
-            "translation": "Again",
+            "id": "hsk2_8_en_1",
+            "character": "服务员",
+            "transcription": "fú wù yuán",
+            "translation": "Waiter",
             "additional_info": "",
-            "speech_part": "pronoun"
+            "speech_part": "noun"
         },
         {
             "type": "word",
-            "id": "hsk2_8_en_4",
+            "id": "hsk2_8_en_3",
             "character": "告诉",
             "transcription": "gào su",
             "translation": "To tell",
@@ -41,15 +32,6 @@
         {
             "type": "word",
             "id": "hsk2_8_en_5",
-            "character": "让",
-            "transcription": "ràng",
-            "translation": "To let, allow",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_8_en_6",
             "character": "找",
             "transcription": "zhǎo",
             "translation": "To look for",
@@ -58,25 +40,16 @@
         },
         {
             "type": "word",
-            "id": "hsk2_8_en_7",
-            "character": "贵",
-            "transcription": "guì",
-            "translation": "Expensive",
+            "id": "hsk2_8_en_4",
+            "character": "让",
+            "transcription": "ràng",
+            "translation": "To let, allow",
             "additional_info": "",
-            "speech_part": "adjective"
+            "speech_part": "verb"
         },
         {
             "type": "word",
             "id": "hsk2_8_en_8",
-            "character": "黑",
-            "transcription": "hēi",
-            "translation": "Black",
-            "additional_info": "",
-            "speech_part": "adjective"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_8_en_9",
             "character": "白",
             "transcription": "bái",
             "translation": "White",
@@ -85,7 +58,34 @@
         },
         {
             "type": "word",
+            "id": "hsk2_8_en_6",
+            "character": "贵",
+            "transcription": "guì",
+            "translation": "Expensive",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_8_en_7",
+            "character": "黑",
+            "transcription": "hēi",
+            "translation": "Black",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
             "id": "hsk2_8_en_10",
+            "character": "再",
+            "transcription": "zài",
+            "translation": "Again",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_8_en_9",
             "character": "等",
             "transcription": "děng",
             "translation": "To wait",

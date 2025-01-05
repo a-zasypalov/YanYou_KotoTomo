@@ -22,19 +22,10 @@
         },
         {
             "type": "word",
-            "id": "hsk2_7_en_3",
-            "character": "机场",
-            "transcription": "jī chǎng",
-            "translation": "Airport",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_7_en_4",
-            "character": "路",
-            "transcription": "lù",
-            "translation": "Road",
+            "id": "hsk2_7_en_6",
+            "character": "小时",
+            "transcription": "xiǎo shí",
+            "translation": "Hour",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -49,10 +40,19 @@
         },
         {
             "type": "word",
-            "id": "hsk2_7_en_6",
-            "character": "小时",
-            "transcription": "xiǎo shí",
-            "translation": "Hour",
+            "id": "hsk2_7_en_3",
+            "character": "机场",
+            "transcription": "jī chǎng",
+            "translation": "Airport",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_7_en_4",
+            "character": "路",
+            "transcription": "lù",
+            "translation": "Road",
             "additional_info": "",
             "speech_part": "noun"
         },

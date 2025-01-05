@@ -3,62 +3,17 @@
     "version": 1,
     "cards": [
         {
-            "type": "word",
-            "id": "hsk1_13_en_1",
-            "character": "打电话",
-            "transcription": "dǎ diàn huà",
-            "translation": "To make a telephone call",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
+            "type": "phrase",
             "id": "hsk1_13_en_2",
-            "character": "日",
-            "transcription": "rì",
-            "translation": "Sun",
-            "additional_info": "",
-            "speech_part": "measure_word"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_13_en_3",
-            "character": "电视",
-            "transcription": "diàn shì",
-            "translation": "Television",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_13_en_4",
-            "character": "上午",
-            "transcription": "shàng wǔ",
-            "translation": "Morning",
-            "additional_info": "",
-            "speech_part": "time_word"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_13_en_5",
-            "character": "睡觉",
-            "transcription": "shuì jiào",
-            "translation": "To go to bed",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_13_en_6",
             "character": "喂",
             "transcription": "wèi",
             "translation": "Hey, hello",
             "additional_info": "",
-            "speech_part": "verb"
+            "words": []
         },
         {
             "type": "word",
-            "id": "hsk1_13_en_7",
+            "id": "hsk1_13_en_5",
             "character": "学校",
             "transcription": "xué xiào",
             "translation": "School",
@@ -67,7 +22,43 @@
         },
         {
             "type": "word",
+            "id": "hsk1_13_en_4",
+            "character": "电视",
+            "transcription": "diàn shì",
+            "translation": "Television",
+            "additional_info": "",
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
             "id": "hsk1_13_en_8",
+            "character": "喜欢",
+            "transcription": "xǐ huan",
+            "translation": "To like",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_13_en_7",
+            "character": "睡觉",
+            "transcription": "shuì jiào",
+            "translation": "To go to bed",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "phrase",
+            "id": "hsk1_13_en_1",
+            "character": "打电话",
+            "transcription": "dǎ diàn huà",
+            "translation": "To make a telephone call",
+            "additional_info": "",
+            "words": []
+        },
+        {
+            "type": "word",
+            "id": "hsk1_13_en_6",
             "character": "也",
             "transcription": "yě",
             "translation": "Also, too",
@@ -77,11 +68,20 @@
         {
             "type": "word",
             "id": "hsk1_13_en_9",
-            "character": "喜欢",
-            "transcription": "xǐ huan",
-            "translation": "To like",
+            "character": "日",
+            "transcription": "rì",
+            "translation": "Sun",
             "additional_info": "",
-            "speech_part": "verb"
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_13_en_3",
+            "character": "上午",
+            "transcription": "shàng wǔ",
+            "translation": "Morning",
+            "additional_info": "",
+            "speech_part": "time_word"
         }
     ]
 }

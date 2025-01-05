@@ -14,18 +14,18 @@
         {
             "type": "word",
             "id": "hsk2_14_en_2",
-            "character": "玩儿",
-            "transcription": "wánr",
-            "translation": "To have fun",
+            "character": "晴",
+            "transcription": "qíng",
+            "translation": "Sunny",
             "additional_info": "",
-            "speech_part": "noun"
+            "speech_part": "verb"
         },
         {
             "type": "word",
             "id": "hsk2_14_en_3",
-            "character": "晴",
-            "transcription": "qíng",
-            "translation": "Sunny",
+            "character": "玩儿",
+            "transcription": "wánr",
+            "translation": "To have fun",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -40,12 +40,12 @@
         },
         {
             "type": "word",
-            "id": "hsk2_14_en_5",
-            "character": "次",
-            "transcription": "cì",
-            "translation": "Time",
+            "id": "hsk2_14_en_7",
+            "character": "但是",
+            "transcription": "dàn shì",
+            "translation": "But",
             "additional_info": "",
-            "speech_part": "quantifier"
+            "speech_part": "conjunction"
         },
         {
             "type": "word",
@@ -58,12 +58,12 @@
         },
         {
             "type": "word",
-            "id": "hsk2_14_en_7",
-            "character": "但是",
-            "transcription": "dàn shì",
-            "translation": "But",
+            "id": "hsk2_14_en_5",
+            "character": "次",
+            "transcription": "cì",
+            "translation": "Time",
             "additional_info": "",
-            "speech_part": "conjunction"
+            "speech_part": "quantifier"
         }
     ]
 }

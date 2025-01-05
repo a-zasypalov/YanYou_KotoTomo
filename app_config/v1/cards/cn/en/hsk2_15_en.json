@@ -13,19 +13,19 @@
         },
         {
             "type": "word",
-            "id": "hsk2_15_en_2",
-            "character": "火车站",
-            "transcription": "huǒ chē zhàn",
-            "translation": "Station (railway)",
+            "id": "hsk2_15_en_3",
+            "character": "妹妹",
+            "transcription": "mèi mei",
+            "translation": "Younger sister",
             "additional_info": "",
             "speech_part": "noun"
         },
         {
             "type": "word",
-            "id": "hsk2_15_en_3",
-            "character": "妹妹",
-            "transcription": "mèi mei",
-            "translation": "Younger sister",
+            "id": "hsk2_15_en_2",
+            "character": "火车站",
+            "transcription": "huǒ chē zhàn",
+            "translation": "Station (railway)",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -40,25 +40,7 @@
         },
         {
             "type": "word",
-            "id": "hsk2_15_en_5",
-            "character": "更",
-            "transcription": "gèng",
-            "translation": "More",
-            "additional_info": "",
-            "speech_part": "pronoun"
-        },
-        {
-            "type": "word",
             "id": "hsk2_15_en_6",
-            "character": "日",
-            "transcription": "rì",
-            "translation": "Day, date",
-            "additional_info": "",
-            "speech_part": "measure_word"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_15_en_7",
             "character": "阴",
             "transcription": "yīn",
             "translation": "Cloudy",
@@ -68,6 +50,24 @@
         {
             "type": "word",
             "id": "hsk2_15_en_8",
+            "character": "更",
+            "transcription": "gèng",
+            "translation": "More",
+            "additional_info": "",
+            "speech_part": "auxiliary"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_15_en_5",
+            "character": "日",
+            "transcription": "rì",
+            "translation": "Day",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_15_en_7",
             "character": "新年",
             "transcription": "xīn nián",
             "translation": "New Year",

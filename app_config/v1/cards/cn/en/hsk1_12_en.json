@@ -4,46 +4,10 @@
     "cards": [
         {
             "type": "word",
-            "id": "hsk1_12_en_1",
-            "character": "来",
-            "transcription": "lái",
-            "translation": "To come",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_12_en_2",
-            "character": "爱",
-            "transcription": "ài",
-            "translation": "To like, to love",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_12_en_3",
-            "character": "热",
-            "transcription": "rè",
-            "translation": "Hot",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_12_en_4",
-            "character": "冷",
-            "transcription": "lěng",
-            "translation": "Cold",
-            "additional_info": "",
-            "speech_part": "adjective"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_12_en_5",
-            "character": "水果",
-            "transcription": "shuǐ guǒ",
-            "translation": "Fruit",
+            "id": "hsk1_12_en_7",
+            "character": "天气",
+            "transcription": "tiān qì",
+            "translation": "Weather",
             "additional_info": "",
             "speech_part": "noun"
         },
@@ -58,52 +22,43 @@
         },
         {
             "type": "word",
-            "id": "hsk1_12_en_7",
-            "character": "太",
-            "transcription": "tài",
-            "translation": "Too, excessively",
+            "id": "hsk1_12_en_5",
+            "character": "水果",
+            "transcription": "shuǐ guǒ",
+            "translation": "Fruit",
             "additional_info": "",
-            "speech_part": "pronoun"
+            "speech_part": "noun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_12_en_4",
+            "character": "热",
+            "transcription": "rè",
+            "translation": "Hot",
+            "additional_info": "",
+            "speech_part": "noun"
         },
         {
             "type": "word",
             "id": "hsk1_12_en_8",
-            "character": "天气",
-            "transcription": "tiān qì",
-            "translation": "Weather",
+            "character": "身体",
+            "transcription": "shēn tǐ",
+            "translation": "Body",
             "additional_info": "",
             "speech_part": "noun"
         },
         {
             "type": "word",
             "id": "hsk1_12_en_9",
-            "character": "太 … 了",
-            "transcription": "tài le",
-            "translation": "Too, extremely",
+            "character": "雨",
+            "transcription": "yǔ",
+            "translation": "Rain",
             "additional_info": "",
-            "speech_part": "pronoun"
+            "speech_part": "noun"
         },
         {
             "type": "word",
-            "id": "hsk1_12_en_10",
-            "character": "下",
-            "transcription": "xià",
-            "translation": "Down",
-            "additional_info": "",
-            "speech_part": "adverb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_12_en_11",
-            "character": "小姐",
-            "transcription": "xiǎo jie",
-            "translation": "Miss",
-            "additional_info": "",
-            "speech_part": "pronoun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_12_en_12",
+            "id": "hsk1_12_en_15",
             "character": "下雨",
             "transcription": "xià yǔ",
             "translation": "To rain",
@@ -113,38 +68,83 @@
         {
             "type": "word",
             "id": "hsk1_12_en_13",
+            "character": "来",
+            "transcription": "lái",
+            "translation": "To come",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_12_en_14",
+            "character": "爱",
+            "transcription": "ài",
+            "translation": "To like, to love",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "phrase",
+            "id": "hsk1_12_en_2",
+            "character": "怎么样",
+            "transcription": "zěn me yàng",
+            "translation": "How?",
+            "additional_info": "",
+            "words": []
+        },
+        {
+            "type": "word",
+            "id": "hsk1_12_en_10",
+            "character": "太",
+            "transcription": "tài",
+            "translation": "Too, excessively",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_12_en_11",
+            "character": "太 … 了",
+            "transcription": "tài le",
+            "translation": "Too, extremely",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_12_en_12",
+            "character": "小姐",
+            "transcription": "xiǎo jie",
+            "translation": "Miss",
+            "additional_info": "",
+            "speech_part": "pronoun"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_12_en_16",
+            "character": "冷",
+            "transcription": "lěng",
+            "translation": "Cold",
+            "additional_info": "",
+            "speech_part": "adjective"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_12_en_1",
+            "character": "下",
+            "transcription": "xià",
+            "translation": "Down",
+            "additional_info": "",
+            "speech_part": "adverb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_12_en_3",
             "character": "些",
             "transcription": "xiē",
             "translation": "Some",
             "additional_info": "",
             "speech_part": "quantifier"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_12_en_14",
-            "character": "怎么样",
-            "transcription": "zěn me yàng",
-            "translation": "How?",
-            "additional_info": "",
-            "speech_part": "pronoun_informal"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_12_en_15",
-            "character": "身体",
-            "transcription": "shēn tǐ",
-            "translation": "Body",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_12_en_16",
-            "character": "雨",
-            "transcription": "yǔ",
-            "translation": "Rain",
-            "additional_info": "",
-            "speech_part": "noun"
         }
     ]
 }

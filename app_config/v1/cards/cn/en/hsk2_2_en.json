@@ -5,15 +5,6 @@
         {
             "type": "word",
             "id": "hsk2_2_en_1",
-            "character": "跑步",
-            "transcription": "pǎo bù",
-            "translation": "To run",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_2_en_2",
             "character": "时间",
             "transcription": "shí jiān",
             "translation": "Time",
@@ -23,24 +14,6 @@
         {
             "type": "word",
             "id": "hsk2_2_en_3",
-            "character": "生病",
-            "transcription": "shēng bìng",
-            "translation": "To be sick",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_2_en_4",
-            "character": "身体",
-            "transcription": "shēn tǐ",
-            "translation": "Body",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_2_en_5",
             "character": "药",
             "transcription": "yào",
             "translation": "Medicine",
@@ -49,16 +22,25 @@
         },
         {
             "type": "word",
-            "id": "hsk2_2_en_6",
-            "character": "每",
-            "transcription": "měi",
-            "translation": "Each",
+            "id": "hsk2_2_en_2",
+            "character": "身体",
+            "transcription": "shēn tǐ",
+            "translation": "Body",
             "additional_info": "",
-            "speech_part": "pronoun"
+            "speech_part": "noun"
         },
         {
             "type": "word",
-            "id": "hsk2_2_en_7",
+            "id": "hsk2_2_en_9",
+            "character": "休息",
+            "transcription": "xiū xi",
+            "translation": "To rest",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_2_en_4",
             "character": "出",
             "transcription": "chū",
             "translation": "To go out",
@@ -67,7 +49,7 @@
         },
         {
             "type": "word",
-            "id": "hsk2_2_en_8",
+            "id": "hsk2_2_en_5",
             "character": "忙",
             "transcription": "máng",
             "translation": "Busy",
@@ -76,25 +58,16 @@
         },
         {
             "type": "word",
-            "id": "hsk2_2_en_9",
-            "character": "起床",
-            "transcription": "qǐ chuáng",
-            "translation": "To get up",
+            "id": "hsk2_2_en_8",
+            "character": "生病",
+            "transcription": "shēng bìng",
+            "translation": "To be sick",
             "additional_info": "",
             "speech_part": "verb"
         },
         {
             "type": "word",
             "id": "hsk2_2_en_10",
-            "character": "休息",
-            "transcription": "xiū xi",
-            "translation": "Rest",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_2_en_11",
             "character": "知道",
             "transcription": "zhī dào",
             "translation": "To know",
@@ -103,7 +76,25 @@
         },
         {
             "type": "word",
-            "id": "hsk2_2_en_12",
+            "id": "hsk2_2_en_6",
+            "character": "起床",
+            "transcription": "qǐ chuáng",
+            "translation": "To get up",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_2_en_7",
+            "character": "跑步",
+            "transcription": "pǎo bù",
+            "translation": "To run",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_2_en_11",
             "character": "高",
             "transcription": "gāo",
             "translation": "High, tall",
@@ -112,12 +103,21 @@
         },
         {
             "type": "word",
+            "id": "hsk2_2_en_12",
+            "character": "每",
+            "transcription": "měi",
+            "translation": "Each",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
             "id": "hsk2_2_en_13",
             "character": "米",
             "transcription": "mǐ",
             "translation": "Meter",
             "additional_info": "",
-            "speech_part": "noun"
+            "speech_part": "quantifier"
         },
         {
             "type": "word",

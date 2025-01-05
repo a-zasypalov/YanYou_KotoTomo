@@ -4,52 +4,16 @@
     "cards": [
         {
             "type": "word",
-            "id": "hsk1_8_en_1",
-            "character": "茶",
-            "transcription": "chá",
-            "translation": "Tea",
+            "id": "hsk1_8_en_8",
+            "character": "商店",
+            "transcription": "shāng diàn",
+            "translation": "Store",
             "additional_info": "",
             "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_8_en_2",
-            "character": "吃",
-            "transcription": "chī",
-            "translation": "To eat",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_8_en_3",
-            "character": "杯子",
-            "transcription": "bēi zi",
-            "translation": "Cup",
-            "additional_info": "",
-            "speech_part": "noun"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_8_en_4",
-            "character": "买",
-            "transcription": "mǎi",
-            "translation": "To buy",
-            "additional_info": "",
-            "speech_part": "verb"
         },
         {
             "type": "word",
             "id": "hsk1_8_en_5",
-            "character": "个",
-            "transcription": "gè",
-            "translation": "General measure word",
-            "additional_info": "",
-            "speech_part": "quantifier"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_8_en_6",
             "character": "块",
             "transcription": "kuài",
             "translation": "Unit of money (yuan)",
@@ -58,25 +22,16 @@
         },
         {
             "type": "word",
-            "id": "hsk1_8_en_7",
-            "character": "多少",
-            "transcription": "duō shao",
-            "translation": "How much?",
+            "id": "hsk1_8_en_4",
+            "character": "杯子",
+            "transcription": "bēi zi",
+            "translation": "Cup",
             "additional_info": "",
-            "speech_part": "measure_word"
+            "speech_part": "noun"
         },
         {
             "type": "word",
-            "id": "hsk1_8_en_8",
-            "character": "喝",
-            "transcription": "hē",
-            "translation": "To drink",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_8_en_9",
+            "id": "hsk1_8_en_6",
             "character": "米饭",
             "transcription": "mǐ fàn",
             "translation": "(cooked) rice",
@@ -85,34 +40,16 @@
         },
         {
             "type": "word",
-            "id": "hsk1_8_en_10",
-            "character": "这",
-            "transcription": "zhè",
-            "translation": "This",
+            "id": "hsk1_8_en_3",
+            "character": "茶",
+            "transcription": "chá",
+            "translation": "Tea",
             "additional_info": "",
-            "speech_part": "pronoun_informal"
+            "speech_part": "noun"
         },
         {
             "type": "word",
-            "id": "hsk1_8_en_11",
-            "character": "想",
-            "transcription": "xiǎng",
-            "translation": "To want, would like",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_8_en_12",
-            "character": "下午",
-            "transcription": "xià wǔ",
-            "translation": "Afternoon",
-            "additional_info": "",
-            "speech_part": "time_word"
-        },
-        {
-            "type": "word",
-            "id": "hsk1_8_en_13",
+            "id": "hsk1_8_en_7",
             "character": "钱",
             "transcription": "qián",
             "translation": "Money",
@@ -121,12 +58,48 @@
         },
         {
             "type": "word",
-            "id": "hsk1_8_en_14",
-            "character": "商店",
-            "transcription": "shāng diàn",
-            "translation": "Store",
+            "id": "hsk1_8_en_10",
+            "character": "买",
+            "transcription": "mǎi",
+            "translation": "To buy",
             "additional_info": "",
-            "speech_part": "noun"
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_8_en_9",
+            "character": "吃",
+            "transcription": "chī",
+            "translation": "To eat",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_8_en_11",
+            "character": "喝",
+            "transcription": "hē",
+            "translation": "To drink",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_8_en_12",
+            "character": "想",
+            "transcription": "xiǎng",
+            "translation": "To want, would like",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_8_en_14",
+            "character": "这",
+            "transcription": "zhè",
+            "translation": "This",
+            "additional_info": "",
+            "speech_part": "pronoun_informal"
         },
         {
             "type": "word",
@@ -136,6 +109,33 @@
             "translation": "That",
             "additional_info": "",
             "speech_part": "pronoun_informal"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_8_en_13",
+            "character": "多少",
+            "transcription": "duō shao",
+            "translation": "How much?",
+            "additional_info": "",
+            "speech_part": "measure_word"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_8_en_1",
+            "character": "个",
+            "transcription": "gè",
+            "translation": "General measure word",
+            "additional_info": "",
+            "speech_part": "quantifier"
+        },
+        {
+            "type": "word",
+            "id": "hsk1_8_en_2",
+            "character": "下午",
+            "transcription": "xià wǔ",
+            "translation": "Afternoon",
+            "additional_info": "",
+            "speech_part": "time_word"
         }
     ]
 }

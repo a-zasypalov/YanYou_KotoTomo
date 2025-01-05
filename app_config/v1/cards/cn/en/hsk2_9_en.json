@@ -22,55 +22,10 @@
         },
         {
             "type": "word",
-            "id": "hsk2_9_en_3",
-            "character": "第一",
-            "transcription": "dì yī",
-            "translation": "First",
-            "additional_info": "",
-            "speech_part": "measure_word"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_9_en_4",
-            "character": "欢迎",
-            "transcription": "huān yíng",
-            "translation": "To welcome",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_9_en_5",
-            "character": "懂",
-            "transcription": "dǒng",
-            "translation": "To understand",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
             "id": "hsk2_9_en_6",
             "character": "上班",
             "transcription": "shàng bān",
             "translation": "To work",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_9_en_7",
-            "character": "希望",
-            "transcription": "xī wàng",
-            "translation": "To wish",
-            "additional_info": "",
-            "speech_part": "verb"
-        },
-        {
-            "type": "word",
-            "id": "hsk2_9_en_8",
-            "character": "跳舞",
-            "transcription": "tiào wǔ",
-            "translation": "To dance",
             "additional_info": "",
             "speech_part": "verb"
         },
@@ -85,12 +40,57 @@
         },
         {
             "type": "word",
+            "id": "hsk2_9_en_7",
+            "character": "希望",
+            "transcription": "xī wàng",
+            "translation": "To wish",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_9_en_5",
+            "character": "懂",
+            "transcription": "dǒng",
+            "translation": "To understand",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_9_en_4",
+            "character": "欢迎",
+            "transcription": "huān yíng",
+            "translation": "To welcome",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_9_en_8",
+            "character": "跳舞",
+            "transcription": "tiào wǔ",
+            "translation": "To dance",
+            "additional_info": "",
+            "speech_part": "verb"
+        },
+        {
+            "type": "word",
             "id": "hsk2_9_en_10",
             "character": "错",
             "transcription": "cuò",
             "translation": "Wrong",
             "additional_info": "",
             "speech_part": "verb"
+        },
+        {
+            "type": "word",
+            "id": "hsk2_9_en_3",
+            "character": "第一",
+            "transcription": "dì yī",
+            "translation": "First",
+            "additional_info": "",
+            "speech_part": "measure_word"
         },
         {
             "type": "word",
