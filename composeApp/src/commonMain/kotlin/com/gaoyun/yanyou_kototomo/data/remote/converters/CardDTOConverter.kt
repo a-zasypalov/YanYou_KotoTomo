@@ -68,6 +68,7 @@ fun CardDTO.KanaCardDTO.toLocal(kanaCards: List<CardDTO.KanaCardDTO>): Card.Kana
         front = this.character,
         transcription = this.transcription,
         alphabet = this.alphabet.toAlphabet() ?: error("Wrong alphabet for card $id"),
+        set = Card.KanaCard.determineKanaSet(this.character),
         mirror = Card.KanaCard.Mirror(
             id = CardId.AlphabetCardId(this.mirror),
             front = kanaCards.find { it.id == this.mirror }?.character

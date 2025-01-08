@@ -65,6 +65,7 @@ fun OnboardingCardShowcasePage(onNextPage: () -> Unit) {
                             front = "た",
                             transcription = "ta",
                             alphabet = AlphabetType.Hiragana,
+                            set = Card.KanaCard.determineKanaSet("た"),
                             mirror = Card.KanaCard.Mirror(
                                 id = CardId.AlphabetCardId("katakana16"),
                                 front = "タ"
@@ -76,6 +77,7 @@ fun OnboardingCardShowcasePage(onNextPage: () -> Unit) {
                             id = CardId.AlphabetCardId("hiragana22"),
                             front = "に",
                             transcription = "ni",
+                            set = Card.KanaCard.determineKanaSet("に"),
                             alphabet = AlphabetType.Hiragana,
                             mirror = Card.KanaCard.Mirror(
                                 id = CardId.AlphabetCardId("katakana22"),
@@ -99,9 +101,14 @@ fun OnboardingCardShowcasePage(onNextPage: () -> Unit) {
                 ) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.padding(4.dp)) {
                         Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxWidth()) {
-                            Text(card.front, style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.SemiBold))
                             Text(
                                 text = card.reading.on.map { it.front }.joinToString("\n"),
+                                style = MaterialTheme.typography.bodySmall,
+                                modifier = Modifier.align(Alignment.CenterStart).padding(start = 8.dp)
+                            )
+                            Text(card.front, style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.SemiBold))
+                            Text(
+                                text = card.reading.kun.map { it.front }.joinToString("\n"),
                                 style = MaterialTheme.typography.bodySmall,
                                 modifier = Modifier.align(Alignment.CenterEnd).padding(end = 8.dp)
                             )

@@ -369,6 +369,470 @@
       "character": "ん",
       "transcription": "n",
       "mirror": "katakana46"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana47",
+      "character": "が",
+      "transcription": "ga",
+      "mirror": "katakana47"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana48",
+      "character": "ぎ",
+      "transcription": "gi",
+      "mirror": "katakana48"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana49",
+      "character": "ぐ",
+      "transcription": "gu",
+      "mirror": "katakana49"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana50",
+      "character": "げ",
+      "transcription": "ge",
+      "mirror": "katakana50"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana51",
+      "character": "ご",
+      "transcription": "go",
+      "mirror": "katakana51"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana52",
+      "character": "ざ",
+      "transcription": "za",
+      "mirror": "katakana52"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana53",
+      "character": "じ",
+      "transcription": "ji",
+      "mirror": "katakana53"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana54",
+      "character": "ず",
+      "transcription": "zu",
+      "mirror": "katakana54"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana55",
+      "character": "ぜ",
+      "transcription": "ze",
+      "mirror": "katakana55"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana56",
+      "character": "ぞ",
+      "transcription": "zo",
+      "mirror": "katakana56"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana57",
+      "character": "だ",
+      "transcription": "da",
+      "mirror": "katakana57"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana58",
+      "character": "ぢ",
+      "transcription": "ji",
+      "mirror": "katakana58"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana59",
+      "character": "づ",
+      "transcription": "zu",
+      "mirror": "katakana59"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana60",
+      "character": "で",
+      "transcription": "de",
+      "mirror": "katakana60"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana61",
+      "character": "ど",
+      "transcription": "do",
+      "mirror": "katakana61"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana62",
+      "character": "ば",
+      "transcription": "ba",
+      "mirror": "katakana62"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana63",
+      "character": "び",
+      "transcription": "bi",
+      "mirror": "katakana63"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana64",
+      "character": "ぶ",
+      "transcription": "bu",
+      "mirror": "katakana64"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana65",
+      "character": "べ",
+      "transcription": "be",
+      "mirror": "katakana65"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana66",
+      "character": "ぼ",
+      "transcription": "bo",
+      "mirror": "katakana66"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana67",
+      "character": "ぱ",
+      "transcription": "pa",
+      "mirror": "katakana67"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana68",
+      "character": "ぴ",
+      "transcription": "pi",
+      "mirror": "katakana68"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana69",
+      "character": "ぷ",
+      "transcription": "pu",
+      "mirror": "katakana69"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana70",
+      "character": "ぺ",
+      "transcription": "pe",
+      "mirror": "katakana70"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana71",
+      "character": "ぽ",
+      "transcription": "po",
+      "mirror": "katakana71"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana72",
+      "character": "きゃ",
+      "transcription": "kya",
+      "mirror": "katakana72"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana73",
+      "character": "きゅ",
+      "transcription": "kyu",
+      "mirror": "katakana73"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana74",
+      "character": "きょ",
+      "transcription": "kyo",
+      "mirror": "katakana74"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana75",
+      "character": "しゃ",
+      "transcription": "sha",
+      "mirror": "katakana75"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana76",
+      "character": "しゅ",
+      "transcription": "shu",
+      "mirror": "katakana76"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana77",
+      "character": "しょ",
+      "transcription": "sho",
+      "mirror": "katakana77"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana78",
+      "character": "ちゃ",
+      "transcription": "cha",
+      "mirror": "katakana78"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana79",
+      "character": "ちゅ",
+      "transcription": "chu",
+      "mirror": "katakana79"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana80",
+      "character": "ちょ",
+      "transcription": "cho",
+      "mirror": "katakana80"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana81",
+      "character": "にゃ",
+      "transcription": "nya",
+      "mirror": "katakana81"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana82",
+      "character": "にゅ",
+      "transcription": "nyu",
+      "mirror": "katakana82"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana83",
+      "character": "にょ",
+      "transcription": "nyo",
+      "mirror": "katakana83"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana84",
+      "character": "ひゃ",
+      "transcription": "hya",
+      "mirror": "katakana84"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana85",
+      "character": "ひゅ",
+      "transcription": "hyu",
+      "mirror": "katakana85"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana86",
+      "character": "ひょ",
+      "transcription": "hyo",
+      "mirror": "katakana86"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana87",
+      "character": "みゃ",
+      "transcription": "mya",
+      "mirror": "katakana87"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana88",
+      "character": "みゅ",
+      "transcription": "myu",
+      "mirror": "katakana88"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana89",
+      "character": "みょ",
+      "transcription": "myo",
+      "mirror": "katakana89"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana90",
+      "character": "りゃ",
+      "transcription": "rya",
+      "mirror": "katakana90"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana91",
+      "character": "りゅ",
+      "transcription": "ryu",
+      "mirror": "katakana91"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana92",
+      "character": "りょ",
+      "transcription": "ryo",
+      "mirror": "katakana92"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana93",
+      "character": "ぎゃ",
+      "transcription": "gya",
+      "mirror": "katakana93"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana94",
+      "character": "ぎゅ",
+      "transcription": "gyu",
+      "mirror": "katakana94"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana95",
+      "character": "ぎょ",
+      "transcription": "gyo",
+      "mirror": "katakana95"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana96",
+      "character": "じゃ",
+      "transcription": "ja",
+      "mirror": "katakana96"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana97",
+      "character": "じゅ",
+      "transcription": "ju",
+      "mirror": "katakana97"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana98",
+      "character": "じょ",
+      "transcription": "jo",
+      "mirror": "katakana98"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana99",
+      "character": "びゃ",
+      "transcription": "bya",
+      "mirror": "katakana99"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana100",
+      "character": "びゅ",
+      "transcription": "byu",
+      "mirror": "katakana100"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana101",
+      "character": "びょ",
+      "transcription": "byo",
+      "mirror": "katakana101"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana102",
+      "character": "ぴゃ",
+      "transcription": "pya",
+      "mirror": "katakana102"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana103",
+      "character": "ぴゅ",
+      "transcription": "pyu",
+      "mirror": "katakana103"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana104",
+      "character": "ぴょ",
+      "transcription": "pyo",
+      "mirror": "katakana104"
     }
   ]
 }

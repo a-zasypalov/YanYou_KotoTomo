@@ -48,11 +48,25 @@ sealed interface Card {
         val transcription: String,
         val alphabet: AlphabetType,
         val mirror: Mirror,
+        val set: Set
     ) : Card {
         data class Mirror(
             val id: AlphabetCardId,
             val front: String,
         )
+
+        enum class Set { Gojuon, DakuonHandakuon, Yoon }
+
+        companion object {
+            fun determineKanaSet(kana: String): Set {
+                return when {
+                    KanaLists.gojuonKana.contains(kana) -> Set.Gojuon
+                    KanaLists.dakuonHandakuonKana.contains(kana) -> Set.DakuonHandakuon
+                    KanaLists.yoonKana.contains(kana) -> Set.Yoon
+                    else -> throw IllegalArgumentException("Unknown kana: $kana")
+                }
+            }
+        }
     }
 
     data class KanjiCard(
