@@ -7,10 +7,7 @@ data class DeckSettings(
     val showTranslation: Boolean,
     val showTranscription: Boolean,
     val showReading: Boolean,
-    val showNewWords: Boolean,
-    val showNewPhrases: Boolean,
-    val showToReviewCards: Boolean,
-    val showPausedCards: Boolean,
+    val hiddenSections: Set<Sections>,
     val pausedCards: Set<String>,
 ) {
     companion object {
@@ -19,11 +16,10 @@ data class DeckSettings(
             showTranslation = true,
             showTranscription = true,
             showReading = true,
-            showNewWords = true,
-            showNewPhrases = true,
-            showToReviewCards = true,
-            showPausedCards = false,
+            hiddenSections = setOf(Sections.Paused),
             pausedCards = setOf()
         )
     }
+
+    enum class Sections { Kanji, NewWords, NewPhrases, Review, Paused }
 }

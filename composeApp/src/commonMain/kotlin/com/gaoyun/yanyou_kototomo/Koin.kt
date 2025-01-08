@@ -134,7 +134,7 @@ val dbModule = module {
             CardsPersistedAdapter = CardsPersisted.Adapter(get(), get(), get()),
             CoursesPersistedAdapter = CoursesPersisted.Adapter(get()),
             QuizSessionsPersistedAdapter = QuizSessionsPersisted.Adapter(get()),
-            DeckSettingsAdapter = DeckSettings.Adapter(get()),
+            DeckSettingsAdapter = DeckSettings.Adapter(get(), get()),
         )
     }
     single<ColumnAdapter<List<String>, String>> {

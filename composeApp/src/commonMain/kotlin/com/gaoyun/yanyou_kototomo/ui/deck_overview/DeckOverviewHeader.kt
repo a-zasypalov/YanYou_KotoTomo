@@ -56,7 +56,7 @@ fun DeckOverviewHeader(
             style = MaterialTheme.typography.displayLarge,
         )
 
-        if ((viewState.newCards.words.size + viewState.newCards.phrases.size) != viewState.allCards.size) {
+        if (viewState.newCards.size() != viewState.allCards.size) {
             Surface(
                 tonalElevation = 8.dp,
                 shape = MaterialTheme.shapes.medium,
