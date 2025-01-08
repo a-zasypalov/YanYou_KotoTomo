@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -40,7 +41,7 @@ internal fun Transcription(transcription: String, preformatted: Boolean = false)
     val transcriptionFormatted = if (preformatted) transcription else "[$transcription]"
     Text(
         text = transcriptionFormatted,
-        style = MaterialTheme.typography.bodyLarge,
+        style = MaterialTheme.typography.bodyMedium,
         textAlign = TextAlign.Center,
         modifier = Modifier.padding(4.dp),
     )
@@ -61,6 +62,8 @@ internal fun Translation(translation: String) {
 @Composable
 internal fun ColumnScope.CardFront(
     front: String,
+    dynamic: Boolean = true,
+    style: TextStyle = MaterialTheme.typography.displayMedium,
     fontSizeMax: TextUnit = 62.sp,
     modifier: Modifier = Modifier,
     leftAttachment: @Composable BoxScope.() -> Unit = {},
@@ -68,17 +71,27 @@ internal fun ColumnScope.CardFront(
 ) {
     Box(contentAlignment = Alignment.Center, modifier = modifier.weight(1f)) {
         leftAttachment()
-        AutoResizeText(
-            text = front,
-            fontSizeRange = FontSizeRange(min = 16.sp, max = fontSizeMax),
-            style = MaterialTheme.typography.displayMedium.copy(
-                fontWeight = FontWeight.Medium,
-                fontSize = fontSizeMax
-            ),
-            maxLines = 1,
-            textAlign = TextAlign.Center,
-            modifier = modifier.wrapContentHeight(align = Alignment.CenterVertically)
-        )
+        if (dynamic) {
+            AutoResizeText(
+                text = front,
+                fontSizeRange = FontSizeRange(min = 16.sp, max = fontSizeMax),
+                style = style.copy(
+                    fontWeight = FontWeight.Medium,
+                    fontSize = fontSizeMax
+                ),
+                maxLines = 1,
+                textAlign = TextAlign.Center,
+                modifier = modifier.wrapContentHeight(align = Alignment.CenterVertically)
+            )
+        } else {
+            Text(
+                text = front,
+                style = style.copy(fontWeight = FontWeight.Medium),
+                maxLines = 1,
+                textAlign = TextAlign.Center,
+                modifier = modifier.wrapContentHeight(align = Alignment.CenterVertically)
+            )
+        }
         rightAttachment()
     }
 }
@@ -150,8 +163,8 @@ internal fun Card.emptySpacesAfter(): Int {
     val oneSpaceFor = listOf("や", "ゆ", "ヤ", "ユ")
     val threeSpacesFor = listOf("わ", "ワ")
     return when {
-        oneSpaceFor.contains(front) -> 1
-        threeSpacesFor.contains(front) -> 3
+        oneSpaceFor.contains(front) -> 3
+        threeSpacesFor.contains(front) -> 9
         else -> 0
     }
 }

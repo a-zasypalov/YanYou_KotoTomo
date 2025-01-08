@@ -4,11 +4,11 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import kotlinx.datetime.LocalDate
@@ -40,7 +40,7 @@ fun DeckOverviewKanaCard(
     modifier: Modifier = Modifier,
 ) {
     DeckCard(nextReviewDate = nextReviewDate, onClick = onClick, modifier = modifier.heightIn(max = 100.dp), contentPadding = 0.dp) {
-        CardFront(front = card.front, fontSizeMax = 48.sp)
+        CardFront(front = card.front, dynamic = false, style = MaterialTheme.typography.displayMedium)
         AnimatedVisibility(visible = showTranscription) {
             Transcription(
                 transcription = "[${card.transcription}] ${card.mirror.front}",

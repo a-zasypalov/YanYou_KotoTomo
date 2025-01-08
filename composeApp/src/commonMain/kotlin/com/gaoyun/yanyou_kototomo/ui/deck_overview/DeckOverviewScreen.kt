@@ -127,7 +127,7 @@ private fun DeckOverviewContent(
 ) {
     val state = rememberLazyGridState()
     viewState?.let {
-        val cellsNumber = if (viewState.deckId.isKanaDeck() == true) 5 else 2
+        val cellsNumber = if (viewState.deckId.isKanaDeck() == true) 15 else 2
         val cellsSpacer = if (viewState.deckId.isKanaDeck() == true) 8.dp else 16.dp
 
         Box(modifier = Modifier.fillMaxSize()) {
