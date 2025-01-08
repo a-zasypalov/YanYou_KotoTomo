@@ -22,7 +22,7 @@ data class DeckSettings(
             showNewWords = true,
             showNewPhrases = true,
             showToReviewCards = true,
-            showPausedCards = true,
+            showPausedCards = false,
             pausedCards = setOf()
         )
     }

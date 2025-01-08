@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -53,10 +54,12 @@ private fun StatisticsScreenContent(
     onShowMoreCards: () -> Unit,
     onCoursesClick: () -> Unit,
 ) {
+    val state = rememberLazyListState()
     if (content?.sessions.isNullOrEmpty() && content?.cardsProgress?.isEmpty() == true) {
         HomeScreenEmptyState(onCoursesClick)
     } else {
         LazyColumn(
+            state = state,
             verticalArrangement = Arrangement.spacedBy(8.dp),
             modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),
         ) {

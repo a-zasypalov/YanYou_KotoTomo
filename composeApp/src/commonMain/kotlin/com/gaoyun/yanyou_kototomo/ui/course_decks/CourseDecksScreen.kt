@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -62,8 +63,9 @@ fun CourseDecksScreen(
 
 @Composable
 private fun CourseDecksContent(course: Course?, toDeck: (DeckId) -> Unit) {
+    val state = rememberLazyListState()
     Box(Modifier.fillMaxSize()) {
-        if(course != null && course.decks.size < 5){
+        if (course != null && course.decks.size < 5) {
             Image(
                 painter = painterResource(course.id.getCourseMascot()),
                 contentDescription = null,
@@ -72,7 +74,7 @@ private fun CourseDecksContent(course: Course?, toDeck: (DeckId) -> Unit) {
             )
         }
 
-        LazyColumn(Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
+        LazyColumn(state = state, modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
             course?.let {
                 item {
                     Text(
@@ -90,7 +92,7 @@ private fun CourseDecksContent(course: Course?, toDeck: (DeckId) -> Unit) {
                     ) { toDeck(deck.id) }
                 }
 
-                if(course.decks.size >= 5){
+                if (course.decks.size >= 5) {
                     item {
                         Box(Modifier.fillMaxWidth().navigationBarsPadding().padding(vertical = 32.dp)) {
                             Image(

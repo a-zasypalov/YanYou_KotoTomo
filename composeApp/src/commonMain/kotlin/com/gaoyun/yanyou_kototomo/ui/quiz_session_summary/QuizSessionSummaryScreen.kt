@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -57,6 +58,7 @@ fun QuizSessionSummaryScreenContent(
     viewState: QuizSessionSummaryViewState?,
     onFinishClick: () -> Unit,
 ) {
+    val state = rememberLazyListState()
     viewState?.let {
         val session = it.session ?: return@let
 
@@ -69,6 +71,7 @@ fun QuizSessionSummaryScreenContent(
                     modifier = Modifier.weight(1f).padding(horizontal = 24.dp).padding(vertical = 24.dp)
                 ) {
                     LazyColumn(
+                        state = state,
                         modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
