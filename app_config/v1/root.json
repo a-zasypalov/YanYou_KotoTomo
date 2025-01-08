@@ -315,6 +315,14 @@
                 },
                 {
                   "type": "alphabet",
+                  "id": "hiragana_1_en",
+                  "alphabet": "hiragana",
+                  "name": "Hiragana vowels, k-line",
+                  "version": 1,
+                  "deck_preview": "あ い う え お か き く け こ が ぎ ぐ げ ご"
+                },
+                {
+                  "type": "alphabet",
                   "id": "katakana_en",
                   "alphabet": "katakana",
                   "name": "Katakana",
