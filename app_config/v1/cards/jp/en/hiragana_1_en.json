@@ -5,7 +5,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana1",
+      "id": "hiragana_1_en_1",
       "character": "あ",
       "transcription": "a",
       "mirror": "katakana1"
@@ -13,7 +13,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana2",
+      "id": "hiragana_1_en_2",
       "character": "い",
       "transcription": "i",
       "mirror": "katakana2"
@@ -21,7 +21,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana3",
+      "id": "hiragana_1_en_3",
       "character": "う",
       "transcription": "u",
       "mirror": "katakana3"
@@ -29,7 +29,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana4",
+      "id": "hiragana_1_en_4",
       "character": "え",
       "transcription": "e",
       "mirror": "katakana4"
@@ -37,7 +37,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana5",
+      "id": "hiragana_1_en_5",
       "character": "お",
       "transcription": "o",
       "mirror": "katakana5"
@@ -45,7 +45,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana6",
+      "id": "hiragana_1_en_6",
       "character": "か",
       "transcription": "ka",
       "mirror": "katakana6"
@@ -53,7 +53,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana7",
+      "id": "hiragana_1_en_7",
       "character": "き",
       "transcription": "ki",
       "mirror": "katakana7"
@@ -61,7 +61,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana8",
+      "id": "hiragana_1_en_8",
       "character": "く",
       "transcription": "ku",
       "mirror": "katakana8"
@@ -69,7 +69,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana9",
+      "id": "hiragana_1_en_9",
       "character": "け",
       "transcription": "ke",
       "mirror": "katakana9"
@@ -77,7 +77,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana10",
+      "id": "hiragana_1_en_10",
       "character": "こ",
       "transcription": "ko",
       "mirror": "katakana10"
@@ -85,7 +85,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana47",
+      "id": "hiragana_1_en_11",
       "character": "が",
       "transcription": "ga",
       "mirror": "katakana47"
@@ -93,7 +93,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana48",
+      "id": "hiragana_1_en_12",
       "character": "ぎ",
       "transcription": "gi",
       "mirror": "katakana48"
@@ -101,7 +101,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana49",
+      "id": "hiragana_1_en_13",
       "character": "ぐ",
       "transcription": "gu",
       "mirror": "katakana49"
@@ -109,7 +109,7 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana50",
+      "id": "hiragana_1_en_14",
       "character": "げ",
       "transcription": "ge",
       "mirror": "katakana50"
@@ -117,10 +117,109 @@
     {
       "type": "kana",
       "alphabet": "hiragana",
-      "id": "hiragana51",
+      "id": "hiragana_1_en_15",
       "character": "ご",
       "transcription": "go",
       "mirror": "katakana51"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_1_en_16",
+      "character": "あおい",
+      "transcription": "aoi",
+      "translation": "Blue",
+      "additional_info": "",
+      "speech_part": "adjective"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_1_en_17",
+      "character": "あい",
+      "transcription": "ai",
+      "translation": "Love",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_1_en_18",
+      "character": "いう",
+      "transcription": "iu",
+      "translation": "To say",
+      "additional_info": "",
+      "speech_part": "verb"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_1_en_19",
+      "character": "いえ",
+      "transcription": "ie",
+      "translation": "House",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_1_en_20",
+      "character": "あかい",
+      "transcription": "akai",
+      "translation": "Red",
+      "additional_info": "",
+      "speech_part": "adjective"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_1_en_21",
+      "character": "えき",
+      "transcription": "eki",
+      "translation": "Station",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_1_en_22",
+      "character": "かう",
+      "transcription": "kau",
+      "translation": "To buy",
+      "additional_info": "",
+      "speech_part": "verb"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_1_en_23",
+      "character": "きこう",
+      "transcription": "kikou",
+      "translation": "To inquire",
+      "additional_info": "",
+      "speech_part": "verb"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_1_en_24",
+      "character": "くうこう",
+      "transcription": "kuukou",
+      "translation": "Airport",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_1_en_25",
+      "character": "えいご",
+      "transcription": "eigo",
+      "translation": "English",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_1_en_26",
+      "character": "かぎ",
+      "transcription": "kagi",
+      "translation": "Key",
+      "additional_info": "",
+      "speech_part": "noun"
     }
   ]
 }
