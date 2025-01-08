@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -48,8 +49,10 @@ private fun CoursesScreenContent(
     toCourse: (CourseScreenArgs) -> Unit,
     modifier: Modifier,
 ) {
+    val state = rememberLazyListState()
     content?.let {
         LazyColumn(
+            state = state,
             verticalArrangement = Arrangement.spacedBy(16.dp),
             modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),
         ) {
