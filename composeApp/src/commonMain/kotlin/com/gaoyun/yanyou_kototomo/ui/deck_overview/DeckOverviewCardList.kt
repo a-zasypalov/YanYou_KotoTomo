@@ -28,6 +28,7 @@ data class CardOverviewCategory(
     val type: CardCategoryType = CardCategoryType.New,
     val isShown: Boolean = true,
     val visibilityToggle: ((Boolean) -> Unit)? = null,
+    val span: Int = 1,
 )
 
 fun LazyGridScope.DeckOverviewKanaDeck(
@@ -40,9 +41,9 @@ fun LazyGridScope.DeckOverviewKanaDeck(
     val yoonCards = viewState.allCards.filter { (it.card as? Card.KanaCard)?.set == Card.KanaCard.Set.Yoon }
 
     val categories = listOf(
-        CardOverviewCategory("Gojuon", gojuonCards),
-        CardOverviewCategory("Dakuon and Handakuon", dakuonCards),
-        CardOverviewCategory("Yoon", yoonCards),
+        CardOverviewCategory(name = "Gojuon", cards = gojuonCards, span = 3),
+        CardOverviewCategory(name = "Dakuon and Handakuon", cards = dakuonCards, span = 3),
+        CardOverviewCategory(name = "Yoon", cards = yoonCards, span = 5),
     )
 
     DeckOverviewCategories(categories, cellsNumber, viewState.settings, onCardClick)
@@ -82,7 +83,7 @@ fun LazyGridScope.DeckOverviewCategories(
     settings: DeckSettings,
     onCardClick: (CardWithProgress<*>) -> Unit,
 ) {
-    categories.forEach { (name, cards, type, isVisible, onToggle) ->
+    categories.forEach { (name, cards, type, isVisible, onToggle, span) ->
         if (cards.isNotEmpty()) {
             item(span = { GridItemSpan(cellsNumber) }) {
                 DeckOverviewCategoryHeader(
@@ -94,7 +95,7 @@ fun LazyGridScope.DeckOverviewCategories(
 
             if (isVisible) {
                 cards.forEach {
-                    item(key = it.card.id.identifier) {
+                    item(key = it.card.id.identifier, span = { GridItemSpan(span) }) {
                         DeckOverviewCard(
                             cardWithProgress = if (type == CardCategoryType.Paused) it.copy(progress = null) else it,
                             settings = settings,

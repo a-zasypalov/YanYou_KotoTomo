@@ -1,0 +1,126 @@
+{
+  "deck_id": "hiragana_en",
+  "version": 1,
+  "cards": [
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana1",
+      "character": "あ",
+      "transcription": "a",
+      "mirror": "katakana1"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana2",
+      "character": "い",
+      "transcription": "i",
+      "mirror": "katakana2"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana3",
+      "character": "う",
+      "transcription": "u",
+      "mirror": "katakana3"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana4",
+      "character": "え",
+      "transcription": "e",
+      "mirror": "katakana4"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana5",
+      "character": "お",
+      "transcription": "o",
+      "mirror": "katakana5"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana6",
+      "character": "か",
+      "transcription": "ka",
+      "mirror": "katakana6"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana7",
+      "character": "き",
+      "transcription": "ki",
+      "mirror": "katakana7"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana8",
+      "character": "く",
+      "transcription": "ku",
+      "mirror": "katakana8"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana9",
+      "character": "け",
+      "transcription": "ke",
+      "mirror": "katakana9"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana10",
+      "character": "こ",
+      "transcription": "ko",
+      "mirror": "katakana10"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana47",
+      "character": "が",
+      "transcription": "ga",
+      "mirror": "katakana47"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana48",
+      "character": "ぎ",
+      "transcription": "gi",
+      "mirror": "katakana48"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana49",
+      "character": "ぐ",
+      "transcription": "gu",
+      "mirror": "katakana49"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana50",
+      "character": "げ",
+      "transcription": "ge",
+      "mirror": "katakana50"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana51",
+      "character": "ご",
+      "transcription": "go",
+      "mirror": "katakana51"
+    }
+  ]
+}
