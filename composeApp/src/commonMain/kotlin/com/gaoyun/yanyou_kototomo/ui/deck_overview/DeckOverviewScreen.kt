@@ -2,43 +2,28 @@
 
 package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
-import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ExpandMore
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
-import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
-import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
-import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FullScreenLoader
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
@@ -166,7 +151,7 @@ private fun DeckOverviewContent(
                 }
 
                 if (viewState.deckId.isKanaDeck()) {
-                    DeckOverviewKanaDeck(viewState, { onCardClick(it, false) })
+                    DeckOverviewKanaDeck(viewState, cellsNumber, { onCardClick(it, false) })
                 } else {
                     DeckOverviewNormalSegmentedDeck(
                         viewState = viewState,
@@ -188,144 +173,4 @@ private fun DeckOverviewContent(
             DeckOverviewActionButtons(viewState.cardsDueToReview, onPlayDeckClick)
         }
     } ?: FullScreenLoader()
-}
-
-fun LazyGridScope.DeckOverviewKanaDeck(
-    viewState: DeckOverviewState,
-    onCardClick: (CardWithProgress<*>) -> Unit,
-) {
-    viewState.allCards.forEach {
-        item {
-            DeckOverviewCard(
-                cardWithProgress = it,
-                settings = viewState.settings,
-                onCardClick = onCardClick,
-            )
-        }
-        (0..<it.card.emptySpacesAfter()).forEach { item {} }
-    }
-}
-
-
-fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
-    viewState: DeckOverviewState,
-    cellsNumber: Int,
-    onCardClick: (CardWithProgress<*>) -> Unit,
-    updateShowNewWords: (Boolean) -> Unit,
-    updateShowNewPhrases: (Boolean) -> Unit,
-    updateShowToReviewCards: (Boolean) -> Unit,
-    updateShowPausedCards: (Boolean) -> Unit,
-    updateShowKanji: (Boolean) -> Unit,
-) {
-    data class Category(
-        val name: String,
-        val type: CardCategoryType,
-        val cards: List<CardWithProgress<*>>,
-        val isShown: Boolean,
-        val visibilityToggle: (Boolean) -> Unit,
-    )
-
-    val showNewKanji = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Kanji).not()
-    val showNewWords = viewState.settings.hiddenSections.contains(DeckSettings.Sections.NewWords).not()
-    val showNewPhrases = viewState.settings.hiddenSections.contains(DeckSettings.Sections.NewPhrases).not()
-    val showToReviewCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Review).not()
-    val showPausedCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Paused).not()
-
-    val categories = listOf(
-        Category("New Kanji", CardCategoryType.New, viewState.newCards.kanji, showNewKanji, updateShowKanji),
-        Category("New words", CardCategoryType.New, viewState.newCards.words, showNewWords, updateShowNewWords),
-        Category("New phrases", CardCategoryType.New, viewState.newCards.phrases, showNewPhrases, updateShowNewPhrases),
-        Category("To Review", CardCategoryType.ToReview, viewState.cardsToReview, showToReviewCards, updateShowToReviewCards),
-        Category("Paused", CardCategoryType.Paused, viewState.pausedCards, showPausedCards, updateShowPausedCards)
-    )
-
-    categories.forEach { (name, type, cards, isVisible, onToggle) ->
-        if (cards.isNotEmpty()) {
-            item(span = { GridItemSpan(cellsNumber) }) {
-                DeckOverviewCategoryHeader(
-                    name = name,
-                    isOpen = isVisible,
-                    onOpenToggle = onToggle
-                )
-            }
-
-            if (isVisible) {
-                items(cards, key = { it.card.id.identifier }) {
-                    DeckOverviewCard(
-                        cardWithProgress = if (type == CardCategoryType.Paused) it.copy(progress = null) else it,
-                        settings = viewState.settings,
-                        onCardClick = onCardClick,
-                    )
-                }
-            }
-        }
-    }
-}
-
-enum class CardCategoryType { New, ToReview, Paused }
-
-@Composable
-fun DeckOverviewCategoryHeader(name: String, isOpen: Boolean, onOpenToggle: (Boolean) -> Unit) {
-    val expandIconAngle = animateFloatAsState(targetValue = if (isOpen) 180f else 0f)
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-            Text(name, style = MaterialTheme.typography.headlineMedium)
-            IconButton(onClick = { onOpenToggle(!isOpen) }) {
-                Icon(Icons.Default.ExpandMore, "", modifier = Modifier.rotate(expandIconAngle.value))
-            }
-        }
-        Divider(1.dp, modifier = Modifier.fillMaxWidth())
-    }
-}
-
-@Composable
-fun DeckOverviewCard(
-    cardWithProgress: CardWithProgress<*>,
-    settings: DeckSettings,
-    onCardClick: (CardWithProgress<*>) -> Unit,
-    modifier: Modifier = Modifier,
-) {
-    val card = cardWithProgress.card
-    when (card) {
-        is Card.WordCard ->
-            DeckOverviewWordCard(
-                card = card,
-                showTranscription = settings.showTranscription,
-                showTranslation = settings.showTranslation,
-                onClick = { onCardClick(cardWithProgress) },
-                nextReviewDate = cardWithProgress.progress?.nextReview,
-                modifier = modifier
-            )
-
-        is Card.PhraseCard ->
-            DeckOverviewPhraseCard(
-                card = card,
-                showTranscription = settings.showTranscription,
-                showTranslation = settings.showTranslation,
-                nextReviewDate = cardWithProgress.progress?.nextReview,
-                onClick = { onCardClick(cardWithProgress) },
-                modifier = modifier
-            )
-
-        is Card.KanjiCard ->
-            DeckOverviewKanjiCard(
-                card = card,
-                showTranscription = settings.showTranscription,
-                showTranslation = settings.showTranslation,
-                showReading = settings.showReading,
-                nextReviewDate = cardWithProgress.progress?.nextReview,
-                onClick = { onCardClick(cardWithProgress) },
-                modifier = modifier
-            )
-
-        is Card.KanaCard -> {
-            DeckOverviewKanaCard(
-                card = card,
-                showTranscription = settings.showTranscription,
-                nextReviewDate = cardWithProgress.progress?.nextReview,
-                onClick = { onCardClick(cardWithProgress) },
-                modifier = modifier
-            )
-        }
-    }
 }
