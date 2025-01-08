@@ -80,7 +80,6 @@ fun CardDTO.KanjiCardDTO.toLocal(kanaCards: List<CardDTO.KanaCardDTO>): Card.Kan
     return Card.KanjiCard(
         id = CardId.WordCardId(this.id),
         front = this.character,
-        transcription = this.transcription,
         reading = Card.KanjiCard.Reading(
             on = this.reading.on.mapNotNull { kanaId ->
                 kanaCards.find { it.id == kanaId }?.toLocal(kanaCards)

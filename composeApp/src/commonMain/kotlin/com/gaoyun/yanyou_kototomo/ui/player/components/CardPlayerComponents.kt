@@ -101,7 +101,7 @@ internal fun ColumnScope.CardPlayerReading(
         "${it.on.map { it.front }.joinToString("")}、${it.kun.map { it.front }.joinToString("")}"
     }
     val readingTranscriptionFormatted = reading.let {
-        "[${it.on.map { it.transcription }.joinToString("")}, ${it.kun.map { it.transcription }.joinToString("")}]"
+        "[${it.on.map { it.transcription }.joinToString("")}、${it.kun.map { it.transcription }.joinToString("")}]"
     }
     Text(
         text = readingFormatted,

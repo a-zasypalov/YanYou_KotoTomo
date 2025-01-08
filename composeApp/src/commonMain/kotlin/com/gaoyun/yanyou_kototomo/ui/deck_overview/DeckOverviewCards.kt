@@ -62,12 +62,20 @@ fun DeckOverviewKanjiCard(
     modifier: Modifier = Modifier,
 ) {
     DeckCard(nextReviewDate = nextReviewDate, onClick = onClick, modifier = modifier.height(180.dp)) {
-        CardFront(card.front, modifier = Modifier.weight(1f).padding(horizontal = 24.dp)) {
-            this@DeckCard.AnimatedVisibility(visible = showReading, modifier = modifier.align(Alignment.CenterEnd)) {
-                Reading(card.reading.on)
-            }
-        }
-        AnimatedVisibility(visible = showTranscription) { Transcription(card.transcription) }
+        CardFront(
+            front = card.front,
+            modifier = Modifier.weight(1f).padding(horizontal = 24.dp),
+            leftAttachment = {
+                this@DeckCard.AnimatedVisibility(visible = showReading, modifier = modifier.align(Alignment.CenterStart)) {
+                    Reading(card.reading.on)
+                }
+            },
+            rightAttachment = {
+                this@DeckCard.AnimatedVisibility(visible = showReading, modifier = modifier.align(Alignment.CenterEnd)) {
+                    Reading(card.reading.kun)
+                }
+            })
+        AnimatedVisibility(visible = showTranscription) { Transcription(card.transcription()) }
         AnimatedVisibility(visible = showTranscription && showTranslation) {
             Divider(2.dp, Modifier.padding(vertical = 4.dp))
         }

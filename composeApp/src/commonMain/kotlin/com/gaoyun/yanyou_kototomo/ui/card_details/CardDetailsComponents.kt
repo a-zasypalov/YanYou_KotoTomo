@@ -59,9 +59,11 @@ internal fun ColumnScope.CardDetailsFront(
     front: String,
     fontSizeMax: TextUnit = 150.sp,
     modifier: Modifier = Modifier,
+    leftAttachment: @Composable BoxScope.() -> Unit = {},
     rightAttachment: @Composable BoxScope.() -> Unit = {},
 ) {
     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxWidth()) {
+        leftAttachment()
         AutoResizeText(
             text = front,
             fontSizeRange = FontSizeRange(min = 16.sp, max = fontSizeMax),
@@ -85,6 +87,6 @@ internal fun BoxScope.CardDetailsReading(
     Text(
         text = reading.map { it.front }.joinToString("\n"),
         style = MaterialTheme.typography.headlineMedium,
-        modifier = modifier.align(Alignment.CenterEnd).padding(end = 8.dp)
+        modifier = modifier.padding(horizontal = 8.dp)
     )
 }

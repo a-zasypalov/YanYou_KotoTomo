@@ -9,7 +9,13 @@ import com.gaoyun.yanyou_kototomo.data.local.CardId.WordCardId
 sealed interface Card {
     val id: CardId
     val front: String
-    val transcription: String
+
+    fun transcription(): String = when (this) {
+        is KanjiCard -> reading.transcription()
+        is PhraseCard -> transcription
+        is WordCard -> transcription
+        is KanaCard -> transcription
+    }
 
     fun translationOrEmpty(prefix: String = ""): String = when (this) {
         is KanjiCard -> "$prefix$translation"
@@ -21,7 +27,7 @@ sealed interface Card {
     data class PhraseCard(
         override val id: PhraseCardId,
         override val front: String,
-        override val transcription: String,
+        val transcription: String,
         val translation: String,
         val additionalInfo: String?,
         val words: List<WordCard>,
@@ -30,7 +36,7 @@ sealed interface Card {
     data class WordCard(
         override val id: WordCardId,
         override val front: String,
-        override val transcription: String,
+        val transcription: String,
         val translation: String,
         val additionalInfo: String?,
         val speechPart: String,
@@ -39,7 +45,7 @@ sealed interface Card {
     data class KanaCard(
         override val id: AlphabetCardId,
         override val front: String,
-        override val transcription: String,
+        val transcription: String,
         val alphabet: AlphabetType,
         val mirror: Mirror,
     ) : Card {
@@ -52,7 +58,6 @@ sealed interface Card {
     data class KanjiCard(
         override val id: WordCardId,
         override val front: String,
-        override val transcription: String,
         val reading: Reading,
         val translation: String,
         val additionalInfo: String?,
@@ -61,7 +66,13 @@ sealed interface Card {
         data class Reading(
             val on: List<KanaCard>,
             val kun: List<KanaCard>,
-        )
+        ) {
+            fun transcription() = buildString {
+                append(on.joinToString(separator = "") { it.transcription })
+                append("、")
+                append(kun.joinToString(separator = "") { it.transcription })
+            }.toString()
+        }
     }
 }
 
