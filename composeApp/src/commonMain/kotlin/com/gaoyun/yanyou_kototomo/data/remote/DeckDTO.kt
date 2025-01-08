@@ -28,9 +28,6 @@ sealed interface CardDTO {
     @SerialName("character")
     val character: String
 
-    @SerialName("transcription")
-    val transcription: String
-
     @Serializable
     @SerialName(CARD_TYPE_WORD)
     data class WordCardDTO(
@@ -39,7 +36,7 @@ sealed interface CardDTO {
         @SerialName("character")
         override val character: String,
         @SerialName("transcription")
-        override val transcription: String,
+        val transcription: String,
         @SerialName("translation")
         val translation: String,
         @SerialName("additional_info")
@@ -56,7 +53,7 @@ sealed interface CardDTO {
         @SerialName("character")
         override val character: String,
         @SerialName("transcription")
-        override val transcription: String,
+        val transcription: String,
         @SerialName("translation")
         val translation: String,
         @SerialName("additional_info")
@@ -73,7 +70,7 @@ sealed interface CardDTO {
         @SerialName("character")
         override val character: String,
         @SerialName("transcription")
-        override val transcription: String,
+        val transcription: String,
         @SerialName("alphabet")
         val alphabet: String,
         @SerialName("mirror")
@@ -87,8 +84,6 @@ sealed interface CardDTO {
         override val id: String,
         @SerialName("character")
         override val character: String,
-        @SerialName("transcription")
-        override val transcription: String,
         @SerialName("reading")
         val reading: ReadingDTO,
         @SerialName("translation")

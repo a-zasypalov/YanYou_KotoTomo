@@ -19,7 +19,7 @@ fun CardsPersisted.toCardsDTO(): CardDTO = when (type) {
     CardDTO.CARD_TYPE_WORD -> CardDTO.WordCardDTO(
         id = id,
         character = character,
-        transcription = transcription,
+        transcription = transcription ?: "",
         translation = translation ?: "",
         additionalInfo = additional_info,
         speechPart = speech_part ?: error("Speech part must be not null")
@@ -28,7 +28,7 @@ fun CardsPersisted.toCardsDTO(): CardDTO = when (type) {
     CardDTO.CARD_TYPE_PHRASE -> CardDTO.PhraseCardDTO(
         id = id,
         character = character,
-        transcription = transcription,
+        transcription = transcription ?: "",
         translation = translation ?: "",
         additionalInfo = additional_info,
         words = words ?: listOf()
@@ -37,7 +37,7 @@ fun CardsPersisted.toCardsDTO(): CardDTO = when (type) {
     CardDTO.CARD_TYPE_KANA -> CardDTO.KanaCardDTO(
         id = id,
         character = character,
-        transcription = transcription,
+        transcription = transcription ?: "",
         alphabet = alphabet ?: error("Alphabet must be not null"),
         mirror = mirror ?: error("Mirror kana must be not null")
     )
@@ -50,7 +50,6 @@ fun CardsPersisted.toCardsDTO(): CardDTO = when (type) {
         CardDTO.KanjiCardDTO(
             id = id,
             character = character,
-            transcription = transcription,
             reading = reading,
             translation = translation ?: error("Translation must be not null"),
             additionalInfo = additional_info,
