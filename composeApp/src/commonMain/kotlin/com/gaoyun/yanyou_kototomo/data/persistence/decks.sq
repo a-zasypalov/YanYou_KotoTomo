@@ -10,7 +10,7 @@ CREATE TABLE CardsPersisted (
     version INTEGER NOT NULL,
     deck_id TEXT NOT NULL REFERENCES DecksPersisted(id) ON DELETE CASCADE,
     character TEXT NOT NULL,
-    transcription TEXT NOT NULL,
+    transcription TEXT,
     type TEXT NOT NULL, -- Polymorphic type: "word", "phrase", "kana", or "kanji"
     translation TEXT, -- Nullable for some card types
     additional_info TEXT, -- Nullable
