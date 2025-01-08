@@ -63,9 +63,11 @@ internal fun ColumnScope.CardFront(
     front: String,
     fontSizeMax: TextUnit = 62.sp,
     modifier: Modifier = Modifier,
+    leftAttachment: @Composable BoxScope.() -> Unit = {},
     rightAttachment: @Composable BoxScope.() -> Unit = {},
 ) {
     Box(contentAlignment = Alignment.Center, modifier = modifier.weight(1f)) {
+        leftAttachment()
         AutoResizeText(
             text = front,
             fontSizeRange = FontSizeRange(min = 16.sp, max = fontSizeMax),

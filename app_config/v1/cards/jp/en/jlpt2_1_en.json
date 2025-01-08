@@ -6,7 +6,6 @@
       "type": "kanji",
       "id": "jlpt2_1_en_1",
       "character": "山",
-      "transcription": "san, yama",
       "reading": {
         "on": [
           "hiragana11",
@@ -25,7 +24,6 @@
       "type": "kanji",
       "id": "jlpt2_1_en_2",
       "character": "川",
-      "transcription": "sen, kawa",
       "reading": {
         "on": [
           "hiragana11",
@@ -44,7 +42,6 @@
       "type": "kanji",
       "id": "jlpt2_1_en_3",
       "character": "人",
-      "transcription": "jin, hito",
       "reading": {
         "on": [
           "hiragana12",
@@ -62,7 +59,6 @@
       "type": "kanji",
       "id": "jlpt2_1_en_4",
       "character": "日",
-      "transcription": "nichi, hi",
       "reading": {
         "on": [
           "hiragana17",
@@ -80,7 +76,6 @@
       "type": "kanji",
       "id": "jlpt2_1_en_5",
       "character": "本",
-      "transcription": "hon, moto",
       "reading": {
         "on": [
           "hiragana16"

@@ -84,7 +84,6 @@ fun OnboardingCardShowcasePage(onNextPage: () -> Unit) {
                         )
                     )
                 ),
-                transcription = "hon, moto",
                 additionalInfo = "Common Kanji meaning 'book' or 'origin'.",
                 speechPart = "noun"
             )
@@ -108,7 +107,7 @@ fun OnboardingCardShowcasePage(onNextPage: () -> Unit) {
                             )
                         }
                         Text(
-                            text = "[${card.transcription}]",
+                            text = "[${card.transcription()}]",
                             style = MaterialTheme.typography.bodySmall,
                             textAlign = TextAlign.Center,
                             modifier = Modifier.padding(4.dp),
@@ -145,7 +144,7 @@ fun OnboardingCardShowcasePage(onNextPage: () -> Unit) {
                     ) {
                         Text(card.front, style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.SemiBold))
                         Text(
-                            text = "[${card.transcription}]",
+                            text = "[${card.transcription()}]",
                             style = MaterialTheme.typography.bodySmall,
                             textAlign = TextAlign.Center,
                             modifier = Modifier.padding(4.dp),

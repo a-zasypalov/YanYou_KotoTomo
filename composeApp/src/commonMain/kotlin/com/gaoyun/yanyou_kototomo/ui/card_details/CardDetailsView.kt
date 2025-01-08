@@ -126,10 +126,6 @@ private fun CardPauseButton(paused: Boolean, modifier: Modifier = Modifier, onCl
             text = "Bring back to deck",
             onClick = onClick,
             leadingIcon = Icons.AutoMirrored.Default.Undo,
-            colors = ButtonDefaults.elevatedButtonColors(
-                containerColor = MaterialTheme.colorScheme.tertiary,
-                contentColor = MaterialTheme.colorScheme.onTertiary
-            ),
             modifier = modifier
         )
     } else {
@@ -167,10 +163,13 @@ private fun ColumnScope.CardDetailsKanaCard(card: Card.KanaCard) {
 
 @Composable
 private fun ColumnScope.CardDetailsKanjiCard(card: Card.KanjiCard) {
-    CardDetailsFront(card.front, modifier = Modifier.weight(1f).padding(horizontal = 24.dp)) {
-        CardDetailsReading(card.reading.on)
-    }
-    CardDetailsTranscription(card.transcription, modifier = Modifier.fillMaxWidth())
+    CardDetailsFront(
+        front = card.front,
+        modifier = Modifier.weight(1f).padding(horizontal = 24.dp),
+        leftAttachment = { CardDetailsReading(card.reading.on, Modifier.align(Alignment.CenterStart)) },
+        rightAttachment = { CardDetailsReading(card.reading.kun, Modifier.align(Alignment.CenterEnd)) }
+    )
+    CardDetailsTranscription(card.transcription(), modifier = Modifier.fillMaxWidth())
     Divider(2.dp, Modifier.padding(vertical = 4.dp))
     CardDetailsTranslation(card.translation, modifier = Modifier.fillMaxWidth())
     card.additionalInfo?.let { CardDetailsAdditionalInfo(it) }
