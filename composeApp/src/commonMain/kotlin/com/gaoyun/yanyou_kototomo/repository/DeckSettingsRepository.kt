@@ -13,10 +13,7 @@ class DeckSettingsRepository(
             showTranslation = if (deckSettings.showTranslation) 1 else 0,
             showTranscription = if (deckSettings.showTranscription) 1 else 0,
             showReading = if (deckSettings.showReading) 1 else 0,
-            showNewWords = if (deckSettings.showNewWords) 1 else 0,
-            showNewPhrases = if (deckSettings.showNewPhrases) 1 else 0,
-            showToReviewCards = if (deckSettings.showToReviewCards) 1 else 0,
-            showPausedCards = if (deckSettings.showPausedCards) 1 else 0,
+            hiddenSections = deckSettings.hiddenSections.map { it.name },
             pausedCards = deckSettings.pausedCards.toList()
         )
     }
@@ -31,11 +28,15 @@ class DeckSettingsRepository(
                     showTranslation = it.showTranslation == 1L,
                     showTranscription = it.showTranscription == 1L,
                     showReading = it.showReading == 1L,
-                    showNewWords = it.showNewWords == 1L,
-                    showNewPhrases = it.showNewPhrases == 1L,
-                    showToReviewCards = it.showToReviewCards == 1L,
-                    showPausedCards = it.showPausedCards == 1L,
-                    pausedCards = it.pausedCards.toSet()
+                    pausedCards = it.pausedCards.toSet(),
+                    hiddenSections = it.hiddenSections.mapNotNull {
+                        try {
+                            DeckSettings.Sections.valueOf(it)
+                        } catch (e: IllegalArgumentException) {
+                            e.printStackTrace()
+                            null
+                        }
+                    }.toSet(),
                 )
             }
     }

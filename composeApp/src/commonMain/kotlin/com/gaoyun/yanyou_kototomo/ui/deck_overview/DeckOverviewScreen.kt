@@ -105,6 +105,7 @@ fun DeckOverviewScreen(
             updateShowNewPhrases = viewModel::updateShowNewPhrases,
             updateShowToReviewCards = viewModel::updateShowToReviewCards,
             updateShowPausedCards = viewModel::updateShowPausedCards,
+            updateShowKanjiCards = viewModel::updateShowKanjiCards,
         )
         CardDetailsView(
             cardState = cardDetailState,
@@ -137,6 +138,7 @@ private fun DeckOverviewContent(
     updateShowNewPhrases: (Boolean) -> Unit,
     updateShowToReviewCards: (Boolean) -> Unit,
     updateShowPausedCards: (Boolean) -> Unit,
+    updateShowKanjiCards: (Boolean) -> Unit,
 ) {
     val state = rememberLazyGridState()
     viewState?.let {
@@ -173,7 +175,8 @@ private fun DeckOverviewContent(
                         updateShowNewWords = updateShowNewWords,
                         updateShowNewPhrases = updateShowNewPhrases,
                         updateShowToReviewCards = updateShowToReviewCards,
-                        updateShowPausedCards = updateShowPausedCards
+                        updateShowPausedCards = updateShowPausedCards,
+                        updateShowKanji = updateShowKanjiCards
                     )
                 }
 
@@ -212,6 +215,7 @@ fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
     updateShowNewPhrases: (Boolean) -> Unit,
     updateShowToReviewCards: (Boolean) -> Unit,
     updateShowPausedCards: (Boolean) -> Unit,
+    updateShowKanji: (Boolean) -> Unit,
 ) {
     data class Category(
         val name: String,
@@ -221,17 +225,18 @@ fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
         val visibilityToggle: (Boolean) -> Unit,
     )
 
+    val showNewKanji = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Kanji).not()
+    val showNewWords = viewState.settings.hiddenSections.contains(DeckSettings.Sections.NewWords).not()
+    val showNewPhrases = viewState.settings.hiddenSections.contains(DeckSettings.Sections.NewPhrases).not()
+    val showToReviewCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Review).not()
+    val showPausedCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Paused).not()
+
     val categories = listOf(
-        Category("New words", CardCategoryType.New, viewState.newCards.words, viewState.settings.showNewWords, updateShowNewWords),
-        Category("New phrases", CardCategoryType.New, viewState.newCards.phrases, viewState.settings.showNewPhrases, updateShowNewPhrases),
-        Category(
-            "To Review",
-            CardCategoryType.ToReview,
-            viewState.cardsToReview,
-            viewState.settings.showToReviewCards,
-            updateShowToReviewCards
-        ),
-        Category("Paused", CardCategoryType.Paused, viewState.pausedCards, viewState.settings.showPausedCards, updateShowPausedCards)
+        Category("New Kanji", CardCategoryType.New, viewState.newCards.kanji, showNewKanji, updateShowKanji),
+        Category("New words", CardCategoryType.New, viewState.newCards.words, showNewWords, updateShowNewWords),
+        Category("New phrases", CardCategoryType.New, viewState.newCards.phrases, showNewPhrases, updateShowNewPhrases),
+        Category("To Review", CardCategoryType.ToReview, viewState.cardsToReview, showToReviewCards, updateShowToReviewCards),
+        Category("Paused", CardCategoryType.Paused, viewState.pausedCards, showPausedCards, updateShowPausedCards)
     )
 
     categories.forEach { (name, type, cards, isVisible, onToggle) ->

@@ -69,11 +69,15 @@ class DeckOverviewViewModel(
     ): Triple<DeckPart, List<CardWithProgress<*>>, List<CardWithProgress<*>>> {
         val pausedCards = cards.filter { settings.pausedCards.contains(it.card.id.identifier) }
         val cardsToReview = cards.filter { it.progress != null && !pausedCards.contains(it) }.sortedBy { it.progress?.nextReview }
-        val newWords = cards.filter { it.progress == null && !pausedCards.contains(it) && it.card !is Card.PhraseCard }
+        val newWords = cards.filter {
+            it.progress == null && !pausedCards.contains(it) && (it.card !is Card.PhraseCard && it.card !is Card.KanjiCard)
+        }
         val newPhrases = cards.filter { it.progress == null && !pausedCards.contains(it) && it.card is Card.PhraseCard }
             .filterIsInstance<CardWithProgress<Card.PhraseCard>>()
+        val newKanji = cards.filter { it.progress == null && !pausedCards.contains(it) && it.card is Card.KanjiCard }
+            .filterIsInstance<CardWithProgress<Card.KanjiCard>>()
 
-        return Triple(DeckPart(words = newWords, phrases = newPhrases), cardsToReview, pausedCards)
+        return Triple(DeckPart(words = newWords, phrases = newPhrases, kanji = newKanji), cardsToReview, pausedCards)
     }
 
     fun updateTranslationSettings(show: Boolean) = viewModelScope.launch {
@@ -149,33 +153,18 @@ class DeckOverviewViewModel(
         viewState.value = viewState.value?.copy(isCurrentlyLearned = learned)
     }
 
-    fun updateShowNewWords(show: Boolean) = viewModelScope.launch {
-        viewState.value?.let { viewStateSafe ->
-            val newSettings = viewStateSafe.settings.copy(showNewWords = show)
-            deckSettingsInteractor.updateDeckSettings(newSettings)
-            viewState.value = viewStateSafe.copy(settings = newSettings)
-        }
-    }
+    fun updateShowNewWords(show: Boolean) = updateDeckSettingsSectionSetting(DeckSettings.Sections.NewWords, show)
+    fun updateShowNewPhrases(show: Boolean) = updateDeckSettingsSectionSetting(DeckSettings.Sections.NewPhrases, show)
+    fun updateShowToReviewCards(show: Boolean) = updateDeckSettingsSectionSetting(DeckSettings.Sections.Review, show)
+    fun updateShowPausedCards(show: Boolean) = updateDeckSettingsSectionSetting(DeckSettings.Sections.Paused, show)
+    fun updateShowKanjiCards(show: Boolean) = updateDeckSettingsSectionSetting(DeckSettings.Sections.Kanji, show)
 
-    fun updateShowNewPhrases(show: Boolean) = viewModelScope.launch {
+    fun updateDeckSettingsSectionSetting(section: DeckSettings.Sections, show: Boolean) = viewModelScope.launch {
         viewState.value?.let { viewStateSafe ->
-            val newSettings = viewStateSafe.settings.copy(showNewPhrases = show)
-            deckSettingsInteractor.updateDeckSettings(newSettings)
-            viewState.value = viewStateSafe.copy(settings = newSettings)
-        }
-    }
-
-    fun updateShowToReviewCards(show: Boolean) = viewModelScope.launch {
-        viewState.value?.let { viewStateSafe ->
-            val newSettings = viewStateSafe.settings.copy(showToReviewCards = show)
-            deckSettingsInteractor.updateDeckSettings(newSettings)
-            viewState.value = viewStateSafe.copy(settings = newSettings)
-        }
-    }
-
-    fun updateShowPausedCards(show: Boolean) = viewModelScope.launch {
-        viewState.value?.let { viewStateSafe ->
-            val newSettings = viewStateSafe.settings.copy(showPausedCards = show)
+            val newSettings = viewStateSafe.settings.copy(
+                hiddenSections = viewStateSafe.settings.hiddenSections.toMutableSet()
+                    .also { if (show) it.remove(section) else it.add(section) }
+            )
             deckSettingsInteractor.updateDeckSettings(newSettings)
             viewState.value = viewStateSafe.copy(settings = newSettings)
         }
@@ -196,6 +185,9 @@ data class DeckOverviewState(
 )
 
 data class DeckPart(
+    val kanji: List<CardWithProgress<Card.KanjiCard>>,
     val words: List<CardWithProgress<*>>,
     val phrases: List<CardWithProgress<Card.PhraseCard>>,
-)
+) {
+    fun size() = kanji.size + words.size + phrases.size
+}

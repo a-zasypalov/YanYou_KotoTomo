@@ -58,8 +58,9 @@ fun DeckPausedItemsSettingsView(
     }
 
     allCards.value?.let { cardsWithProgress ->
+        val kanji = remember { cardsWithProgress.filterNot { it.card is Card.KanjiCard } }
         val phrases = remember { cardsWithProgress.filter { it.card is Card.PhraseCard } }
-        val words = remember { cardsWithProgress.filterNot { phrases.contains(it) } }
+        val words = remember { cardsWithProgress.filterNot { phrases.contains(it) || kanji.contains(it) } }
 
         ModalBottomSheet(
             onDismissRequest = onDismiss,
@@ -75,6 +76,16 @@ fun DeckPausedItemsSettingsView(
                     .fillMaxWidth()
                     .fillMaxHeight(0.9f)
             ) {
+                if (kanji.isNotEmpty()) {
+                    item { SectionHeader("Kanji") }
+                    items(kanji) { cardWithProgress ->
+                        PausedItemCard(
+                            cardWithProgress = cardWithProgress,
+                            pausedCards = pausedCards,
+                            onChangePausedState = { changePausedStateFor(it, pausedCards.value?.contains(it) == true) }
+                        )
+                    }
+                }
                 if (words.isNotEmpty()) {
                     item { SectionHeader("Words") }
                     items(words) { cardWithProgress ->
