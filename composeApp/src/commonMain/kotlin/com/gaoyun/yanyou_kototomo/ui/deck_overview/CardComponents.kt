@@ -2,11 +2,10 @@ package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -66,10 +65,10 @@ internal fun ColumnScope.CardFront(
     style: TextStyle = MaterialTheme.typography.displayMedium,
     fontSizeMax: TextUnit = 62.sp,
     modifier: Modifier = Modifier,
-    leftAttachment: @Composable BoxScope.() -> Unit = {},
-    rightAttachment: @Composable BoxScope.() -> Unit = {},
+    leftAttachment: @Composable RowScope.() -> Unit = {},
+    rightAttachment: @Composable RowScope.() -> Unit = {},
 ) {
-    Box(contentAlignment = Alignment.Center, modifier = modifier.weight(1f)) {
+    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = modifier) {
         leftAttachment()
         if (dynamic) {
             AutoResizeText(
@@ -81,7 +80,7 @@ internal fun ColumnScope.CardFront(
                 ),
                 maxLines = 1,
                 textAlign = TextAlign.Center,
-                modifier = modifier.wrapContentHeight(align = Alignment.CenterVertically)
+                modifier = modifier
             )
         } else {
             Text(
@@ -97,7 +96,7 @@ internal fun ColumnScope.CardFront(
 }
 
 @Composable
-internal fun BoxScope.Reading(
+internal fun RowScope.Reading(
     reading: List<Card.KanaCard>,
     modifier: Modifier = Modifier,
 ) {
@@ -122,38 +121,39 @@ internal fun DeckCard(
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp)
     ) {
         Box(modifier = Modifier
-            .fillMaxSize()
+            .wrapContentHeight()
             .platformStyleClickable { onClick() }
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxWidth()
+                    .wrapContentHeight()
                     .padding(contentPadding),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.SpaceBetween
             ) {
-                content()
-            }
-            nextReviewDate?.let {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.End),
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.align(Alignment.TopEnd).padding(end = 8.dp, top = 4.dp)
-                ) {
-                    Text(
-                        text = it.toRelativeShortFormat(),
-                        style = MaterialTheme.typography.bodySmall.copy(
-                            fontStyle = FontStyle.Italic,
-                            color = MaterialTheme.colorScheme.onSurface
+                nextReviewDate?.let {
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.End),
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.fillMaxWidth().padding(end = 8.dp, top = 4.dp)
+                    ) {
+                        Text(
+                            text = it.toRelativeShortFormat(),
+                            style = MaterialTheme.typography.bodySmall.copy(
+                                fontStyle = FontStyle.Italic,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
                         )
-                    )
-                    Icon(
-                        imageVector = Icons.Default.EventRepeat,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                        modifier = Modifier.size(12.dp)
-                    )
+                        Icon(
+                            imageVector = Icons.Default.EventRepeat,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                            modifier = Modifier.size(10.dp)
+                        )
+                    }
                 }
+                content()
             }
         }
     }
