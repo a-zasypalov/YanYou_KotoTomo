@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
@@ -22,7 +21,7 @@ fun DeckOverviewWordCard(
     onClick: () -> Unit, modifier: Modifier = Modifier,
 ) {
     DeckCard(nextReviewDate = nextReviewDate, onClick = onClick, modifier = modifier.height(180.dp)) {
-        CardFront(card.front)
+        CardFront(card.front, modifier = Modifier.weight(1f))
         AnimatedVisibility(visible = showTranscription) { Transcription(card.transcription) }
         AnimatedVisibility(visible = showTranscription && showTranslation) {
             Divider(2.dp, Modifier.padding(vertical = 4.dp))
@@ -39,7 +38,7 @@ fun DeckOverviewKanaCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    DeckCard(nextReviewDate = nextReviewDate, onClick = onClick, modifier = modifier.heightIn(max = 100.dp), contentPadding = 0.dp) {
+    DeckCard(nextReviewDate = nextReviewDate, onClick = onClick, modifier = modifier.heightIn(max = 120.dp), contentPadding = 0.dp) {
         CardFront(front = card.front, dynamic = false, style = MaterialTheme.typography.displayMedium)
         AnimatedVisibility(visible = showTranscription) {
             Transcription(
@@ -64,17 +63,20 @@ fun DeckOverviewKanjiCard(
     DeckCard(nextReviewDate = nextReviewDate, onClick = onClick, modifier = modifier.height(180.dp)) {
         CardFront(
             front = card.front,
-            modifier = Modifier.weight(1f).padding(horizontal = 24.dp),
+            modifier = Modifier.weight(1f),
+            dynamic = false,
+            style = MaterialTheme.typography.displayLarge,
             leftAttachment = {
-                this@DeckCard.AnimatedVisibility(visible = showReading, modifier = modifier.align(Alignment.CenterStart)) {
+                this@DeckCard.AnimatedVisibility(visible = showReading) {
                     Reading(card.reading.on)
                 }
             },
             rightAttachment = {
-                this@DeckCard.AnimatedVisibility(visible = showReading, modifier = modifier.align(Alignment.CenterEnd)) {
+                this@DeckCard.AnimatedVisibility(visible = showReading) {
                     Reading(card.reading.kun)
                 }
-            })
+            }
+        )
         AnimatedVisibility(visible = showTranscription) { Transcription(card.transcription()) }
         AnimatedVisibility(visible = showTranscription && showTranslation) {
             Divider(2.dp, Modifier.padding(vertical = 4.dp))
@@ -93,7 +95,7 @@ fun DeckOverviewPhraseCard(
     modifier: Modifier = Modifier,
 ) {
     DeckCard(nextReviewDate = nextReviewDate, onClick = onClick, modifier = modifier.height(180.dp)) {
-        CardFront(card.front)
+        CardFront(card.front, modifier = Modifier.weight(1f))
         AnimatedVisibility(visible = showTranscription) { Transcription(card.transcription) }
         AnimatedVisibility(visible = showTranscription && showTranslation) {
             Divider(2.dp, Modifier.padding(vertical = 4.dp))

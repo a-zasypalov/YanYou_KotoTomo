@@ -120,7 +120,6 @@ fun DeckOverviewHeader(
                 Icon(Icons.Default.Subtitles, null)
             }
             if (viewState.deckId.isJlptDeck() == true) {
-
                 OutlinedIconToggleButton(
                     checked = viewState.settings.showReading,
                     onCheckedChange = updateReadingSettings,
