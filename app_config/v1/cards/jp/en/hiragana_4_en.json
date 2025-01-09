@@ -1,0 +1,296 @@
+{
+  "deck_id": "hiragana_4_en",
+  "version": 1,
+  "cards": [
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_1",
+      "character": "ま",
+      "transcription": "ma",
+      "mirror": "katakana31"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_2",
+      "character": "み",
+      "transcription": "mi",
+      "mirror": "katakana32"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_3",
+      "character": "む",
+      "transcription": "mu",
+      "mirror": "katakana33"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_4",
+      "character": "め",
+      "transcription": "me",
+      "mirror": "katakana34"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_5",
+      "character": "も",
+      "transcription": "mo",
+      "mirror": "katakana35"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_6",
+      "character": "や",
+      "transcription": "ya",
+      "mirror": "katakana36"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_7",
+      "character": "ゆ",
+      "transcription": "yu",
+      "mirror": "katakana37"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_8",
+      "character": "よ",
+      "transcription": "yo",
+      "mirror": "katakana38"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_9",
+      "character": "ら",
+      "transcription": "ra",
+      "mirror": "katakana39"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_10",
+      "character": "り",
+      "transcription": "ri",
+      "mirror": "katakana40"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_11",
+      "character": "る",
+      "transcription": "ru",
+      "mirror": "katakana41"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_12",
+      "character": "れ",
+      "transcription": "re",
+      "mirror": "katakana42"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_13",
+      "character": "ろ",
+      "transcription": "ro",
+      "mirror": "katakana43"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_14",
+      "character": "わ",
+      "transcription": "wa",
+      "mirror": "katakana44"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_15",
+      "character": "を",
+      "transcription": "wo",
+      "mirror": "katakana45"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_4_en_16",
+      "character": "ん",
+      "transcription": "n",
+      "mirror": "katakana46"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_17",
+      "character": "まち",
+      "transcription": "machi",
+      "translation": "Town",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_18",
+      "character": "うみ",
+      "transcription": "umi",
+      "translation": "Sea",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_19",
+      "character": "のむ",
+      "transcription": "nomu",
+      "translation": "To drink",
+      "additional_info": "",
+      "speech_part": "verb"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_20",
+      "character": "あめ",
+      "transcription": "ame",
+      "translation": "Rain",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_21",
+      "character": "こども",
+      "transcription": "kodomo",
+      "translation": "Child",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_22",
+      "character": "とり",
+      "transcription": "tori",
+      "translation": "Bird",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_23",
+      "character": "むら",
+      "transcription": "mura",
+      "translation": "Village",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_24",
+      "character": "おふろ",
+      "transcription": "ofuro",
+      "translation": "Bath",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_25",
+      "character": "もり",
+      "transcription": "mori",
+      "translation": "Forest",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_26",
+      "character": "だれ",
+      "transcription": "dare",
+      "translation": "Who",
+      "additional_info": "",
+      "speech_part": "pronoun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_27",
+      "character": "へや",
+      "transcription": "heya",
+      "translation": "Room",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_28",
+      "character": "おちゃ",
+      "transcription": "ocha",
+      "translation": "Tea",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_29",
+      "character": "ゆき",
+      "transcription": "yuki",
+      "translation": "Snow",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_30",
+      "character": "よい",
+      "transcription": "yoi",
+      "translation": "Good",
+      "additional_info": "",
+      "speech_part": "adjective"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_31",
+      "character": "ゆび",
+      "transcription": "yubi",
+      "translation": "Finger",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_32",
+      "character": "わるい",
+      "transcription": "warui",
+      "translation": "Bad",
+      "additional_info": "",
+      "speech_part": "adjective"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_33",
+      "character": "かわ",
+      "transcription": "kawa",
+      "translation": "River",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_4_en_34",
+      "character": "でんわ",
+      "transcription": "denwa",
+      "translation": "Telephone",
+      "additional_info": "",
+      "speech_part": "noun"
+    }
+  ]
+}
