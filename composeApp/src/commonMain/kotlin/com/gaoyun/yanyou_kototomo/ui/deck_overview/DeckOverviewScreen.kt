@@ -127,8 +127,16 @@ private fun DeckOverviewContent(
 ) {
     val state = rememberLazyGridState()
     viewState?.let {
-        val cellsNumber = if (viewState.deckId.isKanaDeck() == true) 15 else 2
-        val cellsSpacer = if (viewState.deckId.isKanaDeck() == true) 8.dp else 16.dp
+        val cellsNumber = when {
+            viewState.deckId.isKanaDeck() -> 15
+            viewState.deckId.isMixedKanaDeck() -> 15
+            else -> 2
+        }
+        val cellsSpacer = when {
+            viewState.deckId.isKanaDeck() -> 8.dp
+            viewState.deckId.isMixedKanaDeck() -> 8.dp
+            else -> 16.dp
+        }
 
         Box(modifier = Modifier.fillMaxSize()) {
             LazyVerticalGrid(
@@ -150,10 +158,22 @@ private fun DeckOverviewContent(
                     )
                 }
 
-                if (viewState.deckId.isKanaDeck()) {
-                    DeckOverviewKanaDeck(viewState, cellsNumber, { onCardClick(it, false) })
-                } else {
-                    DeckOverviewNormalSegmentedDeck(
+                when {
+                    viewState.deckId.isKanaDeck() -> DeckOverviewKanaDeck(
+                        viewState = viewState,
+                        cellsNumber = cellsNumber,
+                        onCardClick = { onCardClick(it, false) })
+
+                    viewState.deckId.isMixedKanaDeck() -> DeckOverviewMixedKanaDeck(
+                        viewState = viewState,
+                        cellsNumber = cellsNumber,
+                        onCardClick = { onCardClick(it, viewState.pausedCards.contains(it)) },
+                        updateShowNewWords = updateShowNewWords,
+                        updateShowToReviewCards = updateShowToReviewCards,
+                        updateShowPausedCards = updateShowPausedCards,
+                    )
+
+                    else -> DeckOverviewNormalSegmentedDeck(
                         viewState = viewState,
                         cellsNumber = cellsNumber,
                         onCardClick = { onCardClick(it, viewState.pausedCards.contains(it)) },

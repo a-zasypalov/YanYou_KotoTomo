@@ -58,9 +58,9 @@ fun DeckPausedItemsSettingsView(
     }
 
     allCards.value?.let { cardsWithProgress ->
-        val kanji = remember { cardsWithProgress.filterNot { it.card is Card.KanjiCard } }
+        val kanji = remember { cardsWithProgress.filter { it.card is Card.KanjiCard } }
         val phrases = remember { cardsWithProgress.filter { it.card is Card.PhraseCard } }
-        val words = remember { cardsWithProgress.filterNot { phrases.contains(it) || kanji.contains(it) } }
+        val words = remember { cardsWithProgress.filter { it.card is Card.WordCard } }
 
         ModalBottomSheet(
             onDismissRequest = onDismiss,
@@ -138,6 +138,7 @@ fun PausedItemCard(
 ) {
     val card = cardWithProgress.card
     val paused = pausedCards.value?.contains(cardWithProgress) == true
+    val subtitle = if (card is Card.KanaCard) card.transcription else card.translationOrEmpty()
 
     Surface(
         modifier = Modifier
@@ -160,7 +161,7 @@ fun PausedItemCard(
                     style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Medium),
                 )
                 Text(
-                    text = card.translationOrEmpty(),
+                    text = subtitle,
                     style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Normal),
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,

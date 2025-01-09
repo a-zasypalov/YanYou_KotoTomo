@@ -6,6 +6,7 @@ import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.deck.Deck
 import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toLocal
+import com.gaoyun.yanyou_kototomo.data.remote.converters.toLocalDTO
 import com.gaoyun.yanyou_kototomo.repository.CardsAndProgressRepository
 import com.gaoyun.yanyou_kototomo.repository.DeckRepository
 
@@ -37,9 +38,9 @@ class GetDeckFromCache(
             val progress = progresses[card.id]
             when (card) {
                 is CardDTO.WordCardDTO -> card.toLocal().withProgress(progress)
-                is CardDTO.KanaCardDTO -> card.toLocal(kanaCards).withProgress(progress)
-                is CardDTO.KanjiCardDTO -> card.toLocal(kanaCards).withProgress(progress)
-                is CardDTO.PhraseCardDTO -> card.toLocal(requiredWords).withProgress(progress)
+                is CardDTO.KanaCardDTO -> card.toLocalDTO(kanaCards).withProgress(progress)
+                is CardDTO.KanjiCardDTO -> card.toLocalDTO(kanaCards).withProgress(progress)
+                is CardDTO.PhraseCardDTO -> card.toLocalDTO(requiredWords).withProgress(progress)
             }
         }
 

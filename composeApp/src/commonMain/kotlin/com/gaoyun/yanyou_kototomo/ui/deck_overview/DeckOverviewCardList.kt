@@ -49,6 +49,55 @@ fun LazyGridScope.DeckOverviewKanaDeck(
     DeckOverviewCategories(categories, cellsNumber, viewState.settings, onCardClick)
 }
 
+fun LazyGridScope.DeckOverviewMixedKanaDeck(
+    viewState: DeckOverviewState,
+    cellsNumber: Int,
+    onCardClick: (CardWithProgress<*>) -> Unit,
+    updateShowNewWords: (Boolean) -> Unit,
+    updateShowToReviewCards: (Boolean) -> Unit,
+    updateShowPausedCards: (Boolean) -> Unit,
+) {
+    val gojuonCards = viewState.allCards.filter { (it.card as? Card.KanaCard)?.set == Card.KanaCard.Set.Gojuon }
+    val dakuonCards = viewState.allCards.filter { (it.card as? Card.KanaCard)?.set == Card.KanaCard.Set.DakuonHandakuon }
+    val yoonCards = viewState.allCards.filter { (it.card as? Card.KanaCard)?.set == Card.KanaCard.Set.Yoon }
+
+    val showNewWords = viewState.settings.hiddenSections.contains(DeckSettings.Sections.NewWords).not()
+    val showToReviewCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Review).not()
+    val showPausedCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Paused).not()
+
+    val categories = listOf(
+        CardOverviewCategory(name = "Gojuon", cards = gojuonCards, span = 3),
+        CardOverviewCategory(name = "Dakuon and Handakuon", cards = dakuonCards, span = 3),
+        CardOverviewCategory(name = "Yoon", cards = yoonCards, span = 5),
+        CardOverviewCategory(
+            name = "New words",
+            cards = viewState.newCards.words,
+            type = CardCategoryType.New,
+            isShown = showNewWords,
+            visibilityToggle = updateShowNewWords,
+            span = 5
+        ),
+        CardOverviewCategory(
+            name = "To Review",
+            cards = viewState.cardsToReview,
+            type = CardCategoryType.ToReview,
+            isShown = showToReviewCards,
+            visibilityToggle = updateShowToReviewCards,
+            span = 5
+        ),
+        CardOverviewCategory(
+            name = "Paused",
+            cards = viewState.pausedCards,
+            type = CardCategoryType.Paused,
+            isShown = showPausedCards,
+            visibilityToggle = updateShowPausedCards,
+            span = 5
+        )
+    )
+
+    DeckOverviewCategories(categories, cellsNumber, viewState.settings, onCardClick)
+}
+
 
 fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
     viewState: DeckOverviewState,

@@ -315,6 +315,14 @@
                 },
                 {
                   "type": "alphabet",
+                  "id": "katakana_en",
+                  "alphabet": "katakana",
+                  "name": "Katakana",
+                  "version": 1,
+                  "deck_preview": "ア カ サ ン タ ト ツ ハ ヒ ホ ミ モ ヤ ユ ラ リ ロ レ ソ ク コ ム メ フ ケ キ オ イ テ ネ ノ "
+                },
+                {
+                  "type": "alphabet",
                   "id": "hiragana_1_en",
                   "alphabet": "hiragana",
                   "name": "Hiragana vowels, k-line",
@@ -323,11 +331,27 @@
                 },
                 {
                   "type": "alphabet",
-                  "id": "katakana_en",
-                  "alphabet": "katakana",
-                  "name": "Katakana",
+                  "id": "hiragana_2_en",
+                  "alphabet": "hiragana",
+                  "name": "Hiragana s-, t-lines",
                   "version": 1,
-                  "deck_preview": "ア カ サ ン タ ト ツ ハ ヒ ホ ミ モ ヤ ユ ラ リ ロ レ ソ ク コ ム メ フ ケ キ オ イ テ ネ ノ "
+                  "deck_preview": "さ し す せ そ た ち つ て と ざ じ ず ぜ ぞ だ ぢ づ で ど"
+                },
+                {
+                  "type": "alphabet",
+                  "id": "hiragana_3_en",
+                  "alphabet": "hiragana",
+                  "name": "Hiragana n-, h-lines",
+                  "version": 1,
+                  "deck_preview": "な に ぬ ね の は ひ ふ へ ほ"
+                },
+                {
+                  "type": "alphabet",
+                  "id": "hiragana_4_en",
+                  "alphabet": "hiragana",
+                  "name": "Hiragana m-, r-, y-lines",
+                  "version": 1,
+                  "deck_preview": "ま み む め も や ゆ よ ら り る れ ろ わ を ん"
                 }
               ]
             },

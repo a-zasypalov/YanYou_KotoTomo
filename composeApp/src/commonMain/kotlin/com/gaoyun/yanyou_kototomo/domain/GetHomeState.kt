@@ -116,11 +116,12 @@ class GetHomeState(
 
         // Fetch required cards
         val requiredCards = requiredDeckIds
-            .mapNotNull { getDeckFromCache.getDeckWithoutName(it, requiredDeckIds) }
-            .flatMap { it.cards }
+            .mapNotNull { getDeckFromCache.getDeckWithoutName(it, requiredDeckIds)?.cards }
+            .flatten()
+            .map { it.card }
 
-        val requiredWords = requiredCards.filterIsInstance<CardDTO.WordCardDTO>()
-        val kanaCards = requiredCards.filterIsInstance<CardDTO.KanaCardDTO>()
+        val requiredWords = requiredCards.filterIsInstance<Card.WordCard>()
+        val kanaCards = requiredCards.filterIsInstance<Card.KanaCard>()
 
         // Map reviewed cards to local objects with progress
         return recentlyReviewedCards.mapNotNull { card ->

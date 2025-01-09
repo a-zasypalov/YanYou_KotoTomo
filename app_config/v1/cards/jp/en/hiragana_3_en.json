@@ -1,0 +1,256 @@
+{
+  "deck_id": "hiragana_3_en",
+  "version": 1,
+  "cards": [
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_1",
+      "character": "な",
+      "transcription": "na",
+      "mirror": "katakana21"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_2",
+      "character": "に",
+      "transcription": "ni",
+      "mirror": "katakana22"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_3",
+      "character": "ぬ",
+      "transcription": "nu",
+      "mirror": "katakana23"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_4",
+      "character": "ね",
+      "transcription": "ne",
+      "mirror": "katakana24"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_5",
+      "character": "の",
+      "transcription": "no",
+      "mirror": "katakana25"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_6",
+      "character": "は",
+      "transcription": "ha",
+      "mirror": "katakana26"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_7",
+      "character": "ひ",
+      "transcription": "hi",
+      "mirror": "katakana27"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_8",
+      "character": "ふ",
+      "transcription": "fu",
+      "mirror": "katakana28"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_9",
+      "character": "へ",
+      "transcription": "he",
+      "mirror": "katakana29"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_10",
+      "character": "ほ",
+      "transcription": "ho",
+      "mirror": "katakana30"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_11",
+      "character": "ば",
+      "transcription": "ba",
+      "mirror": "katakana62"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_12",
+      "character": "び",
+      "transcription": "bi",
+      "mirror": "katakana63"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_13",
+      "character": "ぶ",
+      "transcription": "bu",
+      "mirror": "katakana64"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_14",
+      "character": "べ",
+      "transcription": "be",
+      "mirror": "katakana65"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_15",
+      "character": "ぼ",
+      "transcription": "bo",
+      "mirror": "katakana66"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_16",
+      "character": "ぱ",
+      "transcription": "pa",
+      "mirror": "katakana67"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_17",
+      "character": "ぴ",
+      "transcription": "pi",
+      "mirror": "katakana68"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_18",
+      "character": "ぷ",
+      "transcription": "pu",
+      "mirror": "katakana69"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_19",
+      "character": "ぺ",
+      "transcription": "pe",
+      "mirror": "katakana70"
+    },
+    {
+      "type": "kana",
+      "alphabet": "hiragana",
+      "id": "hiragana_3_en_20",
+      "character": "ぽ",
+      "transcription": "po",
+      "mirror": "katakana71"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_3_en_21",
+      "character": "ねこ",
+      "transcription": "neko",
+      "translation": "Cat",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_3_en_22",
+      "character": "なつ",
+      "transcription": "natsu",
+      "translation": "Summer",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_3_en_23",
+      "character": "にく",
+      "transcription": "niku",
+      "translation": "Meat",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_3_en_24",
+      "character": "どの",
+      "transcription": "dono",
+      "translation": "Which",
+      "additional_info": "",
+      "speech_part": "pronoun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_3_en_25",
+      "character": "なぜ",
+      "transcription": "naze",
+      "translation": "Why",
+      "additional_info": "",
+      "speech_part": "adverb"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_3_en_26",
+      "character": "はい",
+      "transcription": "hai",
+      "translation": "Yes",
+      "additional_info": "",
+      "speech_part": "interjection"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_3_en_27",
+      "character": "そば",
+      "transcription": "soba",
+      "translation": "Buckwheat noodles",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_3_en_28",
+      "character": "ふく",
+      "transcription": "fuku",
+      "translation": "Clothes",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_3_en_29",
+      "character": "ひと",
+      "transcription": "hito",
+      "translation": "Person",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "hiragana_3_en_30",
+      "character": "ほか",
+      "transcription": "hoka",
+      "translation": "Other",
+      "additional_info": "",
+      "speech_part": "noun"
+    }
+  ]
+}

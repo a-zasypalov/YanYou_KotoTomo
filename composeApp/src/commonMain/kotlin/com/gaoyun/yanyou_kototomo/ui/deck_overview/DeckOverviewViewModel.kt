@@ -63,21 +63,33 @@ class DeckOverviewViewModel(
         }
     }
 
+    @Suppress("UNCHECKED_CAST")
     fun splitDeckToNewReviewPaused(
         cards: List<CardWithProgress<*>>,
         settings: DeckSettings,
     ): Triple<DeckPart, List<CardWithProgress<*>>, List<CardWithProgress<*>>> {
-        val pausedCards = cards.filter { settings.pausedCards.contains(it.card.id.identifier) }
-        val cardsToReview = cards.filter { it.progress != null && !pausedCards.contains(it) }.sortedBy { it.progress?.nextReview }
-        val newWords = cards.filter {
-            it.progress == null && !pausedCards.contains(it) && (it.card !is Card.PhraseCard && it.card !is Card.KanjiCard)
-        }
-        val newPhrases = cards.filter { it.progress == null && !pausedCards.contains(it) && it.card is Card.PhraseCard }
-            .filterIsInstance<CardWithProgress<Card.PhraseCard>>()
-        val newKanji = cards.filter { it.progress == null && !pausedCards.contains(it) && it.card is Card.KanjiCard }
-            .filterIsInstance<CardWithProgress<Card.KanjiCard>>()
+        val pausedCardIds = settings.pausedCards.toSet()
+        val pausedCards = mutableListOf<CardWithProgress<*>>()
+        val cardsToReview = mutableListOf<CardWithProgress<*>>()
+        val newWords = mutableListOf<CardWithProgress<Card.WordCard>>()
+        val newPhrases = mutableListOf<CardWithProgress<Card.PhraseCard>>()
+        val newKanji = mutableListOf<CardWithProgress<Card.KanjiCard>>()
+        val newKana = mutableListOf<CardWithProgress<Card.KanaCard>>()
 
-        return Triple(DeckPart(words = newWords, phrases = newPhrases, kanji = newKanji), cardsToReview, pausedCards)
+        for (card in cards) {
+            when {
+                pausedCardIds.contains(card.card.id.identifier) -> pausedCards.add(card)
+                card.progress != null && card.card !is Card.KanaCard -> cardsToReview.add(card)
+                else -> when (card.card) {
+                    is Card.WordCard -> newWords.add(card as CardWithProgress<Card.WordCard>)
+                    is Card.PhraseCard -> newPhrases.add(card as CardWithProgress<Card.PhraseCard>)
+                    is Card.KanjiCard -> newKanji.add(card as CardWithProgress<Card.KanjiCard>)
+                    is Card.KanaCard -> newKana.add(card as CardWithProgress<Card.KanaCard>)
+                }
+            }
+        }
+
+        return Triple(DeckPart(newKanji, newWords, newPhrases, newKana), cardsToReview.sortedBy { it.progress?.nextReview }, pausedCards)
     }
 
     fun updateTranslationSettings(show: Boolean) = viewModelScope.launch {
@@ -186,8 +198,9 @@ data class DeckOverviewState(
 
 data class DeckPart(
     val kanji: List<CardWithProgress<Card.KanjiCard>>,
-    val words: List<CardWithProgress<*>>,
+    val words: List<CardWithProgress<Card.WordCard>>,
     val phrases: List<CardWithProgress<Card.PhraseCard>>,
+    val kana: List<CardWithProgress<Card.KanaCard>>,
 ) {
-    fun size() = kanji.size + words.size + phrases.size
+    fun size() = kanji.size + words.size + phrases.size + kana.size
 }
