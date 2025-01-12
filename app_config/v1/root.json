@@ -352,6 +352,38 @@
                   "name": "Hiragana m-, r-, y-lines",
                   "version": 1,
                   "deck_preview": "ま み む め も や ゆ よ ら り る れ ろ わ を ん"
+                },
+                {
+                  "type": "alphabet",
+                  "id": "katakana_1_en",
+                  "alphabet": "katakana",
+                  "name": "Katakana vowels, k-line",
+                  "version": 1,
+                  "deck_preview": "ア イ ウ エ オ カ キ ク ケ コ ガ ギ グ ゲ ゴ"
+                },
+                {
+                  "type": "alphabet",
+                  "id": "katakana_2_en",
+                  "alphabet": "katakana",
+                  "name": "Katakana s-, t-lines",
+                  "version": 1,
+                  "deck_preview": "サ シ ス セ ソ タ チ ツ テ ト ザ ジ ズ ゼ ゾ ダ ヂ ヅ デ ド"
+                },
+                {
+                  "type": "alphabet",
+                  "id": "katakana_3_en",
+                  "alphabet": "katakana",
+                  "name": "Katakana n-, h-lines",
+                  "version": 1,
+                  "deck_preview": "ナ ニ ヌ ネ ノ ハ ヒ フ ヘ ホ"
+                },
+                {
+                  "type": "alphabet",
+                  "id": "katakana_4_en",
+                  "alphabet": "katakana",
+                  "name": "Katakana m-, r-, y-lines",
+                  "version": 1,
+                  "deck_preview": "マ ミ ム メ モ ヤ ユ ヨ ラ リ ル レ ロ ワ ヲ ン"
                 }
               ]
             },

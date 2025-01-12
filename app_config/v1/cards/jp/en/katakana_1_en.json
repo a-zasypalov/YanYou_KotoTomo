@@ -1,0 +1,207 @@
+{
+  "deck_id": "katakana_1_en",
+  "version": 1,
+  "cards": [
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_1",
+      "character": "ア",
+      "transcription": "a",
+      "mirror": "hiragana1"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_2",
+      "character": "イ",
+      "transcription": "i",
+      "mirror": "hiragana2"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_3",
+      "character": "ウ",
+      "transcription": "u",
+      "mirror": "hiragana3"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_4",
+      "character": "エ",
+      "transcription": "e",
+      "mirror": "hiragana4"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_5",
+      "character": "オ",
+      "transcription": "o",
+      "mirror": "hiragana5"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_6",
+      "character": "カ",
+      "transcription": "ka",
+      "mirror": "hiragana6"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_7",
+      "character": "キ",
+      "transcription": "ki",
+      "mirror": "hiragana7"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_8",
+      "character": "ク",
+      "transcription": "ku",
+      "mirror": "hiragana8"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_9",
+      "character": "ケ",
+      "transcription": "ke",
+      "mirror": "hiragana9"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_10",
+      "character": "コ",
+      "transcription": "ko",
+      "mirror": "hiragana10"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_11",
+      "character": "ガ",
+      "transcription": "ga",
+      "mirror": "hiragana47"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_12",
+      "character": "ギ",
+      "transcription": "gi",
+      "mirror": "hiragana48"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana49",
+      "character": "グ",
+      "transcription": "gu",
+      "mirror": "hiragana49"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_13",
+      "character": "ゲ",
+      "transcription": "ge",
+      "mirror": "hiragana50"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_1_en_14",
+      "character": "ゴ",
+      "transcription": "go",
+      "mirror": "hiragana51"
+    },
+    {
+      "type": "word",
+      "id": "katakana_1_en_15",
+      "character": "カー",
+      "transcription": "kaa",
+      "translation": "Car",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_1_en_16",
+      "character": "キー",
+      "transcription": "kii",
+      "translation": "Key",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_1_en_17",
+      "character": "コカ",
+      "transcription": "koka",
+      "translation": "Coca",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_1_en_18",
+      "character": "カキ",
+      "transcription": "kaki",
+      "translation": "Persimmon",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_1_en_19",
+      "character": "ケーキ",
+      "transcription": "keeki",
+      "translation": "Cake",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_1_en_20",
+      "character": "カカオ",
+      "transcription": "kakao",
+      "translation": "Cacao",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_1_en_21",
+      "character": "キウイ",
+      "transcription": "kiui",
+      "translation": "Kiwi",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_1_en_22",
+      "character": "エコ",
+      "transcription": "eko",
+      "translation": "Eco",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_1_en_23",
+      "character": "ギア",
+      "transcription": "gia",
+      "translation": "Gear",
+      "additional_info": "",
+      "speech_part": "noun"
+    }
+  ]
+}
