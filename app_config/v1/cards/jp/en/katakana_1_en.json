@@ -101,7 +101,7 @@
     {
       "type": "kana",
       "alphabet": "katakana",
-      "id": "katakana49",
+      "id": "katakana_1_en_13",
       "character": "グ",
       "transcription": "gu",
       "mirror": "hiragana49"
@@ -109,7 +109,7 @@
     {
       "type": "kana",
       "alphabet": "katakana",
-      "id": "katakana_1_en_13",
+      "id": "katakana_1_en_14",
       "character": "ゲ",
       "transcription": "ge",
       "mirror": "hiragana50"
@@ -117,14 +117,14 @@
     {
       "type": "kana",
       "alphabet": "katakana",
-      "id": "katakana_1_en_14",
+      "id": "katakana_1_en_15",
       "character": "ゴ",
       "transcription": "go",
       "mirror": "hiragana51"
     },
     {
       "type": "word",
-      "id": "katakana_1_en_15",
+      "id": "katakana_1_en_16",
       "character": "カー",
       "transcription": "kaa",
       "translation": "Car",
@@ -133,7 +133,7 @@
     },
     {
       "type": "word",
-      "id": "katakana_1_en_16",
+      "id": "katakana_1_en_17",
       "character": "キー",
       "transcription": "kii",
       "translation": "Key",
@@ -142,7 +142,7 @@
     },
     {
       "type": "word",
-      "id": "katakana_1_en_17",
+      "id": "katakana_1_en_18",
       "character": "コカ",
       "transcription": "koka",
       "translation": "Coca",
@@ -151,7 +151,7 @@
     },
     {
       "type": "word",
-      "id": "katakana_1_en_18",
+      "id": "katakana_1_en_19",
       "character": "カキ",
       "transcription": "kaki",
       "translation": "Persimmon",
@@ -160,7 +160,7 @@
     },
     {
       "type": "word",
-      "id": "katakana_1_en_19",
+      "id": "katakana_1_en_20",
       "character": "ケーキ",
       "transcription": "keeki",
       "translation": "Cake",
@@ -169,7 +169,7 @@
     },
     {
       "type": "word",
-      "id": "katakana_1_en_20",
+      "id": "katakana_1_en_21",
       "character": "カカオ",
       "transcription": "kakao",
       "translation": "Cacao",
@@ -178,7 +178,7 @@
     },
     {
       "type": "word",
-      "id": "katakana_1_en_21",
+      "id": "katakana_1_en_22",
       "character": "キウイ",
       "transcription": "kiui",
       "translation": "Kiwi",
@@ -187,7 +187,7 @@
     },
     {
       "type": "word",
-      "id": "katakana_1_en_22",
+      "id": "katakana_1_en_23",
       "character": "エコ",
       "transcription": "eko",
       "translation": "Eco",
@@ -196,7 +196,7 @@
     },
     {
       "type": "word",
-      "id": "katakana_1_en_23",
+      "id": "katakana_1_en_24",
       "character": "ギア",
       "transcription": "gia",
       "translation": "Gear",

@@ -9,7 +9,10 @@ data class CourseId(val identifier: String)
 
 data class DeckId(val identifier: String) {
     private val kanaDecks = listOf("hiragana_en", "katakana_en")
-    private val mixedKanaDecks = listOf("hiragana_1_en", "hiragana_2_en", "hiragana_3_en", "hiragana_4_en")
+    private val mixedKanaDecks = listOf(
+        "hiragana_1_en", "hiragana_2_en", "hiragana_3_en", "hiragana_4_en",
+        "katakana_1_en", "katakana_2_en", "katakana_3_en", "katakana_4_en"
+    )
 
     fun isKanaDeck() = kanaDecks.contains(identifier)
     fun isMixedKanaDeck() = mixedKanaDecks.contains(identifier)
