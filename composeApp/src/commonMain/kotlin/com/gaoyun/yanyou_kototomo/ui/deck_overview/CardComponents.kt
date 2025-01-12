@@ -32,7 +32,7 @@ import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
-import com.gaoyun.yanyou_kototomo.util.toRelativeShortFormat
+import com.gaoyun.yanyou_kototomo.util.toReviewRelativeShortFormat
 import kotlinx.datetime.LocalDate
 
 @Composable
@@ -139,7 +139,7 @@ internal fun DeckCard(
                         modifier = Modifier.fillMaxWidth().padding(end = 8.dp, top = 4.dp)
                     ) {
                         Text(
-                            text = it.toRelativeShortFormat(),
+                            text = it.toReviewRelativeShortFormat(),
                             style = MaterialTheme.typography.bodySmall.copy(
                                 fontStyle = FontStyle.Italic,
                                 color = MaterialTheme.colorScheme.onSurface

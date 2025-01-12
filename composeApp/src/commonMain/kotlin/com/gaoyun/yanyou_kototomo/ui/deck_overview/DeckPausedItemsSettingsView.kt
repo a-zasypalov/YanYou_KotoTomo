@@ -37,7 +37,7 @@ import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
-import com.gaoyun.yanyou_kototomo.util.toRelativeShortFormat
+import com.gaoyun.yanyou_kototomo.util.toReviewRelativeShortFormat
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -184,7 +184,7 @@ fun PausedItemCard(
                             modifier = Modifier.size(16.dp)
                         )
                         Text(
-                            text = progress.nextReview.toRelativeShortFormat(),
+                            text = progress.nextReview.toReviewRelativeShortFormat(),
                             style = MaterialTheme.typography.bodySmall,
                         )
                     }

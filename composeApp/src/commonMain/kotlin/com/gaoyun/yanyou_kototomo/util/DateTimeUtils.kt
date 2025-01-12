@@ -62,11 +62,11 @@ fun LocalDate.toRelativeFormat(): String {
 }
 
 @Composable
-fun LocalDate.toRelativeShortFormat(): String {
+fun LocalDate.toReviewRelativeShortFormat(): String {
     val daysDifference = localDateNow().daysUntil(this)
 
     return when {
-        daysDifference == 0 -> stringResource(Res.string.relative_today)
+        daysDifference <= 0 -> stringResource(Res.string.relative_today)
         daysDifference in 1..6 -> stringResource(Res.string.relative_in_days_short, daysDifference, daysDifference)
         daysDifference in 7..30 -> stringResource(Res.string.relative_in_weeks_short, daysDifference / 7, daysDifference / 7)
         daysDifference in 31..365 -> stringResource(Res.string.relative_in_months_short, daysDifference / 30, daysDifference / 30)
