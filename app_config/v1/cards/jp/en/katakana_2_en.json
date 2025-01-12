@@ -1,0 +1,247 @@
+{
+  "deck_id": "katakana_2_en",
+  "version": 1,
+  "cards": [
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_1",
+      "character": "サ",
+      "transcription": "sa",
+      "mirror": "hiragana11"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_2",
+      "character": "シ",
+      "transcription": "shi",
+      "mirror": "hiragana12"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_3",
+      "character": "ス",
+      "transcription": "su",
+      "mirror": "hiragana13"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_4",
+      "character": "セ",
+      "transcription": "se",
+      "mirror": "hiragana14"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_5",
+      "character": "ソ",
+      "transcription": "so",
+      "mirror": "hiragana15"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_6",
+      "character": "タ",
+      "transcription": "ta",
+      "mirror": "hiragana16"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_7",
+      "character": "チ",
+      "transcription": "chi",
+      "mirror": "hiragana17"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_8",
+      "character": "ツ",
+      "transcription": "tsu",
+      "mirror": "hiragana18"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_9",
+      "character": "テ",
+      "transcription": "te",
+      "mirror": "hiragana19"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_10",
+      "character": "ト",
+      "transcription": "to",
+      "mirror": "hiragana20"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_11",
+      "character": "ザ",
+      "transcription": "za",
+      "mirror": "hiragana52"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_12",
+      "character": "ジ",
+      "transcription": "ji",
+      "mirror": "hiragana53"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_13",
+      "character": "ズ",
+      "transcription": "zu",
+      "mirror": "hiragana54"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_14",
+      "character": "ゼ",
+      "transcription": "ze",
+      "mirror": "hiragana55"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_15",
+      "character": "ゾ",
+      "transcription": "zo",
+      "mirror": "hiragana56"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_16",
+      "character": "ダ",
+      "transcription": "da",
+      "mirror": "hiragana57"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_17",
+      "character": "ヂ",
+      "transcription": "ji",
+      "mirror": "hiragana58"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_18",
+      "character": "ヅ",
+      "transcription": "zu",
+      "mirror": "hiragana59"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_19",
+      "character": "デ",
+      "transcription": "de",
+      "mirror": "hiragana60"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_2_en_20",
+      "character": "ド",
+      "transcription": "do",
+      "mirror": "hiragana61"
+    },
+    {
+      "type": "word",
+      "id": "katakana_2_en_21",
+      "character": "チーズ",
+      "transcription": "chiizu",
+      "translation": "Cheese",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_2_en_22",
+      "character": "テスト",
+      "transcription": "tesuto",
+      "translation": "Test",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_2_en_23",
+      "character": "タスク",
+      "transcription": "tasuku",
+      "translation": "Task",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_2_en_24",
+      "character": "コスト",
+      "transcription": "kosuto",
+      "translation": "Cost",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_2_en_25",
+      "character": "コード",
+      "transcription": "koodo",
+      "translation": "Code",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_2_en_26",
+      "character": "サイト",
+      "transcription": "saito",
+      "translation": "Site",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_2_en_27",
+      "character": "ソート",
+      "transcription": "sooto",
+      "translation": "Sort",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_2_en_28",
+      "character": "ドイツ",
+      "transcription": "doitsu",
+      "translation": "Germany",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_2_en_29",
+      "character": "デート",
+      "transcription": "deeto",
+      "translation": "Date",
+      "additional_info": "(with someone)",
+      "speech_part": "noun"
+    }
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "deck_id": "katakana_3_en",
+  "version": 1,
+  "cards": [
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_1",
+      "character": "ナ",
+      "transcription": "na",
+      "mirror": "hiragana21"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_2",
+      "character": "ニ",
+      "transcription": "ni",
+      "mirror": "hiragana22"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_3",
+      "character": "ヌ",
+      "transcription": "nu",
+      "mirror": "hiragana23"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_4",
+      "character": "ネ",
+      "transcription": "ne",
+      "mirror": "hiragana24"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_5",
+      "character": "ノ",
+      "transcription": "no",
+      "mirror": "hiragana25"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_6",
+      "character": "ハ",
+      "transcription": "ha",
+      "mirror": "hiragana26"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_7",
+      "character": "ヒ",
+      "transcription": "hi",
+      "mirror": "hiragana27"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_8",
+      "character": "フ",
+      "transcription": "fu",
+      "mirror": "hiragana28"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_9",
+      "character": "ヘ",
+      "transcription": "he",
+      "mirror": "hiragana29"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_10",
+      "character": "ホ",
+      "transcription": "ho",
+      "mirror": "hiragana30"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_11",
+      "character": "バ",
+      "transcription": "ba",
+      "mirror": "hiragana62"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_12",
+      "character": "ビ",
+      "transcription": "bi",
+      "mirror": "hiragana63"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_13",
+      "character": "ブ",
+      "transcription": "bu",
+      "mirror": "hiragana64"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_14",
+      "character": "ベ",
+      "transcription": "be",
+      "mirror": "hiragana65"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_15",
+      "character": "ボ",
+      "transcription": "bo",
+      "mirror": "hiragana66"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_16",
+      "character": "パ",
+      "transcription": "pa",
+      "mirror": "hiragana67"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_17",
+      "character": "ピ",
+      "transcription": "pi",
+      "mirror": "hiragana68"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_18",
+      "character": "プ",
+      "transcription": "pu",
+      "mirror": "hiragana69"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_19",
+      "character": "ペ",
+      "transcription": "pe",
+      "mirror": "hiragana70"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_3_en_20",
+      "character": "ポ",
+      "transcription": "po",
+      "mirror": "hiragana71"
+    },
+    {
+      "type": "word",
+      "id": "katakana_3_en_21",
+      "character": "ツナ",
+      "transcription": "tsuna",
+      "translation": "Tuna",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_3_en_22",
+      "character": "ヌガー",
+      "transcription": "nugaa",
+      "translation": "Nougat",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_3_en_23",
+      "character": "ニア",
+      "transcription": "nia",
+      "translation": "Near",
+      "additional_info": "",
+      "speech_part": "adjective"
+    },
+    {
+      "type": "word",
+      "id": "katakana_3_en_24",
+      "character": "テニス",
+      "transcription": "tenisu",
+      "translation": "Tennis",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_3_en_25",
+      "character": "ペット",
+      "transcription": "petto",
+      "translation": "Pet",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_3_en_26",
+      "character": "ページ",
+      "transcription": "peeji",
+      "translation": "Page",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_3_en_27",
+      "character": "ピアノ",
+      "transcription": "piano",
+      "translation": "Piano",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_3_en_28",
+      "character": "ハット",
+      "transcription": "hatto",
+      "translation": "Hat",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_3_en_29",
+      "character": "カップ",
+      "transcription": "kappu",
+      "translation": "Cup",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_3_en_30",
+      "character": "ポケット",
+      "transcription": "poketto",
+      "translation": "Pocket",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_3_en_31",
+      "character": "サポート",
+      "transcription": "sapooto",
+      "translation": "Support",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_3_en_32",
+      "character": "コーヒー",
+      "transcription": "koohii",
+      "translation": "Coffee",
+      "additional_info": "",
+      "speech_part": "noun"
+    }
+  ]
+}

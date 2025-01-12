@@ -1,0 +1,269 @@
+{
+  "deck_id": "katakana_4_en",
+  "version": 1,
+  "cards": [
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_1",
+      "character": "マ",
+      "transcription": "ma",
+      "mirror": "hiragana31"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_2",
+      "character": "ミ",
+      "transcription": "mi",
+      "mirror": "hiragana32"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_3",
+      "character": "ム",
+      "transcription": "mu",
+      "mirror": "hiragana33"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_4",
+      "character": "メ",
+      "transcription": "me",
+      "mirror": "hiragana34"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_5",
+      "character": "モ",
+      "transcription": "mo",
+      "mirror": "hiragana35"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_6",
+      "character": "ヤ",
+      "transcription": "ya",
+      "mirror": "hiragana36"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_7",
+      "character": "ユ",
+      "transcription": "yu",
+      "mirror": "hiragana37"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_8",
+      "character": "ヨ",
+      "transcription": "yo",
+      "mirror": "hiragana38"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_9",
+      "character": "ラ",
+      "transcription": "ra",
+      "mirror": "hiragana39"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_10",
+      "character": "リ",
+      "transcription": "ri",
+      "mirror": "hiragana40"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_11",
+      "character": "ル",
+      "transcription": "ru",
+      "mirror": "hiragana41"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_12",
+      "character": "レ",
+      "transcription": "re",
+      "mirror": "hiragana42"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_13",
+      "character": "ロ",
+      "transcription": "ro",
+      "mirror": "hiragana43"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_14",
+      "character": "ワ",
+      "transcription": "wa",
+      "mirror": "hiragana44"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_15",
+      "character": "ヲ",
+      "transcription": "wo",
+      "mirror": "hiragana45"
+    },
+    {
+      "type": "kana",
+      "alphabet": "katakana",
+      "id": "katakana_4_en_16",
+      "character": "ン",
+      "transcription": "n",
+      "mirror": "hiragana46"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_17",
+      "character": "ゴム",
+      "transcription": "gomu",
+      "translation": "Rubber",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_18",
+      "character": "パン",
+      "transcription": "pan",
+      "translation": "Bread",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_19",
+      "character": "ペン",
+      "transcription": "pen",
+      "translation": "Pen",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_20",
+      "character": "ワイン",
+      "transcription": "wain",
+      "translation": "Wine",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_21",
+      "character": "ワード",
+      "transcription": "waado",
+      "translation": "Word",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_22",
+      "character": "ジョブ",
+      "transcription": "jobo",
+      "translation": "Job",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_23",
+      "character": "トイレ",
+      "transcription": "toire",
+      "translation": "Toilet",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_24",
+      "character": "ホテル",
+      "transcription": "hoteru",
+      "translation": "Hotel",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_25",
+      "character": "テレビ",
+      "transcription": "terebi",
+      "translation": "Television",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_26",
+      "character": "カメラ",
+      "transcription": "kamera",
+      "translation": "Camera",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_27",
+      "character": "ビール",
+      "transcription": "biiru",
+      "translation": "Beer",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_28",
+      "character": "ゲーム",
+      "transcription": "geemu",
+      "translation": "Game",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_29",
+      "character": "スマホ",
+      "transcription": "sumaho",
+      "translation": "Smartphone",
+      "additional_info": "",
+      "speech_part": "noun"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_30",
+      "character": "メモる",
+      "transcription": "memoru",
+      "translation": "To take notes",
+      "additional_info": "",
+      "speech_part": "verb"
+    },
+    {
+      "type": "word",
+      "id": "katakana_4_en_31",
+      "character": "アニメ",
+      "transcription": "anime",
+      "translation": "Anime",
+      "additional_info": "",
+      "speech_part": "noun"
+    }
+  ]
+}
