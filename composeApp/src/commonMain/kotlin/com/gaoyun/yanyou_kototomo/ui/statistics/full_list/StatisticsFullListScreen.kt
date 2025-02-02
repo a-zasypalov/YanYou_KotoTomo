@@ -32,15 +32,17 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.StatisticsModeArgs
 import com.gaoyun.yanyou_kototomo.ui.statistics.StatisticsViewState
 import com.gaoyun.yanyou_kototomo.ui.statistics.components.ProgressStatisticsItem
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun StatisticsFullListScreen(
-    mode: StatisticsListMode,
+    args: StatisticsModeArgs,
     navigate: (NavigationSideEffect) -> Unit,
 ) {
+    val mode = args.mode
     val viewModel = koinViewModel<StatisticsFullListViewModel>()
 
     LaunchedEffect(Unit) {

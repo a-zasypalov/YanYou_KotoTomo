@@ -17,7 +17,9 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigatorAction
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.QuizSessionSummaryArgs
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSections
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSectionsArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.StatisticsModeArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.appTypeMap
 import com.gaoyun.yanyou_kototomo.ui.base.theme.AppTheme
 import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColorsProvider
 import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksScreen
@@ -28,7 +30,6 @@ import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerScreen
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryScreen
 import com.gaoyun.yanyou_kototomo.ui.settings.sections.SectionSettingsScreen
 import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsFullListScreen
-import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsListMode
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.onEach
 import org.koin.compose.viewmodel.koinViewModel
@@ -48,6 +49,7 @@ fun App() {
                 is NavigatorAction.NavigateToWithBackHandler<*> -> {
                     navController.navigate(action.args) { popUpTo(action.popupTo) { inclusive = action.inclusive } }
                 }
+
                 is NavigatorAction.NavigateToPathWithBackHandler -> {
                     navController.navigate(action.path) { popUpTo(action.popupTo) { inclusive = action.inclusive } }
                 }
@@ -79,23 +81,23 @@ fun NavigationGraph(navController: NavHostController, viewModel: AppViewModel) {
         composable(HOME_HOST_ROUTE) {
             HomeScreenHost(viewModel::navigate)
         }
-        composable<CourseScreenArgs> { stackEntry ->
+        composable<CourseScreenArgs>(typeMap = appTypeMap) { stackEntry ->
             CourseDecksScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
         }
-        composable<DeckScreenArgs> { stackEntry ->
+        composable<DeckScreenArgs>(typeMap = appTypeMap) { stackEntry ->
             DeckOverviewScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
         }
-        composable<PlayerScreenArgs> { stackEntry ->
+        composable<PlayerScreenArgs>(typeMap = appTypeMap) { stackEntry ->
             DeckPlayerScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
         }
-        composable<QuizSessionSummaryArgs> { stackEntry ->
+        composable<QuizSessionSummaryArgs>(typeMap = appTypeMap) { stackEntry ->
             QuizSessionSummaryScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
         }
-        composable<StatisticsListMode> { stackEntry ->
-            StatisticsFullListScreen(mode = stackEntry.toRoute(), navigate = viewModel::navigate)
+        composable<StatisticsModeArgs>(typeMap = appTypeMap) { stackEntry ->
+            StatisticsFullListScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
         }
-        composable<SettingsSections> { stackEntry ->
-            SectionSettingsScreen(section = stackEntry.toRoute(), navigate = viewModel::navigate)
+        composable<SettingsSectionsArgs>(typeMap = appTypeMap) { stackEntry ->
+            SectionSettingsScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
         }
     }
 }

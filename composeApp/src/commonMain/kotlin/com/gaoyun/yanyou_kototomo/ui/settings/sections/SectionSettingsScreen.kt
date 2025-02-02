@@ -23,14 +23,17 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSections
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSectionsArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.StatisticsModeArgs
 import com.gaoyun.yanyou_kototomo.ui.player.SpacedRepetitionIntervalsInDays
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun SectionSettingsScreen(
-    section: SettingsSections,
+    args: SettingsSectionsArgs,
     navigate: (NavigationSideEffect) -> Unit,
 ) {
+    val section = args.section
     val viewModel = koinViewModel<SettingsSectionsViewModel>()
 
     LaunchedEffect(Unit) {
