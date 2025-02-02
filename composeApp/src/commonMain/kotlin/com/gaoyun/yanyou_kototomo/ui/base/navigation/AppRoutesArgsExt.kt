@@ -96,7 +96,7 @@ data class QuizSessionSummaryArgs(
 
 inline fun <reified T> serializableNavType(
     isNullableAllowed: Boolean = false,
-    json: Json = Json
+    json: Json = Json,
 ): NavType<T> = object : NavType<T>(isNullableAllowed) {
     private val innerSerializer = serializer<T>()
 
@@ -136,10 +136,18 @@ inline fun <reified T> serializableNavType(
 }
 
 val appTypeMap: Map<KType, NavType<*>> = mapOf(
+    typeOf<CourseScreenArgs>() to serializableNavType<CourseScreenArgs>(),
+    typeOf<DeckScreenArgs>() to serializableNavType<DeckScreenArgs>(),
+    typeOf<PlayerScreenArgs>() to serializableNavType<PlayerScreenArgs>(),
+    typeOf<QuizSessionSummaryArgs>() to serializableNavType<QuizSessionSummaryArgs>(),
+    typeOf<StatisticsModeArgs>() to serializableNavType<StatisticsModeArgs>(),
+    typeOf<SettingsSectionsArgs>() to serializableNavType<SettingsSectionsArgs>(),
     typeOf<LanguageId>() to serializableNavType<LanguageId>(),
     typeOf<CourseId>() to serializableNavType<CourseId>(),
     typeOf<DeckId>() to serializableNavType<DeckId>(),
     typeOf<QuizSessionId>() to serializableNavType<QuizSessionId>(),
-    typeOf<SettingsSectionsArgs>() to serializableNavType<SettingsSectionsArgs>(),
-    typeOf<StatisticsModeArgs>() to serializableNavType<StatisticsModeArgs>()
+    typeOf<SettingsSections>() to serializableNavType<SettingsSections>(),
+    typeOf<PlayerBackRoute>() to serializableNavType<PlayerBackRoute>(),
+    typeOf<PlayerMode>() to serializableNavType<PlayerMode>(),
+    typeOf<StatisticsListMode>() to serializableNavType<StatisticsListMode>(),
 )
