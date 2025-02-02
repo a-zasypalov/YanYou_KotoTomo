@@ -2,7 +2,6 @@ package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -38,7 +37,7 @@ fun DeckOverviewKanaCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    DeckCard(nextReviewDate = nextReviewDate, onClick = onClick, modifier = modifier.heightIn(max = 120.dp), contentPadding = 0.dp) {
+    DeckCard(nextReviewDate = nextReviewDate, onClick = onClick, modifier = modifier.height(100.dp), contentPadding = 0.dp) {
         CardFront(front = card.front, dynamic = false, style = MaterialTheme.typography.displayMedium)
         AnimatedVisibility(visible = showTranscription) {
             Transcription(
