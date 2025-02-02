@@ -87,10 +87,6 @@ kotlin {
             implementation(libs.ktor.contentnegotiation)
             implementation(libs.ktor.contentencoding)
 
-//            implementation(libs.precompose)
-//            implementation(libs.precompose.viewmodel)
-//            implementation(libs.precompose.koin)
-
             implementation(libs.compottie)
             implementation(libs.compottie.dot)
         }
