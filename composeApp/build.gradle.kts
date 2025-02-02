@@ -67,12 +67,16 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(compose.materialIconsExtended)
+            implementation(libs.navigation)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
 
             implementation(libs.kotlin.serialization.core)
             implementation(libs.kotlin.datetime)
             implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.koin.compose.viewmodel.navigation)
             implementation(libs.sqldelight.runtime)
 
             implementation(libs.ktor.client.core)
@@ -83,9 +87,9 @@ kotlin {
             implementation(libs.ktor.contentnegotiation)
             implementation(libs.ktor.contentencoding)
 
-            implementation(libs.precompose)
-            implementation(libs.precompose.viewmodel)
-            implementation(libs.precompose.koin)
+//            implementation(libs.precompose)
+//            implementation(libs.precompose.viewmodel)
+//            implementation(libs.precompose.koin)
 
             implementation(libs.compottie)
             implementation(libs.compottie.dot)

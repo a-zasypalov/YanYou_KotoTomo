@@ -22,15 +22,15 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.FullScreenLoader
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToCourse
-import moe.tlaster.precompose.koin.koinViewModel
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun CoursesScreen(
     navigate: (NavigationSideEffect) -> Unit,
     modifier: Modifier,
 ) {
-    val viewModel = koinViewModel(vmClass = CoursesViewModel::class)
+    val viewModel = koinViewModel<CoursesViewModel>()
 
     LaunchedEffect(Unit) {
         viewModel.getRootComponent()

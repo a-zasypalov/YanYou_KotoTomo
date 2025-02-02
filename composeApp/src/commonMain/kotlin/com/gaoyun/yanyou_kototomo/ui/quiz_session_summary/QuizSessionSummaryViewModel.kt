@@ -6,7 +6,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.QuizSessionSummaryArgs
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import moe.tlaster.precompose.viewmodel.viewModelScope
+import androidx.lifecycle.viewModelScope
 
 class QuizSessionSummaryViewModel(
     private val quizInteractor: QuizInteractor,

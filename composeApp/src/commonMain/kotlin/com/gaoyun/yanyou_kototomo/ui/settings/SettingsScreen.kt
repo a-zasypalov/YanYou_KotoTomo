@@ -33,15 +33,15 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToSettingsSection
 import com.gaoyun.yanyou_kototomo.ui.settings.dialogs.CoursesReloadDialog
 import com.gaoyun.yanyou_kototomo.ui.settings.dialogs.PrimaryLanguageChooser
 import com.gaoyun.yanyou_kototomo.ui.settings.dialogs.ResetDialog
-import moe.tlaster.precompose.koin.koinViewModel
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun SettingsScreen(
     navigate: (NavigationSideEffect) -> Unit,
     modifier: Modifier,
 ) {
-    val viewModel = koinViewModel(vmClass = SettingsViewModel::class)
+    val viewModel = koinViewModel<SettingsViewModel>()
 
     var showResetDialog = remember { mutableStateOf(false) }
     val showReloadConfirmation = remember { mutableStateOf(false) }

@@ -3,10 +3,13 @@ package com.gaoyun.yanyou_kototomo.data.local
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+@Serializable
 data class LanguageId(val identifier: String)
 
+@Serializable
 data class CourseId(val identifier: String)
 
+@Serializable
 data class DeckId(val identifier: String) {
     private val kanaDecks = listOf("hiragana_en", "katakana_en")
     private val mixedKanaDecks = listOf(

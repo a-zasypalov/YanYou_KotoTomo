@@ -33,14 +33,14 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.QuizSessionSummaryArgs
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.components.QuizSessionSummaryQuestionResult
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.components.QuizSessionSummaryStatistics
-import moe.tlaster.precompose.koin.koinViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun QuizSessionSummaryScreen(
     args: QuizSessionSummaryArgs,
     navigate: (NavigationSideEffect) -> Unit,
 ) {
-    val viewModel = koinViewModel(vmClass = QuizSessionSummaryViewModel::class)
+    val viewModel = koinViewModel<QuizSessionSummaryViewModel>()
 
     LaunchedEffect(Unit) {
         viewModel.getSession(args)

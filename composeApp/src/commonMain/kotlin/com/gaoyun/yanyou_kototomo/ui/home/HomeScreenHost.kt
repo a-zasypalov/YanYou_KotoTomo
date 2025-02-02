@@ -1,7 +1,5 @@
 package com.gaoyun.yanyou_kototomo.ui.home
 
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.navigationBars
@@ -17,10 +15,15 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.COURSES_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.HOME_ROUTE
@@ -30,59 +33,51 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.courses.CoursesScreen
 import com.gaoyun.yanyou_kototomo.ui.settings.SettingsScreen
 import com.gaoyun.yanyou_kototomo.ui.statistics.StatisticsScreen
-import moe.tlaster.precompose.navigation.NavHost
-import moe.tlaster.precompose.navigation.NavOptions
-import moe.tlaster.precompose.navigation.Navigator
-import moe.tlaster.precompose.navigation.PopUpTo
-import moe.tlaster.precompose.navigation.rememberNavigator
-import moe.tlaster.precompose.navigation.transition.NavTransition
 
 @Composable
 fun HomeScreenHost(navigate: (NavigationSideEffect) -> Unit) {
-    val navigator = rememberNavigator()
+    val navController = rememberNavController()
     val tabBarPadding = 56.dp + WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
 
     SurfaceScaffold(bottomBar = {
-        BottomNavigationBar(navigator) {
-            navigator.navigate(it, NavOptions(launchSingleTop = true, popUpTo = PopUpTo(HOME_ROUTE)))
+        BottomNavigationBar(navController) { route ->
+            navController.navigate(route) {
+                launchSingleTop = true
+                popUpTo(HOME_ROUTE) { inclusive = false }
+            }
         }
     }) {
         NavHost(
-            navigator = navigator,
-            initialRoute = HOME_ROUTE,
-            navTransition = NavTransition(
-                createTransition = fadeIn(),
-                destroyTransition = fadeOut(),
-                pauseTransition = fadeOut(),
-                resumeTransition = fadeIn(),
-            )
+            navController = navController,
+            startDestination = HOME_ROUTE
         ) {
-            scene(HOME_ROUTE) {
+            composable(HOME_ROUTE) {
                 HomeScreen(
                     navigate = navigate,
                     modifier = Modifier.padding(bottom = tabBarPadding),
-                    onCoursesClick = { navigator.navigate(COURSES_ROUTE) }
+                    onCoursesClick = { navController.navigate(COURSES_ROUTE) }
                 )
             }
-            scene(STATISTICS_ROUTE) {
+            composable(STATISTICS_ROUTE) {
                 StatisticsScreen(
                     navigate = navigate,
                     modifier = Modifier.padding(bottom = tabBarPadding),
-                    onCoursesClick = { navigator.navigate(COURSES_ROUTE) }
+                    onCoursesClick = { navController.navigate(COURSES_ROUTE) }
                 )
             }
-            scene(COURSES_ROUTE) { CoursesScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
-            scene(SETTINGS_ROUTE) { SettingsScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
+            composable(COURSES_ROUTE) { CoursesScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
+            composable(SETTINGS_ROUTE) { SettingsScreen(navigate, Modifier.padding(bottom = tabBarPadding)) }
         }
     }
 }
 
 @Composable
 private fun BottomNavigationBar(
-    navigator: Navigator,
+    navController: NavHostController,
     navigate: (String) -> Unit,
 ) {
-    val currentRoute = navigator.currentEntry.collectAsState(null).value?.route?.route ?: HOME_ROUTE
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route ?: HOME_ROUTE
     val items = listOf(
         BottomNavItem.Home,
         BottomNavItem.Courses,
@@ -106,13 +101,9 @@ private fun BottomNavigationBar(
     }
 }
 
-sealed class BottomNavItem(
-    val title: String,
-    val icon: ImageVector,
-    val route: String,
-) {
-    object Home : BottomNavItem("Home", Icons.Default.Home, HOME_ROUTE)
-    object Courses : BottomNavItem("Courses", Icons.Default.Book, COURSES_ROUTE)
-    object Statistics : BottomNavItem("Statistics", Icons.Default.BarChart, STATISTICS_ROUTE)
-    object Settings : BottomNavItem("Settings", Icons.Default.Settings, SETTINGS_ROUTE)
+sealed class BottomNavItem(val route: String, val title: String, val icon: ImageVector) {
+    object Home : BottomNavItem(HOME_ROUTE, "Home", Icons.Filled.Home)
+    object Courses : BottomNavItem(COURSES_ROUTE, "Courses", Icons.Filled.Book)
+    object Statistics : BottomNavItem(STATISTICS_ROUTE, "Statistics", Icons.Filled.BarChart)
+    object Settings : BottomNavItem(SETTINGS_ROUTE, "Settings", Icons.Filled.Settings)
 }

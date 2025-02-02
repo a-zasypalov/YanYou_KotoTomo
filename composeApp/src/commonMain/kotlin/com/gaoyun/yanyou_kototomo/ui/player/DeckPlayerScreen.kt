@@ -38,15 +38,14 @@ import com.gaoyun.yanyou_kototomo.ui.player.components.QuizButtons
 import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
 import com.gaoyun.yanyou_kototomo.ui.player.components.ResultAnimation
 import com.gaoyun.yanyou_kototomo.ui.player.components.SpaceRepetitionButtons
-import moe.tlaster.precompose.koin.koinViewModel
-import moe.tlaster.precompose.navigation.BackHandler
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun DeckPlayerScreen(
     args: PlayerScreenArgs,
     navigate: (NavigationSideEffect) -> Unit,
 ) {
-    val viewModel = koinViewModel(vmClass = DeckPlayerViewModel::class)
+    val viewModel = koinViewModel<DeckPlayerViewModel>()
 
     LaunchedEffect(Unit) {
         with(args) {
@@ -64,7 +63,7 @@ fun DeckPlayerScreen(
         }
     }
 
-    BackHandler {}
+    //BackHandler {} TODO: BackHandler
 
     SurfaceScaffold(
         backHandler = { navigate(BackNavigationEffect) },

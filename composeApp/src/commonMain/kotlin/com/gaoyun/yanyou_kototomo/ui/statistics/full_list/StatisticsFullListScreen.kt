@@ -34,14 +34,14 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.statistics.StatisticsViewState
 import com.gaoyun.yanyou_kototomo.ui.statistics.components.ProgressStatisticsItem
-import moe.tlaster.precompose.koin.koinViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun StatisticsFullListScreen(
     mode: StatisticsListMode,
     navigate: (NavigationSideEffect) -> Unit,
 ) {
-    val viewModel = koinViewModel(vmClass = StatisticsFullListViewModel::class)
+    val viewModel = koinViewModel<StatisticsFullListViewModel>()
 
     LaunchedEffect(Unit) {
         viewModel.nextPage(mode)

@@ -1,6 +1,8 @@
 package com.gaoyun.yanyou_kototomo.ui
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.gaoyun.yanyou_kototomo.domain.OnboardingInteractor
 import com.gaoyun.yanyou_kototomo.ui.base.ColorsProvider
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppNavigator
@@ -13,8 +15,6 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import moe.tlaster.precompose.viewmodel.ViewModel
-import moe.tlaster.precompose.viewmodel.viewModelScope
 
 const val LAUNCH_LISTEN_FOR_EFFECTS = "app-launch-listen-to-effects"
 

@@ -15,7 +15,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import moe.tlaster.precompose.viewmodel.viewModelScope
+import androidx.lifecycle.viewModelScope
 
 class DeckOverviewViewModel(
     private val getDeck: GetDeck,

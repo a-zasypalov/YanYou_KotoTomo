@@ -32,8 +32,8 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
 import com.gaoyun.yanyou_kototomo.ui.card_details.getCourseMascot
-import moe.tlaster.precompose.koin.koinViewModel
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.viewmodel.koinViewModel
 
 private fun CourseScreenArgs.toDeckOverviewArgs(deckId: DeckId) = DeckScreenArgs(
     learningLanguageId = learningLanguageId,
@@ -47,7 +47,7 @@ fun CourseDecksScreen(
     args: CourseScreenArgs,
     navigate: (NavigationSideEffect) -> Unit,
 ) {
-    val viewModel = koinViewModel(vmClass = CourseDecksViewModel::class)
+    val viewModel = koinViewModel<CourseDecksViewModel>()
 
     LaunchedEffect(Unit) {
         viewModel.getCourseDecks(args.courseId)

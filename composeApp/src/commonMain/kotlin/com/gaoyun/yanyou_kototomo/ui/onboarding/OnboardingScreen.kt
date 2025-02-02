@@ -21,11 +21,11 @@ import com.gaoyun.yanyou_kototomo.ui.onboarding.pages.OnboardingLearningBookmark
 import com.gaoyun.yanyou_kototomo.ui.onboarding.pages.OnboardingReviewQuizPage
 import com.gaoyun.yanyou_kototomo.ui.onboarding.pages.OnboardingWelcomePage
 import kotlinx.coroutines.launch
-import moe.tlaster.precompose.koin.koinViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun OnboardingScreen(navigate: (NavigationSideEffect) -> Unit) {
-    val viewModel = koinViewModel(vmClass = OnboardingViewModel::class)
+    val viewModel = koinViewModel<OnboardingViewModel>()
 
     SurfaceScaffold {
         OnboardingScreenContent(
