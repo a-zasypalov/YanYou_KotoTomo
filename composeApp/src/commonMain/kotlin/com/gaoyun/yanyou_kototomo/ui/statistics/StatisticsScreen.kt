@@ -23,7 +23,7 @@ import com.gaoyun.yanyou_kototomo.ui.statistics.components.CardProgressStatistic
 import com.gaoyun.yanyou_kototomo.ui.statistics.components.QuizSessionStatisticsItem
 import com.gaoyun.yanyou_kototomo.ui.statistics.components.SectionDividerShowMore
 import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsListMode
-import moe.tlaster.precompose.koin.koinViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun StatisticsScreen(
@@ -31,7 +31,7 @@ fun StatisticsScreen(
     modifier: Modifier,
     onCoursesClick: () -> Unit,
 ) {
-    val viewModel = koinViewModel(vmClass = StatisticsViewModel::class)
+    val viewModel = koinViewModel<StatisticsViewModel>()
 
     LaunchedEffect(Unit) {
         viewModel.getStatistics()

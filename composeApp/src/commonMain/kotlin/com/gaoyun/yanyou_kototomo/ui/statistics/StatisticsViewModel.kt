@@ -5,7 +5,7 @@ import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import moe.tlaster.precompose.viewmodel.viewModelScope
+import androidx.lifecycle.viewModelScope
 
 class StatisticsViewModel(
     private val quizInteractor: QuizInteractor,

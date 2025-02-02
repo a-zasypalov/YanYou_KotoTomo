@@ -56,7 +56,7 @@ internal fun CardDetailsView(
         ModalBottomSheet(
             onDismissRequest = onDismiss,
             sheetState = sheetState,
-            windowInsets = WindowInsets(0),
+            //windowInsets = WindowInsets(0),
             modifier = Modifier.padding(horizontal = 8.dp)
         ) {
             Column(

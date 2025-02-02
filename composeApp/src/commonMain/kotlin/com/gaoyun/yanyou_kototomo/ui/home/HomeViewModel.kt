@@ -5,7 +5,7 @@ import com.gaoyun.yanyou_kototomo.domain.GetHomeState
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import moe.tlaster.precompose.viewmodel.viewModelScope
+import androidx.lifecycle.viewModelScope
 
 class HomeViewModel(
     private val getHomeState: GetHomeState,

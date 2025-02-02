@@ -33,7 +33,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
 import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
-import moe.tlaster.precompose.koin.koinViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 
 @Composable
@@ -41,7 +41,7 @@ fun DeckOverviewScreen(
     args: DeckScreenArgs,
     navigate: (NavigationSideEffect) -> Unit,
 ) {
-    val viewModel = koinViewModel(vmClass = DeckOverviewViewModel::class)
+    val viewModel = koinViewModel<DeckOverviewViewModel>()
 
     val cardDetailState = remember { mutableStateOf<CardWithProgress<*>?>(null) }
     val cardDetailPausedState = remember { mutableStateOf<Boolean>(false) }

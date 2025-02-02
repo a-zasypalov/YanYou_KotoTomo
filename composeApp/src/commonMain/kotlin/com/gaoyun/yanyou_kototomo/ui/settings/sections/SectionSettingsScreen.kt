@@ -24,14 +24,14 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSections
 import com.gaoyun.yanyou_kototomo.ui.player.SpacedRepetitionIntervalsInDays
-import moe.tlaster.precompose.koin.koinViewModel
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun SectionSettingsScreen(
     section: SettingsSections,
     navigate: (NavigationSideEffect) -> Unit,
 ) {
-    val viewModel = koinViewModel(vmClass = SettingsSectionsViewModel::class)
+    val viewModel = koinViewModel<SettingsSectionsViewModel>()
 
     LaunchedEffect(Unit) {
         viewModel.getSettings()

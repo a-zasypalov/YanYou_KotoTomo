@@ -6,7 +6,9 @@ import com.gaoyun.yanyou_kototomo.data.remote.CardDTO
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toSimpleDataEntry
 import com.gaoyun.yanyoukototomo.data.persistence.GetDeckNames
 import kotlinx.datetime.LocalDateTime
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class QuizSessionId(val identifier: String)
 
 data class QuizSession(

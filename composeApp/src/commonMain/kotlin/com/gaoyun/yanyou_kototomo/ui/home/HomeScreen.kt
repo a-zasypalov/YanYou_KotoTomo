@@ -41,10 +41,10 @@ import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenCurrentlyLearning
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenEmptyState
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenSectionTitle
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenTitle
-import moe.tlaster.precompose.koin.koinViewModel
 import org.jetbrains.compose.resources.painterResource
 import yanyou_kototomo.composeapp.generated.resources.Res
 import yanyou_kototomo.composeapp.generated.resources.maneki_neko
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun HomeScreen(
@@ -52,7 +52,7 @@ fun HomeScreen(
     onCoursesClick: () -> Unit,
     modifier: Modifier,
 ) {
-    val viewModel = koinViewModel(vmClass = HomeViewModel::class)
+    val viewModel = koinViewModel<HomeViewModel>()
     val cardDetailState = remember { mutableStateOf<CardWithProgress<*>?>(null) }
     val cardDetailLanguageState = remember { mutableStateOf<LanguageId>(LanguageId("cn")) }
 

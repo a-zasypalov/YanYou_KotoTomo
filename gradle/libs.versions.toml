@@ -1,21 +1,22 @@
 [versions]
 agp = "8.7.3"
-android-compileSdk = "34"
+android-compileSdk = "35"
 android-minSdk = "26"
-android-targetSdk = "34"
-androidx-activityCompose = "1.9.3"
+android-targetSdk = "35"
+androidx-activityCompose = "1.10.0"
 androidx-lifecycle = "2.8.4"
-compose-multiplatform = "1.6.11" #Update only after precompose 1.7 release
+compose-multiplatform = "1.7.3"
 kotlin = "2.1.0"
 kotlinSerialization = "1.7.3"
-ktor = "3.0.2"
+ktor = "3.0.3"
 koin = "4.0.0"
 koin-extension = "3.0.2"
 precompose = "1.6.2"
 kotlinDatetime = "0.6.1"
 sqldelight = "1.5.5"
 material = "1.12.0"
-compottie="2.0.0-rc01" #Update to stable as rc02 crashes iOS
+compottie= "2.0.0-rc01" #Update to stable as rc02 crashes iOS
+navigation = "2.8.0-alpha12"
 
 [libraries]
 #Android
@@ -39,7 +40,9 @@ ktor-contentencoding = { module = "io.ktor:ktor-client-encoding", version.ref = 
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx = { module = "io.insert-koin:koin-android-ext", version.ref = "koin-extension" }
-koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
+koin-compose-viewmodel = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koin" }
+koin-compose-viewmodel-navigation = { module = "io.insert-koin:koin-compose-viewmodel-navigation", version.ref = "koin" }
 koin-workmanager = { module = "io.insert-koin:koin-androidx-workmanager", version.ref = "koin" }
 # Sqldelight
 sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight" }
@@ -52,6 +55,7 @@ precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "preco
 #UI
 compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
 compottie-dot = { module = "io.github.alexzhirkevich:compottie-dot", version.ref = "compottie" }
+navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
