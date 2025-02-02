@@ -24,7 +24,6 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSections
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSectionsArgs
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.StatisticsModeArgs
 import com.gaoyun.yanyou_kototomo.ui.player.SpacedRepetitionIntervalsInDays
 import org.koin.compose.viewmodel.koinViewModel
 
