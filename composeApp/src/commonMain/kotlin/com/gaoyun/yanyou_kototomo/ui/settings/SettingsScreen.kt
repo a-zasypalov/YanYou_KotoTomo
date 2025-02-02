@@ -28,6 +28,7 @@ import com.gaoyun.yanyou_kototomo.domain.toStringRes
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSections
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSectionsArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToOnboarding
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToSettingsSection
 import com.gaoyun.yanyou_kototomo.ui.settings.dialogs.CoursesReloadDialog
@@ -64,10 +65,10 @@ fun SettingsScreen(
         SettingsScreenContent(
             modifier = modifier,
             primaryLanguage = stringResource(viewState.primaryLanguageId.toStringRes()),
-            onAppIconClick = { navigate(ToSettingsSection(SettingsSections.AppIcon)) },
-            onColorThemeClick = { navigate(ToSettingsSection(SettingsSections.ColorTheme)) },
-            onAboutAppClick = { navigate(ToSettingsSection(SettingsSections.AboutApp)) },
-            onSpacialRepetitionSettingsClick = { navigate(ToSettingsSection(SettingsSections.SpacialRepetition)) },
+            onAppIconClick = { navigate(ToSettingsSection(SettingsSectionsArgs(SettingsSections.AppIcon))) },
+            onColorThemeClick = { navigate(ToSettingsSection(SettingsSectionsArgs(SettingsSections.ColorTheme))) },
+            onAboutAppClick = { navigate(ToSettingsSection(SettingsSectionsArgs(SettingsSections.AboutApp))) },
+            onSpacialRepetitionSettingsClick = { navigate(ToSettingsSection(SettingsSectionsArgs(SettingsSections.SpacialRepetition))) },
             onOnboardingClick = { navigate(ToOnboarding) },
             onPrimaryLanguageChange = onPrimaryLanguageChangeClick,
             onReloadCoursesClick = { showReloadConfirmation.value = true },

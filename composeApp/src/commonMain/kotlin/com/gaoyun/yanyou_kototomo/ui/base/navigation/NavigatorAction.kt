@@ -1,7 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.base.navigation
 
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.ONBOARDING_ROUTE
-import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsListMode
 import org.koin.core.component.KoinComponent
 
 sealed class NavigatorAction {
@@ -22,8 +21,8 @@ class AppNavigator() : KoinComponent {
         is ToCourse -> NavigatorAction.NavigateTo(call.args)
         is ToDeck -> NavigatorAction.NavigateTo(call.args)
         is ToDeckPlayer -> NavigatorAction.NavigateTo(call.args)
-        is ToStatisticsFullList -> NavigatorAction.NavigateTo(call.mode)
-        is ToSettingsSection -> NavigatorAction.NavigateTo(call.section)
+        is ToStatisticsFullList -> NavigatorAction.NavigateTo(call.args)
+        is ToSettingsSection -> NavigatorAction.NavigateTo(call.args)
         is ToQuizSessionSummary -> NavigatorAction.NavigateToWithBackHandler(
             args = call.args,
             popupTo = when (call.popupTo) {
@@ -48,5 +47,5 @@ class ToCourse(val args: CourseScreenArgs) : NavigationSideEffect
 class ToDeck(val args: DeckScreenArgs) : NavigationSideEffect
 class ToDeckPlayer(val args: PlayerScreenArgs) : NavigationSideEffect
 class ToQuizSessionSummary(val args: QuizSessionSummaryArgs, val popupTo: PlayerBackRoute) : NavigationSideEffect
-class ToStatisticsFullList(val mode: StatisticsListMode) : NavigationSideEffect
-class ToSettingsSection(val section: SettingsSections) : NavigationSideEffect
+class ToStatisticsFullList(val args: StatisticsModeArgs) : NavigationSideEffect
+class ToSettingsSection(val args: SettingsSectionsArgs) : NavigationSideEffect

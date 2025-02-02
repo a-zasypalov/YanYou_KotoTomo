@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -120,39 +121,41 @@ internal fun DeckCard(
         modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 2.dp)
     ) {
-        Box(modifier = Modifier
-            .wrapContentHeight()
-            .platformStyleClickable { onClick() }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .platformStyleClickable { onClick() }
         ) {
+            nextReviewDate?.let {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.End),
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth().padding(end = 8.dp, top = 4.dp)
+                ) {
+                    Text(
+                        text = it.toReviewRelativeShortFormat(),
+                        style = MaterialTheme.typography.bodySmall.copy(
+                            fontStyle = FontStyle.Italic,
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+                    )
+                    Icon(
+                        imageVector = Icons.Default.EventRepeat,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                        modifier = Modifier.size(10.dp)
+                    )
+                }
+            }
+
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .padding(contentPadding),
+                    .fillMaxSize()
+                    .padding(contentPadding)
+                    .padding(top = 16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-                nextReviewDate?.let {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.End),
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth().padding(end = 8.dp, top = 4.dp)
-                    ) {
-                        Text(
-                            text = it.toReviewRelativeShortFormat(),
-                            style = MaterialTheme.typography.bodySmall.copy(
-                                fontStyle = FontStyle.Italic,
-                                color = MaterialTheme.colorScheme.onSurface
-                            )
-                        )
-                        Icon(
-                            imageVector = Icons.Default.EventRepeat,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                            modifier = Modifier.size(10.dp)
-                        )
-                    }
-                }
                 content()
             }
         }

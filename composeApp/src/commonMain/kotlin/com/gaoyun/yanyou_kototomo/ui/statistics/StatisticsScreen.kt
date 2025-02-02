@@ -17,6 +17,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.StatisticsModeArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToStatisticsFullList
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenEmptyState
 import com.gaoyun.yanyou_kototomo.ui.statistics.components.CardProgressStatisticsItem
@@ -40,8 +41,8 @@ fun StatisticsScreen(
     StatisticsScreenContent(
         content = viewModel.viewState.collectAsState().value,
         modifier = modifier,
-        onShowMoreCards = { navigate(ToStatisticsFullList(StatisticsListMode.Cards)) },
-        onShowMoreQuizzes = { navigate(ToStatisticsFullList(StatisticsListMode.Quizzes)) },
+        onShowMoreCards = { navigate(ToStatisticsFullList(StatisticsModeArgs(StatisticsListMode.Cards))) },
+        onShowMoreQuizzes = { navigate(ToStatisticsFullList(StatisticsModeArgs(StatisticsListMode.Quizzes))) },
         onCoursesClick = onCoursesClick,
     )
 }

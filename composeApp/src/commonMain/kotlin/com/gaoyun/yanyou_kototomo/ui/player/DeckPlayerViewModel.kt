@@ -154,7 +154,15 @@ class DeckPlayerViewModel(
     fun getPossibleAnswersFor(card: Card, deck: Deck): List<String> {
         val correctAnswer = getAnswerFor(card)
         val clearedDeck = deck.cards.map { it.card }.toMutableList().also { it.remove(card) }
-        val allAnswers = clearedDeck.shuffled().take(3).map { getAnswerFor(it) } + correctAnswer
+
+        val possibleAnswers = when(card) {
+            is Card.KanaCard -> clearedDeck.filter { it is Card.KanaCard}
+            is Card.WordCard,
+            is Card.PhraseCard,
+            is Card.KanjiCard -> clearedDeck.filterNot { it is Card.KanaCard}
+        }
+
+        val allAnswers = possibleAnswers.shuffled().take(3).map { getAnswerFor(it) } + correctAnswer
         return allAnswers.shuffled()
     }
 
