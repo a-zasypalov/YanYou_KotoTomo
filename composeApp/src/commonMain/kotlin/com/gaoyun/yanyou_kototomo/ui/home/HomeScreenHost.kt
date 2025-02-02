@@ -1,5 +1,9 @@
 package com.gaoyun.yanyou_kototomo.ui.home
 
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.navigationBars
@@ -49,7 +53,11 @@ fun HomeScreenHost(navigate: (NavigationSideEffect) -> Unit) {
     }) {
         NavHost(
             navController = navController,
-            startDestination = HOME_ROUTE
+            startDestination = HOME_ROUTE,
+            enterTransition = { fadeIn(spring(stiffness = Spring.StiffnessMedium)) },
+            exitTransition = { fadeOut(spring(stiffness = Spring.StiffnessMedium)) },
+            popEnterTransition = { fadeIn(spring(stiffness = Spring.StiffnessMedium)) },
+            popExitTransition = { fadeOut(spring(stiffness = Spring.StiffnessMedium)) },
         ) {
             composable(HOME_ROUTE) {
                 HomeScreen(

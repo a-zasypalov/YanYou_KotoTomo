@@ -1,9 +1,17 @@
 package com.gaoyun.yanyou_kototomo.ui
 
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.VisibilityThreshold
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -73,7 +81,43 @@ fun App() {
 fun NavigationGraph(navController: NavHostController, viewModel: AppViewModel) {
     NavHost(
         navController = navController,
-        startDestination = viewModel.getStartRoute()
+        startDestination = viewModel.getStartRoute(),
+        enterTransition = {
+            fadeIn() + slideInHorizontally(
+                animationSpec = spring(
+                    stiffness = Spring.StiffnessMediumLow,
+                    visibilityThreshold = IntOffset.VisibilityThreshold
+                ),
+                initialOffsetX = { it }
+            )
+        },
+        exitTransition = {
+            fadeOut(targetAlpha = 0f) + slideOutHorizontally(
+                animationSpec = spring(
+                    stiffness = Spring.StiffnessMediumLow,
+                    visibilityThreshold = IntOffset.VisibilityThreshold
+                ),
+                targetOffsetX = { -it }
+            )
+        },
+        popEnterTransition = {
+            fadeIn() + slideInHorizontally(
+                animationSpec = spring(
+                    stiffness = Spring.StiffnessMediumLow,
+                    visibilityThreshold = IntOffset.VisibilityThreshold
+                ),
+                initialOffsetX = { -it }
+            )
+        },
+        popExitTransition = {
+            fadeOut(targetAlpha = 0f) + slideOutHorizontally(
+                animationSpec = spring(
+                    stiffness = Spring.StiffnessMediumLow,
+                    visibilityThreshold = IntOffset.VisibilityThreshold
+                ),
+                targetOffsetX = { it }
+            )
+        },
     ) {
         composable(ONBOARDING_ROUTE) {
             OnboardingScreen(viewModel::navigate)
