@@ -191,6 +191,7 @@ fun DeckOverviewCard(
                 showTranscription = settings.showTranscription,
                 showTranslation = settings.showTranslation,
                 onClick = { onCardClick(cardWithProgress) },
+                intervalInDays = cardWithProgress.progress?.interval,
                 nextReviewDate = cardWithProgress.progress?.nextReview,
                 modifier = modifier
             )
@@ -200,6 +201,7 @@ fun DeckOverviewCard(
                 card = card,
                 showTranscription = settings.showTranscription,
                 showTranslation = settings.showTranslation,
+                intervalInDays = cardWithProgress.progress?.interval,
                 nextReviewDate = cardWithProgress.progress?.nextReview,
                 onClick = { onCardClick(cardWithProgress) },
                 modifier = modifier
@@ -211,6 +213,7 @@ fun DeckOverviewCard(
                 showTranscription = settings.showTranscription,
                 showTranslation = settings.showTranslation,
                 showReading = settings.showReading,
+                intervalInDays = cardWithProgress.progress?.interval,
                 nextReviewDate = cardWithProgress.progress?.nextReview,
                 onClick = { onCardClick(cardWithProgress) },
                 modifier = modifier
@@ -220,6 +223,7 @@ fun DeckOverviewCard(
             DeckOverviewKanaCard(
                 card = card,
                 showTranscription = settings.showTranscription,
+                intervalInDays = cardWithProgress.progress?.interval,
                 nextReviewDate = cardWithProgress.progress?.nextReview,
                 onClick = { onCardClick(cardWithProgress) },
                 modifier = modifier
