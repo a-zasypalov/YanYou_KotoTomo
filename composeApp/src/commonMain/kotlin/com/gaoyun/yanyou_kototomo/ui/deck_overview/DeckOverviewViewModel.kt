@@ -1,5 +1,8 @@
 package com.gaoyun.yanyou_kototomo.ui.deck_overview
 
+import androidx.compose.ui.util.fastAny
+import androidx.lifecycle.viewModelScope
+import com.gaoyun.yanyou_kototomo.data.local.CardId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
@@ -15,7 +18,6 @@ import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import androidx.lifecycle.viewModelScope
 
 class DeckOverviewViewModel(
     private val getDeck: GetDeck,
@@ -194,7 +196,9 @@ data class DeckOverviewState(
     val cardsDueToReview: Int,
     val isCurrentlyLearned: Boolean,
     val isBookmarked: Boolean,
-)
+) {
+    fun isCardPaused(cardId: CardId) = pausedCards.fastAny { it.card.id == cardId }
+}
 
 data class DeckPart(
     val kanji: List<CardWithProgress<Card.KanjiCard>>,

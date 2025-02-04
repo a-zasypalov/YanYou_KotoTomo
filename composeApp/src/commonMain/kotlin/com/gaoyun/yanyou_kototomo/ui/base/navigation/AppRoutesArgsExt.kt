@@ -68,8 +68,12 @@ enum class PlayerMode {
 }
 
 @Serializable
-enum class PlayerBackRoute {
-    Home, Deck
+sealed class PlayerBackRoute {
+    @Serializable
+    object Home : PlayerBackRoute()
+
+    @Serializable
+    data class Deck(val args: DeckScreenArgs) : PlayerBackRoute()
 }
 
 @Serializable
