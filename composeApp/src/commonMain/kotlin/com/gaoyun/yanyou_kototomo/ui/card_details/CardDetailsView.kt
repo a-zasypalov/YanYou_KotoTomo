@@ -1,16 +1,18 @@
 package com.gaoyun.yanyou_kototomo.ui.card_details
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Undo
 import androidx.compose.material.icons.filled.EventRepeat
@@ -36,10 +38,14 @@ import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
+import com.gaoyun.yanyou_kototomo.domain.mapIntervalToColor
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.util.toRelativeFormat
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.pluralStringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.current_interval_days
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -56,7 +62,6 @@ internal fun CardDetailsView(
         ModalBottomSheet(
             onDismissRequest = onDismiss,
             sheetState = sheetState,
-            //windowInsets = WindowInsets(0),
             modifier = Modifier.padding(horizontal = 8.dp)
         ) {
             Column(
@@ -66,14 +71,29 @@ internal fun CardDetailsView(
                     .fillMaxWidth()
                     .fillMaxHeight(0.8f)
             ) {
-                cardWithProgress.progress?.nextReview?.let { nextReviewDate ->
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.End),
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+                ) {
+                    cardWithProgress.progress?.let { progress ->
+                        val nextReviewDate = progress.nextReview
+                        val interval = progress.interval
+
+                        Box(modifier = Modifier.size(20.dp).background(color = mapIntervalToColor(interval), shape = CircleShape))
+
                         Text(
-                            text = "review ${nextReviewDate.toRelativeFormat()}",
+                            text = pluralStringResource(Res.plurals.current_interval_days, interval, interval),
+                            style = MaterialTheme.typography.bodyMedium.copy(
+                                fontStyle = FontStyle.Italic,
+                                color = MaterialTheme.colorScheme.onSurface
+                            )
+                        )
+
+                        Spacer(modifier = Modifier.weight(1f))
+
+                        Text(
+                            text = "Review ${nextReviewDate.toRelativeFormat()}",
                             style = MaterialTheme.typography.bodyMedium.copy(
                                 fontStyle = FontStyle.Italic,
                                 color = MaterialTheme.colorScheme.onSurface

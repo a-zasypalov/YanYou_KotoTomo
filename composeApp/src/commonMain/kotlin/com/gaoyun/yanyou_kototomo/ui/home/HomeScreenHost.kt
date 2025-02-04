@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -93,7 +94,15 @@ private fun BottomNavigationBar(
         BottomNavItem.Settings
     )
 
-    NavigationBar(containerColor = MaterialTheme.colorScheme.background) {
+    NavigationBar(
+        containerColor = MaterialTheme.colorScheme.background,
+        tonalElevation = 8.dp,
+        modifier = Modifier.shadow(
+            elevation = 24.dp,
+            shape = MaterialTheme.shapes.large,
+            clip = true,
+        ),
+    ) {
         items.forEach { item ->
             NavigationBarItem(
                 selected = item.route == currentRoute,
