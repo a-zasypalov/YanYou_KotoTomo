@@ -15,11 +15,12 @@ import kotlinx.datetime.LocalDate
 fun DeckOverviewWordCard(
     card: Card.WordCard,
     showTranslation: Boolean,
+    intervalInDays: Int?,
     nextReviewDate: LocalDate?,
     showTranscription: Boolean,
     onClick: () -> Unit, modifier: Modifier = Modifier,
 ) {
-    DeckCard(nextReviewDate = nextReviewDate, onClick = onClick, modifier = modifier.height(180.dp)) {
+    DeckCard(nextReviewDate = nextReviewDate, intervalInDays = intervalInDays, onClick = onClick, modifier = modifier.height(180.dp)) {
         CardFront(card.front, modifier = Modifier.weight(1f))
         AnimatedVisibility(visible = showTranscription) { Transcription(card.transcription) }
         AnimatedVisibility(visible = showTranscription && showTranslation) {
@@ -33,12 +34,14 @@ fun DeckOverviewWordCard(
 fun DeckOverviewKanaCard(
     card: Card.KanaCard,
     showTranscription: Boolean,
+    intervalInDays: Int?,
     nextReviewDate: LocalDate?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     DeckCard(
         nextReviewDate = nextReviewDate,
+        intervalInDays = intervalInDays,
         showDate = false,
         onClick = onClick,
         modifier = modifier.height(100.dp),
@@ -61,11 +64,12 @@ fun DeckOverviewKanjiCard(
     showTranslation: Boolean,
     showTranscription: Boolean,
     showReading: Boolean,
+    intervalInDays: Int?,
     nextReviewDate: LocalDate?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    DeckCard(nextReviewDate = nextReviewDate, onClick = onClick, modifier = modifier.height(180.dp)) {
+    DeckCard(nextReviewDate = nextReviewDate, intervalInDays = intervalInDays, onClick = onClick, modifier = modifier.height(180.dp)) {
         CardFront(
             front = card.front,
             modifier = Modifier.weight(1f),
@@ -95,11 +99,12 @@ fun DeckOverviewPhraseCard(
     card: Card.PhraseCard,
     showTranslation: Boolean,
     showTranscription: Boolean,
+    intervalInDays: Int?,
     nextReviewDate: LocalDate?,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    DeckCard(nextReviewDate = nextReviewDate, onClick = onClick, modifier = modifier.height(180.dp)) {
+    DeckCard(nextReviewDate = nextReviewDate, intervalInDays = intervalInDays, onClick = onClick, modifier = modifier.height(180.dp)) {
         CardFront(card.front, modifier = Modifier.weight(1f))
         AnimatedVisibility(visible = showTranscription) { Transcription(card.transcription) }
         AnimatedVisibility(visible = showTranscription && showTranslation) {
