@@ -37,8 +37,14 @@ fun DeckOverviewKanaCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    DeckCard(nextReviewDate = nextReviewDate, onClick = onClick, modifier = modifier.height(100.dp), contentPadding = 0.dp) {
-        CardFront(front = card.front, dynamic = false, style = MaterialTheme.typography.displayMedium)
+    DeckCard(
+        nextReviewDate = nextReviewDate,
+        showDate = false,
+        onClick = onClick,
+        modifier = modifier.height(100.dp),
+        contentPadding = 0.dp
+    ) {
+        CardFront(front = card.front, dynamic = false, style = MaterialTheme.typography.displayMedium, modifier = Modifier.weight(1f))
         AnimatedVisibility(visible = showTranscription) {
             Transcription(
                 transcription = "[${card.transcription}] ${card.mirror.front}",

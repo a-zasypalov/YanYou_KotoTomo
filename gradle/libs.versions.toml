@@ -11,7 +11,6 @@ kotlinSerialization = "1.7.3"
 ktor = "3.0.3"
 koin = "4.0.0"
 koin-extension = "3.0.2"
-precompose = "1.6.2"
 kotlinDatetime = "0.6.1"
 sqldelight = "1.5.5"
 material = "1.12.0"
@@ -48,10 +47,6 @@ koin-workmanager = { module = "io.insert-koin:koin-androidx-workmanager", versio
 sqldelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqldelight" }
 sqldelight-androidDriver = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqldelight" }
 sqldelight-nativeDriver = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqldelight" }
-# Precompose
-precompose = { module = "moe.tlaster:precompose", version.ref = "precompose" }
-precompose-viewmodel = { module = "moe.tlaster:precompose-viewmodel", version.ref = "precompose" }
-precompose-koin = { module = "moe.tlaster:precompose-koin", version.ref = "precompose" }
 #UI
 compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
 compottie-dot = { module = "io.github.alexzhirkevich:compottie-dot", version.ref = "compottie" }

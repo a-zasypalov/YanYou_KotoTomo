@@ -54,8 +54,10 @@ fun App() {
                 is NavigatorAction.PopTo -> navController.popBackStack(action.path, action.inclusive)
                 is NavigatorAction.NavigateToPath -> navController.navigate(action.path)
                 is NavigatorAction.NavigateTo<*> -> navController.navigate(action.args)
-                is NavigatorAction.NavigateToWithBackHandler<*> -> {
-                    navController.navigate(action.args) { popUpTo(action.popupTo) { inclusive = action.inclusive } }
+                is NavigatorAction.NavigateToWithBackHandler<*, *> -> {
+                    navController.navigate(action.args) {
+                        popUpTo(action.popupTo) { inclusive = action.inclusive }
+                    }
                 }
 
                 is NavigatorAction.NavigateToPathWithBackHandler -> {

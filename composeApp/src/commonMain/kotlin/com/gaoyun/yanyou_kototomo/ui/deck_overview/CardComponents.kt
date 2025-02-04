@@ -76,7 +76,10 @@ internal fun ColumnScope.CardFront(
                 text = front,
                 fontSizeRange = FontSizeRange(min = 16.sp, max = fontSizeMax),
                 style = style.copy(
-                    fontWeight = FontWeight.Medium,
+                    fontWeight = when {
+                        front.length <= 3 -> FontWeight.Medium
+                        else -> FontWeight.SemiBold
+                    },
                     fontSize = fontSizeMax
                 ),
                 maxLines = 1,
@@ -115,6 +118,7 @@ internal fun DeckCard(
     onClick: () -> Unit,
     contentPadding: Dp = 8.dp,
     nextReviewDate: LocalDate?,
+    showDate: Boolean = true,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     ElevatedCard(
@@ -132,13 +136,14 @@ internal fun DeckCard(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.fillMaxWidth().padding(end = 8.dp, top = 4.dp)
                 ) {
-                    Text(
+                    if (showDate) Text(
                         text = it.toReviewRelativeShortFormat(),
-                        style = MaterialTheme.typography.bodySmall.copy(
+                        style = MaterialTheme.typography.labelSmall.copy(
                             fontStyle = FontStyle.Italic,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                     )
+
                     Icon(
                         imageVector = Icons.Default.EventRepeat,
                         contentDescription = null,
@@ -151,12 +156,13 @@ internal fun DeckCard(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(contentPadding)
-                    .padding(top = 16.dp),
+                    .padding(contentPadding),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceBetween
+//                verticalArrangement = Arrangement.SpaceBetween
             ) {
+//                Spacer(modifier = Modifier.size(2.dp))
                 content()
+//                Spacer(modifier = Modifier.size(2.dp))
             }
         }
     }

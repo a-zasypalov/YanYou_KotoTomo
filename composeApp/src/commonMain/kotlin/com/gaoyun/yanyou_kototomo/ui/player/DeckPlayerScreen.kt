@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
+import com.gaoyun.yanyou_kototomo.ui.base.BlockedBackHandler
 import com.gaoyun.yanyou_kototomo.ui.base.composables.BackButtonType
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
@@ -63,7 +64,7 @@ fun DeckPlayerScreen(
         }
     }
 
-    //BackHandler {} TODO: BackHandler
+    BlockedBackHandler()
 
     SurfaceScaffold(
         backHandler = { navigate(BackNavigationEffect) },

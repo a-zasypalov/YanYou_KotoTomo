@@ -5,9 +5,9 @@ import org.koin.core.component.KoinComponent
 
 sealed class NavigatorAction {
     class NavigateToPath(val path: String) : NavigatorAction()
-    class NavigateTo<T: Any>(val args: T) : NavigatorAction()
+    class NavigateTo<T : Any>(val args: T) : NavigatorAction()
     class NavigateToPathWithBackHandler(val path: String, val popupTo: String, val inclusive: Boolean = false) : NavigatorAction()
-    class NavigateToWithBackHandler<T: Any>(val args: T, val popupTo: String, val inclusive: Boolean = false) : NavigatorAction()
+    class NavigateToWithBackHandler<T : Any, P : Any>(val args: T, val popupTo: P, val inclusive: Boolean = false) : NavigatorAction()
     data object NavigateBack : NavigatorAction()
     class PopTo(val path: String, val inclusive: Boolean) : NavigatorAction()
 }
@@ -26,7 +26,7 @@ class AppNavigator() : KoinComponent {
         is ToQuizSessionSummary -> NavigatorAction.NavigateToWithBackHandler(
             args = call.args,
             popupTo = when (call.popupTo) {
-                PlayerBackRoute.Deck -> AppRoutes.DECK_OVERVIEW_ROUTE
+                is PlayerBackRoute.Deck -> call.popupTo.args
                 PlayerBackRoute.Home -> AppRoutes.HOME_HOST_ROUTE
             }
         )

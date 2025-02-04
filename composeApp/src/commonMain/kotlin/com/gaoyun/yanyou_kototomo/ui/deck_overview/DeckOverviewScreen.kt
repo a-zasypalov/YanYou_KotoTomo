@@ -80,7 +80,7 @@ fun DeckOverviewScreen(
                 cardDetailState.value = cardToShow
                 cardDetailPausedState.value = paused
             },
-            onPlayDeckClick = { mode -> navigate(ToDeckPlayer(args.toPlayerArgs(mode, PlayerBackRoute.Deck))) },
+            onPlayDeckClick = { mode -> navigate(ToDeckPlayer(args.toPlayerArgs(mode, PlayerBackRoute.Deck(args)))) },
             updateTranslationSettings = viewModel::updateTranslationSettings,
             updateTranscriptionSettings = viewModel::updateTranscriptionSettings,
             updateReadingSettings = viewModel::updateReadingSettings,
@@ -176,7 +176,7 @@ private fun DeckOverviewContent(
                     else -> DeckOverviewNormalSegmentedDeck(
                         viewState = viewState,
                         cellsNumber = cellsNumber,
-                        onCardClick = { onCardClick(it, viewState.pausedCards.contains(it)) },
+                        onCardClick = { onCardClick(it, viewState.isCardPaused(it.card.id)) },
                         updateShowNewWords = updateShowNewWords,
                         updateShowNewPhrases = updateShowNewPhrases,
                         updateShowToReviewCards = updateShowToReviewCards,
