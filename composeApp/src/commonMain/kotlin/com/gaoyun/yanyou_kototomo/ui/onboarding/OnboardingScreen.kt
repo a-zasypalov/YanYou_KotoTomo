@@ -15,6 +15,7 @@ import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToHomeScreen
+import com.gaoyun.yanyou_kototomo.ui.onboarding.pages.OnboardingCardProgressPage
 import com.gaoyun.yanyou_kototomo.ui.onboarding.pages.OnboardingCardShowcasePage
 import com.gaoyun.yanyou_kototomo.ui.onboarding.pages.OnboardingLanguageChooserPage
 import com.gaoyun.yanyou_kototomo.ui.onboarding.pages.OnboardingLearningBookmarksPage
@@ -44,7 +45,7 @@ private fun OnboardingScreenContent(
     onPrimaryLanguageChosen: (LanguageId) -> Unit,
     onFinish: () -> Unit,
 ) {
-    val state = rememberPagerState(pageCount = { return@rememberPagerState 5 })
+    val state = rememberPagerState(pageCount = { return@rememberPagerState 6 })
     val scope = rememberCoroutineScope()
 
     fun nextPage() {
@@ -69,7 +70,8 @@ private fun OnboardingScreenContent(
                 1 -> OnboardingLanguageChooserPage { onPrimaryLanguageChosen(it); nextPage() }
                 2 -> OnboardingLearningBookmarksPage { nextPage() }
                 3 -> OnboardingReviewQuizPage { nextPage() }
-                4 -> OnboardingCardShowcasePage(onFinish)
+                4 -> OnboardingCardShowcasePage { nextPage() }
+                5 -> OnboardingCardProgressPage(onFinish)
             }
         }
     }
