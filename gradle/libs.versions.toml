@@ -1,12 +1,15 @@
 [versions]
 agp = "8.7.3"
+
 android-compileSdk = "35"
 android-minSdk = "26"
 android-targetSdk = "35"
+
+kotlin = "2.1.0"
+compose-multiplatform = "1.8.0-alpha02"
+
 androidx-activityCompose = "1.10.0"
 androidx-lifecycle = "2.8.4"
-compose-multiplatform = "1.7.3"
-kotlin = "2.1.0"
 kotlinSerialization = "1.7.3"
 ktor = "3.0.3"
 koin = "4.0.0"
@@ -14,7 +17,7 @@ koin-extension = "3.0.2"
 kotlinDatetime = "0.6.1"
 sqldelight = "1.5.5"
 material = "1.12.0"
-compottie= "2.0.0-rc01" #Update to stable as rc02 crashes iOS
+compottie = "2.0.0-rc04" #Update to stable as rc02 crashes iOS
 navigation = "2.8.0-alpha12"
 
 [libraries]

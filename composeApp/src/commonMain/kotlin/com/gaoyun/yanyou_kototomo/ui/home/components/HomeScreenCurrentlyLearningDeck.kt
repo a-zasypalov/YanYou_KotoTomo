@@ -25,10 +25,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.countForReview
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckWithCourseInfo
+import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
+import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.ui.base.courseCardColor
 import com.gaoyun.yanyou_kototomo.ui.card_details.getCourseMascot
@@ -63,11 +66,13 @@ fun HomeScreenCurrentlyLearningDeck(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Column(modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)) {
-                    Text(
+                Column(modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp).weight(5f)) {
+                    AutoResizeText(
                         text = deckWithInfo.deck.name,
                         color = courseTextColor,
                         style = MaterialTheme.typography.headlineLarge,
+                        maxLines = 1,
+                        fontSizeRange = FontSizeRange(min = 24.sp, max = MaterialTheme.typography.headlineLarge.fontSize),
                     )
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -102,7 +107,7 @@ fun HomeScreenCurrentlyLearningDeck(
                     contentDescription = null,
                     alpha = 0.6f,
                     colorFilter = ColorFilter.tint(courseTextColor),
-                    modifier = Modifier.heightIn(max = 56.dp).padding(end = 16.dp)
+                    modifier = Modifier.heightIn(max = 56.dp).padding(end = 16.dp).weight(1f)
                 )
             }
 

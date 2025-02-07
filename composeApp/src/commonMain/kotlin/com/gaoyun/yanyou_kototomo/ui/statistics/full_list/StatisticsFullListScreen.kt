@@ -104,7 +104,7 @@ private fun StatisticsFullListScreenContent(
                 AnimatedVisibility(
                     visible = true, // Handles fade-out when removed
                     exit = fadeOut() + shrinkVertically(),
-                    modifier = Modifier.animateItemPlacement() // Smooth reordering
+                    modifier = Modifier.animateItem() // Smooth reordering
                 ) {
                     SwipeToDismissQuizSessionItem(
                         session = session,

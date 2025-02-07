@@ -35,6 +35,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToQuizSessionSummary
 import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerFront
+import com.gaoyun.yanyou_kototomo.ui.player.components.CatAnimation
 import com.gaoyun.yanyou_kototomo.ui.player.components.QuizButtons
 import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
 import com.gaoyun.yanyou_kototomo.ui.player.components.ResultAnimation
@@ -150,6 +151,7 @@ private fun DeckPlayerScreenContent(
                     )
                 }
             }
+            CatAnimation(modifier = Modifier.padding(top = 24.dp))
             when (mode) {
                 PlayerMode.SpacialRepetition -> SpaceRepetitionButtons(
                     currentCardState = currentCardState,
