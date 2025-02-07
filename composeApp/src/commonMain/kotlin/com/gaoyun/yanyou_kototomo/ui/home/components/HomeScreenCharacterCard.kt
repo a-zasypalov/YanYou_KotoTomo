@@ -33,7 +33,7 @@ fun HomeScreenCharacterCard(card: CardWithProgress<*>, languageId: LanguageId, o
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize().padding(2.dp)
             ) {
                 Text(
                     text = card.card.front,
