@@ -35,12 +35,25 @@ class CardsAndProgressRepository(
 
     fun updateProgress(progress: CardProgress, deckId: DeckId) {
         db.card_progressQueries.updateCardProgress(
-            lastReviewed = progress.lastReviewed.toString(),
-            interval = progress.interval.toLong(),
-            easeFactor = progress.easeFactor.toDouble(),
-            nextReview = progress.nextReview.toString(),
+            lastReviewed = progress.lastReviewed?.toString(),
+            interval = progress.interval?.toLong(),
+            easeFactor = progress.easeFactor?.toDouble(),
+            nextReview = progress.nextReview?.toString(),
             card_id = progress.cardId,
             deck_id = deckId.identifier,
+            completed = progress.completed
+        )
+    }
+
+    fun updateCardCompletion(cardId: CardId, deckId: DeckId, completed: Boolean) {
+        db.card_progressQueries.updateCardProgress(
+            lastReviewed = null,
+            interval = null,
+            easeFactor = null,
+            nextReview = null,
+            card_id = cardId.identifier,
+            deck_id = deckId.identifier,
+            completed = completed
         )
     }
 

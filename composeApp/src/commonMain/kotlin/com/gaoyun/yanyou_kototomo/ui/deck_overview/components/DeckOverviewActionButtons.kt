@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui.deck_overview
+package com.gaoyun.yanyou_kototomo.ui.deck_overview.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxScope

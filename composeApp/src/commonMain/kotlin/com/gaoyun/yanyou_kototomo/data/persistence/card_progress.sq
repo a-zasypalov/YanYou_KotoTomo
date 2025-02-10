@@ -1,10 +1,13 @@
+import kotlin.Boolean;
+
 CREATE TABLE CardProgress (
     card_id TEXT PRIMARY KEY,      -- Card ID
     deck_id TEXT NOT NULL REFERENCES DecksPersisted(id) ON DELETE CASCADE,
-    lastReviewed TEXT NOT NULL,    -- LocalDate of the last review
-    interval INTEGER NOT NULL,     -- Current interval in days
-    easeFactor REAL NOT NULL,      -- Ease factor (default: 2.5)
-    nextReview TEXT NOT NULL       -- LocalDate for the next review
+    lastReviewed TEXT,    -- LocalDate of the last review
+    interval INTEGER,     -- Current interval in days
+    easeFactor REAL,      -- Ease factor (default: 2.5)
+    nextReview TEXT,       -- LocalDate for the next review
+    completed INTEGER AS Boolean
 );
 
 getAllCardsProgress:
@@ -15,8 +18,8 @@ getDeckProgress:
 SELECT * FROM CardProgress WHERE deck_id = ?;
 
 updateCardProgress:
-INSERT OR REPLACE INTO CardProgress (card_id, deck_id, lastReviewed, interval, easeFactor, nextReview)
-VALUES (?, ?, ?, ?, ?, ?);
+INSERT OR REPLACE INTO CardProgress (card_id, deck_id, lastReviewed, interval, easeFactor, nextReview, completed)
+VALUES (?, ?, ?, ?, ?, ?, ?);
 
 removeProgressForDeck:
 DELETE FROM CardProgress WHERE deck_id = ?;

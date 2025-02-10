@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui.deck_overview
+package com.gaoyun.yanyou_kototomo.ui.deck_overview.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -30,7 +30,7 @@ fun DeckOptionsMenu(
 
     Box {
         Row {
-            if(!isKanaDeck) {
+            if (!isKanaDeck) {
                 IconButton(
                     modifier = Modifier.padding(horizontal = 4.dp),
                     onClick = onEditDeck

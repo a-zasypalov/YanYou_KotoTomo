@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui.deck_overview
+package com.gaoyun.yanyou_kototomo.ui.deck_overview.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewState
 
 @Composable
 fun DeckOverviewHeader(

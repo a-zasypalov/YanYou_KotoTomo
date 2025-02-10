@@ -1,10 +1,9 @@
-package com.gaoyun.yanyou_kototomo.ui.deck_overview
+package com.gaoyun.yanyou_kototomo.ui.deck_overview.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -168,11 +167,11 @@ fun PausedItemCard(
                 )
             }
 
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(4.dp)
-            ) {
-                cardWithProgress.progress?.let { progress ->
+            cardWithProgress.progress?.nextReview?.let { nextReview ->
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(4.dp)
@@ -184,15 +183,15 @@ fun PausedItemCard(
                             modifier = Modifier.size(16.dp)
                         )
                         Text(
-                            text = progress.nextReview.toReviewRelativeShortFormat(),
+                            text = nextReview.toReviewRelativeShortFormat(),
                             style = MaterialTheme.typography.bodySmall,
                         )
                     }
+                    Checkbox(
+                        checked = !paused,
+                        onCheckedChange = { onChangePausedState(cardWithProgress) }
+                    )
                 }
-                Checkbox(
-                    checked = !paused,
-                    onCheckedChange = { onChangePausedState(cardWithProgress) }
-                )
             }
         }
     }

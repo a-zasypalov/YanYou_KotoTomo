@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.gaoyun.yanyou_kototomo.data.local.CardId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
+import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.countForReview
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
@@ -27,6 +28,13 @@ class DeckOverviewViewModel(
     private val bookmarksInteractor: BookmarksInteractor,
 ) : BaseViewModel() {
 
+    data class DeckSplitResult(
+        val newCards: DeckPart,
+        val cardsToReview: List<CardWithProgress<*>>,
+        val pausedCards: List<CardWithProgress<*>>,
+        val completedCards: List<CardWithProgress<*>>,
+    )
+
     override val viewState = MutableStateFlow<DeckOverviewState?>(null)
     val bookmarksState = MutableStateFlow(mutableListOf<CourseDeck>())
     val bookmarkState = MutableStateFlow<CourseDeck?>(null)
@@ -46,16 +54,17 @@ class DeckOverviewViewModel(
                 bookmarksState.value = bookmarks.toMutableList()
                 bookmarkState.value = bookmarks.find { it.id == deck.id }
 
-                val (newCards, cardsToReview, pausedCards) = splitDeckToNewReviewPaused(deck.cards, settings)
-                val cardsDueToReview = deck.cards.count { it.progress.countForReview() && !pausedCards.contains(it) }
+                val deckSplitResult = splitDeckToNewReviewPaused(deck.cards, settings)
+                val cardsDueToReview = deck.cards.count { it.progress.countForReview() && !deckSplitResult.pausedCards.contains(it) }
 
                 viewState.value = DeckOverviewState(
                     deckId = deck.id,
                     deckName = deck.name,
                     allCards = deck.cards,
-                    newCards = newCards,
-                    cardsToReview = cardsToReview,
-                    pausedCards = pausedCards,
+                    newCards = deckSplitResult.newCards,
+                    cardsToReview = deckSplitResult.cardsToReview,
+                    pausedCards = deckSplitResult.pausedCards,
+                    completedCards = deckSplitResult.completedCards,
                     settings = settings,
                     cardsDueToReview = cardsDueToReview,
                     isBookmarked = bookmarkState.value != null,
@@ -69,7 +78,7 @@ class DeckOverviewViewModel(
     fun splitDeckToNewReviewPaused(
         cards: List<CardWithProgress<*>>,
         settings: DeckSettings,
-    ): Triple<DeckPart, List<CardWithProgress<*>>, List<CardWithProgress<*>>> {
+    ): DeckSplitResult {
         val pausedCardIds = settings.pausedCards.toSet()
         val pausedCards = mutableListOf<CardWithProgress<*>>()
         val cardsToReview = mutableListOf<CardWithProgress<*>>()
@@ -77,11 +86,13 @@ class DeckOverviewViewModel(
         val newPhrases = mutableListOf<CardWithProgress<Card.PhraseCard>>()
         val newKanji = mutableListOf<CardWithProgress<Card.KanjiCard>>()
         val newKana = mutableListOf<CardWithProgress<Card.KanaCard>>()
+        val completedCards = mutableListOf<CardWithProgress<*>>()
 
         for (card in cards) {
             when {
                 pausedCardIds.contains(card.card.id.identifier) -> pausedCards.add(card)
-                card.progress != null && card.card !is Card.KanaCard -> cardsToReview.add(card)
+                card.progress != null && !card.progress.completed && card.card !is Card.KanaCard -> cardsToReview.add(card)
+                card.progress?.completed == true && card.card !is Card.KanaCard -> completedCards.add(card)
                 else -> when (card.card) {
                     is Card.WordCard -> newWords.add(card as CardWithProgress<Card.WordCard>)
                     is Card.PhraseCard -> newPhrases.add(card as CardWithProgress<Card.PhraseCard>)
@@ -91,7 +102,12 @@ class DeckOverviewViewModel(
             }
         }
 
-        return Triple(DeckPart(newKanji, newWords, newPhrases, newKana), cardsToReview.sortedBy { it.progress?.nextReview }, pausedCards)
+        return DeckSplitResult(
+            newCards = DeckPart(newKanji, newWords, newPhrases, newKana),
+            cardsToReview = cardsToReview.sortedBy { it.progress?.nextReview },
+            pausedCards = pausedCards,
+            completedCards = completedCards
+        )
     }
 
     fun updateTranslationSettings(show: Boolean) = viewModelScope.launch {
@@ -148,6 +164,30 @@ class DeckOverviewViewModel(
         }
     }
 
+    fun completeCard(card: CardWithProgress<*>, complete: Boolean) = viewModelScope.launch {
+        viewState.value?.let { viewStateSafe ->
+            val cardInDeck = viewStateSafe.allCards.find { it.card.id == card.card.id }
+            val updatedCard = if (complete) {
+                cardInDeck?.copy(progress = cardInDeck.progress?.copy(completed = complete) ?: CardProgress.completedCard(card.card.id))
+            } else {
+                cardInDeck?.copy(progress = null)
+            }
+            val updatedAllCards = viewStateSafe.allCards.map { if (it.card.id == card.card.id) updatedCard ?: it else it }
+
+            cardProgressUpdater.updateCardCompletion(card.card.id, viewStateSafe.deckId, complete)
+
+            val deckSplitResult = splitDeckToNewReviewPaused(updatedAllCards, viewStateSafe.settings)
+
+            viewState.value = viewStateSafe.copy(
+                newCards = deckSplitResult.newCards,
+                cardsToReview = deckSplitResult.cardsToReview,
+                pausedCards = deckSplitResult.pausedCards,
+                completedCards = deckSplitResult.completedCards,
+                cardsDueToReview = viewStateSafe.allCards.count { it.progress.countForReview() && !deckSplitResult.pausedCards.contains(it) },
+            )
+        }
+    }
+
     fun updateBookmarkedState(bookmarked: Boolean) = viewModelScope.launch {
         if (bookmarked) {
             viewState.value?.deckId?.let { bookmarksInteractor.addDeck(it, bookmarksState.value) }
@@ -171,6 +211,7 @@ class DeckOverviewViewModel(
     fun updateShowNewPhrases(show: Boolean) = updateDeckSettingsSectionSetting(DeckSettings.Sections.NewPhrases, show)
     fun updateShowToReviewCards(show: Boolean) = updateDeckSettingsSectionSetting(DeckSettings.Sections.Review, show)
     fun updateShowPausedCards(show: Boolean) = updateDeckSettingsSectionSetting(DeckSettings.Sections.Paused, show)
+    fun updateShowCompletedCards(show: Boolean) = updateDeckSettingsSectionSetting(DeckSettings.Sections.Completed, show)
     fun updateShowKanjiCards(show: Boolean) = updateDeckSettingsSectionSetting(DeckSettings.Sections.Kanji, show)
 
     fun updateDeckSettingsSectionSetting(section: DeckSettings.Sections, show: Boolean) = viewModelScope.launch {
@@ -192,6 +233,7 @@ data class DeckOverviewState(
     val newCards: DeckPart,
     val cardsToReview: List<CardWithProgress<*>>,
     val pausedCards: List<CardWithProgress<*>>,
+    val completedCards: List<CardWithProgress<*>>,
     val settings: DeckSettings,
     val cardsDueToReview: Int,
     val isCurrentlyLearned: Boolean,

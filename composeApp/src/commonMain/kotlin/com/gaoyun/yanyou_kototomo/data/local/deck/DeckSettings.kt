@@ -21,5 +21,5 @@ data class DeckSettings(
         )
     }
 
-    enum class Sections { Kanji, NewWords, NewPhrases, Review, Paused }
+    enum class Sections { Kanji, NewWords, NewPhrases, Review, Paused, Completed }
 }
