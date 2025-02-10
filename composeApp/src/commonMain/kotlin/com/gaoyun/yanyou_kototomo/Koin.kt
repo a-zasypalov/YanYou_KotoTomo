@@ -8,6 +8,7 @@ import com.gaoyun.yanyou_kototomo.domain.AllDataReset
 import com.gaoyun.yanyou_kototomo.domain.BookmarksInteractor
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
+import com.gaoyun.yanyou_kototomo.domain.GetBookmarksState
 import com.gaoyun.yanyou_kototomo.domain.GetCardProgress
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
@@ -28,6 +29,7 @@ import com.gaoyun.yanyou_kototomo.repository.QuizSessionRepository
 import com.gaoyun.yanyou_kototomo.ui.AppViewModel
 import com.gaoyun.yanyou_kototomo.ui.base.ColorsProvider
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppNavigator
+import com.gaoyun.yanyou_kototomo.ui.bookmarks.BookmarksViewModel
 import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksViewModel
 import com.gaoyun.yanyou_kototomo.ui.courses.CoursesViewModel
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewViewModel
@@ -107,6 +109,7 @@ val useCaseModule = module {
     single { AllDataReset(get(), get()) }
     single { OnboardingInteractor(get()) }
     single { SpacialRepetitionSettingsInteractor(get()) }
+    single { GetBookmarksState(get(), get(), get(), get()) }
 }
 
 val viewModelModule = module {
@@ -123,6 +126,7 @@ val viewModelModule = module {
     factory { SettingsSectionsViewModel(get(), get(), get(), get()) }
     factory { SettingsViewModel(get(), get(), get()) }
     factory { OnboardingViewModel(get()) }
+    factory { BookmarksViewModel(get(), get()) }
 }
 
 val dbModule = module {

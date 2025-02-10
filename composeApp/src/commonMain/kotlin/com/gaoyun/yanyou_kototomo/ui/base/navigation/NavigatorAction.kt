@@ -1,5 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.base.navigation
 
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.BOOKMARKS_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.ONBOARDING_ROUTE
 import org.koin.core.component.KoinComponent
 
@@ -18,6 +19,7 @@ object BackNavigationEffect : NavigationSideEffect
 class AppNavigator() : KoinComponent {
     fun navigate(call: NavigationSideEffect): NavigatorAction? = when (call) {
         is ToOnboarding -> NavigatorAction.NavigateToPath(ONBOARDING_ROUTE)
+        is ToBookmarks -> NavigatorAction.NavigateToPath(BOOKMARKS_ROUTE)
         is ToCourse -> NavigatorAction.NavigateTo(call.args)
         is ToDeck -> NavigatorAction.NavigateTo(call.args)
         is ToDeckPlayer -> NavigatorAction.NavigateTo(call.args)
@@ -43,6 +45,7 @@ class AppNavigator() : KoinComponent {
 
 object ToHomeScreen : NavigationSideEffect
 object ToOnboarding : NavigationSideEffect
+object ToBookmarks : NavigationSideEffect
 class ToCourse(val args: CourseScreenArgs) : NavigationSideEffect
 class ToDeck(val args: DeckScreenArgs) : NavigationSideEffect
 class ToDeckPlayer(val args: PlayerScreenArgs) : NavigationSideEffect
