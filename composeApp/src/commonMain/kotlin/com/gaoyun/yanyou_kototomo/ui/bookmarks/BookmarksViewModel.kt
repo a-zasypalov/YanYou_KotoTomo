@@ -19,6 +19,7 @@ class BookmarksViewModel(
     val bookmarksState = MutableStateFlow(listOf<CourseDeck>())
 
     fun getBookmarksState() = viewModelScope.launch {
+        bookmarksState.value = bookmarksInteractor.getBookmarkedDecks()
         viewState.value = getBookmarksState.get()
     }
 
