@@ -168,7 +168,7 @@ class DeckOverviewViewModel(
         viewState.value?.let { viewStateSafe ->
             val cardInDeck = viewStateSafe.allCards.find { it.card.id == card.card.id }
             val updatedCard = if (complete) {
-                cardInDeck?.copy(progress = cardInDeck.progress?.copy(completed = complete) ?: CardProgress.completedCard(card.card.id))
+                cardInDeck?.copy(progress = CardProgress.completedCard(card.card.id))
             } else {
                 cardInDeck?.copy(progress = null)
             }

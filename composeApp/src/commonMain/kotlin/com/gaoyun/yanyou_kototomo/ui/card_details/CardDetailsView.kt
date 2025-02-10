@@ -91,36 +91,8 @@ internal fun CardDetailsView(
                     modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
                 ) {
                     cardWithProgress.progress?.let { progress ->
-                        progress.interval?.let { interval ->
-                            Box(modifier = Modifier.size(20.dp).background(color = mapIntervalToColor(interval), shape = CircleShape))
-
-                            Text(
-                                text = pluralStringResource(Res.plurals.current_interval_days, interval, interval),
-                                style = MaterialTheme.typography.bodyMedium.copy(
-                                    fontStyle = FontStyle.Italic,
-                                    color = MaterialTheme.colorScheme.onSurface
-                                )
-                            )
-                        }
-
-                        Spacer(modifier = Modifier.weight(1f))
-
-                        progress.nextReview?.let { nextReviewDate ->
-                            Text(
-                                text = "Review ${nextReviewDate.toRelativeFormat()}",
-                                style = MaterialTheme.typography.bodyMedium.copy(
-                                    fontStyle = FontStyle.Italic,
-                                    color = MaterialTheme.colorScheme.onSurface
-                                )
-                            )
-                            Icon(
-                                imageVector = Icons.Default.EventRepeat,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
-                            )
-                        }
-
-                        if (progress.completed) {
+                        if (completed.value) {
+                            Spacer(modifier = Modifier.weight(1f))
                             Text(
                                 text = "Completed",
                                 style = MaterialTheme.typography.bodyMedium.copy(
@@ -133,6 +105,35 @@ internal fun CardDetailsView(
                                 contentDescription = null,
                                 tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
                             )
+                        } else {
+                            progress.interval?.let { interval ->
+                                Box(modifier = Modifier.size(20.dp).background(color = mapIntervalToColor(interval), shape = CircleShape))
+
+                                Text(
+                                    text = pluralStringResource(Res.plurals.current_interval_days, interval, interval),
+                                    style = MaterialTheme.typography.bodyMedium.copy(
+                                        fontStyle = FontStyle.Italic,
+                                        color = MaterialTheme.colorScheme.onSurface
+                                    )
+                                )
+                            }
+
+                            Spacer(modifier = Modifier.weight(1f))
+
+                            progress.nextReview?.let { nextReviewDate ->
+                                Text(
+                                    text = "Review ${nextReviewDate.toRelativeFormat()}",
+                                    style = MaterialTheme.typography.bodyMedium.copy(
+                                        fontStyle = FontStyle.Italic,
+                                        color = MaterialTheme.colorScheme.onSurface
+                                    )
+                                )
+                                Icon(
+                                    imageVector = Icons.Default.EventRepeat,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                                )
+                            }
                         }
                     }
                 }
