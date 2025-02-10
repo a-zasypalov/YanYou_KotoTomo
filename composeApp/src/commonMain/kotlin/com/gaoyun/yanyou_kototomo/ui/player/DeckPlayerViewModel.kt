@@ -1,5 +1,6 @@
 package com.gaoyun.yanyou_kototomo.ui.player
 
+import androidx.lifecycle.viewModelScope
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
@@ -25,7 +26,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.datetime.LocalDateTime
-import androidx.lifecycle.viewModelScope
 
 class DeckPlayerViewModel(
     private val getDeck: GetDeck,
@@ -131,6 +131,7 @@ class DeckPlayerViewModel(
                 easeFactor = newEaseFactor,
                 lastReviewed = reviewDate,
                 interval = intervalDays,
+                completed = currentCard.progress?.completed == true
             )
         )
         nextCard()
@@ -155,11 +156,12 @@ class DeckPlayerViewModel(
         val correctAnswer = getAnswerFor(card)
         val clearedDeck = deck.cards.map { it.card }.toMutableList().also { it.remove(card) }
 
-        val possibleAnswers = when(card) {
-            is Card.KanaCard -> clearedDeck.filter { it is Card.KanaCard}
+        val possibleAnswers = when (card) {
+            is Card.KanaCard -> clearedDeck.filter { it is Card.KanaCard }
             is Card.WordCard,
             is Card.PhraseCard,
-            is Card.KanjiCard -> clearedDeck.filterNot { it is Card.KanaCard}
+            is Card.KanjiCard,
+                -> clearedDeck.filterNot { it is Card.KanaCard }
         }
 
         val allAnswers = possibleAnswers.shuffled().take(3).map { getAnswerFor(it) } + correctAnswer

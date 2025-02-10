@@ -33,6 +33,13 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
 import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOptionsMenu
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOverviewActionButtons
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOverviewHeader
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOverviewKanaDeck
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOverviewMixedKanaDeck
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOverviewNormalSegmentedDeck
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckPausedItemsSettingsView
 import org.koin.compose.viewmodel.koinViewModel
 
 
@@ -45,6 +52,7 @@ fun DeckOverviewScreen(
 
     val cardDetailState = remember { mutableStateOf<CardWithProgress<*>?>(null) }
     val cardDetailPausedState = remember { mutableStateOf<Boolean>(false) }
+    val cardDetailCompletedState = remember { mutableStateOf<Boolean>(false) }
 
     val pausedCardsSettingState = remember { mutableStateOf<List<CardWithProgress<*>>?>(null) }
     val pausedCardsState = remember { mutableStateOf<List<CardWithProgress<*>>?>(null) }
@@ -79,6 +87,7 @@ fun DeckOverviewScreen(
             onCardClick = { cardToShow, paused ->
                 cardDetailState.value = cardToShow
                 cardDetailPausedState.value = paused
+                cardDetailCompletedState.value = cardToShow.progress?.completed == true
             },
             onPlayDeckClick = { mode -> navigate(ToDeckPlayer(args.toPlayerArgs(mode, PlayerBackRoute.Deck(args)))) },
             updateTranslationSettings = viewModel::updateTranslationSettings,
@@ -90,13 +99,16 @@ fun DeckOverviewScreen(
             updateShowNewPhrases = viewModel::updateShowNewPhrases,
             updateShowToReviewCards = viewModel::updateShowToReviewCards,
             updateShowPausedCards = viewModel::updateShowPausedCards,
+            updateShowCompletedCards = viewModel::updateShowCompletedCards,
             updateShowKanjiCards = viewModel::updateShowKanjiCards,
         )
         CardDetailsView(
             cardState = cardDetailState,
             paused = cardDetailPausedState,
+            completed = cardDetailCompletedState,
             languageId = args.learningLanguageId,
             onCardPause = viewModel::pauseCard,
+            onCardComplete = viewModel::completeCard,
             onDismiss = { cardDetailState.value = null }
         )
         DeckPausedItemsSettingsView(
@@ -123,6 +135,7 @@ private fun DeckOverviewContent(
     updateShowNewPhrases: (Boolean) -> Unit,
     updateShowToReviewCards: (Boolean) -> Unit,
     updateShowPausedCards: (Boolean) -> Unit,
+    updateShowCompletedCards: (Boolean) -> Unit,
     updateShowKanjiCards: (Boolean) -> Unit,
 ) {
     val state = rememberLazyGridState()
@@ -171,6 +184,7 @@ private fun DeckOverviewContent(
                         updateShowNewWords = updateShowNewWords,
                         updateShowToReviewCards = updateShowToReviewCards,
                         updateShowPausedCards = updateShowPausedCards,
+                        updateShowCompletedCards = updateShowCompletedCards,
                     )
 
                     else -> DeckOverviewNormalSegmentedDeck(
@@ -181,7 +195,8 @@ private fun DeckOverviewContent(
                         updateShowNewPhrases = updateShowNewPhrases,
                         updateShowToReviewCards = updateShowToReviewCards,
                         updateShowPausedCards = updateShowPausedCards,
-                        updateShowKanji = updateShowKanjiCards
+                        updateShowKanji = updateShowKanjiCards,
+                        updateShowCompletedCards = updateShowCompletedCards
                     )
                 }
 

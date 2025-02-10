@@ -24,7 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
-import com.gaoyun.yanyou_kototomo.ui.deck_overview.LearnButton
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.LearnButton
 
 @Composable
 fun OnboardingLearningBookmarksPage(onNextPage: () -> Unit) {

@@ -14,6 +14,7 @@ class GetCardProgress(
 
         return cardDTOs.mapNotNull { cardWithDeckNames ->
             progresses.find { it.cardId == cardWithDeckNames.first.id }?.let {
+                if (it.completed) return@mapNotNull null //Don't take completed cards
                 cardWithDeckNames.first.toSimpleDataEntryWithProgress(it)
             }
         }

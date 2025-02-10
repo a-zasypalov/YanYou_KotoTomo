@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -15,14 +16,17 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Undo
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.EventRepeat
 import androidx.compose.material.icons.filled.Pause
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -35,6 +39,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.DialogProperties
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
@@ -53,12 +58,21 @@ internal fun CardDetailsView(
     cardState: State<CardWithProgress<*>?>,
     languageId: LanguageId,
     paused: MutableState<Boolean> = mutableStateOf(false),
+    completed: MutableState<Boolean> = mutableStateOf(false),
     onCardPause: ((CardWithProgress<*>, Boolean) -> Unit)? = null,
+    onCardComplete: ((CardWithProgress<*>, Boolean) -> Unit)? = null,
     onDismiss: () -> Unit,
 ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    val cardCompleteDialogVisibleState = remember { mutableStateOf(false) }
 
     cardState.value?.let { cardWithProgress ->
+
+        CardCompleteDialog(cardCompleteDialogVisibleState) {
+            onCardComplete?.invoke(cardWithProgress, !completed.value)
+            completed.value = !completed.value
+        }
+
         ModalBottomSheet(
             onDismissRequest = onDismiss,
             sheetState = sheetState,
@@ -77,33 +91,49 @@ internal fun CardDetailsView(
                     modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
                 ) {
                     cardWithProgress.progress?.let { progress ->
-                        val nextReviewDate = progress.nextReview
-                        val interval = progress.interval
+                        progress.interval?.let { interval ->
+                            Box(modifier = Modifier.size(20.dp).background(color = mapIntervalToColor(interval), shape = CircleShape))
 
-                        Box(modifier = Modifier.size(20.dp).background(color = mapIntervalToColor(interval), shape = CircleShape))
-
-                        Text(
-                            text = pluralStringResource(Res.plurals.current_interval_days, interval, interval),
-                            style = MaterialTheme.typography.bodyMedium.copy(
-                                fontStyle = FontStyle.Italic,
-                                color = MaterialTheme.colorScheme.onSurface
+                            Text(
+                                text = pluralStringResource(Res.plurals.current_interval_days, interval, interval),
+                                style = MaterialTheme.typography.bodyMedium.copy(
+                                    fontStyle = FontStyle.Italic,
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
                             )
-                        )
+                        }
 
                         Spacer(modifier = Modifier.weight(1f))
 
-                        Text(
-                            text = "Review ${nextReviewDate.toRelativeFormat()}",
-                            style = MaterialTheme.typography.bodyMedium.copy(
-                                fontStyle = FontStyle.Italic,
-                                color = MaterialTheme.colorScheme.onSurface
+                        progress.nextReview?.let { nextReviewDate ->
+                            Text(
+                                text = "Review ${nextReviewDate.toRelativeFormat()}",
+                                style = MaterialTheme.typography.bodyMedium.copy(
+                                    fontStyle = FontStyle.Italic,
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
                             )
-                        )
-                        Icon(
-                            imageVector = Icons.Default.EventRepeat,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
-                        )
+                            Icon(
+                                imageVector = Icons.Default.EventRepeat,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+                            )
+                        }
+
+                        if (progress.completed) {
+                            Text(
+                                text = "Completed",
+                                style = MaterialTheme.typography.bodyMedium.copy(
+                                    fontStyle = FontStyle.Italic,
+                                    color = MaterialTheme.colorScheme.onSurface
+                                )
+                            )
+                            Icon(
+                                imageVector = Icons.Default.Check,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                            )
+                        }
                     }
                 }
 
@@ -116,10 +146,22 @@ internal fun CardDetailsView(
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                if (cardWithProgress.card !is Card.KanaCard && onCardPause != null) {
-                    CardPauseButton(paused.value, modifier = Modifier.fillMaxWidth()) {
-                        onCardPause(cardWithProgress, !paused.value)
-                        paused.value = !paused.value
+                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally)) {
+                    if (cardWithProgress.card !is Card.KanaCard && completed.value != true && onCardPause != null) {
+                        CardPauseButton(paused.value, modifier = Modifier.weight(1f)) {
+                            onCardPause(cardWithProgress, !paused.value)
+                            paused.value = !paused.value
+                        }
+                    }
+                    if (paused.value != true && onCardComplete != null) {
+                        CardCompleteButton(completed.value, modifier = Modifier.weight(1f)) {
+                            if (completed.value) {
+                                onCardComplete.invoke(cardWithProgress, !completed.value)
+                                completed.value = !completed.value
+                            } else {
+                                cardCompleteDialogVisibleState.value = true
+                            }
+                        }
                     }
                 }
 
@@ -144,6 +186,7 @@ private fun CardPauseButton(paused: Boolean, modifier: Modifier = Modifier, onCl
     if (paused) {
         PrimaryElevatedButton(
             text = "Bring back to deck",
+            contentPadding = PaddingValues(8.dp),
             onClick = onClick,
             leadingIcon = Icons.AutoMirrored.Default.Undo,
             modifier = modifier
@@ -151,8 +194,30 @@ private fun CardPauseButton(paused: Boolean, modifier: Modifier = Modifier, onCl
     } else {
         PrimaryElevatedButton(
             text = "Pause this card",
+            contentPadding = PaddingValues(8.dp),
             onClick = onClick,
             leadingIcon = Icons.Default.Pause,
+            modifier = modifier
+        )
+    }
+}
+
+@Composable
+private fun CardCompleteButton(completed: Boolean, modifier: Modifier = Modifier, onClick: () -> Unit) {
+    if (completed) {
+        PrimaryElevatedButton(
+            text = "Reset card",
+            contentPadding = PaddingValues(8.dp),
+            onClick = onClick,
+            leadingIcon = Icons.AutoMirrored.Default.Undo,
+            modifier = modifier
+        )
+    } else {
+        PrimaryElevatedButton(
+            text = "Complete card",
+            onClick = onClick,
+            contentPadding = PaddingValues(8.dp),
+            leadingIcon = Icons.Default.Check,
             colors = ButtonDefaults.elevatedButtonColors(
                 containerColor = MaterialTheme.colorScheme.tertiary,
                 contentColor = MaterialTheme.colorScheme.onTertiary
@@ -202,4 +267,29 @@ private fun ColumnScope.CardDetailsPhraseCard(card: Card.PhraseCard) {
     Divider(2.dp, Modifier.padding(vertical = 4.dp))
     CardDetailsTranslation(card.translation, modifier = Modifier.fillMaxWidth())
     card.additionalInfo?.let { CardDetailsAdditionalInfo(it) }
+}
+
+@Composable
+fun CardCompleteDialog(showDialog: MutableState<Boolean>, onCompleteConfirmed: () -> Unit) {
+    if (showDialog.value) {
+        AlertDialog(
+            onDismissRequest = { showDialog.value = false },
+            confirmButton = {
+                TextButton(onClick = {
+                    showDialog.value = false
+                    onCompleteConfirmed()
+                }) {
+                    Text("Complete")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDialog.value = false }) {
+                    Text("Cancel")
+                }
+            },
+            title = { Text("Confirm card completion") },
+            text = { Text("After completing the card, review progress will be reset, but you can always start learning it again.") },
+            properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
+        )
+    }
 }

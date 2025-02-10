@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui.deck_overview
+package com.gaoyun.yanyou_kototomo.ui.deck_overview.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Arrangement
@@ -21,6 +21,7 @@ import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewState
 
 data class CardOverviewCategory(
     val name: String,
@@ -56,6 +57,7 @@ fun LazyGridScope.DeckOverviewMixedKanaDeck(
     updateShowNewWords: (Boolean) -> Unit,
     updateShowToReviewCards: (Boolean) -> Unit,
     updateShowPausedCards: (Boolean) -> Unit,
+    updateShowCompletedCards: (Boolean) -> Unit,
 ) {
     val gojuonCards = viewState.allCards.filter { (it.card as? Card.KanaCard)?.set == Card.KanaCard.Set.Gojuon }
     val dakuonCards = viewState.allCards.filter { (it.card as? Card.KanaCard)?.set == Card.KanaCard.Set.DakuonHandakuon }
@@ -64,6 +66,7 @@ fun LazyGridScope.DeckOverviewMixedKanaDeck(
     val showNewWords = viewState.settings.hiddenSections.contains(DeckSettings.Sections.NewWords).not()
     val showToReviewCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Review).not()
     val showPausedCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Paused).not()
+    val showCompletedCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Completed).not()
 
     val categories = listOf(
         CardOverviewCategory(name = "Gojuon", cards = gojuonCards, span = 3),
@@ -92,6 +95,14 @@ fun LazyGridScope.DeckOverviewMixedKanaDeck(
             isShown = showPausedCards,
             visibilityToggle = updateShowPausedCards,
             span = 5
+        ),
+        CardOverviewCategory(
+            name = "✓ Completed",
+            cards = viewState.completedCards,
+            type = CardCategoryType.Completed,
+            isShown = showCompletedCards,
+            visibilityToggle = updateShowCompletedCards,
+            span = 5
         )
     )
 
@@ -107,6 +118,7 @@ fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
     updateShowNewPhrases: (Boolean) -> Unit,
     updateShowToReviewCards: (Boolean) -> Unit,
     updateShowPausedCards: (Boolean) -> Unit,
+    updateShowCompletedCards: (Boolean) -> Unit,
     updateShowKanji: (Boolean) -> Unit,
 ) {
     val showNewKanji = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Kanji).not()
@@ -114,13 +126,21 @@ fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
     val showNewPhrases = viewState.settings.hiddenSections.contains(DeckSettings.Sections.NewPhrases).not()
     val showToReviewCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Review).not()
     val showPausedCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Paused).not()
+    val showCompletedCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Completed).not()
 
     val categories = listOf(
         CardOverviewCategory("New Kanji", viewState.newCards.kanji, CardCategoryType.New, showNewKanji, updateShowKanji),
         CardOverviewCategory("New words", viewState.newCards.words, CardCategoryType.New, showNewWords, updateShowNewWords),
         CardOverviewCategory("New phrases", viewState.newCards.phrases, CardCategoryType.New, showNewPhrases, updateShowNewPhrases),
         CardOverviewCategory("To Review", viewState.cardsToReview, CardCategoryType.ToReview, showToReviewCards, updateShowToReviewCards),
-        CardOverviewCategory("Paused", viewState.pausedCards, CardCategoryType.Paused, showPausedCards, updateShowPausedCards)
+        CardOverviewCategory("Paused", viewState.pausedCards, CardCategoryType.Paused, showPausedCards, updateShowPausedCards),
+        CardOverviewCategory(
+            "✓ Completed",
+            viewState.completedCards,
+            CardCategoryType.Completed,
+            showCompletedCards,
+            updateShowCompletedCards
+        )
     )
 
     DeckOverviewCategories(categories, cellsNumber, viewState.settings, onCardClick)
@@ -158,7 +178,7 @@ fun LazyGridScope.DeckOverviewCategories(
     }
 }
 
-enum class CardCategoryType { New, ToReview, Paused }
+enum class CardCategoryType { New, ToReview, Paused, Completed }
 
 @Composable
 fun DeckOverviewCategoryHeader(name: String, isOpen: Boolean, onOpenToggle: ((Boolean) -> Unit)?) {
@@ -193,6 +213,7 @@ fun DeckOverviewCard(
                 onClick = { onCardClick(cardWithProgress) },
                 intervalInDays = cardWithProgress.progress?.interval,
                 nextReviewDate = cardWithProgress.progress?.nextReview,
+                completed = cardWithProgress.progress?.completed == true,
                 modifier = modifier
             )
 
@@ -203,6 +224,7 @@ fun DeckOverviewCard(
                 showTranslation = settings.showTranslation,
                 intervalInDays = cardWithProgress.progress?.interval,
                 nextReviewDate = cardWithProgress.progress?.nextReview,
+                completed = cardWithProgress.progress?.completed == true,
                 onClick = { onCardClick(cardWithProgress) },
                 modifier = modifier
             )
@@ -215,6 +237,7 @@ fun DeckOverviewCard(
                 showReading = settings.showReading,
                 intervalInDays = cardWithProgress.progress?.interval,
                 nextReviewDate = cardWithProgress.progress?.nextReview,
+                completed = cardWithProgress.progress?.completed == true,
                 onClick = { onCardClick(cardWithProgress) },
                 modifier = modifier
             )
@@ -225,6 +248,7 @@ fun DeckOverviewCard(
                 showTranscription = settings.showTranscription,
                 intervalInDays = cardWithProgress.progress?.interval,
                 nextReviewDate = cardWithProgress.progress?.nextReview,
+                completed = cardWithProgress.progress?.completed == true,
                 onClick = { onCardClick(cardWithProgress) },
                 modifier = modifier
             )

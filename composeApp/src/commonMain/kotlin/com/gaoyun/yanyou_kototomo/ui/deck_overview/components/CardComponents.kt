@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui.deck_overview
+package com.gaoyun.yanyou_kototomo.ui.deck_overview.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.EventRepeat
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
@@ -122,6 +123,7 @@ internal fun DeckCard(
     contentPadding: Dp = 8.dp,
     intervalInDays: Int?,
     nextReviewDate: LocalDate?,
+    completed: Boolean,
     showDate: Boolean = true,
     content: @Composable ColumnScope.() -> Unit,
 ) {
@@ -134,12 +136,12 @@ internal fun DeckCard(
                 .fillMaxSize()
                 .platformStyleClickable { onClick() }
         ) {
-            intervalInDays?.let {
-                Row(
-                    horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.End),
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.fillMaxWidth().padding(end = 6.dp, top = 6.dp)
-                ) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.End),
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth().padding(end = 6.dp, top = 6.dp)
+            ) {
+                intervalInDays?.let {
                     val color = mapIntervalToColor(it)
                     if (showDate && nextReviewDate != null) {
                         Text(
@@ -157,6 +159,14 @@ internal fun DeckCard(
                         )
                     }
                     Box(modifier = Modifier.size(6.dp).background(color = color, shape = CircleShape))
+                }
+                if (completed) {
+                    Icon(
+                        imageVector = Icons.Default.Check,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                        modifier = Modifier.size(10.dp)
+                    )
                 }
             }
 

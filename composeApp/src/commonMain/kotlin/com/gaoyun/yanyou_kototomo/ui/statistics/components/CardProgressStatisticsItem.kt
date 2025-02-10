@@ -68,25 +68,29 @@ fun ProgressStatisticsItem(card: CardSimpleDataEntryWithProgress) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
-            Icon(
-                imageVector = Icons.Default.EventRepeat,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                modifier = Modifier.size(16.dp)
-            )
-            Text(
-                text = card.progress.nextReview.toRelativeFormat(),
-                style = MaterialTheme.typography.bodySmall,
-            )
+            card.progress.nextReview?.let { nextReview ->
+                Icon(
+                    imageVector = Icons.Default.EventRepeat,
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                    modifier = Modifier.size(16.dp)
+                )
+                Text(
+                    text = card.progress.nextReview.toRelativeFormat(),
+                    style = MaterialTheme.typography.bodySmall,
+                )
+            }
 
             Spacer(Modifier.weight(1f))
 
-            Text(
-                text = pluralStringResource(Res.plurals.current_interval_days, card.progress.interval, card.progress.interval),
-                style = MaterialTheme.typography.bodySmall,
-            )
+            card.progress.interval?.let { interval ->
+                Text(
+                    text = pluralStringResource(Res.plurals.current_interval_days, interval, interval),
+                    style = MaterialTheme.typography.bodySmall,
+                )
 
-            Box(modifier = Modifier.size(12.dp).background(color = mapIntervalToColor(card.progress.interval), shape = CircleShape))
+                Box(modifier = Modifier.size(12.dp).background(color = mapIntervalToColor(interval), shape = CircleShape))
+            }
         }
     }
 }
