@@ -19,6 +19,7 @@ sqldelight = "1.5.5"
 material = "1.12.0"
 compottie = "2.0.0-rc04" #Update to stable as rc02 crashes iOS
 navigation = "2.8.0-alpha12"
+reorderable = "2.4.3"
 
 [libraries]
 #Android
@@ -54,6 +55,7 @@ sqldelight-nativeDriver = { module = "com.squareup.sqldelight:native-driver", ve
 compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
 compottie-dot = { module = "io.github.alexzhirkevich:compottie-dot", version.ref = "compottie" }
 navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation" }
+reorderable = { module = "sh.calvin.reorderable:reorderable", version.ref = "reorderable" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

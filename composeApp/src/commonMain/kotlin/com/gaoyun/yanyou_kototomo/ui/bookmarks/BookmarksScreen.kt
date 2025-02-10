@@ -5,7 +5,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -29,6 +29,8 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
 import org.koin.compose.viewmodel.koinViewModel
+import sh.calvin.reorderable.ReorderableItem
+import sh.calvin.reorderable.rememberReorderableLazyListState
 
 @Composable
 fun BookmarksScreen(
@@ -44,6 +46,7 @@ fun BookmarksScreen(
         BookmarksScreenContent(
             viewState = viewModel.viewState.collectAsState().value,
             onRemoveBookmark = viewModel::removeBookmark,
+            onReorder = viewModel::onReorder,
             onBookmarkClick = {
                 navigate(
                     ToDeck(
@@ -65,10 +68,19 @@ fun BookmarksScreenContent(
     viewState: List<DeckWithCourseInfo>,
     onRemoveBookmark: (DeckId) -> Unit,
     onBookmarkClick: (DeckWithCourseInfo) -> Unit,
+    onReorder: (Int, Int) -> Unit,
 ) {
+    val titleItems = 1
     val listState = rememberLazyListState()
-
     val animatedBookmarks = remember { mutableStateListOf<DeckWithCourseInfo>() }
+
+    val reorderableLazyListState = rememberReorderableLazyListState(listState) { from, to ->
+        animatedBookmarks.apply {
+            add(to.index - titleItems, removeAt(from.index - titleItems))
+            onReorder(from.index - titleItems, to.index - titleItems)
+        }
+    }
+
     LaunchedEffect(viewState) {
         val toAdd = viewState.filterNot { animatedBookmarks.contains(it) }
         val toRemove = animatedBookmarks.filterNot { viewState.contains(it) }
@@ -78,7 +90,7 @@ fun BookmarksScreenContent(
 
     LazyColumn(
         state = listState,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         item {
@@ -91,16 +103,18 @@ fun BookmarksScreenContent(
         }
 
         itemsIndexed(animatedBookmarks, key = { index, bookmark -> bookmark.deck.id.identifier }) { index, bookmark ->
-            AnimatedVisibility(
-                visible = true, // Handles fade-out when removed
-                exit = fadeOut() + shrinkVertically(),
-                modifier = Modifier.animateItem() // Smooth reordering
-            ) {
-                SwipeToDismissBookmarkItem(
-                    bookmark = bookmark,
-                    onClick = { onBookmarkClick(it) },
-                    onDelete = { onRemoveBookmark(bookmark.deck.id) }
-                )
+            ReorderableItem(reorderableLazyListState, key = bookmark.deck.id.identifier) { isDragging ->
+                AnimatedVisibility(
+                    visible = true, // Handles fade-out when removed
+                    exit = fadeOut() + shrinkVertically(),
+                    modifier = Modifier.animateItem() // Smooth reordering
+                ) {
+                    SwipeToDismissBookmarkItem(
+                        bookmark = bookmark,
+                        onClick = { onBookmarkClick(it) },
+                        onDelete = { onRemoveBookmark(bookmark.deck.id) }
+                    )
+                }
             }
         }
 
