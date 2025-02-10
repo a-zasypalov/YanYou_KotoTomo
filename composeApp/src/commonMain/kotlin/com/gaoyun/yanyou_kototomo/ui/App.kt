@@ -18,6 +18,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.BOOKMARKS_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.HOME_HOST_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.ONBOARDING_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
@@ -30,6 +31,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.StatisticsModeArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.appTypeMap
 import com.gaoyun.yanyou_kototomo.ui.base.theme.AppTheme
 import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColorsProvider
+import com.gaoyun.yanyou_kototomo.ui.bookmarks.BookmarksScreen
 import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksScreen
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewScreen
 import com.gaoyun.yanyou_kototomo.ui.home.HomeScreenHost
@@ -126,6 +128,9 @@ fun NavigationGraph(navController: NavHostController, viewModel: AppViewModel) {
         }
         composable(HOME_HOST_ROUTE) {
             HomeScreenHost(viewModel::navigate)
+        }
+        composable(BOOKMARKS_ROUTE) {
+            BookmarksScreen(viewModel::navigate)
         }
         composable<CourseScreenArgs>(typeMap = appTypeMap) { stackEntry ->
             CourseDecksScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)

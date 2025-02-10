@@ -3,6 +3,7 @@ package com.gaoyun.yanyou_kototomo.ui.home
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -11,6 +12,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -32,6 +37,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToBookmarks
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
 import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
@@ -42,9 +48,9 @@ import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenEmptyState
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenSectionTitle
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenTitle
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.viewmodel.koinViewModel
 import yanyou_kototomo.composeapp.generated.resources.Res
 import yanyou_kototomo.composeapp.generated.resources.maneki_neko
-import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
 fun HomeScreen(
@@ -107,6 +113,7 @@ fun HomeScreen(
                 )
             )
         },
+        onBookmarksEdit = { navigate(ToBookmarks) },
         onCoursesClick = onCoursesClick
     )
     CardDetailsView(cardState = cardDetailState, languageId = cardDetailLanguageState.value) { cardDetailState.value = null }
@@ -120,6 +127,7 @@ private fun HomeScreenContent(
     onCourseClick: (DeckWithCourseInfo) -> Unit,
     onReviewClick: (DeckWithCourseInfo) -> Unit,
     onQuizClick: (DeckWithCourseInfo) -> Unit,
+    onBookmarksEdit: () -> Unit,
     onCoursesClick: () -> Unit,
 ) {
     val state = rememberLazyListState()
@@ -147,7 +155,12 @@ private fun HomeScreenContent(
                 }
 
                 it.bookmarks.let { bookmarks ->
-                    if (bookmarks.isNotEmpty()) item { HomeScreenSectionTitle("Bookmarks") }
+                    if (bookmarks.isNotEmpty()) item {
+                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                            HomeScreenSectionTitle("Bookmarks")
+                            IconButton(onClick = onBookmarksEdit) { Icon(Icons.Default.Edit, "edit") }
+                        }
+                    }
 
                     item {
                         LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
