@@ -29,7 +29,9 @@ class BookmarksViewModel(
         viewState.value = viewState.value.filter { it.deck.id != deckId }
     }
 
-    fun reorderBookmarks() {
-
+    fun onReorder(from: Int, to: Int) = viewModelScope.launch {
+        bookmarksState.value = bookmarksState.value.toMutableList().apply { add(to, removeAt(from)) }
+        bookmarksInteractor.saveBookmarkedDecks(bookmarksState.value)
+        viewState.value = viewState.value.toMutableList().apply { add(to, removeAt(from)) }
     }
 }

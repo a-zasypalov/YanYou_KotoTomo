@@ -2,21 +2,21 @@ package com.gaoyun.yanyou_kototomo.ui.bookmarks
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.rounded.DragHandle
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.SwipeToDismissBox
@@ -36,15 +36,22 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckWithCourseInfo
+import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
+import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.ui.base.courseCardColor
 import com.gaoyun.yanyou_kototomo.ui.card_details.getCourseMascot
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
+import sh.calvin.reorderable.ReorderableCollectionItemScope
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SwipeToDismissBookmarkItem(bookmark: DeckWithCourseInfo, onClick: (DeckWithCourseInfo) -> Unit, onDelete: () -> Unit) {
+fun ReorderableCollectionItemScope.SwipeToDismissBookmarkItem(
+    bookmark: DeckWithCourseInfo,
+    onClick: (DeckWithCourseInfo) -> Unit,
+    onDelete: () -> Unit,
+) {
     val courseTextColor = Color(0xFFEDE1D4)
     val courseCardColor = bookmark.info.courseId.courseCardColor()
 
@@ -120,45 +127,56 @@ fun SwipeToDismissBookmarkItem(bookmark: DeckWithCourseInfo, onClick: (DeckWithC
             }
         },
         content = { // Original content
-            Column(modifier = Modifier.fillMaxWidth()) {
-                Surface(
-                    modifier = Modifier.fillMaxWidth().platformStyleClickable { onClick(bookmark) },
-                    color = courseCardColor
+            Surface(
+                modifier = Modifier.fillMaxWidth().platformStyleClickable { onClick(bookmark) },
+                color = courseCardColor
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.fillMaxWidth().background(Color(0x33000000)).padding(horizontal = 8.dp)
                 ) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(16.dp),
-                        modifier = Modifier.fillMaxWidth().background(Color(0x33000000))
+                    IconButton(
+                        onClick = {},
+                        modifier = Modifier.draggableHandle().weight(1f).align(Alignment.CenterVertically)
                     ) {
-                        Column(modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)) {
-                            Text(
-                                text = bookmark.deck.name,
-                                color = courseTextColor,
-                                style = MaterialTheme.typography.headlineMedium,
-                            )
-                            Text(
-                                text = "Cards: ${bookmark.deck.cards.count()}",
-                                color = courseTextColor,
-                                style = MaterialTheme.typography.bodyLarge,
-                            )
-                            Image(
-                                painter = painterResource(bookmark.info.courseId.getCourseMascot()),
-                                contentDescription = null,
-                                colorFilter = ColorFilter.tint(courseTextColor),
-                                modifier = Modifier.size(24.dp).padding(top = 8.dp)
-                            )
-                            Spacer(Modifier.size(6.dp))
-                        }
+                        Icon(Icons.Rounded.DragHandle, contentDescription = "Reorder")
+                    }
+
+                    Column(modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp).weight(8f)) {
+                        AutoResizeText(
+                            text = bookmark.deck.name,
+                            color = courseTextColor,
+                            maxLines = 1,
+                            fontSizeRange = FontSizeRange(min = 24.sp, max = MaterialTheme.typography.headlineMedium.fontSize),
+                            style = MaterialTheme.typography.headlineMedium,
+                        )
+
                         Text(
                             text = bookmark.info.preview,
                             color = courseTextColor.copy(alpha = 0.4f),
                             textAlign = TextAlign.Left,
-                            maxLines = 3,
-                            lineHeight = 32.sp,
-                            modifier = Modifier.align(Alignment.CenterVertically)
-                                .padding(vertical = 4.dp)
-                                .offset(x = 16.dp)
+                            maxLines = 2,
+                            lineHeight = 18.sp,
+                            modifier = Modifier.padding(vertical = 4.dp)
                         )
+
+                        Text(
+                            text = "Cards: ${bookmark.deck.cards.count()}",
+                            color = courseTextColor,
+                            style = MaterialTheme.typography.bodyLarge,
+                        )
+
+                        Spacer(Modifier.size(6.dp))
                     }
+
+                    Image(
+                        painter = painterResource(bookmark.info.courseId.getCourseMascot()),
+                        contentDescription = null,
+                        colorFilter = ColorFilter.tint(courseTextColor),
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .weight(1f)
+                    )
                 }
             }
         }

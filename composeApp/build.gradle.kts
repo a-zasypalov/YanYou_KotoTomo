@@ -89,6 +89,8 @@ kotlin {
 
             implementation(libs.compottie)
             implementation(libs.compottie.dot)
+
+            implementation(libs.reorderable)
         }
     }
 }
