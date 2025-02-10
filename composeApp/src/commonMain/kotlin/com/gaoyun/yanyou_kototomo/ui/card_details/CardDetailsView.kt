@@ -193,7 +193,7 @@ private fun CardPauseButton(paused: Boolean, modifier: Modifier = Modifier, onCl
         )
     } else {
         PrimaryElevatedButton(
-            text = "Pause this card",
+            text = "Pause card",
             contentPadding = PaddingValues(8.dp),
             onClick = onClick,
             leadingIcon = Icons.Default.Pause,
