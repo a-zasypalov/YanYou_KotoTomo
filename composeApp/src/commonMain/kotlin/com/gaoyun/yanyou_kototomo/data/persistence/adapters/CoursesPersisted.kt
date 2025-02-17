@@ -32,7 +32,7 @@ fun List<GetRootData>.mapToRootStructureDTO(): RootStructureDTO? {
                                                     ?: error("Deck ID cannot be null"),
                                                 name = deckRow.deck_name
                                                     ?: error("Deck name cannot be null"),
-                                                preview = deckRow.preview ?: "",
+                                                preview = deckRow.deck_preview ?: "",
                                                 version = deckRow.version?.toInt() ?: 0
                                             )
 
@@ -41,7 +41,7 @@ fun List<GetRootData>.mapToRootStructureDTO(): RootStructureDTO? {
                                                     ?: error("Deck ID cannot be null"),
                                                 name = deckRow.deck_name
                                                     ?: error("Deck name cannot be null"),
-                                                preview = deckRow.preview ?: "",
+                                                preview = deckRow.deck_preview ?: "",
                                                 alphabet = deckRow.alphabet
                                                     ?: error("Alphabet cannot be null for alphabet deck"),
                                                 version = deckRow.version?.toInt() ?: 0

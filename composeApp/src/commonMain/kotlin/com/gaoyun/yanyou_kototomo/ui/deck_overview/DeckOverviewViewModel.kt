@@ -7,7 +7,9 @@ import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
+import com.gaoyun.yanyou_kototomo.data.local.card.completed
 import com.gaoyun.yanyou_kototomo.data.local.card.countForReview
+import com.gaoyun.yanyou_kototomo.data.local.card.hasProgress
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.domain.BookmarksInteractor
@@ -91,8 +93,8 @@ class DeckOverviewViewModel(
         for (card in cards) {
             when {
                 pausedCardIds.contains(card.card.id.identifier) -> pausedCards.add(card)
-                card.progress != null && !card.progress.completed && card.card !is Card.KanaCard -> cardsToReview.add(card)
-                card.progress?.completed == true && card.card !is Card.KanaCard -> completedCards.add(card)
+                card.hasProgress() && !card.completed() && card.card !is Card.KanaCard -> cardsToReview.add(card)
+                card.completed() && card.card !is Card.KanaCard -> completedCards.add(card)
                 else -> when (card.card) {
                     is Card.WordCard -> newWords.add(card as CardWithProgress<Card.WordCard>)
                     is Card.PhraseCard -> newPhrases.add(card as CardWithProgress<Card.PhraseCard>)
@@ -179,6 +181,7 @@ class DeckOverviewViewModel(
             val deckSplitResult = splitDeckToNewReviewPaused(updatedAllCards, viewStateSafe.settings)
 
             viewState.value = viewStateSafe.copy(
+                allCards = updatedAllCards,
                 newCards = deckSplitResult.newCards,
                 cardsToReview = deckSplitResult.cardsToReview,
                 pausedCards = deckSplitResult.pausedCards,

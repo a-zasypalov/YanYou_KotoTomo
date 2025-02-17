@@ -61,6 +61,11 @@ fun App() {
                         popUpTo(action.popupTo) { inclusive = action.inclusive }
                     }
                 }
+                is NavigatorAction.NavigateToWithPathBackHandler<*> -> {
+                    navController.navigate(action.args) {
+                        popUpTo(route = action.popupTo) { inclusive = action.inclusive }
+                    }
+                }
 
                 is NavigatorAction.NavigateToPathWithBackHandler -> {
                     navController.navigate(action.path) { popUpTo(action.popupTo) { inclusive = action.inclusive } }

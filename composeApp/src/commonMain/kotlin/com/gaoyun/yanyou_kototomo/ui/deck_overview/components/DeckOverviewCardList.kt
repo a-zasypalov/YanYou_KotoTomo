@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
+import com.gaoyun.yanyou_kototomo.data.local.card.completed
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewState
@@ -213,7 +214,7 @@ fun DeckOverviewCard(
                 onClick = { onCardClick(cardWithProgress) },
                 intervalInDays = cardWithProgress.progress?.interval,
                 nextReviewDate = cardWithProgress.progress?.nextReview,
-                completed = cardWithProgress.progress?.completed == true,
+                completed = cardWithProgress.completed(),
                 modifier = modifier
             )
 
@@ -224,7 +225,7 @@ fun DeckOverviewCard(
                 showTranslation = settings.showTranslation,
                 intervalInDays = cardWithProgress.progress?.interval,
                 nextReviewDate = cardWithProgress.progress?.nextReview,
-                completed = cardWithProgress.progress?.completed == true,
+                completed = cardWithProgress.completed(),
                 onClick = { onCardClick(cardWithProgress) },
                 modifier = modifier
             )
@@ -237,7 +238,7 @@ fun DeckOverviewCard(
                 showReading = settings.showReading,
                 intervalInDays = cardWithProgress.progress?.interval,
                 nextReviewDate = cardWithProgress.progress?.nextReview,
-                completed = cardWithProgress.progress?.completed == true,
+                completed = cardWithProgress.completed(),
                 onClick = { onCardClick(cardWithProgress) },
                 modifier = modifier
             )
@@ -248,7 +249,7 @@ fun DeckOverviewCard(
                 showTranscription = settings.showTranscription,
                 intervalInDays = cardWithProgress.progress?.interval,
                 nextReviewDate = cardWithProgress.progress?.nextReview,
-                completed = cardWithProgress.progress?.completed == true,
+                completed = cardWithProgress.completed(),
                 onClick = { onCardClick(cardWithProgress) },
                 modifier = modifier
             )

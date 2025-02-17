@@ -9,24 +9,26 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.contentColorFor
+import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.util.Platform
 import com.gaoyun.yanyou_kototomo.util.PlatformNames
 
@@ -34,6 +36,7 @@ enum class BackButtonType {
     Back, Close
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun SurfaceScaffold(
     modifier: Modifier = Modifier,
@@ -66,22 +69,27 @@ fun SurfaceScaffold(
             Column {
                 if (backHandler != null) {
                     Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                        IconButton(
-                            modifier = Modifier.padding(start = 4.dp),
-                            onClick = backHandler,
-                            colors = IconButtonDefaults.iconButtonColors(contentColor = contentColor)
+                        Box(
+                            modifier = Modifier
+                                .minimumInteractiveComponentSize()
+                                .size(IconButtonDefaults.smallContainerSize())
+                                .clip(IconButtonDefaults.standardShape)
+                                .platformStyleClickable(true, onClick = backHandler),
+                            contentAlignment = Alignment.Center
                         ) {
                             when (backButtonType) {
                                 BackButtonType.Back -> {
                                     if (Platform.name == PlatformNames.Android) {
                                         Icon(
                                             Icons.AutoMirrored.Filled.ArrowBack,
-                                            contentDescription = "" //TODO: content description
+                                            contentDescription = "", //TODO: content description
+                                            tint = contentColor
                                         )
                                     } else {
                                         Icon(
                                             Icons.AutoMirrored.Filled.ArrowBackIos,
-                                            contentDescription = "" //TODO: content description
+                                            contentDescription = "", //TODO: content description
+                                            tint = contentColor
                                         )
                                     }
                                 }

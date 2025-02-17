@@ -41,7 +41,7 @@ class GetHomeState(
                     learningLanguageId = learningLangId,
                     sourceLanguageId = sourceLangId,
                     courseId = course.id,
-                    preview = course.preview,
+                    preview = courseDeck.preview,
                     pausedCardIds = deckSettingsInteractor.getDeckSettings(courseDeck.id)?.pausedCards ?: setOf()
                 )
             }

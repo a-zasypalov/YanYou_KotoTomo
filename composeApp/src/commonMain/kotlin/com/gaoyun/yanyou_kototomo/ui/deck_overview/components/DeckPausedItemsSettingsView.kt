@@ -34,6 +34,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
+import com.gaoyun.yanyou_kototomo.data.local.card.completed
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.util.toReviewRelativeShortFormat
@@ -57,14 +58,14 @@ fun DeckPausedItemsSettingsView(
     }
 
     allCards.value?.let { cardsWithProgress ->
-        val kanji = remember { cardsWithProgress.filter { it.card is Card.KanjiCard } }
-        val phrases = remember { cardsWithProgress.filter { it.card is Card.PhraseCard } }
-        val words = remember { cardsWithProgress.filter { it.card is Card.WordCard } }
+        val kanji = remember { cardsWithProgress.filter { it.card is Card.KanjiCard && !it.completed() } }
+        val phrases = remember { cardsWithProgress.filter { it.card is Card.PhraseCard && !it.completed() } }
+        val words = remember { cardsWithProgress.filter { it.card is Card.WordCard && !it.completed() } }
+        val completed = remember { cardsWithProgress.filter { it.completed() } }
 
         ModalBottomSheet(
             onDismissRequest = onDismiss,
             sheetState = sheetState,
-//            windowInsets = WindowInsets(0),
             modifier = Modifier.padding(horizontal = 8.dp)
         ) {
             LazyColumn(
@@ -86,7 +87,7 @@ fun DeckPausedItemsSettingsView(
                     }
                 }
                 if (words.isNotEmpty()) {
-                    item { SectionHeader("Words") }
+                    item { SectionHeader("Words", "Active") }
                     items(words) { cardWithProgress ->
                         PausedItemCard(
                             cardWithProgress = cardWithProgress,
@@ -96,12 +97,22 @@ fun DeckPausedItemsSettingsView(
                     }
                 }
                 if (phrases.isNotEmpty()) {
-                    item { SectionHeader("Phrases", modifier = Modifier.padding(top = 8.dp)) }
+                    item { SectionHeader("Phrases", "Active", modifier = Modifier.padding(top = 8.dp)) }
                     items(phrases) { cardWithProgress ->
                         PausedItemCard(
                             cardWithProgress = cardWithProgress,
                             pausedCards = pausedCards,
                             onChangePausedState = { changePausedStateFor(it, pausedCards.value?.contains(it) == true) }
+                        )
+                    }
+                }
+                if (completed.isNotEmpty()) {
+                    item { SectionHeader("Completed", modifier = Modifier.padding(top = 8.dp)) }
+                    items(completed) { cardWithProgress ->
+                        PausedItemCard(
+                            cardWithProgress = cardWithProgress,
+                            pausedCards = pausedCards,
+                            onChangePausedState = {}
                         )
                     }
                 }
@@ -112,7 +123,7 @@ fun DeckPausedItemsSettingsView(
 }
 
 @Composable
-fun SectionHeader(name: String, modifier: Modifier = Modifier) {
+fun SectionHeader(name: String, status: String? = null, modifier: Modifier = Modifier) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
             text = name,
@@ -120,12 +131,14 @@ fun SectionHeader(name: String, modifier: Modifier = Modifier) {
             modifier = Modifier.fillMaxWidth().padding(8.dp)
         )
         Divider(1.dp, modifier = Modifier.fillMaxWidth())
-        Text(
-            text = "Active",
-            style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
-            textAlign = TextAlign.End,
-            modifier = Modifier.fillMaxWidth().padding(8.dp)
-        )
+        status?.let {
+            Text(
+                text = it,
+                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
+                textAlign = TextAlign.End,
+                modifier = Modifier.fillMaxWidth().padding(8.dp)
+            )
+        }
     }
 }
 
@@ -167,26 +180,29 @@ fun PausedItemCard(
                 )
             }
 
-            cardWithProgress.progress?.nextReview?.let { nextReview ->
+            if (!cardWithProgress.completed()) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(4.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.EventRepeat,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
-                            modifier = Modifier.size(16.dp)
-                        )
-                        Text(
-                            text = nextReview.toReviewRelativeShortFormat(),
-                            style = MaterialTheme.typography.bodySmall,
-                        )
+                    cardWithProgress.progress?.nextReview?.let { nextReview ->
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.EventRepeat,
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
+                                modifier = Modifier.size(16.dp)
+                            )
+                            Text(
+                                text = nextReview.toReviewRelativeShortFormat(),
+                                style = MaterialTheme.typography.bodySmall,
+                            )
+                        }
                     }
+
                     Checkbox(
                         checked = !paused,
                         onCheckedChange = { onChangePausedState(cardWithProgress) }

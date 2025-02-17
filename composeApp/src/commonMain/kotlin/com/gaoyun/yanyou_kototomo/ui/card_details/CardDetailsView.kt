@@ -67,6 +67,9 @@ internal fun CardDetailsView(
     val cardCompleteDialogVisibleState = remember { mutableStateOf(false) }
 
     cardState.value?.let { cardWithProgress ->
+        val showPauseButton = cardWithProgress.card !is Card.KanaCard && completed.value != true && onCardPause != null
+        val showCompletionButton = paused.value != true && onCardComplete != null
+        val mascotForCard = remember { languageId.getRandomMascotImage() } //Should be here to generate every time new mascot
 
         CardCompleteDialog(cardCompleteDialogVisibleState) {
             onCardComplete?.invoke(cardWithProgress, !completed.value)
@@ -148,13 +151,13 @@ internal fun CardDetailsView(
                 Spacer(modifier = Modifier.weight(1f))
 
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally)) {
-                    if (cardWithProgress.card !is Card.KanaCard && completed.value != true && onCardPause != null) {
+                    if (showPauseButton) {
                         CardPauseButton(paused.value, modifier = Modifier.weight(1f)) {
                             onCardPause(cardWithProgress, !paused.value)
                             paused.value = !paused.value
                         }
                     }
-                    if (paused.value != true && onCardComplete != null) {
+                    if (showCompletionButton) {
                         CardCompleteButton(completed.value, modifier = Modifier.weight(1f)) {
                             if (completed.value) {
                                 onCardComplete.invoke(cardWithProgress, !completed.value)
@@ -168,7 +171,6 @@ internal fun CardDetailsView(
 
                 Spacer(modifier = Modifier.size(32.dp))
 
-                val mascotForCard = remember { languageId.getRandomMascotImage() }
                 Image(
                     painter = painterResource(mascotForCard),
                     contentDescription = null,

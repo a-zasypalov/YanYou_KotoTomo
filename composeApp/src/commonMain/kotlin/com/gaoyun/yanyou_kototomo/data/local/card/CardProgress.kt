@@ -20,9 +20,18 @@ data class CardProgress(
     companion object {
         fun completedCard(cardId: CardId) = CardProgress(cardId.identifier, null, null, null, null, true)
     }
+
 }
 
+fun CardProgress?.hasProgress(): Boolean = this?.lastReviewed != null
+fun CardWithProgress<*>.hasProgress(): Boolean = this.progress?.hasProgress() == true
+fun CardWithProgress<*>.completed(): Boolean = this.progress?.completed == true
+
 fun CardProgress?.countForReview(): Boolean = this == null || this.nextReview == localDateNow()
+fun CardProgress?.countForReviewAndNotPaused(pausedCards: Collection<String>): Boolean {
+    return countForReview() && !pausedCards.contains(this?.cardId)
+}
+
 fun List<CardWithProgress<*>>.deckSorted() = this.sortedWith(compareBy { cardWithProgress ->
     when (cardWithProgress.card) {
         is Card.KanaCard -> 1

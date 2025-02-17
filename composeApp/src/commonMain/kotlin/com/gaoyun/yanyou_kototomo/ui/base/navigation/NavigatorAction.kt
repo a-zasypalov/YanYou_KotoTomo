@@ -9,6 +9,7 @@ sealed class NavigatorAction {
     class NavigateTo<T : Any>(val args: T) : NavigatorAction()
     class NavigateToPathWithBackHandler(val path: String, val popupTo: String, val inclusive: Boolean = false) : NavigatorAction()
     class NavigateToWithBackHandler<T : Any, P : Any>(val args: T, val popupTo: P, val inclusive: Boolean = false) : NavigatorAction()
+    class NavigateToWithPathBackHandler<T : Any>(val args: T, val popupTo: String, val inclusive: Boolean = false) : NavigatorAction()
     data object NavigateBack : NavigatorAction()
     class PopTo(val path: String, val inclusive: Boolean) : NavigatorAction()
 }
@@ -25,13 +26,17 @@ class AppNavigator() : KoinComponent {
         is ToDeckPlayer -> NavigatorAction.NavigateTo(call.args)
         is ToStatisticsFullList -> NavigatorAction.NavigateTo(call.args)
         is ToSettingsSection -> NavigatorAction.NavigateTo(call.args)
-        is ToQuizSessionSummary -> NavigatorAction.NavigateToWithBackHandler(
-            args = call.args,
-            popupTo = when (call.popupTo) {
-                is PlayerBackRoute.Deck -> call.popupTo.args
-                PlayerBackRoute.Home -> AppRoutes.HOME_HOST_ROUTE
-            }
-        )
+        is ToQuizSessionSummary -> when (call.popupTo) {
+            is PlayerBackRoute.Deck -> NavigatorAction.NavigateToWithBackHandler(
+                args = call.args,
+                popupTo = call.popupTo.args
+            )
+
+            PlayerBackRoute.Home -> NavigatorAction.NavigateToWithPathBackHandler(
+                args = call.args,
+                popupTo = AppRoutes.HOME_HOST_ROUTE
+            )
+        }
 
         is ToHomeScreen -> NavigatorAction.NavigateToPathWithBackHandler(
             path = AppRoutes.HOME_HOST_ROUTE,

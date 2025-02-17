@@ -89,7 +89,7 @@ private fun SliderWithSteps(
             onValueChange = { onValueChange(it.toInt()) },
             valueRange = 1f..5f,
             steps = 3, // 5 steps mean 3 intermediate steps between 1 and 5
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
         )
         Divider(1.dp, modifier = Modifier.padding(bottom = 16.dp))
     }

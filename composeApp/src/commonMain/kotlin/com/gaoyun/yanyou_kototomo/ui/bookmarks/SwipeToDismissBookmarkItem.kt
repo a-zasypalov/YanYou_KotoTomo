@@ -17,6 +17,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.SwipeToDismissBox
@@ -137,6 +138,7 @@ fun ReorderableCollectionItemScope.SwipeToDismissBookmarkItem(
                 ) {
                     IconButton(
                         onClick = {},
+                        colors = IconButtonDefaults.iconButtonColors(contentColor = courseTextColor),
                         modifier = Modifier.draggableHandle().weight(1f).align(Alignment.CenterVertically)
                     ) {
                         Icon(Icons.Rounded.DragHandle, contentDescription = "Reorder")
@@ -147,15 +149,15 @@ fun ReorderableCollectionItemScope.SwipeToDismissBookmarkItem(
                             text = bookmark.deck.name,
                             color = courseTextColor,
                             maxLines = 1,
-                            fontSizeRange = FontSizeRange(min = 24.sp, max = MaterialTheme.typography.headlineMedium.fontSize),
+                            fontSizeRange = FontSizeRange(min = 16.sp, max = MaterialTheme.typography.headlineMedium.fontSize),
                             style = MaterialTheme.typography.headlineMedium,
                         )
 
                         Text(
-                            text = bookmark.info.preview,
-                            color = courseTextColor.copy(alpha = 0.4f),
+                            text = bookmark.deck.cards.joinToString(separator = "") { it.card.front },
+                            color = courseTextColor.copy(alpha = 0.6f),
                             textAlign = TextAlign.Left,
-                            maxLines = 2,
+                            maxLines = 1,
                             lineHeight = 18.sp,
                             modifier = Modifier.padding(vertical = 4.dp)
                         )

@@ -24,6 +24,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
+import com.gaoyun.yanyou_kototomo.data.local.card.completed
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FullScreenLoader
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
@@ -87,7 +88,7 @@ fun DeckOverviewScreen(
             onCardClick = { cardToShow, paused ->
                 cardDetailState.value = cardToShow
                 cardDetailPausedState.value = paused
-                cardDetailCompletedState.value = cardToShow.progress?.completed == true
+                cardDetailCompletedState.value = cardToShow.completed()
             },
             onPlayDeckClick = { mode -> navigate(ToDeckPlayer(args.toPlayerArgs(mode, PlayerBackRoute.Deck(args)))) },
             updateTranslationSettings = viewModel::updateTranslationSettings,

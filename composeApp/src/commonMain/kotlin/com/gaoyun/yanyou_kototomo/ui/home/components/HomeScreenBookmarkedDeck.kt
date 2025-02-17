@@ -32,13 +32,13 @@ fun HomeScreenBookmarkedDeck(bookmark: DeckWithCourseInfo, onCourseClick: (DeckW
     val courseTextColor = Color(0xFFEDE1D4)
 
     ElevatedCard(
-        modifier = Modifier.platformStyleClickable { onCourseClick(bookmark) }.height(180.dp).widthIn(max = 150.dp),
+        modifier = Modifier.platformStyleClickable { onCourseClick(bookmark) }.height(120.dp).widthIn(max = 150.dp),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp),
         colors = CardDefaults.elevatedCardColors(containerColor = courseCardColor)
     ) {
         Column(modifier = Modifier.fillMaxSize().background(Color(0x33000000)).padding(vertical = 4.dp)) {
             AutoResizeText(
-                text = bookmark.deck.name,
+                text = bookmark.deck.name.formatBookmarkName(),
                 fontSizeRange = FontSizeRange(min = 14.sp, max = MaterialTheme.typography.titleLarge.fontSize),
                 color = courseTextColor,
                 maxLines = 2,
@@ -49,8 +49,8 @@ fun HomeScreenBookmarkedDeck(bookmark: DeckWithCourseInfo, onCourseClick: (DeckW
             Box(modifier = Modifier.fillMaxWidth().height(1.dp).background(courseTextColor).padding(horizontal = 8.dp, vertical = 4.dp))
             Text(
                 text = bookmark.info.preview,
-                color = courseTextColor.copy(alpha = 0.35f),
-                maxLines = 3,
+                color = courseTextColor.copy(alpha = 0.6f),
+                maxLines = 1,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth()
                     .weight(1f)
@@ -66,5 +66,16 @@ fun HomeScreenBookmarkedDeck(bookmark: DeckWithCourseInfo, onCourseClick: (DeckW
                 style = MaterialTheme.typography.bodyLarge
             )
         }
+    }
+}
+
+private fun String.formatBookmarkName(): String {
+    val firstDelimiterIndex = indexOfAny(charArrayOf(' ', ','))
+    return if (firstDelimiterIndex != -1) {
+        val firstWord = substring(0, firstDelimiterIndex)
+        val rest = substring(firstDelimiterIndex).trim()
+        "$firstWord\n$rest"
+    } else {
+        this // Return as is if there's no space or comma
     }
 }

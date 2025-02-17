@@ -1,6 +1,7 @@
 package com.gaoyun.yanyou_kototomo.domain
 
 import com.gaoyun.yanyou_kototomo.data.local.card.CardSimpleDataEntryWithProgress
+import com.gaoyun.yanyou_kototomo.data.local.card.hasProgress
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toSimpleDataEntryWithProgress
 import com.gaoyun.yanyou_kototomo.repository.CardsAndProgressRepository
 
@@ -14,10 +15,9 @@ class GetCardProgress(
 
         return cardDTOs.mapNotNull { cardWithDeckNames ->
             progresses.find { it.cardId == cardWithDeckNames.first.id }?.let {
-                if (it.completed) return@mapNotNull null //Don't take completed cards
+                if (!it.hasProgress()) return@mapNotNull null //Don't take completed cards and ones without progress
                 cardWithDeckNames.first.toSimpleDataEntryWithProgress(it)
             }
         }
     }
-
 }
