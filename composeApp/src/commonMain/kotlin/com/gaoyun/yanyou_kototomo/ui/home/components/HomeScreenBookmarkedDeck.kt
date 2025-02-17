@@ -38,7 +38,7 @@ fun HomeScreenBookmarkedDeck(bookmark: DeckWithCourseInfo, onCourseClick: (DeckW
     ) {
         Column(modifier = Modifier.fillMaxSize().background(Color(0x33000000)).padding(vertical = 4.dp)) {
             AutoResizeText(
-                text = bookmark.deck.name.formatBookmarkName(),
+                text = bookmark.deck.name.formatBookmarkName(bookmark.info.courseName),
                 fontSizeRange = FontSizeRange(min = 14.sp, max = MaterialTheme.typography.titleLarge.fontSize),
                 color = courseTextColor,
                 maxLines = 2,
@@ -69,13 +69,18 @@ fun HomeScreenBookmarkedDeck(bookmark: DeckWithCourseInfo, onCourseClick: (DeckW
     }
 }
 
-private fun String.formatBookmarkName(): String {
-    val firstDelimiterIndex = indexOfAny(charArrayOf(' ', ','))
-    return if (firstDelimiterIndex != -1) {
-        val firstWord = substring(0, firstDelimiterIndex)
-        val rest = substring(firstDelimiterIndex).trim()
-        "$firstWord\n$rest"
+private fun String.formatBookmarkName(courseName: String): String {
+    return if (startsWith(courseName)) {
+        val rest = removePrefix(courseName).trim()
+        if (rest.isNotEmpty()) "$courseName\n$rest" else courseName
     } else {
-        this // Return as is if there's no space or comma
+        val firstDelimiterIndex = indexOfAny(charArrayOf(' ', ','))
+        if (firstDelimiterIndex != -1) {
+            val firstWord = substring(0, firstDelimiterIndex)
+            val rest = substring(firstDelimiterIndex).trim()
+            "$firstWord\n$rest"
+        } else {
+            this
+        }
     }
 }

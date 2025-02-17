@@ -30,6 +30,7 @@ class GetBookmarksState(
                     learningLanguageId = learningLangId,
                     sourceLanguageId = sourceLangId,
                     courseId = course.id,
+                    courseName = course.courseName,
                     preview = courseDeck.preview,
                     pausedCardIds = deckSettingsInteractor.getDeckSettings(courseDeck.id)?.pausedCards ?: setOf()
                 )
