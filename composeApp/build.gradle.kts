@@ -1,5 +1,3 @@
-import org.gradle.kotlin.dsl.android
-import org.gradle.kotlin.dsl.compose
 import org.gradle.kotlin.dsl.dependencies
 
 plugins {
@@ -10,6 +8,7 @@ plugins {
     alias(libs.plugins.sqldelight)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotest)
+    jacoco
 }
 
 sqldelight {
@@ -60,6 +59,7 @@ kotlin {
             implementation(libs.kotest)
             implementation(libs.kotest.assertions)
             implementation(libs.kotest.property)
+            implementation(libs.kotest.runner)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.ios)
@@ -136,3 +136,42 @@ dependencies {
     debugImplementation(compose.uiTooling)
 }
 
+jacoco {
+    toolVersion = "0.8.12" // Latest version
+}
+
+// Task to generate test coverage reports
+tasks.register<JacocoReport>("jacocoTestReport") {
+    dependsOn("testDebugUnitTest") // Ensure tests run before generating coverage
+
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
+
+    val fileFilter = listOf(
+        "**/R.class", "**/R\$*.class",
+        "**/BuildConfig.*", "**/Manifest*.*",
+        "**/*Test*.*", // Exclude test classes
+        "**/di/**",    // Exclude dependency injection (optional)
+        "**/composedb/**" // Exclude SQLDelight DB classes (optional)
+    )
+
+    val javaClasses = fileTree("${buildDir}/intermediates/javac/debug/classes") {
+        exclude(fileFilter)
+    }
+
+    val kotlinClasses = fileTree("${buildDir}/tmp/kotlin-classes/debug") {
+        exclude(fileFilter)
+    }
+
+    sourceDirectories.setFrom(files("${project.projectDir}/src/commonMain/kotlin"))
+    classDirectories.setFrom(files(javaClasses, kotlinClasses))
+    executionData.setFrom(files("${buildDir}/jacoco/testDebugUnitTest.exec"))
+}
+
+// Run tests and generate report
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform() // Kotest runs on JUnit 5
+    finalizedBy("jacocoTestReport") // Generate report after tests
+}

@@ -64,6 +64,7 @@ mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 kotest = { module = "io.kotest:kotest-framework-engine", version.ref = "kotest"}
 kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest"}
 kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest"}
+kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

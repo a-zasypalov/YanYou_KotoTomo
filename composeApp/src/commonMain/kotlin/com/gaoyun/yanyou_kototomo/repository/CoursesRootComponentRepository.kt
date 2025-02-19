@@ -37,7 +37,7 @@ class CoursesRootComponentRepository(
         return cache ?: fetchCoursesFromApi().let { getCourse(courseId) }
     }
 
-    private suspend fun fetchCoursesFromApi(): RootStructureDTO {
+    internal suspend fun fetchCoursesFromApi(): RootStructureDTO {
         return api.getCoursesRootComponent().also {
             prefs.setString(
                 PreferencesKeys.UPDATES_COURSES_REFRESHED,
@@ -47,12 +47,12 @@ class CoursesRootComponentRepository(
         }
     }
 
-    private fun getCoursesFromCache(): RootStructureDTO? = runCatching {
+    internal fun getCoursesFromCache(): RootStructureDTO? = runCatching {
         println("Getting courses from cache")
         db.coursesQueries.getRootData().executeAsList().mapToRootStructureDTO()
     }.getOrNull()
 
-    private suspend fun cacheCourses(response: RootStructureDTO) {
+    internal suspend fun cacheCourses(response: RootStructureDTO) {
         println("Caching courses from api")
         db.coursesQueries.clearCache()
         reloadDecks(response)
@@ -91,7 +91,7 @@ class CoursesRootComponentRepository(
         }
     }
 
-    private suspend fun reloadDecks(response: RootStructureDTO) {
+    internal suspend fun reloadDecks(response: RootStructureDTO) {
         val responseDeckIds = response.languages.flatMap { it.sourceLanguages }.flatMap { it.courses }.flatMap { it.decks }.map { it.id }
         val downloadedDecks = db.decksQueries.getDownloadedDeckIds().executeAsList()
         val decks = db.coursesQueries.getCachedDecks().executeAsList()
