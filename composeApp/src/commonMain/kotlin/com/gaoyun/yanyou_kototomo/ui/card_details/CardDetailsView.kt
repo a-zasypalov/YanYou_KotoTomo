@@ -46,7 +46,7 @@ import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.domain.mapIntervalToColor
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
-import com.gaoyun.yanyou_kototomo.util.toRelativeFormat
+import com.gaoyun.yanyou_kototomo.util.toReviewRelativeShortFormat
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.pluralStringResource
 import yanyou_kototomo.composeapp.generated.resources.Res
@@ -125,7 +125,7 @@ internal fun CardDetailsView(
 
                             progress.nextReview?.let { nextReviewDate ->
                                 Text(
-                                    text = "Review ${nextReviewDate.toRelativeFormat()}",
+                                    text = "Review ${nextReviewDate.toReviewRelativeShortFormat()}",
                                     style = MaterialTheme.typography.bodyMedium.copy(
                                         fontStyle = FontStyle.Italic,
                                         color = MaterialTheme.colorScheme.onSurface

@@ -41,7 +41,7 @@ fun QuizSessionSummaryQuestionResult(index: Int, lastIndex: Int, result: QuizCar
                     maxLines = 1,
                 )
                 Text(
-                    text = result.card.translationOrEmpty("– "),
+                    text = result.card.translationOrTranscription("– "),
                     style = MaterialTheme.typography.titleSmall,
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1,

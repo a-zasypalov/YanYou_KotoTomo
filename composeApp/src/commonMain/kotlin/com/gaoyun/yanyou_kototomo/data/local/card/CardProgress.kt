@@ -27,7 +27,7 @@ fun CardProgress?.hasProgress(): Boolean = this?.lastReviewed != null
 fun CardWithProgress<*>.hasProgress(): Boolean = this.progress?.hasProgress() == true
 fun CardWithProgress<*>.completed(): Boolean = this.progress?.completed == true
 
-fun CardProgress?.countForReview(): Boolean = this == null || this.nextReview == localDateNow()
+fun CardProgress?.countForReview(): Boolean = this == null || (!this.completed && this.nextReview?.let { it <= localDateNow() } == true)
 fun CardProgress?.countForReviewAndNotPaused(pausedCards: Collection<String>): Boolean {
     return countForReview() && !pausedCards.contains(this?.cardId)
 }

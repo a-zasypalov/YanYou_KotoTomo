@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.sqldelight)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotest)
 }
 
 sqldelight {
@@ -53,6 +54,12 @@ kotlin {
             implementation(libs.koin.androidx)
             implementation(libs.sqldelight.androidDriver)
             implementation(libs.androidx.material)
+        }
+        androidUnitTest.dependencies {
+            implementation(libs.mockk)
+            implementation(libs.kotest)
+            implementation(libs.kotest.assertions)
+            implementation(libs.kotest.property)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.ios)
