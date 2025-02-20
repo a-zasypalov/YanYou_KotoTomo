@@ -9,13 +9,12 @@ import com.gaoyun.yanyou_kototomo.data.persistence.YanYouKotoTomoDatabase
 
 class AllDataReset(private val preferences: Preferences, private val db: YanYouKotoTomoDatabase) {
 
-
     fun resetApp() {
         clearDatabase()
         clearPreferences()
     }
 
-    private fun clearDatabase() {
+    internal fun clearDatabase() {
         db.card_progressQueries.deleteAll()
         db.coursesQueries.clearCache()
         db.deck_settingsQueries.deleteAll()
@@ -24,12 +23,11 @@ class AllDataReset(private val preferences: Preferences, private val db: YanYouK
         db.updatesQueries.deleteAll()
     }
 
-    private fun clearPreferences() {
+    internal fun clearPreferences() {
         preferences.run {
             remove(UPDATES_STRUCTURE_REFRESHED)
             remove(UPDATES_COURSES_REFRESHED)
             remove(LEARNING_DECK)
-            remove(UPDATES_STRUCTURE_REFRESHED)
             remove(BOOKMARKED_DECKS)
         }
     }

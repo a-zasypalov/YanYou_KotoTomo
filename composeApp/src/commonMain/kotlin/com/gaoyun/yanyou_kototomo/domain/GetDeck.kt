@@ -46,7 +46,7 @@ class GetDeck(
         return deckResponse.toLocal(deck.name, cards)
     }
 
-    private suspend fun getRequiredCards(
+    internal suspend fun getRequiredCards(
         learningLanguage: LanguageId,
         sourceLanguage: LanguageId,
         requiredDecks: List<DeckId>,

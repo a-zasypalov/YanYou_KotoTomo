@@ -1,6 +1,7 @@
 package com.gaoyun.yanyou_kototomo.domain
 
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
+import com.gaoyun.yanyou_kototomo.data.local.card.deckSorted
 import com.gaoyun.yanyou_kototomo.data.local.card.withProgress
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.deck.Deck
@@ -42,12 +43,12 @@ class GetDeckFromCache(
                 is CardDTO.KanjiCardDTO -> card.toLocalDTO(kanaCards).withProgress(progress)
                 is CardDTO.PhraseCardDTO -> card.toLocalDTO(requiredWords).withProgress(progress)
             }
-        }
+        }.deckSorted()
 
         return deckResponse.toLocal(deck.name, cards)
     }
 
-    private fun getRequiredCards(
+    internal fun getRequiredCards(
         requiredDecks: List<DeckId>,
     ): List<CardDTO> = requiredDecks
         .mapNotNull { deckRepository.getDeckFromCache(it) }

@@ -14,10 +14,10 @@ import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 
 class BookmarksInteractor(
-    private val preferences: Preferences,
-    private val coursesRootComponentRepository: CoursesRootComponentRepository,
+    internal val preferences: Preferences,
+    internal val coursesRootComponentRepository: CoursesRootComponentRepository,
 ) {
-    private val courseDecks = MutableStateFlow<List<CourseDeck>?>(null)
+    internal val courseDecks = MutableStateFlow<List<CourseDeck>?>(null)
 
     fun getLearningDeck(): CourseDeck? {
         val jsonString = preferences.getString(PreferencesKeys.LEARNING_DECK) ?: return null
@@ -65,7 +65,7 @@ class BookmarksInteractor(
         preferences.setString(PreferencesKeys.BOOKMARKED_DECKS, jsonString)
     }
 
-    private suspend fun getCourseDecks(): List<CourseDeck> {
+    internal suspend fun getCourseDecks(): List<CourseDeck> {
         return coursesRootComponentRepository.getCoursesRoot(force = false)
             .toLocal().languages
             .flatMap { it.sourceLanguages.flatMap { s -> s.courses.flatMap { c -> c.decks } } }

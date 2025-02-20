@@ -10,6 +10,19 @@ import kotlinx.datetime.plus
 class SpacedRepetitionCalculation(
     private val interactor: SpacialRepetitionSettingsInteractor,
 ) {
+    companion object {
+        const val EASY_INTERVAL_BASE = 1.2
+        const val GOOD_INTERVAL_BASE = 1.1
+        const val HARD_INTERVAL_BASE = 0.9
+
+        const val GOOD_K = 0.05f
+        const val HARD_K = 1.5f
+
+    }
+
+    // Default ease factor, adjusted for HSK level
+    val baseEaseFactor = 1.8f
+    val intervalBase = interactor.intervalBase() * 0.8f
 
     fun calculateNextIntervals(
         currentReviewDate: LocalDate?,
@@ -38,34 +51,20 @@ class SpacedRepetitionCalculation(
         easeFactorInput: Float?,
         reviewQuality: RepetitionAnswer,
     ): Triple<LocalDate, Float, Int> {
-        val proficiencyLevel = 1 //TODO: change for presets
-        // Default ease factor, adjusted for HSK level
-        val baseEaseFactor = when (proficiencyLevel) {
-            in 1..2 -> 1.8f // Frequent reviews for beginners
-            in 3..4 -> 2.0f // Balanced for intermediate learners
-            else -> 2.2f    // Advanced learners can handle longer intervals
-        }
         val easeFactor = easeFactorInput ?: baseEaseFactor
 
         // Adjust ease factor based on review quality
         val newEaseFactor = when (reviewQuality) {
             RepetitionAnswer.Easy -> easeFactor + interactor.easyAnswerWeight()
-            RepetitionAnswer.Good -> easeFactor + interactor.goodAnswerWeight() - 0.05f
-            RepetitionAnswer.Hard -> maxOf(easeFactor - interactor.hardAnswerWeight(), 1.5f)
-        }
-
-        // Base interval scaling by HSK level
-        val intervalBase = when (proficiencyLevel) {
-            in 1..2 -> interactor.intervalBase() * 0.8f // Shorter intervals for frequent reviews
-            in 3..4 -> interactor.intervalBase()       // Standard intervals
-            else -> interactor.intervalBase() * 1.2f   // Longer intervals for advanced learners
+            RepetitionAnswer.Good -> easeFactor + interactor.goodAnswerWeight() - GOOD_K
+            RepetitionAnswer.Hard -> maxOf(easeFactor - interactor.hardAnswerWeight(), HARD_K)
         }
 
         // Adjusted interval calculation
         val intervalDays = when (reviewQuality) {
-            RepetitionAnswer.Easy -> maxOf((intervalBase * (1.2 + interactor.easyAnswerWeight()) * newEaseFactor).toInt(), 1)
-            RepetitionAnswer.Good -> maxOf((intervalBase * (1.1 + interactor.goodAnswerWeight()) * newEaseFactor).toInt(), 1)
-            RepetitionAnswer.Hard -> maxOf((intervalBase * (0.9 - interactor.hardAnswerWeight()) * newEaseFactor).toInt(), 1)
+            RepetitionAnswer.Easy -> maxOf((intervalBase * (EASY_INTERVAL_BASE + interactor.easyAnswerWeight()) * newEaseFactor).toInt(), 1)
+            RepetitionAnswer.Good -> maxOf((intervalBase * (GOOD_INTERVAL_BASE + interactor.goodAnswerWeight()) * newEaseFactor).toInt(), 1)
+            RepetitionAnswer.Hard -> maxOf((intervalBase * (HARD_INTERVAL_BASE - interactor.hardAnswerWeight()) * newEaseFactor).toInt(), 1)
         }
 
         // Calculate the next review date

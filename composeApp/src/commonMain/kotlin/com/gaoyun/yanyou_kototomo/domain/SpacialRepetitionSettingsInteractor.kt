@@ -11,10 +11,10 @@ class SpacialRepetitionSettingsInteractor(private val preferences: Preferences) 
 
     companion object {
         const val DEFAULT_EASE_FACTOR = 2.0f
-        private const val DEFAULT_INTERVAL_BASE = 1.5f
-        private const val DEFAULT_EASY_ANSWER_WEIGHT = 0.2f
-        private const val DEFAULT_GOOD_ANSWER_WEIGHT = 0.1f
-        private const val DEFAULT_HARD_ANSWER_WEIGHT = 0.2f
+        const val DEFAULT_INTERVAL_BASE = 1.5f
+        const val DEFAULT_EASY_ANSWER_WEIGHT = 0.2f
+        const val DEFAULT_GOOD_ANSWER_WEIGHT = 0.1f
+        const val DEFAULT_HARD_ANSWER_WEIGHT = 0.2f
     }
 
     fun easeFactor(): Float = preferences.getFloat(SPACIAL_REPETITION_EASE_FACTOR, DEFAULT_EASE_FACTOR)
