@@ -132,7 +132,7 @@ private fun HomeScreenContent(
 ) {
     val state = rememberLazyListState()
     content?.let {
-        if (it.currentlyLearn == null && it.bookmarks.isEmpty() && it.recentlyReviewed.isEmpty()) {
+        if (it.bookmarks.isEmpty() && it.recentlyReviewed.isEmpty()) {
             HomeScreenEmptyState(onCoursesClick)
         } else {
             LazyColumn(
@@ -142,30 +142,31 @@ private fun HomeScreenContent(
             ) {
                 item { HomeScreenTitle() }
 
-                it.currentlyLearn?.let { deckWithInfo ->
-                    item {
-                        HomeScreenCurrentlyLearningDeck(
-                            deckWithInfo = deckWithInfo,
-                            onCourseClick = onCourseClick,
-                            onCardDetailsClick = onCardDetailsClick,
-                            onReviewClick = onReviewClick,
-                            onQuizClick = onQuizClick
-                        )
-                    }
-                }
-
                 it.bookmarks.let { bookmarks ->
-                    if (bookmarks.isNotEmpty()) item {
-                        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                            HomeScreenSectionTitle("Bookmarks")
-                            IconButton(onClick = onBookmarksEdit) { Icon(Icons.Default.Edit, "edit") }
+                    if (bookmarks.isNotEmpty()) {
+                        item {
+                            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                                HomeScreenSectionTitle("Bookmarks")
+                                IconButton(onClick = onBookmarksEdit) { Icon(Icons.Default.Edit, "edit") }
+                            }
+                        }
+                        bookmarks.firstOrNull()?.let {
+                            item {
+                                HomeScreenCurrentlyLearningDeck(
+                                    deckWithInfo = it,
+                                    onCourseClick = onCourseClick,
+                                    onCardDetailsClick = onCardDetailsClick,
+                                    onReviewClick = onReviewClick,
+                                    onQuizClick = onQuizClick
+                                )
+                            }
                         }
                     }
 
                     item {
                         LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             item { Spacer(Modifier.size(8.dp)) }
-                            items(bookmarks) { bookmark -> HomeScreenBookmarkedDeck(bookmark, onCourseClick) }
+                            items(bookmarks.drop(1)) { bookmark -> HomeScreenBookmarkedDeck(bookmark, onCourseClick) }
                             item { Spacer(Modifier.size(8.dp)) }
                         }
                     }

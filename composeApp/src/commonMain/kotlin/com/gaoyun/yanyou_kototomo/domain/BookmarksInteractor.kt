@@ -19,14 +19,14 @@ class BookmarksInteractor(
 ) {
     internal val courseDecks = MutableStateFlow<List<CourseDeck>?>(null)
 
-    fun getLearningDeck(): CourseDeck? {
-        val jsonString = preferences.getString(PreferencesKeys.LEARNING_DECK) ?: return null
+    fun getLearningDecks(): List<CourseDeck> {
+        val jsonString = preferences.getString(PreferencesKeys.LEARNING_DECKS, "[]")
         return try {
-            val dto = Json.decodeFromString(CourseDeckDTO.serializer(), jsonString)
-            dto.toLocal()
+            val dtoList = Json.decodeFromString(ListSerializer(CourseDeckDTO.serializer()), jsonString)
+            dtoList.map { it.toLocal() }
         } catch (e: SerializationException) {
             e.printStackTrace()
-            null // Return null if deserialization fails
+            emptyList() // Fallback to an empty list if deserialization fails
         }
     }
 
@@ -41,18 +41,14 @@ class BookmarksInteractor(
         }
     }
 
-    suspend fun setLearningDeckId(deckId: DeckId?) {
-        if (deckId == null) {
-            preferences.remove(PreferencesKeys.LEARNING_DECK)
-        } else {
-            (this.courseDecks.value ?: getCourseDecks()).find { it.id == deckId }?.let { deck ->
-                val jsonString = Json.encodeToString(CourseDeckDTO.serializer(), deck.toDTO())
-                preferences.setString(PreferencesKeys.LEARNING_DECK, jsonString)
-            }
-        }
+    suspend fun addLearningDeck(deckId: DeckId, decks: List<CourseDeck>) {
+        val courseDecks = this.courseDecks.value ?: getCourseDecks()
+        val deckToAdd = courseDecks.find { it.id == deckId }
+        val decksToSave = (decks + deckToAdd).filterNotNull()
+        saveLearningDecks(decksToSave)
     }
 
-    suspend fun addDeck(deckId: DeckId, decks: List<CourseDeck>) {
+    suspend fun addBookmark(deckId: DeckId, decks: List<CourseDeck>) {
         val courseDecks = this.courseDecks.value ?: getCourseDecks()
         val deckToAdd = courseDecks.find { it.id == deckId }
         val decksToSave = (decks + deckToAdd).filterNotNull()
@@ -63,6 +59,11 @@ class BookmarksInteractor(
     fun saveBookmarkedDecks(decks: List<CourseDeck>) {
         val jsonString = Json.encodeToString(ListSerializer(CourseDeckDTO.serializer()), decks.map { it.toDTO() })
         preferences.setString(PreferencesKeys.BOOKMARKED_DECKS, jsonString)
+    }
+
+    fun saveLearningDecks(decks: List<CourseDeck>) {
+        val jsonString = Json.encodeToString(ListSerializer(CourseDeckDTO.serializer()), decks.map { it.toDTO() })
+        preferences.setString(PreferencesKeys.LEARNING_DECKS, jsonString)
     }
 
     internal suspend fun getCourseDecks(): List<CourseDeck> {

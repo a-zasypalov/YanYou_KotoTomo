@@ -8,7 +8,7 @@ import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.completed
-import com.gaoyun.yanyou_kototomo.data.local.card.countForReview
+import com.gaoyun.yanyou_kototomo.data.local.card.countForReviewAndNotPaused
 import com.gaoyun.yanyou_kototomo.data.local.card.hasProgress
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
@@ -38,6 +38,8 @@ class DeckOverviewViewModel(
     )
 
     override val viewState = MutableStateFlow<DeckOverviewState?>(null)
+    val learningDecksState = MutableStateFlow(mutableListOf<CourseDeck>())
+    val learningState = MutableStateFlow<CourseDeck?>(null)
     val bookmarksState = MutableStateFlow(mutableListOf<CourseDeck>())
     val bookmarkState = MutableStateFlow<CourseDeck?>(null)
 
@@ -56,8 +58,12 @@ class DeckOverviewViewModel(
                 bookmarksState.value = bookmarks.toMutableList()
                 bookmarkState.value = bookmarks.find { it.id == deck.id }
 
+                val learningDecks = bookmarksInteractor.getLearningDecks()
+                learningDecksState.value = learningDecks.toMutableList()
+                learningState.value = learningDecks.find { it.id == deck.id }
+
                 val deckSplitResult = splitDeckToNewReviewPaused(deck.cards, settings)
-                val cardsDueToReview = deck.cards.count { it.progress.countForReview() && !deckSplitResult.pausedCards.contains(it) }
+                val cardsDueToReview = deck.cards.filter { it.countForReviewAndNotPaused(deckSplitResult.pausedCards) }
 
                 viewState.value = DeckOverviewState(
                     deckId = deck.id,
@@ -68,9 +74,9 @@ class DeckOverviewViewModel(
                     pausedCards = deckSplitResult.pausedCards,
                     completedCards = deckSplitResult.completedCards,
                     settings = settings,
-                    cardsDueToReview = cardsDueToReview,
+                    cardsDueToReview = cardsDueToReview.count(),
                     isBookmarked = bookmarkState.value != null,
-                    isCurrentlyLearned = bookmarksInteractor.getLearningDeck()?.id == deck.id
+                    isCurrentlyLearned = learningState.value != null
                 )
             }
         }
@@ -160,7 +166,7 @@ class DeckOverviewViewModel(
                 newCards = newCards,
                 cardsToReview = cardsToReview,
                 pausedCards = pausedCards,
-                cardsDueToReview = viewStateSafe.allCards.count { it.progress.countForReview() && !pausedCards.contains(it) },
+                cardsDueToReview = viewStateSafe.allCards.count { it.countForReviewAndNotPaused(pausedCards) },
                 settings = newSettings
             )
         }
@@ -186,14 +192,14 @@ class DeckOverviewViewModel(
                 cardsToReview = deckSplitResult.cardsToReview,
                 pausedCards = deckSplitResult.pausedCards,
                 completedCards = deckSplitResult.completedCards,
-                cardsDueToReview = viewStateSafe.allCards.count { it.progress.countForReview() && !deckSplitResult.pausedCards.contains(it) },
+                cardsDueToReview = updatedAllCards.count { it.countForReviewAndNotPaused(deckSplitResult.pausedCards) },
             )
         }
     }
 
     fun updateBookmarkedState(bookmarked: Boolean) = viewModelScope.launch {
         if (bookmarked) {
-            viewState.value?.deckId?.let { bookmarksInteractor.addDeck(it, bookmarksState.value) }
+            viewState.value?.deckId?.let { bookmarksInteractor.addBookmark(it, bookmarksState.value) }
         } else {
             bookmarksState.value.remove(bookmarkState.value)
             bookmarksInteractor.saveBookmarkedDecks(bookmarksState.value)
@@ -203,9 +209,10 @@ class DeckOverviewViewModel(
 
     fun updateLearnedState(learned: Boolean) = viewModelScope.launch {
         if (learned) {
-            viewState.value?.deckId?.let { bookmarksInteractor.setLearningDeckId(it) }
+            viewState.value?.deckId?.let { bookmarksInteractor.addLearningDeck(it, bookmarksState.value) }
         } else {
-            bookmarksInteractor.setLearningDeckId(null)
+            learningDecksState.value.remove(bookmarkState.value)
+            bookmarksInteractor.saveBookmarkedDecks(learningDecksState.value)
         }
         viewState.value = viewState.value?.copy(isCurrentlyLearned = learned)
     }

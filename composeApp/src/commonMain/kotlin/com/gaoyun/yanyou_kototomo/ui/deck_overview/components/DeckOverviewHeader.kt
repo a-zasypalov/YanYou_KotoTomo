@@ -64,12 +64,13 @@ fun DeckOverviewHeader(
                 modifier = Modifier.padding(vertical = 12.dp)
             ) {
                 Row(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
-                    if (viewState.newCards.words.isNotEmpty() || viewState.newCards.phrases.isNotEmpty()) Text(
-                        text = " ${viewState.newCards.words.size + viewState.newCards.phrases.size} new",
+                    val toReview = viewState.newCards.words.size + viewState.newCards.phrases.size + viewState.cardsToReview.size
+                    if (toReview > 0) Text(
+                        text = "$toReview to review",
                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium)
                     )
-                    if (viewState.cardsToReview.isNotEmpty()) Text(
-                        text = "${viewState.cardsToReview.size} to review",
+                    if (viewState.completedCards.isNotEmpty()) Text(
+                        text = " ${viewState.completedCards.size} completed",
                         style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium)
                     )
                     if (viewState.pausedCards.isNotEmpty()) Text(

@@ -7,7 +7,7 @@ import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.completed
-import com.gaoyun.yanyou_kototomo.data.local.card.countForReview
+import com.gaoyun.yanyou_kototomo.data.local.card.countForReviewAndNotPausedIds
 import com.gaoyun.yanyou_kototomo.data.local.deck.Deck
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
@@ -67,7 +67,9 @@ class DeckPlayerViewModel(
                 val filteredCards = result.cards.filterNot { settings.pausedCards.contains(it.card.id.identifier) }
 
                 val cardForPlayer = when (playerMode) {
-                    PlayerMode.SpacialRepetition -> filteredCards.filter { it.progress.countForReview() }.shuffled()
+                    PlayerMode.SpacialRepetition -> filteredCards.filter { it.countForReviewAndNotPausedIds(settings.pausedCards) }
+                        .shuffled()
+
                     PlayerMode.Quiz -> filteredCards.shuffled().also { quizStart.value = localDateTimeNow() }
                 }
                 deckState.value = result.copy(cards = cardForPlayer)

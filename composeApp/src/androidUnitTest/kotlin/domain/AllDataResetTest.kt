@@ -57,7 +57,7 @@ class AllDataResetTest {
         // Assert
         verify(exactly = 1) { mockPreferences.remove(PreferencesKeys.UPDATES_STRUCTURE_REFRESHED) }
         verify(exactly = 1) { mockPreferences.remove(PreferencesKeys.UPDATES_COURSES_REFRESHED) }
-        verify(exactly = 1) { mockPreferences.remove(PreferencesKeys.LEARNING_DECK) }
+        verify(exactly = 1) { mockPreferences.remove(PreferencesKeys.LEARNING_DECKS) }
         verify(exactly = 1) { mockPreferences.remove(PreferencesKeys.BOOKMARKED_DECKS) }
     }
 }

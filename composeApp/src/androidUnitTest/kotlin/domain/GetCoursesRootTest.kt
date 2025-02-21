@@ -22,7 +22,7 @@ class GetCoursesRootTest {
 
     private val repository: CoursesRootComponentRepository = mockk()
     private val preferences: Preferences = mockk()
-    private val bookmarksInteractor: BookmarksInteractor = mockk()
+    private val bookmarksInteractor: BookmarksInteractor = mockk(relaxed = true)
 
     private val getCoursesRoot = GetCoursesRoot(
         repository = repository,
@@ -42,9 +42,9 @@ class GetCoursesRootTest {
         every { preferences.getString(PreferencesKeys.PRIMARY_LANGUAGE_ID, "cn") } returns "cn"
         coEvery { repository.getCoursesRoot(false) } returns rootStructureDTO
         every { bookmarksInteractor.getBookmarkedDecks() } returns listOf(courseDeck)
-        every { bookmarksInteractor.getLearningDeck() } returns courseDeck
+        every { bookmarksInteractor.getLearningDecks() } returns listOf(courseDeck)
         every { bookmarksInteractor.saveBookmarkedDecks(any()) } just Runs
-        coEvery { bookmarksInteractor.setLearningDeckId(any()) } just Runs
+        coEvery { bookmarksInteractor.addLearningDeck(any(), any()) } just Runs
 
         val result = getCoursesRoot.getCourses()
 

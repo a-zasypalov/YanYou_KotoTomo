@@ -22,7 +22,7 @@ class GetHomeState(
     private val deckSettingsInteractor: DeckSettingsInteractor,
 ) {
 
-    suspend fun getHomeState(): HomeState? {
+    suspend fun getHomeState(): HomeState {
         val rootStructure = getCoursesRoot.getCourses()
 
         // Pre-build lookup maps
@@ -53,13 +53,6 @@ class GetHomeState(
             course.decks.map { it.id to course.requiredDecks.orEmpty() }
         }.toMap()
 
-        // Fetch the learning deck with course info
-        val learningDeckWithInfo = bookmarksInteractor.getLearningDeck()?.let { learningDeck ->
-            val courseInfo = deckCourseInfoMap[learningDeck.id] ?: return@let null
-            val requiredDecks = courseDeckMap[learningDeck.id] ?: emptyList()
-            getDeckFromCache.getDeck(learningDeck, requiredDecks)?.withInfo(courseInfo)
-        }
-
         // Fetch bookmarked decks with course info
         val bookmarkedDecksWithInfo = bookmarksInteractor.getBookmarkedDecks().mapNotNull { bookmarkedDeck ->
             val courseInfo = deckCourseInfoMap[bookmarkedDeck.id] ?: return@mapNotNull null
@@ -71,7 +64,6 @@ class GetHomeState(
         val recentlyReviewedCards = getRecentlyReviewedCardsWithProgress(rootStructure)
 
         return HomeState(
-            currentlyLearn = learningDeckWithInfo,
             bookmarks = bookmarkedDecksWithInfo,
             recentlyReviewed = recentlyReviewedCards
         )
