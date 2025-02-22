@@ -5,13 +5,13 @@ import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckWithCourseInfo
 import com.gaoyun.yanyou_kototomo.domain.BookmarksInteractor
-import com.gaoyun.yanyou_kototomo.domain.GetBookmarksState
+import com.gaoyun.yanyou_kototomo.domain.GetUserSavedDecks
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 class BookmarksViewModel(
-    private val getBookmarksState: GetBookmarksState,
+    private val courseDeckToDeckWithCourseInfo: GetUserSavedDecks,
     private val bookmarksInteractor: BookmarksInteractor,
 ) : BaseViewModel() {
 
@@ -20,7 +20,7 @@ class BookmarksViewModel(
 
     fun getBookmarksState() = viewModelScope.launch {
         bookmarksState.value = bookmarksInteractor.getBookmarkedDecks()
-        viewState.value = getBookmarksState.get()
+        viewState.value = courseDeckToDeckWithCourseInfo.getBookmarks()
     }
 
     fun removeBookmark(deckId: DeckId) {

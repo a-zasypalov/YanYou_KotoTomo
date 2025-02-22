@@ -10,6 +10,9 @@ CREATE TABLE DeckSettings (
     pausedCards TEXT AS List<String> NOT NULL
 );
 
+getSettingForDecks:
+SELECT * FROM DeckSettings;
+
 getSettingForDeck:
 SELECT * FROM DeckSettings WHERE deckId = ?;
 

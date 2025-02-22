@@ -40,4 +40,27 @@ class DeckSettingsRepository(
                 )
             }
     }
+
+    fun getAllDeckSettings(): List<DeckSettings> {
+        return db.deck_settingsQueries
+            .getSettingForDecks()
+            .executeAsList()
+            .map {
+                DeckSettings(
+                    deckId = DeckId(it.deckId),
+                    showTranslation = it.showTranslation == 1L,
+                    showTranscription = it.showTranscription == 1L,
+                    showReading = it.showReading == 1L,
+                    pausedCards = it.pausedCards.toSet(),
+                    hiddenSections = it.hiddenSections.mapNotNull {
+                        try {
+                            DeckSettings.Sections.valueOf(it)
+                        } catch (e: IllegalArgumentException) {
+                            e.printStackTrace()
+                            null
+                        }
+                    }.toSet(),
+                )
+            }
+    }
 }

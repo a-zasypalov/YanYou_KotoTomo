@@ -3,7 +3,7 @@ package domain
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toLocal
 import com.gaoyun.yanyou_kototomo.domain.BookmarksInteractor
 import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
-import com.gaoyun.yanyou_kototomo.domain.GetBookmarksState
+import com.gaoyun.yanyou_kototomo.domain.GetUserSavedDecks
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeckFromCache
 import courseDeck
@@ -22,11 +22,11 @@ class GetBookmarksStateTest {
     private val getCoursesRoot: GetCoursesRoot = mockk()
     private val deckSettingsInteractor: DeckSettingsInteractor = mockk()
 
-    private lateinit var getBookmarksState: GetBookmarksState
+    private lateinit var courseDeckToDeckWithCourseInfo: GetUserSavedDecks
 
     @BeforeEach
     fun setUp() {
-        getBookmarksState = GetBookmarksState(
+        courseDeckToDeckWithCourseInfo = GetUserSavedDecks(
             bookmarksInteractor = bookmarksInteractor,
             getDeckFromCache = getDeckFromCache,
             getCoursesRoot = getCoursesRoot,
@@ -35,7 +35,7 @@ class GetBookmarksStateTest {
     }
 
     @Test
-    fun `get should return list of DeckWithCourseInfo`() = runBlocking {
+    fun `getBookmarks should return list of DeckWithCourseInfo`() = runBlocking {
         val sampleRootStructure = rootStructureDTO.toLocal()
         val sampleBookmarkedDeck = courseDeck
         val deckWithInfo = deckWithCourseInfo
@@ -54,7 +54,7 @@ class GetBookmarksStateTest {
         }
 
         // Call method and assert
-        val result = getBookmarksState.get()
+        val result = courseDeckToDeckWithCourseInfo.getBookmarks()
 
         result.shouldContainExactly(expectedDecksWithCourseInfo)
 

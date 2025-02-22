@@ -4,12 +4,11 @@ import androidx.compose.ui.util.fastAny
 import androidx.lifecycle.viewModelScope
 import com.gaoyun.yanyou_kototomo.data.local.CardId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
+import com.gaoyun.yanyou_kototomo.data.local.DeckPart
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
-import com.gaoyun.yanyou_kototomo.data.local.card.completed
 import com.gaoyun.yanyou_kototomo.data.local.card.countForReviewAndNotPaused
-import com.gaoyun.yanyou_kototomo.data.local.card.hasProgress
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.domain.BookmarksInteractor
@@ -17,6 +16,7 @@ import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
+import com.gaoyun.yanyou_kototomo.domain.SplitDeckToNewReviewPaused
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,14 +29,6 @@ class DeckOverviewViewModel(
     private val cardProgressUpdater: CardProgressUpdater,
     private val bookmarksInteractor: BookmarksInteractor,
 ) : BaseViewModel() {
-
-    data class DeckSplitResult(
-        val newCards: DeckPart,
-        val cardsToReview: List<CardWithProgress<*>>,
-        val pausedCards: List<CardWithProgress<*>>,
-        val completedCards: List<CardWithProgress<*>>,
-    )
-
     override val viewState = MutableStateFlow<DeckOverviewState?>(null)
     val learningDecksState = MutableStateFlow(mutableListOf<CourseDeck>())
     val learningState = MutableStateFlow<CourseDeck?>(null)
@@ -62,7 +54,7 @@ class DeckOverviewViewModel(
                 learningDecksState.value = learningDecks.toMutableList()
                 learningState.value = learningDecks.find { it.id == deck.id }
 
-                val deckSplitResult = splitDeckToNewReviewPaused(deck.cards, settings)
+                val deckSplitResult = SplitDeckToNewReviewPaused.splitDeckToNewReviewPaused(deck.cards, settings)
                 val cardsDueToReview = deck.cards.filter { it.countForReviewAndNotPaused(deckSplitResult.pausedCards) }
 
                 viewState.value = DeckOverviewState(
@@ -80,42 +72,6 @@ class DeckOverviewViewModel(
                 )
             }
         }
-    }
-
-    @Suppress("UNCHECKED_CAST")
-    fun splitDeckToNewReviewPaused(
-        cards: List<CardWithProgress<*>>,
-        settings: DeckSettings,
-    ): DeckSplitResult {
-        val pausedCardIds = settings.pausedCards.toSet()
-        val pausedCards = mutableListOf<CardWithProgress<*>>()
-        val cardsToReview = mutableListOf<CardWithProgress<*>>()
-        val newWords = mutableListOf<CardWithProgress<Card.WordCard>>()
-        val newPhrases = mutableListOf<CardWithProgress<Card.PhraseCard>>()
-        val newKanji = mutableListOf<CardWithProgress<Card.KanjiCard>>()
-        val newKana = mutableListOf<CardWithProgress<Card.KanaCard>>()
-        val completedCards = mutableListOf<CardWithProgress<*>>()
-
-        for (card in cards) {
-            when {
-                pausedCardIds.contains(card.card.id.identifier) -> pausedCards.add(card)
-                card.hasProgress() && !card.completed() && card.card !is Card.KanaCard -> cardsToReview.add(card)
-                card.completed() && card.card !is Card.KanaCard -> completedCards.add(card)
-                else -> when (card.card) {
-                    is Card.WordCard -> newWords.add(card as CardWithProgress<Card.WordCard>)
-                    is Card.PhraseCard -> newPhrases.add(card as CardWithProgress<Card.PhraseCard>)
-                    is Card.KanjiCard -> newKanji.add(card as CardWithProgress<Card.KanjiCard>)
-                    is Card.KanaCard -> newKana.add(card as CardWithProgress<Card.KanaCard>)
-                }
-            }
-        }
-
-        return DeckSplitResult(
-            newCards = DeckPart(newKanji, newWords, newPhrases, newKana),
-            cardsToReview = cardsToReview.sortedBy { it.progress?.nextReview },
-            pausedCards = pausedCards,
-            completedCards = completedCards
-        )
     }
 
     fun updateTranslationSettings(show: Boolean) = viewModelScope.launch {
@@ -161,7 +117,10 @@ class DeckOverviewViewModel(
             val newSettings = viewStateSafe.settings.copy(pausedCards = newPausedCards.toSet())
             deckSettingsInteractor.updateDeckSettings(newSettings)
 
-            val (newCards, cardsToReview, pausedCards) = splitDeckToNewReviewPaused(viewStateSafe.allCards, newSettings)
+            val (newCards, cardsToReview, pausedCards) = SplitDeckToNewReviewPaused.splitDeckToNewReviewPaused(
+                viewStateSafe.allCards,
+                newSettings
+            )
             viewState.value = viewStateSafe.copy(
                 newCards = newCards,
                 cardsToReview = cardsToReview,
@@ -184,7 +143,7 @@ class DeckOverviewViewModel(
 
             cardProgressUpdater.updateCardCompletion(card.card.id, viewStateSafe.deckId, complete)
 
-            val deckSplitResult = splitDeckToNewReviewPaused(updatedAllCards, viewStateSafe.settings)
+            val deckSplitResult = SplitDeckToNewReviewPaused.splitDeckToNewReviewPaused(updatedAllCards, viewStateSafe.settings)
 
             viewState.value = viewStateSafe.copy(
                 allCards = updatedAllCards,
@@ -250,13 +209,4 @@ data class DeckOverviewState(
     val isBookmarked: Boolean,
 ) {
     fun isCardPaused(cardId: CardId) = pausedCards.fastAny { it.card.id == cardId }
-}
-
-data class DeckPart(
-    val kanji: List<CardWithProgress<Card.KanjiCard>>,
-    val words: List<CardWithProgress<Card.WordCard>>,
-    val phrases: List<CardWithProgress<Card.PhraseCard>>,
-    val kana: List<CardWithProgress<Card.KanaCard>>,
-) {
-    fun size() = kanji.size + words.size + phrases.size + kana.size
 }

@@ -8,13 +8,14 @@ import com.gaoyun.yanyou_kototomo.domain.AllDataReset
 import com.gaoyun.yanyou_kototomo.domain.BookmarksInteractor
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
-import com.gaoyun.yanyou_kototomo.domain.GetBookmarksState
+import com.gaoyun.yanyou_kototomo.domain.GetUserSavedDecks
 import com.gaoyun.yanyou_kototomo.domain.GetCardProgress
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.domain.GetDeckFromCache
 import com.gaoyun.yanyou_kototomo.domain.GetHomeState
 import com.gaoyun.yanyou_kototomo.domain.OnboardingInteractor
+import com.gaoyun.yanyou_kototomo.domain.PersonalSpaceInteractor
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
 import com.gaoyun.yanyou_kototomo.domain.SpacialRepetitionSettingsInteractor
@@ -109,7 +110,8 @@ val useCaseModule = module {
     single { AllDataReset(get(), get()) }
     single { OnboardingInteractor(get()) }
     single { SpacialRepetitionSettingsInteractor(get()) }
-    single { GetBookmarksState(get(), get(), get(), get()) }
+    single { GetUserSavedDecks(get(), get(), get(), get()) }
+    single { PersonalSpaceInteractor(get(), get()) }
 }
 
 val viewModelModule = module {
