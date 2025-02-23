@@ -1,6 +1,5 @@
 package com.gaoyun.yanyou_kototomo.domain
 
-import com.gaoyun.yanyou_kototomo.data.local.card.countForReviewAndNotPaused
 import com.gaoyun.yanyou_kototomo.data.ui_state.PersonalSpaceState
 
 class PersonalSpaceInteractor(

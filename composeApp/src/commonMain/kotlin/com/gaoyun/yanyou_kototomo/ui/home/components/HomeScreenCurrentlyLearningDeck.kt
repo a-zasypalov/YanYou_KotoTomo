@@ -28,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
-import com.gaoyun.yanyou_kototomo.data.local.card.countForReviewAndNotPausedIds
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckWithCourseInfo
 import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange

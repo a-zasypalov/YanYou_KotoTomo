@@ -6,8 +6,6 @@ import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
-import com.gaoyun.yanyou_kototomo.data.local.card.completed
-import com.gaoyun.yanyou_kototomo.data.local.card.countForReviewAndNotPausedIds
 import com.gaoyun.yanyou_kototomo.data.local.deck.Deck
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
@@ -134,7 +132,7 @@ class DeckPlayerViewModel(
                 easeFactor = newEaseFactor,
                 lastReviewed = reviewDate,
                 interval = intervalDays,
-                completed = currentCard.completed()
+                completed = currentCard.isCompleted()
             )
         )
         nextCard()

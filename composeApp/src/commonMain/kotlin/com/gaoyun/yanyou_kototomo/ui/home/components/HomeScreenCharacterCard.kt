@@ -23,7 +23,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
-import com.gaoyun.yanyou_kototomo.data.local.card.completed
 import com.gaoyun.yanyou_kototomo.domain.mapIntervalToColor
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 
@@ -49,7 +48,7 @@ fun HomeScreenCharacterCard(card: CardWithProgress<*>, languageId: LanguageId, o
                 Box(modifier = Modifier.size(6.dp).background(color = mapIntervalToColor(it), shape = CircleShape))
             } ?: Box(modifier = Modifier.size(6.dp))
 
-            if (card.completed()) {
+            if (card.isCompleted()) {
                 Icon(
                     imageVector = Icons.Default.Check,
                     contentDescription = null,

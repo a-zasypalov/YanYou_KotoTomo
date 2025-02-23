@@ -34,7 +34,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
-import com.gaoyun.yanyou_kototomo.data.local.card.completed
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.util.toReviewRelativeShortFormat
@@ -58,10 +57,10 @@ fun DeckPausedItemsSettingsView(
     }
 
     allCards.value?.let { cardsWithProgress ->
-        val kanji = remember { cardsWithProgress.filter { it.card is Card.KanjiCard && !it.completed() } }
-        val phrases = remember { cardsWithProgress.filter { it.card is Card.PhraseCard && !it.completed() } }
-        val words = remember { cardsWithProgress.filter { it.card is Card.WordCard && !it.completed() } }
-        val completed = remember { cardsWithProgress.filter { it.completed() } }
+        val kanji = remember { cardsWithProgress.filter { it.card is Card.KanjiCard && !it.isCompleted() } }
+        val phrases = remember { cardsWithProgress.filter { it.card is Card.PhraseCard && !it.isCompleted() } }
+        val words = remember { cardsWithProgress.filter { it.card is Card.WordCard && !it.isCompleted() } }
+        val completed = remember { cardsWithProgress.filter { it.isCompleted() } }
 
         ModalBottomSheet(
             onDismissRequest = onDismiss,
@@ -180,7 +179,7 @@ fun PausedItemCard(
                 )
             }
 
-            if (!cardWithProgress.completed()) {
+            if (!cardWithProgress.isCompleted()) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(4.dp)

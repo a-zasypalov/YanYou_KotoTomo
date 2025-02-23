@@ -2,8 +2,6 @@ package com.gaoyun.yanyou_kototomo.domain
 
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
-import com.gaoyun.yanyou_kototomo.data.local.card.completed
-import com.gaoyun.yanyou_kototomo.data.local.card.hasProgress
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.data.ui_state.DeckPart
 import com.gaoyun.yanyou_kototomo.data.ui_state.DeckSplitResult
@@ -28,8 +26,8 @@ object SplitDeckToNewReviewPaused {
         for (card in cards) {
             when {
                 pausedCardIds.contains(card.card.id.identifier) -> pausedCards.add(card.base())
-                card.hasProgress() && !card.completed() && card.card !is Card.KanaCard -> cardsToReview.add(card.base())
-                card.completed() && card.card !is Card.KanaCard -> completedCards.add(card.base())
+                card.hasProgress() && !card.isCompleted() && card.card !is Card.KanaCard -> cardsToReview.add(card.base())
+                card.isCompleted() && card.card !is Card.KanaCard -> completedCards.add(card.base())
                 else -> when (card.card) {
                     is Card.WordCard -> newWords.add(card as CardWithProgress<Card.WordCard>)
                     is Card.PhraseCard -> newPhrases.add(card as CardWithProgress<Card.PhraseCard>)
@@ -62,8 +60,8 @@ object SplitDeckToNewReviewPaused {
         for (card in cards) {
             when {
                 pausedCardIds.contains(card.card.id.identifier) -> pausedCards.add(card)
-                card.hasProgress() && !card.completed() -> cardsToReview.add(card)
-                card.completed() -> completedCards.add(card)
+                card.hasProgress() && !card.isCompleted() -> cardsToReview.add(card)
+                card.isCompleted() -> completedCards.add(card)
                 else -> newCards.add(card)
             }
         }
