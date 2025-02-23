@@ -43,8 +43,8 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToBookmarks
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToPersonalSpace
+import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.HorizontalCourseCard
 import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
-import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenBookmarkedDeck
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenCharacterCard
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenCurrentlyLearningDeck
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenEmptyState
@@ -179,7 +179,7 @@ private fun HomeScreenContent(
                     item {
                         LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             item { Spacer(Modifier.size(8.dp)) }
-                            items(bookmarks.drop(1)) { bookmark -> HomeScreenBookmarkedDeck(bookmark, onCourseClick) }
+                            items(bookmarks.drop(1)) { bookmark -> HorizontalCourseCard(bookmark, onCourseClick) }
                             item { Spacer(Modifier.size(8.dp)) }
                         }
                     }

@@ -95,6 +95,13 @@ sealed interface Card {
             }.toString()
         }
     }
+
+    fun answer() = when (this) {
+        is WordCard -> this.translation
+        is KanaCard -> this.transcription
+        is KanjiCard -> this.translation
+        is PhraseCard -> this.translation
+    }
 }
 
 data class CardSimpleDataEntryWithProgress(
