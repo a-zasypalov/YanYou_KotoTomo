@@ -18,20 +18,20 @@ sealed interface CardWithProgress<T : Card> {
         val deckName: String,
     ) : CardWithProgress<T>
 
-    fun withDeckInfo(deckId: DeckId, deckName: String) = WithDeckInfo(card, progress, deckId, deckName)
-    fun base() = Base(card, progress)
+    fun isCompleted(): Boolean = this.progress?.completed == true
+    fun hasProgress(): Boolean = this.progress?.hasProgress() == true
+
     fun withoutProgress() = when (this) {
         is Base -> this.copy(card, null)
         is WithDeckInfo -> this.copy(card, null, deckId, deckName)
     }
-
     fun asCompleted() = when (this) {
         is Base -> this.copy(card, CardProgress.completedCard(card.id))
         is WithDeckInfo -> this.copy(card, CardProgress.completedCard(card.id), deckId, deckName)
     }
 
-    fun isCompleted(): Boolean = this.progress?.completed == true
-    fun hasProgress(): Boolean = this.progress?.hasProgress() == true
+    fun withDeckInfo(deckId: DeckId, deckName: String) = WithDeckInfo(card, progress, deckId, deckName)
+    fun base() = Base(card, progress)
 
     fun countForReviewAndNotPausedIds(pausedCardIds: Collection<String>): Boolean {
         val isReviewCandidate = this.progress?.countForReview() != false

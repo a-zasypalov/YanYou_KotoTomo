@@ -16,9 +16,9 @@ data class CardProgress(
         fun completedCard(cardId: CardId) = CardProgress(cardId.identifier, null, null, null, null, true)
     }
 
-}
+    fun hasProgress(): Boolean = lastReviewed != null
 
-fun CardProgress?.hasProgress(): Boolean = this?.lastReviewed != null
+}
 
 //Count for review
 internal fun CardProgress?.countForReview(): Boolean {
