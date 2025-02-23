@@ -1,13 +1,38 @@
 package com.gaoyun.yanyou_kototomo.data.local.card
 
 import com.gaoyun.yanyou_kototomo.data.local.CardId
+import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.util.localDateNow
 import kotlinx.datetime.LocalDate
 
-data class CardWithProgress<T : Card>(
-    val card: T,
-    val progress: CardProgress?,
-)
+sealed interface CardWithProgress<T : Card> {
+    val card: T
+    val progress: CardProgress?
+
+    fun withDeckInfo(deckId: DeckId, deckName: String) = WithDeckInfo(card, progress, deckId, deckName)
+    fun base() = Base(card, progress)
+    fun withoutProgress() = when (this) {
+        is Base -> this.copy(card, null)
+        is WithDeckInfo -> this.copy(card, null, deckId, deckName)
+    }
+
+    fun asCompleted() = when (this) {
+        is Base -> this.copy(card, CardProgress.completedCard(card.id))
+        is WithDeckInfo -> this.copy(card, CardProgress.completedCard(card.id), deckId, deckName)
+    }
+
+    data class Base<T : Card>(
+        override val card: T,
+        override val progress: CardProgress?,
+    ) : CardWithProgress<T>
+
+    data class WithDeckInfo<T : Card>(
+        override val card: T,
+        override val progress: CardProgress?,
+        val deckId: DeckId,
+        val deckName: String,
+    ) : CardWithProgress<T>
+}
 
 data class CardProgress(
     val cardId: String,

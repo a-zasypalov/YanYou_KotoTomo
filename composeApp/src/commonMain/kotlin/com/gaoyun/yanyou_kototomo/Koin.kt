@@ -8,12 +8,12 @@ import com.gaoyun.yanyou_kototomo.domain.AllDataReset
 import com.gaoyun.yanyou_kototomo.domain.BookmarksInteractor
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
-import com.gaoyun.yanyou_kototomo.domain.GetUserSavedDecks
 import com.gaoyun.yanyou_kototomo.domain.GetCardProgress
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.domain.GetDeckFromCache
 import com.gaoyun.yanyou_kototomo.domain.GetHomeState
+import com.gaoyun.yanyou_kototomo.domain.GetUserSavedDecks
 import com.gaoyun.yanyou_kototomo.domain.OnboardingInteractor
 import com.gaoyun.yanyou_kototomo.domain.PersonalSpaceInteractor
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
@@ -36,6 +36,7 @@ import com.gaoyun.yanyou_kototomo.ui.courses.CoursesViewModel
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewViewModel
 import com.gaoyun.yanyou_kototomo.ui.home.HomeViewModel
 import com.gaoyun.yanyou_kototomo.ui.onboarding.OnboardingViewModel
+import com.gaoyun.yanyou_kototomo.ui.personal_space.PersonalSpaceViewModel
 import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerViewModel
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryViewModel
 import com.gaoyun.yanyou_kototomo.ui.settings.SettingsViewModel
@@ -129,6 +130,7 @@ val viewModelModule = module {
     factory { SettingsViewModel(get(), get(), get()) }
     factory { OnboardingViewModel(get()) }
     factory { BookmarksViewModel(get(), get()) }
+    factory { PersonalSpaceViewModel(get()) }
 }
 
 val dbModule = module {

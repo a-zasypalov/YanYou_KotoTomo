@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.gaoyun.yanyou_kototomo.data.local.ProgressColor
+import com.gaoyun.yanyou_kototomo.data.ui_state.ProgressColor
 import com.gaoyun.yanyou_kototomo.domain.toComposeColor
 
 @Composable

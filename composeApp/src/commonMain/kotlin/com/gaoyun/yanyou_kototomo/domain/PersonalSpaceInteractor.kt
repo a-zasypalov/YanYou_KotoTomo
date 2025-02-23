@@ -1,7 +1,7 @@
 package com.gaoyun.yanyou_kototomo.domain
 
-import com.gaoyun.yanyou_kototomo.data.local.PersonalSpaceState
 import com.gaoyun.yanyou_kototomo.data.local.card.countForReviewAndNotPaused
+import com.gaoyun.yanyou_kototomo.data.ui_state.PersonalSpaceState
 
 class PersonalSpaceInteractor(
     private val getUserSavedDecks: GetUserSavedDecks,
@@ -13,10 +13,11 @@ class PersonalSpaceInteractor(
         val settingsList = deckSettingsInteractor.getAllDeckSettings()
         val deckSplitResults = learningDecks.mapNotNull { deckWithCourse ->
             val settings = settingsList.find { it.deckId == deckWithCourse.deck.id } ?: return@mapNotNull null
-            SplitDeckToNewReviewPaused.splitDeckToNewReviewPaused(deckWithCourse.deck.cards, settings)
+            val cardsWithDeckInfo = deckWithCourse.deck.cards.map { it.withDeckInfo(deckWithCourse.deck.id, deckWithCourse.deck.name) }
+            SplitDeckToNewReviewPaused.splitDeckToPersonalState(cardsWithDeckInfo, settings)
         }
 
-        val allNewCards = deckSplitResults.map { it.newCards }
+        val allNewCards = deckSplitResults.flatMap { it.newCards }
         val allPausedCards = deckSplitResults.flatMap { it.pausedCards }
         val allCompletedCards = deckSplitResults.flatMap { it.completedCards }
         val cardsToReview = deckSplitResults.flatMap { it.cardsToReview }

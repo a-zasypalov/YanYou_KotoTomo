@@ -1,7 +1,7 @@
 package com.gaoyun.yanyou_kototomo.domain
 
 import androidx.compose.ui.graphics.Color
-import com.gaoyun.yanyou_kototomo.data.local.ProgressColor
+import com.gaoyun.yanyou_kototomo.data.ui_state.ProgressColor
 
 fun mapIntervalToColor(intervalDays: Int): Color {
     return ProgressColor.entries.first { intervalDays <= it.maxDays }.toComposeColor()

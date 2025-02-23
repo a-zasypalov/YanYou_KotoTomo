@@ -20,7 +20,7 @@ class GetCoursesRoot(
 
             bookmarksInteractor.getBookmarkedDecks().filter { responseDeckIds.contains(it.id) }
                 .let { bookmarksInteractor.saveBookmarkedDecks(it) }
-            bookmarksInteractor.getLearningDecks().filter { !responseDeckIds.contains(it.id) }
+            bookmarksInteractor.getLearningDecks().filter { responseDeckIds.contains(it.id) }
                 .let { bookmarksInteractor.saveLearningDecks(it) }
 
             it.copy(languages = it.languages.sortedBy { language -> if (language.id.identifier == primaryLanguageId) 0 else 1 })

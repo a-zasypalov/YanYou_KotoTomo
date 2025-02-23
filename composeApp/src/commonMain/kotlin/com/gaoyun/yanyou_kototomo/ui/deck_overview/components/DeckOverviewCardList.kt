@@ -21,17 +21,9 @@ import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.completed
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
+import com.gaoyun.yanyou_kototomo.data.ui_state.CardOverviewCategory
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewState
-
-data class CardOverviewCategory(
-    val name: String,
-    val cards: List<CardWithProgress<*>>,
-    val type: CardCategoryType = CardCategoryType.New,
-    val isShown: Boolean = true,
-    val visibilityToggle: ((Boolean) -> Unit)? = null,
-    val span: Int = 1,
-)
 
 fun LazyGridScope.DeckOverviewKanaDeck(
     viewState: DeckOverviewState,
@@ -43,9 +35,9 @@ fun LazyGridScope.DeckOverviewKanaDeck(
     val yoonCards = viewState.allCards.filter { (it.card as? Card.KanaCard)?.set == Card.KanaCard.Set.Yoon }
 
     val categories = listOf(
-        CardOverviewCategory(name = "Gojuon", cards = gojuonCards, span = 3),
-        CardOverviewCategory(name = "Dakuon and Handakuon", cards = dakuonCards, span = 3),
-        CardOverviewCategory(name = "Yoon", cards = yoonCards, span = 5),
+        CardOverviewCategory.GridOverview(name = "Gojuon", cards = gojuonCards, span = 3),
+        CardOverviewCategory.GridOverview(name = "Dakuon and Handakuon", cards = dakuonCards, span = 3),
+        CardOverviewCategory.GridOverview(name = "Yoon", cards = yoonCards, span = 5),
     )
 
     DeckOverviewCategories(categories, cellsNumber, viewState.settings, onCardClick)
@@ -70,10 +62,10 @@ fun LazyGridScope.DeckOverviewMixedKanaDeck(
     val showCompletedCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Completed).not()
 
     val categories = listOf(
-        CardOverviewCategory(name = "Gojuon", cards = gojuonCards, span = 3),
-        CardOverviewCategory(name = "Dakuon and Handakuon", cards = dakuonCards, span = 3),
-        CardOverviewCategory(name = "Yoon", cards = yoonCards, span = 5),
-        CardOverviewCategory(
+        CardOverviewCategory.GridOverview(name = "Gojuon", cards = gojuonCards, span = 3),
+        CardOverviewCategory.GridOverview(name = "Dakuon and Handakuon", cards = dakuonCards, span = 3),
+        CardOverviewCategory.GridOverview(name = "Yoon", cards = yoonCards, span = 5),
+        CardOverviewCategory.GridOverview(
             name = "New words",
             cards = viewState.newCards.words,
             type = CardCategoryType.New,
@@ -81,7 +73,7 @@ fun LazyGridScope.DeckOverviewMixedKanaDeck(
             visibilityToggle = updateShowNewWords,
             span = 5
         ),
-        CardOverviewCategory(
+        CardOverviewCategory.GridOverview(
             name = "To Review",
             cards = viewState.cardsToReview,
             type = CardCategoryType.ToReview,
@@ -89,7 +81,7 @@ fun LazyGridScope.DeckOverviewMixedKanaDeck(
             visibilityToggle = updateShowToReviewCards,
             span = 5
         ),
-        CardOverviewCategory(
+        CardOverviewCategory.GridOverview(
             name = "Paused",
             cards = viewState.pausedCards,
             type = CardCategoryType.Paused,
@@ -97,7 +89,7 @@ fun LazyGridScope.DeckOverviewMixedKanaDeck(
             visibilityToggle = updateShowPausedCards,
             span = 5
         ),
-        CardOverviewCategory(
+        CardOverviewCategory.GridOverview(
             name = "✓ Completed",
             cards = viewState.completedCards,
             type = CardCategoryType.Completed,
@@ -130,12 +122,24 @@ fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
     val showCompletedCards = viewState.settings.hiddenSections.contains(DeckSettings.Sections.Completed).not()
 
     val categories = listOf(
-        CardOverviewCategory("New Kanji", viewState.newCards.kanji, CardCategoryType.New, showNewKanji, updateShowKanji),
-        CardOverviewCategory("New words", viewState.newCards.words, CardCategoryType.New, showNewWords, updateShowNewWords),
-        CardOverviewCategory("New phrases", viewState.newCards.phrases, CardCategoryType.New, showNewPhrases, updateShowNewPhrases),
-        CardOverviewCategory("To Review", viewState.cardsToReview, CardCategoryType.ToReview, showToReviewCards, updateShowToReviewCards),
-        CardOverviewCategory("Paused", viewState.pausedCards, CardCategoryType.Paused, showPausedCards, updateShowPausedCards),
-        CardOverviewCategory(
+        CardOverviewCategory.GridOverview("New Kanji", viewState.newCards.kanji, CardCategoryType.New, showNewKanji, updateShowKanji),
+        CardOverviewCategory.GridOverview("New words", viewState.newCards.words, CardCategoryType.New, showNewWords, updateShowNewWords),
+        CardOverviewCategory.GridOverview(
+            "New phrases",
+            viewState.newCards.phrases,
+            CardCategoryType.New,
+            showNewPhrases,
+            updateShowNewPhrases
+        ),
+        CardOverviewCategory.GridOverview(
+            "To Review",
+            viewState.cardsToReview,
+            CardCategoryType.ToReview,
+            showToReviewCards,
+            updateShowToReviewCards
+        ),
+        CardOverviewCategory.GridOverview("Paused", viewState.pausedCards, CardCategoryType.Paused, showPausedCards, updateShowPausedCards),
+        CardOverviewCategory.GridOverview(
             "✓ Completed",
             viewState.completedCards,
             CardCategoryType.Completed,
@@ -148,7 +152,7 @@ fun LazyGridScope.DeckOverviewNormalSegmentedDeck(
 }
 
 fun LazyGridScope.DeckOverviewCategories(
-    categories: List<CardOverviewCategory>,
+    categories: List<CardOverviewCategory.GridOverview>,
     cellsNumber: Int,
     settings: DeckSettings,
     onCardClick: (CardWithProgress<*>) -> Unit,
@@ -167,7 +171,7 @@ fun LazyGridScope.DeckOverviewCategories(
                 cards.forEach {
                     item(key = it.card.id.identifier, span = { GridItemSpan(span) }) {
                         DeckOverviewCard(
-                            cardWithProgress = if (type == CardCategoryType.Paused) it.copy(progress = null) else it,
+                            cardWithProgress = if (type == CardCategoryType.Paused) it.withoutProgress() else it,
                             settings = settings,
                             onCardClick = onCardClick,
                         )

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -27,11 +28,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
-import com.gaoyun.yanyou_kototomo.data.local.HomeState
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckWithCourseInfo
+import com.gaoyun.yanyou_kototomo.data.ui_state.HomeState
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FullScreenLoader
+import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
@@ -40,6 +42,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToBookmarks
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToPersonalSpace
 import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenBookmarkedDeck
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenCharacterCard
@@ -114,7 +117,8 @@ fun HomeScreen(
             )
         },
         onBookmarksEdit = { navigate(ToBookmarks) },
-        onCoursesClick = onCoursesClick
+        onCoursesClick = onCoursesClick,
+        onPersonalSpaceClick = { navigate(ToPersonalSpace) }
     )
     CardDetailsView(cardState = cardDetailState, languageId = cardDetailLanguageState.value) { cardDetailState.value = null }
 }
@@ -129,6 +133,7 @@ private fun HomeScreenContent(
     onQuizClick: (DeckWithCourseInfo) -> Unit,
     onBookmarksEdit: () -> Unit,
     onCoursesClick: () -> Unit,
+    onPersonalSpaceClick: () -> Unit,
 ) {
     val state = rememberLazyListState()
     content?.let {
@@ -141,6 +146,14 @@ private fun HomeScreenContent(
                 modifier = modifier.fillMaxWidth(),
             ) {
                 item { HomeScreenTitle() }
+
+                item {
+                    PrimaryElevatedButton(
+                        text = "Personal space",
+                        onClick = onPersonalSpaceClick,
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+                    )
+                }
 
                 it.bookmarks.let { bookmarks ->
                     if (bookmarks.isNotEmpty()) {

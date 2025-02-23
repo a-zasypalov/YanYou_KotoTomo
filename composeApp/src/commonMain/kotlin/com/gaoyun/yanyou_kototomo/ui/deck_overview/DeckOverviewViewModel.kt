@@ -4,13 +4,11 @@ import androidx.compose.ui.util.fastAny
 import androidx.lifecycle.viewModelScope
 import com.gaoyun.yanyou_kototomo.data.local.CardId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
-import com.gaoyun.yanyou_kototomo.data.local.DeckPart
-import com.gaoyun.yanyou_kototomo.data.local.card.Card
-import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.card.countForReviewAndNotPaused
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
+import com.gaoyun.yanyou_kototomo.data.ui_state.DeckPart
 import com.gaoyun.yanyou_kototomo.domain.BookmarksInteractor
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
@@ -117,7 +115,7 @@ class DeckOverviewViewModel(
             val newSettings = viewStateSafe.settings.copy(pausedCards = newPausedCards.toSet())
             deckSettingsInteractor.updateDeckSettings(newSettings)
 
-            val (newCards, cardsToReview, pausedCards) = SplitDeckToNewReviewPaused.splitDeckToNewReviewPaused(
+            val (_, newCards, cardsToReview, pausedCards) = SplitDeckToNewReviewPaused.splitDeckToNewReviewPaused(
                 viewStateSafe.allCards,
                 newSettings
             )
@@ -134,11 +132,7 @@ class DeckOverviewViewModel(
     fun completeCard(card: CardWithProgress<*>, complete: Boolean) = viewModelScope.launch {
         viewState.value?.let { viewStateSafe ->
             val cardInDeck = viewStateSafe.allCards.find { it.card.id == card.card.id }
-            val updatedCard = if (complete) {
-                cardInDeck?.copy(progress = CardProgress.completedCard(card.card.id))
-            } else {
-                cardInDeck?.copy(progress = null)
-            }
+            val updatedCard = if (complete) cardInDeck?.asCompleted() else cardInDeck?.withoutProgress()
             val updatedAllCards = viewStateSafe.allCards.map { if (it.card.id == card.card.id) updatedCard ?: it else it }
 
             cardProgressUpdater.updateCardCompletion(card.card.id, viewStateSafe.deckId, complete)
@@ -168,10 +162,10 @@ class DeckOverviewViewModel(
 
     fun updateLearnedState(learned: Boolean) = viewModelScope.launch {
         if (learned) {
-            viewState.value?.deckId?.let { bookmarksInteractor.addLearningDeck(it, bookmarksState.value) }
+            viewState.value?.deckId?.let { bookmarksInteractor.addLearningDeck(it, learningDecksState.value) }
         } else {
-            learningDecksState.value.remove(bookmarkState.value)
-            bookmarksInteractor.saveBookmarkedDecks(learningDecksState.value)
+            learningDecksState.value.remove(learningState.value)
+            bookmarksInteractor.saveLearningDecks(learningDecksState.value)
         }
         viewState.value = viewState.value?.copy(isCurrentlyLearned = learned)
     }
@@ -200,9 +194,9 @@ data class DeckOverviewState(
     val deckName: String,
     val allCards: List<CardWithProgress<*>>,
     val newCards: DeckPart,
-    val cardsToReview: List<CardWithProgress<*>>,
-    val pausedCards: List<CardWithProgress<*>>,
-    val completedCards: List<CardWithProgress<*>>,
+    val cardsToReview: List<CardWithProgress.Base<*>>,
+    val pausedCards: List<CardWithProgress.Base<*>>,
+    val completedCards: List<CardWithProgress.Base<*>>,
     val settings: DeckSettings,
     val cardsDueToReview: Int,
     val isCurrentlyLearned: Boolean,

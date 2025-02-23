@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.data.local
+package com.gaoyun.yanyou_kototomo.data.ui_state
 
 enum class ProgressColor(val maxDays: Int) {
     Red(1),      // Immediate recall (0-1 days)

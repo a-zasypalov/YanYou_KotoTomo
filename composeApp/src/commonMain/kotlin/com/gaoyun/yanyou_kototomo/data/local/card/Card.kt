@@ -55,7 +55,7 @@ sealed interface Card {
         val transcription: String,
         val alphabet: AlphabetType,
         val mirror: Mirror,
-        val set: Set
+        val set: Set,
     ) : Card {
         data class Mirror(
             val id: AlphabetCardId,
@@ -110,4 +110,4 @@ data class CardSimpleDataEntry(
     val answer: String,
 )
 
-fun Card.withProgress(progress: CardProgress?) = CardWithProgress(card = this, progress = progress)
+fun Card.withProgress(progress: CardProgress?) = CardWithProgress.Base(card = this, progress = progress)
