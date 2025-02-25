@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 fun LearnButton(
     isLearned: Boolean,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Button(
         onClick = onClick,
@@ -34,7 +35,7 @@ fun LearnButton(
             width = 1.dp,
             color = if (isLearned) MaterialTheme.colorScheme.outline else MaterialTheme.colorScheme.outlineVariant
         ),
-        modifier = Modifier.padding(end = 4.dp)
+        modifier = modifier.padding(end = 4.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,

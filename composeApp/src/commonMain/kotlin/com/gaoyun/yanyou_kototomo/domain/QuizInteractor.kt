@@ -36,7 +36,7 @@ class QuizInteractor(
     ): QuizSessionWithCards? {
         val session = repository.getQuizSession(args.sessionId) ?: return null
         val cardIds = session.results.map { it.cardId }
-        val course = getCoursesRoot.getCourseDecks(args.courseId)
+        val course = getCoursesRoot.getCourse(args.courseId)
         val cards = course.decks.find { it.id == args.deckId }?.let { deckInCourse ->
             val deck = getDeck.getDeck(
                 learningLanguage = args.learningLanguageId,

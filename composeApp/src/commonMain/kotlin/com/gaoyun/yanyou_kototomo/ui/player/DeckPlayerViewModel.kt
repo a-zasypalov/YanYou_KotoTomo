@@ -53,7 +53,7 @@ class DeckPlayerViewModel(
     ) = viewModelScope.launch {
         this@DeckPlayerViewModel.finishCallback = finishCallback
         this@DeckPlayerViewModel.playerMode.value = playerMode
-        val course = getCoursesRoot.getCourseDecks(courseId)
+        val course = getCoursesRoot.getCourse(courseId)
         course.decks.find { it.id == deckId }?.let { deckInCourse ->
             getDeck.getDeck(
                 learningLanguage = learningLanguageId,

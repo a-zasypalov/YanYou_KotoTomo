@@ -1,6 +1,8 @@
 package com.gaoyun.yanyou_kototomo.domain
 
+import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
+import com.gaoyun.yanyou_kototomo.data.local.course.Course
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
 import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys
@@ -16,19 +18,9 @@ import kotlinx.serialization.json.Json
 class BookmarksInteractor(
     internal val preferences: Preferences,
     internal val coursesRootComponentRepository: CoursesRootComponentRepository,
+    internal val repository: CoursesRootComponentRepository,
 ) {
     internal val courseDecks = MutableStateFlow<List<CourseDeck>?>(null)
-
-    fun getLearningDecks(): List<CourseDeck> {
-        val jsonString = preferences.getString(PreferencesKeys.LEARNING_DECKS, "[]")
-        return try {
-            val dtoList = Json.decodeFromString(ListSerializer(CourseDeckDTO.serializer()), jsonString)
-            dtoList.map { it.toLocal() }
-        } catch (e: SerializationException) {
-            e.printStackTrace()
-            emptyList() // Fallback to an empty list if deserialization fails
-        }
-    }
 
     fun getBookmarkedDecks(): List<CourseDeck> {
         val jsonString = preferences.getString(PreferencesKeys.BOOKMARKED_DECKS, "[]")
@@ -39,13 +31,6 @@ class BookmarksInteractor(
             e.printStackTrace()
             emptyList() // Fallback to an empty list if deserialization fails
         }
-    }
-
-    suspend fun addLearningDeck(deckId: DeckId, decks: List<CourseDeck>) {
-        val courseDecks = this.courseDecks.value ?: getCourseDecks()
-        val deckToAdd = courseDecks.find { it.id == deckId }
-        val decksToSave = (decks + deckToAdd).filterNotNull()
-        saveLearningDecks(decksToSave)
     }
 
     suspend fun addBookmark(deckId: DeckId, decks: List<CourseDeck>) {
@@ -61,10 +46,15 @@ class BookmarksInteractor(
         preferences.setString(PreferencesKeys.BOOKMARKED_DECKS, jsonString)
     }
 
-    fun saveLearningDecks(decks: List<CourseDeck>) {
-        val jsonString = Json.encodeToString(ListSerializer(CourseDeckDTO.serializer()), decks.map { it.toDTO() })
-        preferences.setString(PreferencesKeys.LEARNING_DECKS, jsonString)
+    fun getLearningCourseId(): CourseId? {
+        return preferences.getString(PreferencesKeys.LEARNING_LANGUAGE)?.let { CourseId(it) }
     }
+
+    suspend fun getLearningCourse(): Course? {
+        return getLearningCourseId()?.let { repository.getCourse(it).toLocal() }
+    }
+
+    fun saveLearningCourse(courseId: CourseId) = preferences.setString(PreferencesKeys.LEARNING_LANGUAGE, courseId.identifier)
 
     internal suspend fun getCourseDecks(): List<CourseDeck> {
         return coursesRootComponentRepository.getCoursesRoot(force = false)

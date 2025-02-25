@@ -20,8 +20,6 @@ class GetCoursesRoot(
 
             bookmarksInteractor.getBookmarkedDecks().filter { responseDeckIds.contains(it.id) }
                 .let { bookmarksInteractor.saveBookmarkedDecks(it) }
-            bookmarksInteractor.getLearningDecks().filter { responseDeckIds.contains(it.id) }
-                .let { bookmarksInteractor.saveLearningDecks(it) }
 
             it.copy(languages = it.languages.sortedBy { language -> if (language.id.identifier == primaryLanguageId) 0 else 1 })
         }
@@ -29,5 +27,5 @@ class GetCoursesRoot(
 
     suspend fun getCourseLanguages(): List<LanguageId> = repository.getCoursesRoot(false).toLocal().languages.map { it.id }
 
-    suspend fun getCourseDecks(courseId: CourseId) = repository.getCourse(courseId).toLocal()
+    suspend fun getCourse(courseId: CourseId) = repository.getCourse(courseId).toLocal()
 }

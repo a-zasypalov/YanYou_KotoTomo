@@ -94,7 +94,6 @@ fun DeckOverviewScreen(
             updateTranscriptionSettings = viewModel::updateTranscriptionSettings,
             updateReadingSettings = viewModel::updateReadingSettings,
             updateBookmarkedState = viewModel::updateBookmarkedState,
-            updateLearnedState = viewModel::updateLearnedState,
             updateShowNewWords = viewModel::updateShowNewWords,
             updateShowNewPhrases = viewModel::updateShowNewPhrases,
             updateShowToReviewCards = viewModel::updateShowToReviewCards,
@@ -130,7 +129,6 @@ private fun DeckOverviewContent(
     updateTranscriptionSettings: (Boolean) -> Unit,
     updateReadingSettings: (Boolean) -> Unit,
     updateBookmarkedState: (Boolean) -> Unit,
-    updateLearnedState: (Boolean) -> Unit,
     updateShowNewWords: (Boolean) -> Unit,
     updateShowNewPhrases: (Boolean) -> Unit,
     updateShowToReviewCards: (Boolean) -> Unit,
@@ -167,7 +165,6 @@ private fun DeckOverviewContent(
                         updateTranscriptionSettings = updateTranscriptionSettings,
                         updateReadingSettings = updateReadingSettings,
                         updateBookmarkedState = updateBookmarkedState,
-                        updateLearnedState = updateLearnedState,
                     )
                 }
 

@@ -42,9 +42,8 @@ class GetCoursesRootTest {
         every { preferences.getString(PreferencesKeys.PRIMARY_LANGUAGE_ID, "cn") } returns "cn"
         coEvery { repository.getCoursesRoot(false) } returns rootStructureDTO
         every { bookmarksInteractor.getBookmarkedDecks() } returns listOf(courseDeck)
-        every { bookmarksInteractor.getLearningDecks() } returns listOf(courseDeck)
+        every { bookmarksInteractor.getLearningCourse() } returns listOf(courseDeck)
         every { bookmarksInteractor.saveBookmarkedDecks(any()) } just Runs
-        coEvery { bookmarksInteractor.addLearningDeck(any(), any()) } just Runs
 
         val result = getCoursesRoot.getCourses()
 
@@ -66,7 +65,7 @@ class GetCoursesRootTest {
     fun `getCourseDecks should return the correct course decks`() = runTest {
         val courseId = CourseId("course1")
         coEvery { repository.getCourse(courseId) } returns courseDto
-        val result = getCoursesRoot.getCourseDecks(courseId)
+        val result = getCoursesRoot.getCourse(courseId)
         result shouldBe courseDto.toLocal()
     }
 }

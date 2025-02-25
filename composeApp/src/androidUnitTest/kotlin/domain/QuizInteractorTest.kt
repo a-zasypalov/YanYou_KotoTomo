@@ -138,8 +138,15 @@ class QuizInteractorTest {
         val deck = deckDTO.toLocal("", listOf())
 
         every { mockRepository.getQuizSession(sessionId) } returns session
-        coEvery { mockGetCoursesRoot.getCourseDecks(courseId) } returns course
-        coEvery { mockGetDeck.getDeck(learningLanguageId, sourceLanguageId, course.decks[0], course.requiredDecks ?: listOf()) } returns deck
+        coEvery { mockGetCoursesRoot.getCourse(courseId) } returns course
+        coEvery {
+            mockGetDeck.getDeck(
+                learningLanguageId,
+                sourceLanguageId,
+                course.decks[0],
+                course.requiredDecks ?: listOf()
+            )
+        } returns deck
 
         // Act
         val result = quizInteractor.getQuizSession(args)
@@ -147,7 +154,7 @@ class QuizInteractorTest {
         // Assert
         result?.sessionId shouldBe sessionId
         verify { mockRepository.getQuizSession(sessionId) }
-        coVerify { mockGetCoursesRoot.getCourseDecks(courseId) }
+        coVerify { mockGetCoursesRoot.getCourse(courseId) }
         coVerify { mockGetDeck.getDeck(learningLanguageId, sourceLanguageId, course.decks[0], course.requiredDecks ?: listOf()) }
     }
 

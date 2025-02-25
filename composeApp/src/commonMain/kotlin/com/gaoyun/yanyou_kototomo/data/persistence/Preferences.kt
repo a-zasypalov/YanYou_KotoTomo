@@ -3,7 +3,7 @@ package com.gaoyun.yanyou_kototomo.data.persistence
 object PreferencesKeys {
     const val UPDATES_STRUCTURE_REFRESHED = "UPDATES_STRUCTURE_REFRESHED"
     const val UPDATES_COURSES_REFRESHED = "UPDATES_COURSES_REFRESHED"
-    const val LEARNING_DECKS = "LEARNING_DECKS"
+    const val LEARNING_LANGUAGE = "LEARNING_LANGUAGE"
     const val BOOKMARKED_DECKS = "BOOKMARKED_DECKS"
     const val COLOR_THEME = "COLOR_THEME"
     const val ONBOARDING_IS_SHOWN = "ONBOARDING_IS_SHOWN"

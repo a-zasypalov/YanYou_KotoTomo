@@ -33,20 +33,20 @@ class BookmarksInteractorTest {
 
     @Test
     fun `getLearningDeck returns emoty list if LEARNING_DECKS is not in preferences`() {
-        every { mockPreferences.getString(PreferencesKeys.LEARNING_DECKS) } returns null
+        every { mockPreferences.getString(PreferencesKeys.LEARNING_LANGUAGE) } returns null
 
-        interactor.getLearningDecks() shouldBe emptyList()
+        interactor.getLearningCourse() shouldBe emptyList()
     }
 
     @Test
     fun `getLearningDeck returns null if deserialization fails`() {
         val mockJson = ""
 
-        every { mockPreferences.getString(PreferencesKeys.LEARNING_DECKS) } returns mockJson
+        every { mockPreferences.getString(PreferencesKeys.LEARNING_LANGUAGE) } returns mockJson
         mockkObject(Json)
         every { Json.decodeFromString(CourseDeckDTO.serializer(), mockJson) } throws SerializationException("")
 
-        interactor.getLearningDecks() shouldBe emptyList()
+        interactor.getLearningCourse() shouldBe emptyList()
     }
 
     @Test

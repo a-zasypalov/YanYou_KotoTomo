@@ -13,7 +13,7 @@ class GetUserSavedDecks(
 ) {
 
     suspend fun getBookmarks() = get(bookmarksInteractor.getBookmarkedDecks())
-    suspend fun getLearnedDecks() = get(bookmarksInteractor.getLearningDecks())
+    suspend fun getLearnedDecks() = listOf<DeckWithCourseInfo>() //TODO: implement
 
     suspend fun get(decks: List<CourseDeck>): List<DeckWithCourseInfo> {
         val rootStructure = getCoursesRoot.getCourses()

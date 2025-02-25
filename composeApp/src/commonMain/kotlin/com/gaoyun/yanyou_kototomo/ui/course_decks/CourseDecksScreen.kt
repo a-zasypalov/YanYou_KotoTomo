@@ -2,6 +2,7 @@ package com.gaoyun.yanyou_kototomo.ui.course_decks
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,6 +32,7 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
+import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.LearnButton
 import com.gaoyun.yanyou_kototomo.ui.card_details.getCourseMascot
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.viewmodel.koinViewModel
@@ -54,63 +56,77 @@ fun CourseDecksScreen(
     }
 
     SurfaceScaffold(backHandler = { navigate(BackNavigationEffect) }) {
-        CourseDecksContent(
-            course = viewModel.viewState.collectAsState().value,
-            toDeck = { deckId -> navigate(ToDeck(args.toDeckOverviewArgs(deckId))) }
-        )
+        Box(Modifier.fillMaxSize()) {
+            viewModel.viewState.collectAsState().value?.let { viewState ->
+                CourseDecksContent(
+                    course = viewState.course,
+                    isCurrentlyLearned = viewState.isLearned,
+                    toDeck = { deckId -> navigate(ToDeck(args.toDeckOverviewArgs(deckId))) },
+                    updateLearnedState = viewModel::updateLearnedState
+                )
+            } ?: CircularProgressIndicator()
+        }
     }
 }
 
 @Composable
-private fun CourseDecksContent(course: Course?, toDeck: (DeckId) -> Unit) {
+private fun BoxScope.CourseDecksContent(
+    course: Course?,
+    isCurrentlyLearned: Boolean,
+    toDeck: (DeckId) -> Unit,
+    updateLearnedState: (Boolean) -> Unit,
+) {
     val state = rememberLazyListState()
-    Box(Modifier.fillMaxSize()) {
-        if (course != null && course.decks.size < 5) {
-            Image(
-                painter = painterResource(course.id.getCourseMascot()),
-                contentDescription = null,
-                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
-                modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 64.dp).size(48.dp).alpha(0.2f)
-            )
-        }
+    if (course != null && course.decks.size < 5) {
+        Image(
+            painter = painterResource(course.id.getCourseMascot()),
+            contentDescription = null,
+            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
+            modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 64.dp).size(48.dp).alpha(0.2f)
+        )
+    }
 
-        LazyColumn(state = state, modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
-            course?.let {
+    LazyColumn(state = state, modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
+        course?.let {
+            item {
+                Text(
+                    text = course.courseName,
+                    style = MaterialTheme.typography.displayLarge,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+            }
+
+            item {
+                LearnButton(
+                    isLearned = isCurrentlyLearned,
+                    onClick = { updateLearnedState(!isCurrentlyLearned) },
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+            }
+
+            items(course.decks) { deck ->
+                CourseDeckCard(
+                    course = course,
+                    deck = deck,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                ) { toDeck(deck.id) }
+            }
+
+            if (course.decks.size >= 5) {
                 item {
-                    Text(
-                        text = course.courseName,
-                        style = MaterialTheme.typography.displayLarge,
-                        modifier = Modifier.padding(bottom = 16.dp)
-                    )
-                }
-
-                items(course.decks) { deck ->
-                    CourseDeckCard(
-                        course = course,
-                        deck = deck,
-                        modifier = Modifier.padding(bottom = 16.dp)
-                    ) { toDeck(deck.id) }
-                }
-
-                if (course.decks.size >= 5) {
-                    item {
-                        Box(Modifier.fillMaxWidth().navigationBarsPadding().padding(vertical = 32.dp)) {
-                            Image(
-                                painter = painterResource(course.id.getCourseMascot()),
-                                contentDescription = null,
-                                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
-                                modifier = Modifier.align(Alignment.BottomCenter).size(48.dp).alpha(0.2f)
-                            )
-                        }
-                    }
-                } else {
-                    item {
-                        Spacer(modifier = Modifier.height(64.dp))
+                    Box(Modifier.fillMaxWidth().navigationBarsPadding().padding(vertical = 32.dp)) {
+                        Image(
+                            painter = painterResource(course.id.getCourseMascot()),
+                            contentDescription = null,
+                            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
+                            modifier = Modifier.align(Alignment.BottomCenter).size(48.dp).alpha(0.2f)
+                        )
                     }
                 }
-
-            } ?: item {
-                CircularProgressIndicator()
+            } else {
+                item {
+                    Spacer(modifier = Modifier.height(64.dp))
+                }
             }
         }
     }

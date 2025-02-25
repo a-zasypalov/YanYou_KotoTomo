@@ -27,13 +27,11 @@ class DeckOverviewViewModel(
     private val bookmarksInteractor: BookmarksInteractor,
 ) : BaseViewModel() {
     override val viewState = MutableStateFlow<DeckOverviewState?>(null)
-    val learningDecksState = MutableStateFlow(mutableListOf<CourseDeck>())
-    val learningState = MutableStateFlow<CourseDeck?>(null)
     val bookmarksState = MutableStateFlow(mutableListOf<CourseDeck>())
     val bookmarkState = MutableStateFlow<CourseDeck?>(null)
 
     fun getDeck(args: DeckScreenArgs) = viewModelScope.launch {
-        val course = getCoursesRoot.getCourseDecks(args.courseId)
+        val course = getCoursesRoot.getCourse(args.courseId)
         course.decks.find { it.id == args.deckId }?.let { deckInCourse ->
             getDeck.getDeck(
                 learningLanguage = args.learningLanguageId,
@@ -46,10 +44,6 @@ class DeckOverviewViewModel(
                 val bookmarks = bookmarksInteractor.getBookmarkedDecks()
                 bookmarksState.value = bookmarks.toMutableList()
                 bookmarkState.value = bookmarks.find { it.id == deck.id }
-
-                val learningDecks = bookmarksInteractor.getLearningDecks()
-                learningDecksState.value = learningDecks.toMutableList()
-                learningState.value = learningDecks.find { it.id == deck.id }
 
                 val deckSplitResult = SplitDeckToNewReviewPaused.splitDeckToNewReviewPaused(deck.cards, settings)
                 val cardsDueToReview = deck.cards.filter { it.countForReviewAndNotPaused(deckSplitResult.pausedCards) }
@@ -65,7 +59,6 @@ class DeckOverviewViewModel(
                     settings = settings,
                     cardsDueToReview = cardsDueToReview.count(),
                     isBookmarked = bookmarkState.value != null,
-                    isCurrentlyLearned = learningState.value != null
                 )
             }
         }
@@ -159,16 +152,6 @@ class DeckOverviewViewModel(
         viewState.value = viewState.value?.copy(isBookmarked = bookmarked)
     }
 
-    fun updateLearnedState(learned: Boolean) = viewModelScope.launch {
-        if (learned) {
-            viewState.value?.deckId?.let { bookmarksInteractor.addLearningDeck(it, learningDecksState.value) }
-        } else {
-            learningDecksState.value.remove(learningState.value)
-            bookmarksInteractor.saveLearningDecks(learningDecksState.value)
-        }
-        viewState.value = viewState.value?.copy(isCurrentlyLearned = learned)
-    }
-
     fun updateShowNewWords(show: Boolean) = updateDeckSettingsSectionSetting(DeckSettings.Sections.NewWords, show)
     fun updateShowNewPhrases(show: Boolean) = updateDeckSettingsSectionSetting(DeckSettings.Sections.NewPhrases, show)
     fun updateShowToReviewCards(show: Boolean) = updateDeckSettingsSectionSetting(DeckSettings.Sections.Review, show)
@@ -198,7 +181,6 @@ data class DeckOverviewState(
     val completedCards: List<CardWithProgress.Base<*>>,
     val settings: DeckSettings,
     val cardsDueToReview: Int,
-    val isCurrentlyLearned: Boolean,
     val isBookmarked: Boolean,
 ) {
     fun isCardPaused(cardId: CardId) = pausedCards.fastAny { it.card.id == cardId }

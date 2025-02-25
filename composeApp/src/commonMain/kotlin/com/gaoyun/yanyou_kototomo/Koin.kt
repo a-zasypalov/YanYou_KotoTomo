@@ -13,8 +13,8 @@ import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.domain.GetDeckFromCache
 import com.gaoyun.yanyou_kototomo.domain.GetUserSavedDecks
-import com.gaoyun.yanyou_kototomo.domain.OnboardingInteractor
 import com.gaoyun.yanyou_kototomo.domain.HomeScreenInteractor
+import com.gaoyun.yanyou_kototomo.domain.OnboardingInteractor
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
 import com.gaoyun.yanyou_kototomo.domain.SpacialRepetitionSettingsInteractor
@@ -103,7 +103,7 @@ val useCaseModule = module {
     single { DeckSettingsInteractor(get()) }
     single { QuizInteractor(get(), get(), get(), get()) }
     single { GetCardProgress(get()) }
-    single { BookmarksInteractor(get(), get()) }
+    single { BookmarksInteractor(get(), get(), get()) }
     single { ColorsProvider(get()) }
     single { AllDataReset(get(), get()) }
     single { OnboardingInteractor(get()) }
@@ -117,7 +117,7 @@ val viewModelModule = module {
     factory { AppViewModel(get(), get(), get()) }
     factory { HomeViewModel(get()) }
     factory { CoursesViewModel(get()) }
-    factory { CourseDecksViewModel(get()) }
+    factory { CourseDecksViewModel(get(), get()) }
     factory { DeckOverviewViewModel(get(), get(), get(), get(), get()) }
     factory { DeckPlayerViewModel(get(), get(), get(), get(), get(), get()) }
     factory { QuizSessionSummaryViewModel(get()) }
