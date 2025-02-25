@@ -3,13 +3,14 @@ package com.gaoyun.yanyou_kototomo.ui.base.shared_elements
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
+import androidx.compose.ui.Modifier
+import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.data.ui_state.CardCategoryType
 import com.gaoyun.yanyou_kototomo.data.ui_state.CardOverviewPart
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOverviewCard
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.emptySpacesAfter
-import com.gaoyun.yanyou_kototomo.ui.personal_space.elements.PersonalAreaCardItem
 
 fun LazyGridScope.DeckOverviewCategories(
     categories: List<CardOverviewPart.Grid>,
@@ -45,7 +46,8 @@ fun LazyGridScope.DeckOverviewCategories(
 
 fun LazyListScope.DeckOverviewCategories(
     categories: List<CardOverviewPart.List>,
-    onCardClick: (CardWithProgress<*>) -> Unit,
+    modifier: Modifier = Modifier,
+    onCardClick: (CardWithProgress<*>, LanguageId) -> Unit,
 ) {
     categories.forEach { (name, cards, _, isVisible, onToggle) ->
         if (cards.isNotEmpty()) {
@@ -53,16 +55,16 @@ fun LazyListScope.DeckOverviewCategories(
                 DeckOverviewCategoryHeader(
                     name = name,
                     isOpen = isVisible,
-                    onOpenToggle = onToggle
+                    onOpenToggle = onToggle,
+                    modifier = modifier
                 )
             }
 
             if (isVisible) {
                 cards.forEach {
                     item(key = it.card.id.identifier) {
-                        PersonalAreaCardItem(card = it, onCardClick)
+                        PersonalAreaCardItem(card = it, modifier = modifier, onCardClick = onCardClick)
                     }
-                    (0..<it.card.emptySpacesAfter()).forEach { item {} }
                 }
             }
         }

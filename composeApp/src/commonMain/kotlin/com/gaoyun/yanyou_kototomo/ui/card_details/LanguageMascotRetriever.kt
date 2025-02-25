@@ -1,6 +1,7 @@
 package com.gaoyun.yanyou_kototomo.ui.card_details
 
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
+import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import org.jetbrains.compose.resources.DrawableResource
 import yanyou_kototomo.composeapp.generated.resources.Res
@@ -88,6 +89,26 @@ fun CourseId.getCourseMascot(): DrawableResource {
         identifier.contains("hsk5") -> Res.drawable.wonton
         identifier.contains("hsk6") -> Res.drawable.temple
         identifier.contains("kana") -> Res.drawable.sakura
+        identifier.contains("genki1") -> Res.drawable.bamboo
+        identifier.contains("jlpt5") -> Res.drawable.bamboo
+        identifier.contains("jlpt4") -> Res.drawable.koinobori
+        identifier.contains("jlpt3") -> Res.drawable.fuji_mountain
+        identifier.contains("jlpt2") -> Res.drawable.maneki_neko
+        identifier.contains("jlpt1") -> Res.drawable.shrine
+        else -> Res.drawable.sakura
+    }
+}
+
+fun DeckId.getDeckMascot(): DrawableResource {
+    return when {
+        identifier.contains("hsk1") -> Res.drawable.tea
+        identifier.contains("hsk2") -> Res.drawable.rice
+        identifier.contains("hsk3") -> Res.drawable.lantern
+        identifier.contains("hsk4") -> Res.drawable.knot
+        identifier.contains("hsk5") -> Res.drawable.wonton
+        identifier.contains("hsk6") -> Res.drawable.temple
+        identifier.contains("hiragana") -> Res.drawable.sakura
+        identifier.contains("katakana") -> Res.drawable.sakura
         identifier.contains("genki1") -> Res.drawable.bamboo
         identifier.contains("jlpt5") -> Res.drawable.bamboo
         identifier.contains("jlpt4") -> Res.drawable.koinobori

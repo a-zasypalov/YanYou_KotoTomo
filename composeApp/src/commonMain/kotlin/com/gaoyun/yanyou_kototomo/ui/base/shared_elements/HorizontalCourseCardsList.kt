@@ -35,8 +35,9 @@ import com.gaoyun.yanyou_kototomo.ui.base.courseCardColor
 fun HorizontalCourseCardsList(
     decks: List<DeckWithCourseInfo>,
     onCourseClick: (DeckWithCourseInfo) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
-    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = modifier) {
         item { Spacer(Modifier.size(8.dp)) }
         items(decks) { deck -> HorizontalCourseCard(deck, onCourseClick) }
         item { Spacer(Modifier.size(8.dp)) }

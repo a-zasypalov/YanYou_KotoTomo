@@ -21,7 +21,6 @@ import androidx.navigation.toRoute
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.BOOKMARKS_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.HOME_HOST_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.ONBOARDING_ROUTE
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.PERSONAL_SPACE_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigatorAction
@@ -37,7 +36,6 @@ import com.gaoyun.yanyou_kototomo.ui.course_decks.CourseDecksScreen
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewScreen
 import com.gaoyun.yanyou_kototomo.ui.home.HomeScreenHost
 import com.gaoyun.yanyou_kototomo.ui.onboarding.OnboardingScreen
-import com.gaoyun.yanyou_kototomo.ui.personal_space.PersonalSpaceScreen
 import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerScreen
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryScreen
 import com.gaoyun.yanyou_kototomo.ui.settings.sections.SectionSettingsScreen
@@ -136,9 +134,6 @@ fun NavigationGraph(navController: NavHostController, viewModel: AppViewModel) {
         }
         composable(HOME_HOST_ROUTE) {
             HomeScreenHost(viewModel::navigate)
-        }
-        composable(PERSONAL_SPACE_ROUTE) {
-            PersonalSpaceScreen(viewModel::navigate)
         }
         composable(BOOKMARKS_ROUTE) {
             BookmarksScreen(viewModel::navigate)

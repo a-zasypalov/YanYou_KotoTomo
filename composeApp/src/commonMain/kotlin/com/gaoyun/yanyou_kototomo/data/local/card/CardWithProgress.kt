@@ -1,6 +1,7 @@
 package com.gaoyun.yanyou_kototomo.data.local.card
 
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
+import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 
 sealed interface CardWithProgress<T : Card> {
     val card: T
@@ -16,6 +17,7 @@ sealed interface CardWithProgress<T : Card> {
         override val progress: CardProgress?,
         val deckId: DeckId,
         val deckName: String,
+        val learningLanguageId: LanguageId,
     ) : CardWithProgress<T>
 
     fun isCompleted(): Boolean = this.progress?.completed == true
@@ -25,12 +27,15 @@ sealed interface CardWithProgress<T : Card> {
         is Base -> this.copy(card, null)
         is WithDeckInfo -> this.copy(card, null, deckId, deckName)
     }
+
     fun asCompleted() = when (this) {
         is Base -> this.copy(card, CardProgress.completedCard(card.id))
         is WithDeckInfo -> this.copy(card, CardProgress.completedCard(card.id), deckId, deckName)
     }
 
-    fun withDeckInfo(deckId: DeckId, deckName: String) = WithDeckInfo(card, progress, deckId, deckName)
+    fun withDeckInfo(deckId: DeckId, deckName: String, learningLanguageId: LanguageId) =
+        WithDeckInfo(card, progress, deckId, deckName, learningLanguageId)
+
     fun base() = Base(card, progress)
 
     fun countForReviewAndNotPausedIds(pausedCardIds: Collection<String>): Boolean {

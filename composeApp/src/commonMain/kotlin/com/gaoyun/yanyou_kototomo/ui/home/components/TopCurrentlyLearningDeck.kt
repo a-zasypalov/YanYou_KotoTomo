@@ -1,9 +1,10 @@
-package com.gaoyun.yanyou_kototomo.ui.personal_space.elements
+package com.gaoyun.yanyou_kototomo.ui.home.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,9 +13,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,21 +34,24 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.ui.base.courseCardColor
 import com.gaoyun.yanyou_kototomo.ui.card_details.getCourseMascot
-import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenCharacterCard
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun FirstLearningDeck(
+fun TopCurrentlyLearningDeck(
     deckWithInfo: DeckWithCourseInfo,
     onCourseClick: (DeckWithCourseInfo) -> Unit,
     onCardDetailsClick: (CardWithProgress<*>, LanguageId) -> Unit,
+    onReviewClick: (DeckWithCourseInfo) -> Unit,
+    onQuizClick: (DeckWithCourseInfo) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val courseCardColor = deckWithInfo.info.courseId.courseCardColor()
     val courseTextColor = Color(0xFFEDE1D4)
+    val cardsReviewToday = deckWithInfo.deck.cards.count { it.countForReviewAndNotPausedIds(deckWithInfo.info.pausedCardIds) }
     val activeCards = deckWithInfo.deck.cards.filterNot { deckWithInfo.info.pausedCardIds.contains(it.card.id.identifier) }
 
     ElevatedCard(
-        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).platformStyleClickable { onCourseClick(deckWithInfo) },
+        modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp).platformStyleClickable { onCourseClick(deckWithInfo) },
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp),
         colors = CardDefaults.elevatedCardColors(containerColor = courseCardColor)
     ) {
@@ -65,6 +72,32 @@ fun FirstLearningDeck(
                         maxLines = 1,
                         fontSizeRange = FontSizeRange(min = 24.sp, max = MaterialTheme.typography.headlineLarge.fontSize),
                     )
+                    Row(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        if (cardsReviewToday > 0) FilledTonalButton(
+                            onClick = { onReviewClick(deckWithInfo) },
+                            colors = ButtonDefaults.filledTonalButtonColors(containerColor = Color(0x44CCCCCC)),
+                            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 0.dp)
+                        ) {
+                            Text(
+                                text = "Review: $cardsReviewToday",
+                                color = courseTextColor,
+                            )
+                        }
+
+                        FilledTonalButton(
+                            onClick = { onQuizClick(deckWithInfo) },
+                            colors = ButtonDefaults.filledTonalButtonColors(containerColor = Color(0x44CCCCCC)),
+                            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 0.dp)
+                        ) {
+                            Text(
+                                text = "Quiz",
+                                color = courseTextColor,
+                            )
+                        }
+                    }
 
                 }
                 Image(

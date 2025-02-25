@@ -12,7 +12,6 @@ object AppRoutes {
 
     const val ONBOARDING_ROUTE = "/ONBOARDING_ROUTE"
     const val HOME_HOST_ROUTE = "/HOME_HOST_ROUTE"
-    const val PERSONAL_SPACE_ROUTE = "/PERSONAL_SPACE_ROUTE"
     const val HOME_ROUTE = "/HOME_ROUTE"
     const val COURSES_ROUTE = "/COURSES_ROUTE"
     const val STATISTICS_ROUTE = "/STATISTICS_ROUTE"

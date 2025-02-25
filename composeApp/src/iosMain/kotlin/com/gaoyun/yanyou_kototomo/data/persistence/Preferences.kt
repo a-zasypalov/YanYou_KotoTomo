@@ -92,6 +92,17 @@ actual class Preferences actual constructor(name: String?) {
         }
     }
 
+    actual fun setStringSet(key: String, value: Set<String>) {
+        userDefault.setObject(value.toList(), forKey = key)
+    }
+
+    actual fun getStringSet(key: String): Set<String> {
+        return userDefault.arrayForKey(key)
+            ?.filterIsInstance<String>()
+            ?.toSet()
+            ?: emptySet()
+    }
+
     actual fun hasKey(key: String): Boolean = userDefault.objectForKey(key) != null
 
     actual fun clear() {

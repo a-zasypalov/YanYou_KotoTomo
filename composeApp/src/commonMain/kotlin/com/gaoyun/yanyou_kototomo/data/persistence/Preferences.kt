@@ -13,10 +13,10 @@ object PreferencesKeys {
     const val SPACIAL_REPETITION_EASY_ANSWER_WEIGHT = "SPACIAL_REPETITION_EASY_ANSWER_WEIGHT"
     const val SPACIAL_REPETITION_HARD_ANSWER_WEIGHT = "SPACIAL_REPETITION_HARD_ANSWER_WEIGHT"
     const val SPACIAL_REPETITION_GOOD_ANSWER_WEIGHT = "SPACIAL_REPETITION_GOOD_ANSWER_WEIGHT"
+    const val HOME_SCREEN_HIDDEN_SECTIONS = "HOME_SCREEN_HIDDEN_SECTIONS"
 }
 
 expect class Preferences(name: String? = null) {
-
     fun setInt(key: String, value: Int)
     fun getInt(key: String, defaultValue: Int): Int
     fun getInt(key: String): Int?
@@ -36,6 +36,9 @@ expect class Preferences(name: String? = null) {
     fun setBoolean(key: String, value: Boolean)
     fun getBoolean(key: String, defaultValue: Boolean): Boolean
     fun getBoolean(key: String): Boolean?
+
+    fun setStringSet(key: String, value: Set<String>)
+    fun getStringSet(key: String): Set<String>
 
     fun remove(key: String)
     fun clear()

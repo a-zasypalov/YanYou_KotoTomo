@@ -12,10 +12,9 @@ import com.gaoyun.yanyou_kototomo.domain.GetCardProgress
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
 import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.domain.GetDeckFromCache
-import com.gaoyun.yanyou_kototomo.domain.GetHomeState
 import com.gaoyun.yanyou_kototomo.domain.GetUserSavedDecks
 import com.gaoyun.yanyou_kototomo.domain.OnboardingInteractor
-import com.gaoyun.yanyou_kototomo.domain.PersonalSpaceInteractor
+import com.gaoyun.yanyou_kototomo.domain.HomeScreenInteractor
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
 import com.gaoyun.yanyou_kototomo.domain.SpacialRepetitionSettingsInteractor
@@ -36,7 +35,6 @@ import com.gaoyun.yanyou_kototomo.ui.courses.CoursesViewModel
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewViewModel
 import com.gaoyun.yanyou_kototomo.ui.home.HomeViewModel
 import com.gaoyun.yanyou_kototomo.ui.onboarding.OnboardingViewModel
-import com.gaoyun.yanyou_kototomo.ui.personal_space.PersonalSpaceViewModel
 import com.gaoyun.yanyou_kototomo.ui.player.DeckPlayerViewModel
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.QuizSessionSummaryViewModel
 import com.gaoyun.yanyou_kototomo.ui.settings.SettingsViewModel
@@ -105,14 +103,13 @@ val useCaseModule = module {
     single { DeckSettingsInteractor(get()) }
     single { QuizInteractor(get(), get(), get(), get()) }
     single { GetCardProgress(get()) }
-    single { GetHomeState(get(), get(), get(), get(), get(), get()) }
     single { BookmarksInteractor(get(), get()) }
     single { ColorsProvider(get()) }
     single { AllDataReset(get(), get()) }
     single { OnboardingInteractor(get()) }
     single { SpacialRepetitionSettingsInteractor(get()) }
     single { GetUserSavedDecks(get(), get(), get(), get()) }
-    single { PersonalSpaceInteractor(get(), get()) }
+    single { HomeScreenInteractor(get(), get(), get()) }
 }
 
 val viewModelModule = module {
@@ -130,7 +127,6 @@ val viewModelModule = module {
     factory { SettingsViewModel(get(), get(), get()) }
     factory { OnboardingViewModel(get()) }
     factory { BookmarksViewModel(get(), get()) }
-    factory { PersonalSpaceViewModel(get()) }
 }
 
 val dbModule = module {

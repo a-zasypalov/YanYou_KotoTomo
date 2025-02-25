@@ -89,6 +89,18 @@ actual class Preferences actual constructor(name: String?) {
         sharedPreferences.edit().putBoolean(key, value).apply()
     }
 
+    actual fun setStringSet(key: String, value: Set<String>) {
+        sharedPreferences.edit().putStringSet(key, value).apply()
+    }
+
+    actual fun getStringSet(key: String): Set<String> {
+        return if (hasKey(key)) {
+            sharedPreferences.getStringSet(key, emptySet()) ?: emptySet()
+        } else {
+            emptySet()
+        }
+    }
+
     actual fun hasKey(key: String): Boolean = sharedPreferences.contains(key)
 
     actual fun clear() {

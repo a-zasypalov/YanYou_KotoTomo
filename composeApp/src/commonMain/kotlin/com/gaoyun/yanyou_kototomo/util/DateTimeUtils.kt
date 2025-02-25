@@ -47,15 +47,10 @@ fun LocalDate.toRelativeFormat(): String {
     val daysDifference = localDateNow().daysUntil(this)
 
     return when {
-        daysDifference == 0 -> stringResource(Res.string.relative_today)
-        daysDifference == -1 -> stringResource(Res.string.relative_yesterday)
-        daysDifference in -6..-2 -> pluralStringResource(Res.plurals.relative_days_ago, -daysDifference, -daysDifference)
+        daysDifference <= 0 -> stringResource(Res.string.relative_today)
         daysDifference in 1..6 -> pluralStringResource(Res.plurals.relative_in_days, daysDifference, daysDifference)
-        daysDifference in -30..-7 -> pluralStringResource(Res.plurals.relative_weeks_ago, -daysDifference / 7, -daysDifference / 7)
         daysDifference in 7..30 -> pluralStringResource(Res.plurals.relative_in_weeks, daysDifference / 7, daysDifference / 7)
-        daysDifference in -365..-31 -> pluralStringResource(Res.plurals.relative_months_ago, -daysDifference / 30, -daysDifference / 30)
         daysDifference in 31..365 -> pluralStringResource(Res.plurals.relative_in_months, daysDifference / 30, daysDifference / 30)
-        daysDifference < -365 -> pluralStringResource(Res.plurals.relative_years_ago, -daysDifference / 365, -daysDifference / 365)
         daysDifference > 365 -> pluralStringResource(Res.plurals.relative_in_years, daysDifference / 365, daysDifference / 365)
         else -> this.toString() // Fallback to ISO-8601 format
     }
@@ -109,4 +104,23 @@ fun getLocalizedMonthName(month: Month): String {
         else -> Res.string.month_dec
     }
     return stringResource(resource = monthResId)
+}
+
+@Composable
+fun LocalDate.toRelativeFormatWithPastSupport(): String {
+    val daysDifference = localDateNow().daysUntil(this)
+
+    return when {
+        daysDifference == 0 -> stringResource(Res.string.relative_today)
+        daysDifference == -1 -> stringResource(Res.string.relative_yesterday)
+        daysDifference in -6..-2 -> pluralStringResource(Res.plurals.relative_days_ago, -daysDifference, -daysDifference)
+        daysDifference in 1..6 -> pluralStringResource(Res.plurals.relative_in_days, daysDifference, daysDifference)
+        daysDifference in -30..-7 -> pluralStringResource(Res.plurals.relative_weeks_ago, -daysDifference / 7, -daysDifference / 7)
+        daysDifference in 7..30 -> pluralStringResource(Res.plurals.relative_in_weeks, daysDifference / 7, daysDifference / 7)
+        daysDifference in -365..-31 -> pluralStringResource(Res.plurals.relative_months_ago, -daysDifference / 30, -daysDifference / 30)
+        daysDifference in 31..365 -> pluralStringResource(Res.plurals.relative_in_months, daysDifference / 30, daysDifference / 30)
+        daysDifference < -365 -> pluralStringResource(Res.plurals.relative_years_ago, -daysDifference / 365, -daysDifference / 365)
+        daysDifference > 365 -> pluralStringResource(Res.plurals.relative_in_years, daysDifference / 365, daysDifference / 365)
+        else -> this.toString() // Fallback to ISO-8601 format
+    }
 }

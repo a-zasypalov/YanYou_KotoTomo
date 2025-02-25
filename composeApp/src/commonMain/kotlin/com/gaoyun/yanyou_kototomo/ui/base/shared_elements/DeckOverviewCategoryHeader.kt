@@ -18,9 +18,9 @@ import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 
 @Composable
-fun DeckOverviewCategoryHeader(name: String, isOpen: Boolean, onOpenToggle: ((Boolean) -> Unit)?) {
+fun DeckOverviewCategoryHeader(name: String, isOpen: Boolean, modifier: Modifier = Modifier, onOpenToggle: ((Boolean) -> Unit)?) {
     val expandIconAngle = animateFloatAsState(targetValue = if (isOpen) 180f else 0f)
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(modifier = modifier.fillMaxWidth()) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
             Text(name, style = MaterialTheme.typography.headlineMedium)
             onOpenToggle?.let {
