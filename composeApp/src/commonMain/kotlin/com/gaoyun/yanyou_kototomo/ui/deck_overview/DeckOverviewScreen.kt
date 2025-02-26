@@ -100,6 +100,7 @@ fun DeckOverviewScreen(
             updateShowPausedCards = viewModel::updateShowPausedCards,
             updateShowCompletedCards = viewModel::updateShowCompletedCards,
             updateShowKanjiCards = viewModel::updateShowKanjiCards,
+            updateLearnedState = viewModel::updateLearnedState
         )
         CardDetailsView(
             cardState = cardDetailState,
@@ -135,6 +136,7 @@ private fun DeckOverviewContent(
     updateShowPausedCards: (Boolean) -> Unit,
     updateShowCompletedCards: (Boolean) -> Unit,
     updateShowKanjiCards: (Boolean) -> Unit,
+    updateLearnedState: (Boolean) -> Unit,
 ) {
     val state = rememberLazyGridState()
     viewState?.let {
@@ -165,6 +167,7 @@ private fun DeckOverviewContent(
                         updateTranscriptionSettings = updateTranscriptionSettings,
                         updateReadingSettings = updateReadingSettings,
                         updateBookmarkedState = updateBookmarkedState,
+                        updateLearnedState = updateLearnedState,
                     )
                 }
 

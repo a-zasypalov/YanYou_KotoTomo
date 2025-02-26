@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
 import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.DeckProgressStatus
+import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.LearnButton
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.DeckOverviewState
 
 @Composable
@@ -35,6 +36,7 @@ fun DeckOverviewHeader(
     updateTranscriptionSettings: (Boolean) -> Unit,
     updateReadingSettings: (Boolean) -> Unit,
     updateBookmarkedState: (Boolean) -> Unit,
+    updateLearnedState: (Boolean) -> Unit,
 ) {
 
     Column(modifier = Modifier.fillMaxWidth()) {
@@ -61,6 +63,8 @@ fun DeckOverviewHeader(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
+            LearnButton(isLearned = viewState.isCurrentlyLearned, onClick = { updateLearnedState(!viewState.isCurrentlyLearned) })
+
             OutlinedIconToggleButton(
                 checked = viewState.isBookmarked,
                 onCheckedChange = updateBookmarkedState,

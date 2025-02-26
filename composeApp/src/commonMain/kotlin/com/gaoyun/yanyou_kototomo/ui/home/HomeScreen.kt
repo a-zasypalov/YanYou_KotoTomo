@@ -23,8 +23,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gaoyun.yanyou_kototomo.data.local.CourseId
+import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckWithCourseInfo
@@ -44,9 +47,8 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
 import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.DeckOverviewCategories
 import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.DeckProgressStatus
 import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.HorizontalCourseCard
-import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.HorizontalCourseCardsList
 import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
-import com.gaoyun.yanyou_kototomo.ui.home.components.TopCurrentlyLearningDeck
+import com.gaoyun.yanyou_kototomo.ui.home.components.CurrentlyLearningCourse
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenEmptyState
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenSectionTitle
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenTitle
@@ -73,14 +75,14 @@ fun HomeScreen(
             cardDetailLanguageState.value = languageId
             cardDetailState.value = cardToShow
         },
-        onCourseClick = { deckWithInfo ->
+        onCourseClick = { deckId, courseId, learningLanguageId, sourceLanguageId ->
             navigate(
                 ToDeck(
                     DeckScreenArgs(
-                        learningLanguageId = deckWithInfo.info.learningLanguageId,
-                        sourceLanguageId = deckWithInfo.info.sourceLanguageId,
-                        courseId = deckWithInfo.info.courseId,
-                        deckId = deckWithInfo.deck.id
+                        learningLanguageId = learningLanguageId,
+                        sourceLanguageId = sourceLanguageId,
+                        courseId = courseId,
+                        deckId = deckId
                     )
                 )
             )
@@ -128,7 +130,7 @@ private fun HomeScreenContent(
     content: PersonalSpaceState?,
     modifier: Modifier,
     onCardDetailsClick: (CardWithProgress<*>, LanguageId) -> Unit,
-    onCourseClick: (DeckWithCourseInfo) -> Unit,
+    onCourseClick: (DeckId, CourseId, LanguageId, LanguageId) -> Unit,
     onReviewClick: (DeckWithCourseInfo) -> Unit,
     onQuizClick: (DeckWithCourseInfo) -> Unit,
     onBookmarksEdit: () -> Unit,
@@ -139,10 +141,21 @@ private fun HomeScreenContent(
     updateShowCompletedCards: (Boolean) -> Unit,
 ) {
     content?.let { viewState ->
-        if (viewState.bookmarks.isEmpty() && viewState.learningDecks.isEmpty()) {
+        if (viewState.bookmarks.isEmpty() && viewState.learningCourse == null) {
             HomeScreenEmptyState(onCoursesClick)
         } else {
             val state = rememberLazyListState()
+            val listState = rememberLazyListState()
+            val lastIndex = viewState.learningCourse?.decks?.indexOfLast { it.id in viewState.learningDecks } ?: -1
+            var previousIndex = rememberSaveable { mutableStateOf(-1) }
+
+            LaunchedEffect(lastIndex) {
+                if (lastIndex != -1 && lastIndex != previousIndex.value) {
+                    previousIndex.value = lastIndex
+                    listState.animateScrollToItem(lastIndex)
+                }
+            }
+
             LazyColumn(
                 state = state,
                 verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -150,26 +163,36 @@ private fun HomeScreenContent(
             ) {
                 item { HomeScreenTitle() }
 
-                viewState.learningDecks.firstOrNull()?.let {
+                viewState.learningCourse?.let { course ->
                     item {
-                        TopCurrentlyLearningDeck(
-                            deckWithInfo = it,
-                            onCourseClick = onCourseClick,
-                            onReviewClick = onReviewClick,
-                            onQuizClick = onQuizClick,
-                            onCardDetailsClick = { card, languageId -> onCardDetailsClick(card, languageId) },
-                            modifier = Modifier.padding(bottom = 8.dp),
-                        )
+                        CurrentlyLearningCourse(course = course,
+                            decksState = listState,
+                            onDeckClick = { courseDeck ->
+                                onCourseClick(courseDeck.id, course.id, course.learningLanguageId, course.sourceLanguageId)
+                            })
                     }
                 }
 
-                if (viewState.learningDecks.size > 1) item {
-                    HorizontalCourseCardsList(
-                        decks = viewState.learningDecks.drop(1),
-                        onCourseClick = onCourseClick,
-                        modifier = Modifier.padding(bottom = 8.dp),
-                    )
-                }
+//                viewState.learningDecks.firstOrNull()?.let {
+//                    item {
+//                        TopCurrentlyLearningDeck(
+//                            deckWithInfo = it,
+//                            onCourseClick = onCourseClick,
+//                            onReviewClick = onReviewClick,
+//                            onQuizClick = onQuizClick,
+//                            onCardDetailsClick = { card, languageId -> onCardDetailsClick(card, languageId) },
+//                            modifier = Modifier.padding(bottom = 8.dp),
+//                        )
+//                    }
+//                }
+//
+//                if (viewState.learningDecks.size > 1) item {
+//                    HorizontalCourseCardsList(
+//                        decks = viewState.learningDecks.drop(1),
+//                        onCourseClick = onCourseClick,
+//                        modifier = Modifier.padding(bottom = 8.dp),
+//                    )
+//                }
 
                 if (viewState.cardsDueToReview.isNotEmpty()) item {
                     PrimaryElevatedButton(
@@ -193,7 +216,16 @@ private fun HomeScreenContent(
                     item {
                         LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(bottom = 8.dp)) {
                             item { Spacer(Modifier.size(8.dp)) }
-                            items(viewState.bookmarks) { bookmark -> HorizontalCourseCard(bookmark, onCourseClick) }
+                            items(viewState.bookmarks) { bookmark ->
+                                HorizontalCourseCard(bookmark) { deckWithInfo ->
+                                    onCourseClick(
+                                        deckWithInfo.deck.id,
+                                        deckWithInfo.info.courseId,
+                                        deckWithInfo.info.learningLanguageId,
+                                        deckWithInfo.info.sourceLanguageId
+                                    )
+                                }
+                            }
                             item { Spacer(Modifier.size(8.dp)) }
                         }
                     }

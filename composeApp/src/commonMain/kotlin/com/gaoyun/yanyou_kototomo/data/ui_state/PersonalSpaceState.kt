@@ -1,12 +1,15 @@
 package com.gaoyun.yanyou_kototomo.data.ui_state
 
+import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
+import com.gaoyun.yanyou_kototomo.data.local.course.CourseWithInfo
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckWithCourseInfo
 
 data class PersonalSpaceState(
     val bookmarks: List<DeckWithCourseInfo>,
-    val learningDecks: List<DeckWithCourseInfo>,
+    val learningCourse: CourseWithInfo?,
+    val learningDecks: List<DeckId>,
     val settingsList: List<DeckSettings>,
     val deckSplits: List<DeckSplitResult.WithDeckInfo>,
     val cardsDueToReview: List<CardWithProgress.WithDeckInfo<*>>,

@@ -56,7 +56,7 @@ fun HorizontalCourseCard(bookmark: DeckWithCourseInfo, onCourseClick: (DeckWithC
     ) {
         Column(modifier = Modifier.fillMaxSize().background(Color(0x33000000)).padding(vertical = 4.dp)) {
             AutoResizeText(
-                text = bookmark.deck.name.formatBookmarkName(bookmark.info.courseName),
+                text = bookmark.deck.name.formatDeckName(bookmark.info.courseName),
                 fontSizeRange = FontSizeRange(min = 14.sp, max = MaterialTheme.typography.titleLarge.fontSize),
                 color = courseTextColor,
                 maxLines = 2,
@@ -87,7 +87,7 @@ fun HorizontalCourseCard(bookmark: DeckWithCourseInfo, onCourseClick: (DeckWithC
     }
 }
 
-private fun String.formatBookmarkName(courseName: String): String {
+private fun String.formatDeckName(courseName: String): String {
     return if (startsWith(courseName)) {
         val rest = removePrefix(courseName).trim()
         if (rest.isNotEmpty()) "$courseName\n$rest" else courseName

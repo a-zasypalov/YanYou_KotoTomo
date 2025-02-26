@@ -6,6 +6,7 @@ import com.gaoyun.yanyou_kototomo.data.local.course.Course
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
 import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys
+import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys.LEARNING_DECKS
 import com.gaoyun.yanyou_kototomo.data.remote.CourseDeckDTO
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toDTO
 import com.gaoyun.yanyou_kototomo.data.remote.converters.toLocal
@@ -55,6 +56,30 @@ class BookmarksInteractor(
     }
 
     fun saveLearningCourse(courseId: CourseId) = preferences.setString(PreferencesKeys.LEARNING_LANGUAGE, courseId.identifier)
+
+    fun getLearningDecks(): List<CourseDeck> {
+        val jsonString = preferences.getString(LEARNING_DECKS, "[]")
+        return try {
+            val dtoList = Json.decodeFromString(ListSerializer(CourseDeckDTO.serializer()), jsonString)
+            dtoList.map { it.toLocal() }
+        } catch (e: SerializationException) {
+            e.printStackTrace()
+            emptyList() // Fallback to an empty list if deserialization fails
+        }
+    }
+
+    suspend fun addLearningDeck(deckId: DeckId, decks: List<CourseDeck>) {
+        val courseDecks = this.courseDecks.value ?: getCourseDecks()
+        val deckToAdd = courseDecks.find { it.id == deckId }
+        val decksToSave = (decks + deckToAdd).filterNotNull()
+
+        saveLearningDeck(decksToSave)
+    }
+
+    fun saveLearningDeck(decks: List<CourseDeck>) {
+        val jsonString = Json.encodeToString(ListSerializer(CourseDeckDTO.serializer()), decks.map { it.toDTO() })
+        preferences.setString(LEARNING_DECKS, jsonString)
+    }
 
     internal suspend fun getCourseDecks(): List<CourseDeck> {
         return coursesRootComponentRepository.getCoursesRoot(force = false)

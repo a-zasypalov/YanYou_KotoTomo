@@ -109,7 +109,7 @@ val useCaseModule = module {
     single { OnboardingInteractor(get()) }
     single { SpacialRepetitionSettingsInteractor(get()) }
     single { GetUserSavedDecks(get(), get(), get(), get()) }
-    single { HomeScreenInteractor(get(), get(), get()) }
+    single { HomeScreenInteractor(get(), get(), get(), get(), get()) }
 }
 
 val viewModelModule = module {

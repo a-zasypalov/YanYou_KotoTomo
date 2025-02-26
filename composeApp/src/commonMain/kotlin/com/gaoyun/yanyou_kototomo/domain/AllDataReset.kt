@@ -2,6 +2,7 @@ package com.gaoyun.yanyou_kototomo.domain
 
 import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
 import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys.BOOKMARKED_DECKS
+import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys.LEARNING_DECKS
 import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys.LEARNING_LANGUAGE
 import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys.UPDATES_COURSES_REFRESHED
 import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys.UPDATES_STRUCTURE_REFRESHED
@@ -28,6 +29,7 @@ class AllDataReset(private val preferences: Preferences, private val db: YanYouK
             remove(UPDATES_STRUCTURE_REFRESHED)
             remove(UPDATES_COURSES_REFRESHED)
             remove(LEARNING_LANGUAGE)
+            remove(LEARNING_DECKS)
             remove(BOOKMARKED_DECKS)
         }
     }

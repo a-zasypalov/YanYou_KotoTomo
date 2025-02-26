@@ -1,5 +1,6 @@
 package com.gaoyun.yanyou_kototomo.domain
 
+import com.gaoyun.yanyou_kototomo.data.local.course.CourseWithInfo
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
 import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys.HOME_SCREEN_HIDDEN_SECTIONS
@@ -10,12 +11,17 @@ class HomeScreenInteractor(
     private val getUserSavedDecks: GetUserSavedDecks,
     private val deckSettingsInteractor: DeckSettingsInteractor,
     private val preferences: Preferences,
+    private val bookmarksInteractor: BookmarksInteractor,
+    private val getCoursesRoot: GetCoursesRoot,
 ) {
-
     suspend fun getPersonalSpaceState(): PersonalSpaceState {
-        val bookmarks = getUserSavedDecks.getBookmarks()
-        val learningDecks = getUserSavedDecks.getLearnedDecks()
+        val learningCourse = learningCourseWithInfo()
+
+        val deckIds = learningCourse?.decks?.map { it.id } ?: listOf()
+        val learningDecks = getUserSavedDecks.getLearnedDecks().filter { deckIds.contains(it.deck.id) }
+
         val settingsList = deckSettingsInteractor.getAllDeckSettings()
+
         val deckSplitResults = learningDecks.map { deckWithCourse ->
             val settings = settingsList.find { it.deckId == deckWithCourse.deck.id } ?: DeckSettings.DEFAULT(deckWithCourse.deck.id)
             val cardsWithDeckInfo = deckWithCourse.deck.cards.map {
@@ -38,13 +44,14 @@ class HomeScreenInteractor(
             try {
                 HomeScreenSection.valueOf(it)
             } catch (e: IllegalArgumentException) {
+                e.printStackTrace()
                 null
             }
         }
 
         return PersonalSpaceState(
-            bookmarks = bookmarks,
-            learningDecks = learningDecks,
+            bookmarks = getUserSavedDecks.getBookmarks(),
+            learningCourse = learningCourse,
             settingsList = settingsList,
             deckSplits = deckSplitResults,
             cardsDueToReview = cardsDueToReview,
@@ -56,6 +63,7 @@ class HomeScreenInteractor(
             showNewCards = !hiddenSections.contains(HomeScreenSection.NewCards),
             showPausedCards = !hiddenSections.contains(HomeScreenSection.PausedCards),
             showCompletedCards = !hiddenSections.contains(HomeScreenSection.CompletedCards),
+            learningDecks = learningDecks.map { it.deck.id }
         )
     }
 
@@ -63,5 +71,22 @@ class HomeScreenInteractor(
         preferences.getStringSet(HOME_SCREEN_HIDDEN_SECTIONS).toMutableSet().apply {
             if (visible) remove(section.name) else add(section.name)
         }.run { preferences.setStringSet(HOME_SCREEN_HIDDEN_SECTIONS, this) }
+    }
+
+    private suspend fun learningCourseWithInfo(): CourseWithInfo? {
+        val course = bookmarksInteractor.getLearningCourse() ?: return null
+        val root = getCoursesRoot.getCourses()
+        val language = root.languages.find { language ->
+            language.sourceLanguages.any { sourceLanguage ->
+                sourceLanguage.courses.any { it.id == course.id }
+            }
+        }
+
+        val sourceLanguageId = language?.sourceLanguages?.find { sourceLanguage ->
+            sourceLanguage.courses.any { it.id == course.id }
+        }?.id ?: return null
+
+        val learningLanguageId = language.id
+        return course.withInfo(learningLanguageId, sourceLanguageId)
     }
 }
