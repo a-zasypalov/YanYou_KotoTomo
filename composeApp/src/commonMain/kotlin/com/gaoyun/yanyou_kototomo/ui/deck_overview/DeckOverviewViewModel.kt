@@ -165,7 +165,7 @@ class DeckOverviewViewModel(
             viewState.value?.deckId?.let { bookmarksInteractor.addLearningDeck(it, learningDecksState.value) }
         } else {
             learningDecksState.value.remove(learningState.value)
-            bookmarksInteractor.saveLearningDeck(learningDecksState.value)
+            bookmarksInteractor.saveLearningDecks(learningDecksState.value)
         }
         viewState.value = viewState.value?.copy(isCurrentlyLearned = learned)
     }

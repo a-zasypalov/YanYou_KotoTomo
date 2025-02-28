@@ -165,11 +165,14 @@ private fun HomeScreenContent(
 
                 viewState.learningCourse?.let { course ->
                     item {
-                        CurrentlyLearningCourse(course = course,
+                        CurrentlyLearningCourse(
+                            course = course,
+                            learningDecks = viewState.learningDecks,
                             decksState = listState,
                             onDeckClick = { courseDeck ->
                                 onCourseClick(courseDeck.id, course.id, course.learningLanguageId, course.sourceLanguageId)
-                            })
+                            }
+                        )
                     }
                 }
 

@@ -55,7 +55,9 @@ class BookmarksInteractor(
         return getLearningCourseId()?.let { repository.getCourse(it).toLocal() }
     }
 
-    fun saveLearningCourse(courseId: CourseId) = preferences.setString(PreferencesKeys.LEARNING_LANGUAGE, courseId.identifier)
+    fun saveLearningCourse(courseId: CourseId?) = courseId?.let {
+        preferences.setString(PreferencesKeys.LEARNING_LANGUAGE, it.identifier)
+    } ?: preferences.remove(PreferencesKeys.LEARNING_LANGUAGE)
 
     fun getLearningDecks(): List<CourseDeck> {
         val jsonString = preferences.getString(LEARNING_DECKS, "[]")
@@ -73,10 +75,10 @@ class BookmarksInteractor(
         val deckToAdd = courseDecks.find { it.id == deckId }
         val decksToSave = (decks + deckToAdd).filterNotNull()
 
-        saveLearningDeck(decksToSave)
+        saveLearningDecks(decksToSave)
     }
 
-    fun saveLearningDeck(decks: List<CourseDeck>) {
+    fun saveLearningDecks(decks: List<CourseDeck>) {
         val jsonString = Json.encodeToString(ListSerializer(CourseDeckDTO.serializer()), decks.map { it.toDTO() })
         preferences.setString(LEARNING_DECKS, jsonString)
     }

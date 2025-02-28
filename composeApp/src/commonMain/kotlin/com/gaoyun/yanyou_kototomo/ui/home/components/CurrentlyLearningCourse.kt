@@ -3,6 +3,7 @@ package com.gaoyun.yanyou_kototomo.ui.home.components
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,8 +18,11 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +33,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseDeck
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseWithInfo
 import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
@@ -42,14 +47,13 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun CurrentlyLearningCourse(
     course: CourseWithInfo,
+    learningDecks: List<DeckId>,
     decksState: LazyListState,
     onDeckClick: (CourseDeck) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val courseCardColor = course.id.courseCardColor()
     val courseTextColor = Color(0xFFEDE1D4)
-
-
 
     ElevatedCard(
         modifier = modifier.fillMaxWidth().padding(horizontal = 16.dp),
@@ -88,7 +92,14 @@ fun CurrentlyLearningCourse(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 item { Spacer(Modifier.size(8.dp)) }
-                items(course.decks, key = { it.id.identifier }) { CurrentlyLearningCourseDeck(it, course.courseName, onDeckClick) }
+                items(course.decks, key = { it.id.identifier }) {
+                    CurrentlyLearningCourseDeck(
+                        deck = it,
+                        courseName = course.courseName,
+                        isLearned = learningDecks.contains(it.id),
+                        onDeckClick = onDeckClick
+                    )
+                }
                 item { Spacer(Modifier.size(8.dp)) }
             }
         }
@@ -96,30 +107,45 @@ fun CurrentlyLearningCourse(
 }
 
 @Composable
-fun CurrentlyLearningCourseDeck(deck: CourseDeck, courseName: String, onDeckClick: (CourseDeck) -> Unit) {
+fun CurrentlyLearningCourseDeck(
+    deck: CourseDeck,
+    courseName: String,
+    isLearned: Boolean,
+    onDeckClick: (CourseDeck) -> Unit,
+) {
     ElevatedCard(
         modifier = Modifier.height(80.dp).widthIn(max = 150.dp),
         elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp),
     ) {
-        Column(modifier = Modifier.fillMaxSize().platformStyleClickable { onDeckClick(deck) }.padding(vertical = 4.dp)) {
-            AutoResizeText(
-                text = deck.name.formatDeckName(courseName),
-                fontSizeRange = FontSizeRange(min = 14.sp, max = MaterialTheme.typography.titleLarge.fontSize),
-                maxLines = 1,
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.padding(horizontal = 8.dp).padding(bottom = 4.dp),
-            )
-            Divider(height = 1.dp, modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 4.dp))
-            Text(
-                text = deck.preview,
-                maxLines = 1,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
-                    .weight(1f)
-                    .wrapContentHeight(align = Alignment.CenterVertically)
-                    .padding(horizontal = 4.dp),
-                style = MaterialTheme.typography.bodyMedium
-            )
+        Box {
+            Column(modifier = Modifier.fillMaxSize().platformStyleClickable { onDeckClick(deck) }.padding(vertical = 4.dp)) {
+                AutoResizeText(
+                    text = deck.name.formatDeckName(courseName),
+                    fontSizeRange = FontSizeRange(min = 14.sp, max = MaterialTheme.typography.titleLarge.fontSize),
+                    maxLines = 1,
+                    style = MaterialTheme.typography.titleLarge,
+                    modifier = Modifier.padding(horizontal = 8.dp).padding(bottom = 4.dp),
+                )
+                Divider(height = 1.dp, modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 4.dp))
+                Text(
+                    text = deck.preview,
+                    maxLines = 1,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                        .weight(1f)
+                        .wrapContentHeight(align = Alignment.CenterVertically)
+                        .padding(horizontal = 4.dp),
+                    style = MaterialTheme.typography.bodyMedium
+                )
+            }
+            if (isLearned) {
+                Icon(
+                    imageVector = Icons.Default.Star,
+                    contentDescription = "",
+                    tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
+                    modifier = Modifier.size(24.dp).align(Alignment.TopEnd).padding(4.dp)
+                )
+            }
         }
     }
 }
