@@ -7,8 +7,12 @@ import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
 import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsListMode
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.Polymorphic
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerializationException
+import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
 import kotlin.reflect.KType
@@ -28,43 +32,83 @@ data class DeckScreenArgs(
     val courseId: CourseId,
     val deckId: DeckId,
 ) {
-    fun toPlayerArgs(mode: PlayerMode, backToRoute: PlayerBackRoute): PlayerScreenArgs {
-        return PlayerScreenArgs(
+    fun toPlayerDeckReviewArgs(backToRoute: PlayerBackRoute): PlayerScreenArgs {
+        return PlayerScreenArgs.DeckReview(
             learningLanguageId = learningLanguageId,
             sourceLanguageId = sourceLanguageId,
             courseId = courseId,
-            deckId = deckId,
-            playerMode = mode,
+            deckIds = listOf(deckId),
+            backToRoute = backToRoute
+        )
+    }
+
+    fun toPlayerDeckQuizArgs(backToRoute: PlayerBackRoute): PlayerScreenArgs {
+        return PlayerScreenArgs.DeckQuiz(
+            learningLanguageId = learningLanguageId,
+            sourceLanguageId = sourceLanguageId,
+            courseId = courseId,
+            deckIds = listOf(deckId),
             backToRoute = backToRoute
         )
     }
 }
 
 @Serializable
-data class PlayerScreenArgs(
-    val learningLanguageId: LanguageId,
-    val sourceLanguageId: LanguageId,
-    val courseId: CourseId,
-    val deckId: DeckId,
-    val backToRoute: PlayerBackRoute,
-    val playerMode: PlayerMode,
-) {
-    fun toQuizSummaryArgs(sessionId: QuizSessionId): QuizSessionSummaryArgs {
-        return QuizSessionSummaryArgs(
-            learningLanguageId = learningLanguageId,
-            sourceLanguageId = sourceLanguageId,
-            courseId = courseId,
-            deckId = deckId,
-            playerMode = playerMode,
-            backToRoute = backToRoute,
-            sessionId = sessionId
-        )
+@Polymorphic
+sealed interface PlayerScreenArgs {
+    val learningLanguageId: LanguageId
+    val sourceLanguageId: LanguageId
+    val courseId: CourseId
+    val backToRoute: PlayerBackRoute
+    val deckIds: List<DeckId>
+
+    interface SpacialRepetition
+
+    @Serializable
+    @SerialName("DeckReview")
+    data class DeckReview(
+        override val learningLanguageId: LanguageId,
+        override val sourceLanguageId: LanguageId,
+        override val courseId: CourseId,
+        override val deckIds: List<DeckId>,
+        override val backToRoute: PlayerBackRoute,
+    ) : PlayerScreenArgs, SpacialRepetition
+
+    @Serializable
+    @SerialName("MixedDeckReview")
+    data class MixedDeckReview(
+        override val learningLanguageId: LanguageId,
+        override val sourceLanguageId: LanguageId,
+        override val courseId: CourseId,
+        override val deckIds: List<DeckId>,
+        override val backToRoute: PlayerBackRoute,
+    ) : PlayerScreenArgs, SpacialRepetition
+
+    @Serializable
+    @SerialName("DeckQuiz")
+    data class DeckQuiz(
+        override val learningLanguageId: LanguageId,
+        override val sourceLanguageId: LanguageId,
+        override val courseId: CourseId,
+        override val deckIds: List<DeckId>,
+        override val backToRoute: PlayerBackRoute,
+    ) : PlayerScreenArgs {
+        fun toQuizSummaryArgs(sessionId: QuizSessionId): QuizSessionSummaryArgs {
+            return QuizSessionSummaryArgs(
+                learningLanguageId = learningLanguageId,
+                sourceLanguageId = sourceLanguageId,
+                courseId = courseId,
+                deckId = deckIds.first(), //TODO: change during quiz composer implementation
+                backToRoute = backToRoute,
+                sessionId = sessionId
+            )
+        }
     }
 }
 
 @Serializable
 enum class PlayerMode {
-    SpacialRepetition, Quiz
+    SpacialRepetition, Quiz, MixedDeckReview
 }
 
 @Serializable
@@ -94,7 +138,6 @@ data class QuizSessionSummaryArgs(
     val courseId: CourseId,
     val deckId: DeckId,
     val backToRoute: PlayerBackRoute,
-    val playerMode: PlayerMode,
     val sessionId: QuizSessionId,
 )
 
@@ -102,7 +145,10 @@ inline fun <reified T> serializableNavType(
     isNullableAllowed: Boolean = false,
     json: Json = Json,
 ): NavType<T> = object : NavType<T>(isNullableAllowed) {
-    private val innerSerializer = serializer<T>()
+    private val innerSerializer: KSerializer<T> = when (T::class) {
+        List::class -> ListSerializer(DeckId.serializer()) as KSerializer<T> // Special case for List<DeckId>
+        else -> serializer()
+    }
 
     override fun get(bundle: Bundle, key: String): T? {
         return bundle.getString(key)?.let { stringValue ->
@@ -142,7 +188,9 @@ inline fun <reified T> serializableNavType(
 val appTypeMap: Map<KType, NavType<*>> = mapOf(
     typeOf<CourseScreenArgs>() to serializableNavType<CourseScreenArgs>(),
     typeOf<DeckScreenArgs>() to serializableNavType<DeckScreenArgs>(),
-    typeOf<PlayerScreenArgs>() to serializableNavType<PlayerScreenArgs>(),
+    typeOf<PlayerScreenArgs.DeckReview>() to serializableNavType<PlayerScreenArgs.DeckReview>(),
+    typeOf<PlayerScreenArgs.DeckQuiz>() to serializableNavType<PlayerScreenArgs.DeckQuiz>(),
+    typeOf<PlayerScreenArgs.MixedDeckReview>() to serializableNavType<PlayerScreenArgs.MixedDeckReview>(),
     typeOf<QuizSessionSummaryArgs>() to serializableNavType<QuizSessionSummaryArgs>(),
     typeOf<StatisticsModeArgs>() to serializableNavType<StatisticsModeArgs>(),
     typeOf<SettingsSectionsArgs>() to serializableNavType<SettingsSectionsArgs>(),
@@ -154,4 +202,5 @@ val appTypeMap: Map<KType, NavType<*>> = mapOf(
     typeOf<PlayerBackRoute>() to serializableNavType<PlayerBackRoute>(),
     typeOf<PlayerMode>() to serializableNavType<PlayerMode>(),
     typeOf<StatisticsListMode>() to serializableNavType<StatisticsListMode>(),
+    typeOf<List<DeckId>>() to serializableNavType<List<DeckId>>(),
 )

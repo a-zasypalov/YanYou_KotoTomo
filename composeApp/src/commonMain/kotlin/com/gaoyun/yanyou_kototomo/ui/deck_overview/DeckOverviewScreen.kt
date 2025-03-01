@@ -89,7 +89,13 @@ fun DeckOverviewScreen(
                 cardDetailPausedState.value = paused
                 cardDetailCompletedState.value = cardToShow.isCompleted()
             },
-            onPlayDeckClick = { mode -> navigate(ToDeckPlayer(args.toPlayerArgs(mode, PlayerBackRoute.Deck(args)))) },
+            onPlayDeckClick = { mode ->
+                when (mode) {
+                    PlayerMode.Quiz -> navigate(ToDeckPlayer(args.toPlayerDeckQuizArgs(PlayerBackRoute.Deck(args))))
+                    PlayerMode.SpacialRepetition -> navigate(ToDeckPlayer(args.toPlayerDeckReviewArgs(PlayerBackRoute.Deck(args))))
+                    PlayerMode.MixedDeckReview -> {} //This shouldn't be activated here
+                }
+            },
             updateTranslationSettings = viewModel::updateTranslationSettings,
             updateTranscriptionSettings = viewModel::updateTranscriptionSettings,
             updateReadingSettings = viewModel::updateReadingSettings,

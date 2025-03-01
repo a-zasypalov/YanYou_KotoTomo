@@ -1,12 +1,11 @@
 package com.gaoyun.yanyou_kototomo.ui.player
 
 import androidx.lifecycle.viewModelScope
-import com.gaoyun.yanyou_kototomo.data.local.CourseId
+import com.gaoyun.yanyou_kototomo.data.local.CardId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
-import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardProgress
-import com.gaoyun.yanyou_kototomo.data.local.deck.Deck
+import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
 import com.gaoyun.yanyou_kototomo.data.persistence.QuizCardResultPersisted
@@ -17,7 +16,7 @@ import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
 import com.gaoyun.yanyou_kototomo.util.localDateNow
 import com.gaoyun.yanyou_kototomo.util.localDateTimeNow
@@ -36,50 +35,60 @@ class DeckPlayerViewModel(
 ) : BaseViewModel() {
 
     override val viewState = MutableStateFlow<PlayerCardViewState?>(null)
-    private val deckState = MutableStateFlow<Deck?>(null)
+    private val cardsForPlayer = MutableStateFlow<List<Pair<DeckId, CardWithProgress<*>>>>(listOf())
     private val quizResults = MutableStateFlow<MutableList<QuizCardResultPersisted>>(mutableListOf())
     private val quizStart = MutableStateFlow<LocalDateTime?>(null)
-    private val playerMode = MutableStateFlow<PlayerMode?>(null)
+    private val argsState = MutableStateFlow<PlayerScreenArgs?>(null)
 
     private var finishCallback: ((QuizSessionId?) -> Unit)? = null
 
     fun startPlayer(
-        learningLanguageId: LanguageId,
-        sourceLanguageId: LanguageId,
-        courseId: CourseId,
-        deckId: DeckId,
-        playerMode: PlayerMode,
+        args: PlayerScreenArgs,
         finishCallback: (QuizSessionId?) -> Unit,
     ) = viewModelScope.launch {
+        argsState.value = args
         this@DeckPlayerViewModel.finishCallback = finishCallback
-        this@DeckPlayerViewModel.playerMode.value = playerMode
-        val course = getCoursesRoot.getCourse(courseId)
-        course.decks.find { it.id == deckId }?.let { deckInCourse ->
-            getDeck.getDeck(
-                learningLanguage = learningLanguageId,
-                sourceLanguage = sourceLanguageId,
-                deck = deckInCourse,
-                requiredDecks = course.requiredDecks ?: listOf()
-            )?.let { result ->
-                val settings = deckSettingsInteractor.getDeckSettings(deckId) ?: DeckSettings.DEFAULT(deckId)
-                val filteredCards = result.cards.filterNot { settings.pausedCards.contains(it.card.id.identifier) }
+        val course = getCoursesRoot.getCourse(args.courseId)
+        course.decks.filter { args.deckIds.contains(it.id) }
+            .mapNotNull { deckInCourse ->
+                getDeck.getDeck(
+                    learningLanguage = args.learningLanguageId,
+                    sourceLanguage = args.sourceLanguageId,
+                    deck = deckInCourse,
+                    requiredDecks = course.requiredDecks ?: listOf()
+                )
+            }
+            .let { resultList ->
+                val settings = args.deckIds
+                    .map { deckSettingsInteractor.getDeckSettings(it) ?: DeckSettings.DEFAULT(it) }
+                    .associate { it.deckId to it }
 
-                val cardForPlayer = when (playerMode) {
-                    PlayerMode.SpacialRepetition -> filteredCards.filter { it.countForReviewAndNotPausedIds(settings.pausedCards) }
-                        .shuffled()
+                val filteredCards = resultList
+                    .map { it.cards.associate { card -> it.id to card }.entries }
+                    .flatten()
+                    .filterNot { settings[it.key]?.pausedCards?.contains(it.value.card.id.identifier) == true }
 
-                    PlayerMode.Quiz -> filteredCards.shuffled().also { quizStart.value = localDateTimeNow() }
+                val cardForPlayer = when (args) {
+                    is PlayerScreenArgs.DeckReview -> filteredCards.filter {
+                        it.value.countForReviewAndNotPausedIds(
+                            settings[it.key]?.pausedCards ?: listOf()
+                        )
+                    }
+
+                    is PlayerScreenArgs.DeckQuiz -> filteredCards.also { quizStart.value = localDateTimeNow() }
+                    is PlayerScreenArgs.MixedDeckReview -> filteredCards.also { quizStart.value = localDateTimeNow() }
                 }
-                deckState.value = result.copy(cards = cardForPlayer)
+
+                cardsForPlayer.value = cardForPlayer.map { it.key to it.value }.shuffled()
                 nextCard()
             }
-        }
     }
 
     fun nextCard() = viewModelScope.launch {
-        val currentCardIndex = deckState.value?.cards?.indexOf(viewState.value?.card) ?: -1
+        val cards = cardsForPlayer.value.map { it.second }
+        val currentCardIndex = cards.indexOf(viewState.value?.card)
         val newCardIndex = currentCardIndex + 1
-        val totalNumOfCards = deckState.value?.cards?.count() ?: -1
+        val totalNumOfCards = cardsForPlayer.value.count()
 
         if (newCardIndex == totalNumOfCards) {
             finishPlayer()
@@ -89,24 +98,23 @@ class DeckPlayerViewModel(
         closeCard()
         delay(300)
 
-        val deck = deckState.value ?: return@launch
-        val card = deck.cards.getOrNull(newCardIndex) ?: return@launch
+        val card = cardsForPlayer.value.getOrNull(newCardIndex)?.second ?: return@launch
 
-        val intervals = if (playerMode.value == PlayerMode.SpacialRepetition) {
+        val intervals = if (argsState.value is PlayerScreenArgs.SpacialRepetition) {
             spacedRepetitionCalculation.calculateNextIntervals(card.progress?.nextReview, card.progress?.easeFactor)
         } else null
 
         viewState.value = PlayerCardViewState(
             card = card,
-            possibleAnswers = getPossibleAnswersFor(card.card, deck),
+            possibleAnswers = getPossibleAnswersFor(card.card, cards),
             cardNumOutOf = newCardIndex + 1 to totalNumOfCards,
             intervalsInDays = intervals
         )
     }
 
     private fun finishPlayer() {
-        when (playerMode.value) {
-            PlayerMode.Quiz -> viewModelScope.launch {
+        when (argsState.value) {
+            PlayerScreenArgs.DeckQuiz -> viewModelScope.launch {
                 val newSessionId = quizInteractor.addSession(quizStart.value ?: localDateTimeNow(), quizResults.value)
                 finishCallback?.invoke(newSessionId)
             }
@@ -115,8 +123,8 @@ class DeckPlayerViewModel(
         }
     }
 
-    fun repetitionAnswer(answer: RepetitionAnswer) = viewModelScope.launch {
-        val deckId = deckState.value?.id ?: return@launch
+    fun repetitionAnswer(answer: RepetitionAnswer, cardId: CardId) = viewModelScope.launch {
+        val deckId = cardsForPlayer.value.find { it.second.card.id == cardId }?.first ?: return@launch
         val currentCard = viewState.value?.card ?: return@launch
         val reviewDate = localDateNow()
         val (nextReviewDate, newEaseFactor, intervalDays) = spacedRepetitionCalculation.calculateNextInterval(
@@ -153,9 +161,9 @@ class DeckPlayerViewModel(
         viewState.value = viewState.value?.copy(answerOpened = false, answerIsCorrect = null)
     }
 
-    fun getPossibleAnswersFor(card: Card, deck: Deck): List<String> {
+    fun getPossibleAnswersFor(card: Card, allCards: List<CardWithProgress<*>>): List<String> {
         val correctAnswer = getAnswerFor(card)
-        val clearedDeck = deck.cards.map { it.card }.toMutableList().also { it.remove(card) }
+        val clearedDeck = allCards.map { it.card }.toMutableList().also { it.remove(card) }
 
         val possibleAnswers = when (card) {
             is Card.KanaCard -> clearedDeck.filter { it is Card.KanaCard }

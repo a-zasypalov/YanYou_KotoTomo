@@ -144,7 +144,13 @@ fun NavigationGraph(navController: NavHostController, viewModel: AppViewModel) {
         composable<DeckScreenArgs>(typeMap = appTypeMap) { stackEntry ->
             DeckOverviewScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
         }
-        composable<PlayerScreenArgs>(typeMap = appTypeMap) { stackEntry ->
+        composable<PlayerScreenArgs.DeckQuiz>(typeMap = appTypeMap) { stackEntry ->
+            DeckPlayerScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
+        }
+        composable<PlayerScreenArgs.DeckReview>(typeMap = appTypeMap) { stackEntry ->
+            DeckPlayerScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
+        }
+        composable<PlayerScreenArgs.MixedDeckReview>(typeMap = appTypeMap) { stackEntry ->
             DeckPlayerScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
         }
         composable<QuizSessionSummaryArgs>(typeMap = appTypeMap) { stackEntry ->

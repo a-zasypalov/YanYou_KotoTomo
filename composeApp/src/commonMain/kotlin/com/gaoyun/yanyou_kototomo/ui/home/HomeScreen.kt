@@ -39,7 +39,6 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToBookmarks
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
@@ -90,12 +89,11 @@ fun HomeScreen(
         onReviewClick = { deckWithInfo ->
             navigate(
                 ToDeckPlayer(
-                    PlayerScreenArgs(
+                    PlayerScreenArgs.DeckReview(
                         learningLanguageId = deckWithInfo.info.learningLanguageId,
                         sourceLanguageId = deckWithInfo.info.sourceLanguageId,
                         courseId = deckWithInfo.info.courseId,
-                        deckId = deckWithInfo.deck.id,
-                        playerMode = PlayerMode.SpacialRepetition,
+                        deckIds = listOf(deckWithInfo.deck.id),
                         backToRoute = PlayerBackRoute.Home
                     )
                 )
@@ -104,12 +102,11 @@ fun HomeScreen(
         onQuizClick = { deckWithInfo ->
             navigate(
                 ToDeckPlayer(
-                    PlayerScreenArgs(
+                    PlayerScreenArgs.DeckQuiz(
                         learningLanguageId = deckWithInfo.info.learningLanguageId,
                         sourceLanguageId = deckWithInfo.info.sourceLanguageId,
                         courseId = deckWithInfo.info.courseId,
-                        deckId = deckWithInfo.deck.id,
-                        playerMode = PlayerMode.Quiz,
+                        deckIds = listOf(deckWithInfo.deck.id),
                         backToRoute = PlayerBackRoute.Home
                     )
                 )

@@ -21,6 +21,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import com.gaoyun.yanyou_kototomo.data.local.CardId
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColors
 import com.gaoyun.yanyou_kototomo.ui.player.PlayerCardViewState
@@ -29,7 +30,7 @@ import com.gaoyun.yanyou_kototomo.ui.player.PlayerCardViewState
 internal fun BoxScope.SpaceRepetitionButtons(
     currentCardState: PlayerCardViewState,
     onCardOpenClick: () -> Unit,
-    onRepetitionClick: (RepetitionAnswer) -> Unit,
+    onRepetitionClick: (RepetitionAnswer, CardId) -> Unit,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -89,7 +90,7 @@ internal fun BoxScope.SpaceRepetitionButtons(
                         contentPadding = PaddingValues(8.dp),
                         maxLines = 2,
                         modifier = Modifier.weight(1f),
-                        onClick = { onRepetitionClick(RepetitionAnswer.Easy) },
+                        onClick = { currentCardState.card?.card?.id?.let { onRepetitionClick(RepetitionAnswer.Easy, it) } },
                         colors = ButtonDefaults.elevatedButtonColors(
                             containerColor = YanYouColors.current.greenButtonContainer,
                             contentColor = YanYouColors.current.onButtonContainer,
@@ -101,7 +102,7 @@ internal fun BoxScope.SpaceRepetitionButtons(
                         contentPadding = PaddingValues(8.dp),
                         maxLines = 2,
                         modifier = Modifier.weight(1f),
-                        onClick = { onRepetitionClick(RepetitionAnswer.Good) },
+                        onClick = { currentCardState.card?.card?.id?.let { onRepetitionClick(RepetitionAnswer.Good, it) } },
                         colors = ButtonDefaults.elevatedButtonColors(
                             containerColor = YanYouColors.current.blueButtonContainer,
                             contentColor = YanYouColors.current.onButtonContainer,
@@ -113,7 +114,7 @@ internal fun BoxScope.SpaceRepetitionButtons(
                         contentPadding = PaddingValues(8.dp),
                         maxLines = 2,
                         modifier = Modifier.weight(1f),
-                        onClick = { onRepetitionClick(RepetitionAnswer.Hard) },
+                        onClick = { currentCardState.card?.card?.id?.let { onRepetitionClick(RepetitionAnswer.Hard, it) } },
                         colors = ButtonDefaults.elevatedButtonColors(
                             containerColor = YanYouColors.current.redButtonContainer,
                             contentColor = YanYouColors.current.onButtonContainer,

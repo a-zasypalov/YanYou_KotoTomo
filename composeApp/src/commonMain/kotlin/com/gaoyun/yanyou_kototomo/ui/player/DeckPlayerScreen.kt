@@ -25,13 +25,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.gaoyun.yanyou_kototomo.data.local.CardId
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.ui.base.BlockedBackHandler
 import com.gaoyun.yanyou_kototomo.ui.base.composables.BackButtonType
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToQuizSessionSummary
 import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerFront
@@ -41,6 +41,7 @@ import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
 import com.gaoyun.yanyou_kototomo.ui.player.components.ResultAnimation
 import com.gaoyun.yanyou_kototomo.ui.player.components.SpaceRepetitionButtons
 import org.koin.compose.viewmodel.koinViewModel
+import kotlin.reflect.KClass
 
 @Composable
 fun DeckPlayerScreen(
@@ -50,19 +51,17 @@ fun DeckPlayerScreen(
     val viewModel = koinViewModel<DeckPlayerViewModel>()
 
     LaunchedEffect(Unit) {
-        with(args) {
-            viewModel.startPlayer(
-                learningLanguageId = learningLanguageId,
-                sourceLanguageId = sourceLanguageId,
-                courseId = courseId,
-                playerMode = args.playerMode,
-                deckId = deckId,
-                finishCallback = { sessionId ->
-                    sessionId?.let { navigate(ToQuizSessionSummary(args.toQuizSummaryArgs(sessionId), backToRoute)) }
-                        ?: navigate(BackNavigationEffect)
+        viewModel.startPlayer(
+            args = args,
+            finishCallback = { sessionId ->
+                when {
+                    args is PlayerScreenArgs.DeckQuiz && sessionId != null -> {
+                        navigate(ToQuizSessionSummary(args.toQuizSummaryArgs(sessionId), args.backToRoute))
+                    }
+                    else -> navigate(BackNavigationEffect)
                 }
-            )
-        }
+            }
+        )
     }
 
     BlockedBackHandler()
@@ -70,7 +69,7 @@ fun DeckPlayerScreen(
     SurfaceScaffold(
         backHandler = { navigate(BackNavigationEffect) },
         backButtonType = BackButtonType.Close,
-        containerColor = if (args.playerMode == PlayerMode.Quiz) {
+        containerColor = if (args is PlayerScreenArgs.DeckQuiz) {
             MaterialTheme.colorScheme.tertiaryContainer
         } else {
             MaterialTheme.colorScheme.surfaceBright
@@ -85,7 +84,7 @@ fun DeckPlayerScreen(
             viewState?.let {
                 DeckPlayerScreenContent(
                     currentCardState = viewState,
-                    mode = args.playerMode,
+                    args = args::class as KClass<PlayerScreenArgs>,
                     onCardOpenClick = viewModel::openCard,
                     onNextCardClick = viewModel::nextCard,
                     onRepetitionClick = viewModel::repetitionAnswer,
@@ -99,11 +98,11 @@ fun DeckPlayerScreen(
 @Composable
 private fun DeckPlayerScreenContent(
     currentCardState: PlayerCardViewState,
-    mode: PlayerMode,
+    args: KClass<PlayerScreenArgs>,
     onCardOpenClick: () -> Unit,
     onAnswerClick: (String) -> Unit,
     onNextCardClick: () -> Unit,
-    onRepetitionClick: (RepetitionAnswer) -> Unit,
+    onRepetitionClick: (RepetitionAnswer, CardId) -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         currentCardState.card?.let { card ->
@@ -152,14 +151,16 @@ private fun DeckPlayerScreenContent(
                 }
             }
             CatAnimation(modifier = Modifier.padding(top = 24.dp))
-            when (mode) {
-                PlayerMode.SpacialRepetition -> SpaceRepetitionButtons(
+            when (args) {
+                PlayerScreenArgs.DeckReview,
+                PlayerScreenArgs.MixedDeckReview,
+                    -> SpaceRepetitionButtons(
                     currentCardState = currentCardState,
                     onCardOpenClick = onCardOpenClick,
                     onRepetitionClick = onRepetitionClick,
                 )
 
-                PlayerMode.Quiz -> QuizButtons(
+                PlayerScreenArgs.DeckQuiz -> QuizButtons(
                     currentCardState = currentCardState,
                     onAnswerClick = onAnswerClick,
                     onNextCardClick = onNextCardClick,
