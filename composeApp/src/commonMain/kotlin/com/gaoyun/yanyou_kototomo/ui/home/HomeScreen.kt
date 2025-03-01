@@ -65,6 +65,9 @@ fun HomeScreen(
     val viewModel = koinViewModel<HomeViewModel>()
     val cardDetailState = remember { mutableStateOf<CardWithProgress<*>?>(null) }
     val cardDetailLanguageState = remember { mutableStateOf<LanguageId>(LanguageId("cn")) }
+    val cardDetailDeckIdState = remember { mutableStateOf<DeckId?>(null) }
+    val cardDetailPausedState = remember { mutableStateOf<Boolean>(false) }
+    val cardDetailCompletedState = remember { mutableStateOf<Boolean>(false) }
 
     LaunchedEffect(Unit) {
         viewModel.getSpaceState()
@@ -73,8 +76,9 @@ fun HomeScreen(
     HomeScreenContent(
         content = viewModel.viewState.collectAsState().value,
         modifier = modifier,
-        onCardDetailsClick = { cardToShow, languageId ->
+        onCardDetailsClick = { deckId, cardToShow, languageId ->
             cardDetailLanguageState.value = languageId
+            cardDetailDeckIdState.value = deckId
             cardDetailState.value = cardToShow
         },
         onCourseClick = { deckId, courseId, learningLanguageId, sourceLanguageId ->
@@ -122,14 +126,22 @@ fun HomeScreen(
         updateShowPausedCards = viewModel::updateShowPausedCards,
         updateShowCompletedCards = viewModel::updateShowCompletedCards
     )
-    CardDetailsView(cardState = cardDetailState, languageId = cardDetailLanguageState.value) { cardDetailState.value = null }
+    CardDetailsView(
+        cardState = cardDetailState,
+        languageId = cardDetailLanguageState.value,
+        paused = cardDetailPausedState,
+        completed = cardDetailCompletedState,
+        onCardPause = { card, paused -> cardDetailDeckIdState.value?.let { viewModel.pauseCard(it, card, paused) } },
+        onCardComplete = { card, completed -> cardDetailDeckIdState.value?.let { viewModel.completeCard(it, card, completed) } },
+        onDismiss = { cardDetailState.value = null }
+    )
 }
 
 @Composable
 private fun HomeScreenContent(
     content: PersonalSpaceState?,
     modifier: Modifier,
-    onCardDetailsClick: (CardWithProgress<*>, LanguageId) -> Unit,
+    onCardDetailsClick: (DeckId, CardWithProgress<*>, LanguageId) -> Unit,
     onCourseClick: (DeckId, CourseId, LanguageId, LanguageId) -> Unit,
     onReviewClick: (CourseWithInfo) -> Unit,
     onQuizClick: (DeckWithCourseInfo) -> Unit,
@@ -251,7 +263,7 @@ private fun HomeScreenContent(
 
 fun LazyListScope.PersonalSegmentedArea(
     viewState: PersonalSpaceState,
-    onCardClick: (CardWithProgress<*>, LanguageId) -> Unit,
+    onCardClick: (DeckId, CardWithProgress<*>, LanguageId) -> Unit,
     updateShowNewCards: (Boolean) -> Unit,
     updateShowToReviewCards: (Boolean) -> Unit,
     updateShowPausedCards: (Boolean) -> Unit,

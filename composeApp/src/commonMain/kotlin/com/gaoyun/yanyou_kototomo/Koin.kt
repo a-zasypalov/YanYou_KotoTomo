@@ -115,7 +115,7 @@ val useCaseModule = module {
 val viewModelModule = module {
     single { AppNavigator() }
     factory { AppViewModel(get(), get(), get()) }
-    factory { HomeViewModel(get()) }
+    factory { HomeViewModel(get(), get(), get()) }
     factory { CoursesViewModel(get()) }
     factory { CourseDecksViewModel(get(), get()) }
     factory { DeckOverviewViewModel(get(), get(), get(), get(), get()) }

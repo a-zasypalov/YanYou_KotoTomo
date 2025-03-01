@@ -4,6 +4,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.ui.Modifier
+import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
@@ -47,7 +48,7 @@ fun LazyGridScope.DeckOverviewCategories(
 fun LazyListScope.DeckOverviewCategories(
     categories: List<CardOverviewPart.List>,
     modifier: Modifier = Modifier,
-    onCardClick: (CardWithProgress<*>, LanguageId) -> Unit,
+    onCardClick: (DeckId, CardWithProgress<*>, LanguageId) -> Unit,
 ) {
     categories.forEach { (name, cards, _, isVisible, onToggle) ->
         if (cards.isNotEmpty()) {
@@ -63,7 +64,10 @@ fun LazyListScope.DeckOverviewCategories(
             if (isVisible) {
                 cards.forEach {
                     item(key = it.card.id.identifier) {
-                        PersonalAreaCardItem(card = it, modifier = modifier, onCardClick = onCardClick)
+                        PersonalAreaCardItem(
+                            card = it,
+                            modifier = modifier,
+                            onCardClick = { card, languageId -> onCardClick(it.deckId, card, languageId) })
                     }
                 }
             }
