@@ -9,6 +9,7 @@ import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckSettings
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
 import com.gaoyun.yanyou_kototomo.data.persistence.QuizCardResultPersisted
+import com.gaoyun.yanyou_kototomo.domain.BookmarksInteractor
 import com.gaoyun.yanyou_kototomo.domain.CardProgressUpdater
 import com.gaoyun.yanyou_kototomo.domain.DeckSettingsInteractor
 import com.gaoyun.yanyou_kototomo.domain.GetCoursesRoot
@@ -32,6 +33,7 @@ class DeckPlayerViewModel(
     private val cardProgressUpdater: CardProgressUpdater,
     private val quizInteractor: QuizInteractor,
     private val deckSettingsInteractor: DeckSettingsInteractor,
+    private val bookmarksInteractor: BookmarksInteractor,
 ) : BaseViewModel() {
 
     override val viewState = MutableStateFlow<PlayerCardViewState?>(null)
@@ -48,6 +50,7 @@ class DeckPlayerViewModel(
     ) = viewModelScope.launch {
         argsState.value = args
         this@DeckPlayerViewModel.finishCallback = finishCallback
+        val learningDeckIds = bookmarksInteractor.getLearningDecks().map { it.id }
         val course = getCoursesRoot.getCourse(args.courseId)
         course.decks.filter { args.deckIds.contains(it.id) }
             .mapNotNull { deckInCourse ->
@@ -64,6 +67,7 @@ class DeckPlayerViewModel(
                     .associate { it.deckId to it }
 
                 val filteredCards = resultList
+                    .filter { if (args is PlayerScreenArgs.MixedDeckReview) learningDeckIds.contains(it.id) else true }
                     .map { item -> item.cards.map { item.id to it } }
                     .flatten()
                     .filterNot {
@@ -72,12 +76,13 @@ class DeckPlayerViewModel(
                     }
 
                 val cardForPlayer = when (args) {
-                    is PlayerScreenArgs.DeckReview -> filteredCards.filter {
+                    is PlayerScreenArgs.MixedDeckReview,
+                    is PlayerScreenArgs.DeckReview,
+                        -> filteredCards.filter {
                         it.second.countForReviewAndNotPausedIds(settings[it.first]?.pausedCards ?: listOf())
                     }
 
                     is PlayerScreenArgs.DeckQuiz -> filteredCards.also { quizStart.value = localDateTimeNow() }
-                    is PlayerScreenArgs.MixedDeckReview -> filteredCards.also { quizStart.value = localDateTimeNow() }
                 }
 
                 cardsForPlayer.value = cardForPlayer.map { it.first to it.second }.shuffled()

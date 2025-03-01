@@ -30,6 +30,7 @@ import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
+import com.gaoyun.yanyou_kototomo.data.local.course.CourseWithInfo
 import com.gaoyun.yanyou_kototomo.data.local.deck.DeckWithCourseInfo
 import com.gaoyun.yanyou_kototomo.data.ui_state.CardCategoryType
 import com.gaoyun.yanyou_kototomo.data.ui_state.CardOverviewPart
@@ -42,9 +43,9 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToBookmarks
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckQuizPlayer
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckReviewPlayer
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToMixedDeckReviewPlayer
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenDeckQuizArgs
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenDeckReviewArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenMixedDeckReviewArgs
 import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.DeckOverviewCategories
 import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.DeckProgressStatus
 import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.HorizontalCourseCard
@@ -88,14 +89,14 @@ fun HomeScreen(
                 )
             )
         },
-        onReviewClick = { deckWithInfo ->
+        onReviewClick = { course ->
             navigate(
-                ToDeckReviewPlayer(
-                    PlayerScreenDeckReviewArgs(
-                        learningLanguageId = deckWithInfo.info.learningLanguageId,
-                        sourceLanguageId = deckWithInfo.info.sourceLanguageId,
-                        courseId = deckWithInfo.info.courseId,
-                        deckIds = listOf(deckWithInfo.deck.id),
+                ToMixedDeckReviewPlayer(
+                    PlayerScreenMixedDeckReviewArgs(
+                        learningLanguageId = course.learningLanguageId,
+                        sourceLanguageId = course.sourceLanguageId,
+                        courseId = course.id,
+                        deckIds = course.decks.map { it.id },
                         backToRoute = PlayerBackRoute.Home,
                     )
                 )
@@ -130,7 +131,7 @@ private fun HomeScreenContent(
     modifier: Modifier,
     onCardDetailsClick: (CardWithProgress<*>, LanguageId) -> Unit,
     onCourseClick: (DeckId, CourseId, LanguageId, LanguageId) -> Unit,
-    onReviewClick: (DeckWithCourseInfo) -> Unit,
+    onReviewClick: (CourseWithInfo) -> Unit,
     onQuizClick: (DeckWithCourseInfo) -> Unit,
     onBookmarksEdit: () -> Unit,
     onCoursesClick: () -> Unit,
@@ -175,34 +176,20 @@ private fun HomeScreenContent(
                     }
                 }
 
-//                viewState.learningDecks.firstOrNull()?.let {
-//                    item {
-//                        TopCurrentlyLearningDeck(
-//                            deckWithInfo = it,
-//                            onCourseClick = onCourseClick,
-//                            onReviewClick = onReviewClick,
-//                            onQuizClick = onQuizClick,
-//                            onCardDetailsClick = { card, languageId -> onCardDetailsClick(card, languageId) },
-//                            modifier = Modifier.padding(bottom = 8.dp),
-//                        )
-//                    }
-//                }
-//
-//                if (viewState.learningDecks.size > 1) item {
-//                    HorizontalCourseCardsList(
-//                        decks = viewState.learningDecks.drop(1),
-//                        onCourseClick = onCourseClick,
-//                        modifier = Modifier.padding(bottom = 8.dp),
-//                    )
-//                }
+                val cardsDueToReviewNotEmpty = viewState.cardsDueToReview.isNotEmpty()
+                val newCardsNotEmpty = viewState.newCards.isNotEmpty()
+                if (cardsDueToReviewNotEmpty || newCardsNotEmpty) item {
+                    val reviewLabel = listOfNotNull(
+                        viewState.cardsDueToReview.takeIf { cardsDueToReviewNotEmpty }?.size?.let { "$it cards to review" },
+                        viewState.newCards.takeIf { newCardsNotEmpty }?.size?.let { if (cardsDueToReviewNotEmpty) "$it new cards" else "$it new" }
+                    ).joinToString(", ")
 
-                if (viewState.cardsDueToReview.isNotEmpty()) item {
                     PrimaryElevatedButton(
-                        text = "Today's review: ${viewState.cardsDueToReview.size} cards",
+                        text = reviewLabel,
                         leadingIcon = Icons.Outlined.LocalLibrary,
-                        onClick = { }, //onPlayDeckClick(PlayerMode.SpacialRepetition)
+                        onClick = { viewState.learningCourse?.let { onReviewClick(it) } },
                         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).padding(bottom = 8.dp),
+                        modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
                     )
                 }
 
