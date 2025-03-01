@@ -2,6 +2,9 @@ package com.gaoyun.yanyou_kototomo.ui.base.navigation
 
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.BOOKMARKS_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.ONBOARDING_ROUTE
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenDeckQuizArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenDeckReviewArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenMixedDeckReviewArgs
 import org.koin.core.component.KoinComponent
 
 sealed class NavigatorAction {
@@ -23,7 +26,9 @@ class AppNavigator() : KoinComponent {
         is ToBookmarks -> NavigatorAction.NavigateToPath(BOOKMARKS_ROUTE)
         is ToCourse -> NavigatorAction.NavigateTo(call.args)
         is ToDeck -> NavigatorAction.NavigateTo(call.args)
-        is ToDeckPlayer -> NavigatorAction.NavigateTo(call.args)
+        is ToDeckReviewPlayer -> NavigatorAction.NavigateTo(call.args)
+        is ToDeckQuizPlayer -> NavigatorAction.NavigateTo(call.args)
+        is ToMixedDeckReviewPlayer -> NavigatorAction.NavigateTo(call.args)
         is ToStatisticsFullList -> NavigatorAction.NavigateTo(call.args)
         is ToSettingsSection -> NavigatorAction.NavigateTo(call.args)
         is ToQuizSessionSummary -> when (call.popupTo) {
@@ -53,7 +58,9 @@ object ToOnboarding : NavigationSideEffect
 object ToBookmarks : NavigationSideEffect
 class ToCourse(val args: CourseScreenArgs) : NavigationSideEffect
 class ToDeck(val args: DeckScreenArgs) : NavigationSideEffect
-class ToDeckPlayer(val args: PlayerScreenArgs) : NavigationSideEffect
+class ToDeckReviewPlayer(val args: PlayerScreenDeckReviewArgs) : NavigationSideEffect
+class ToDeckQuizPlayer(val args: PlayerScreenDeckQuizArgs) : NavigationSideEffect
+class ToMixedDeckReviewPlayer(val args: PlayerScreenMixedDeckReviewArgs) : NavigationSideEffect
 class ToQuizSessionSummary(val args: QuizSessionSummaryArgs, val popupTo: PlayerBackRoute) : NavigationSideEffect
 class ToStatisticsFullList(val args: StatisticsModeArgs) : NavigationSideEffect
 class ToSettingsSection(val args: SettingsSectionsArgs) : NavigationSideEffect

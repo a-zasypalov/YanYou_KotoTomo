@@ -31,7 +31,8 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckQuizPlayer
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckReviewPlayer
 import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOptionsMenu
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOverviewActionButtons
@@ -91,8 +92,8 @@ fun DeckOverviewScreen(
             },
             onPlayDeckClick = { mode ->
                 when (mode) {
-                    PlayerMode.Quiz -> navigate(ToDeckPlayer(args.toPlayerDeckQuizArgs(PlayerBackRoute.Deck(args))))
-                    PlayerMode.SpacialRepetition -> navigate(ToDeckPlayer(args.toPlayerDeckReviewArgs(PlayerBackRoute.Deck(args))))
+                    PlayerMode.Quiz -> navigate(ToDeckQuizPlayer(args.toPlayerDeckQuizArgs(PlayerBackRoute.Deck(args))))
+                    PlayerMode.SpacialRepetition -> navigate(ToDeckReviewPlayer(args.toPlayerDeckReviewArgs(PlayerBackRoute.Deck(args))))
                     PlayerMode.MixedDeckReview -> {} //This shouldn't be activated here
                 }
             },

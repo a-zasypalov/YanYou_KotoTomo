@@ -39,10 +39,12 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToBookmarks
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckPlayer
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckQuizPlayer
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckReviewPlayer
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenDeckQuizArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenDeckReviewArgs
 import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.DeckOverviewCategories
 import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.DeckProgressStatus
 import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.HorizontalCourseCard
@@ -88,26 +90,26 @@ fun HomeScreen(
         },
         onReviewClick = { deckWithInfo ->
             navigate(
-                ToDeckPlayer(
-                    PlayerScreenArgs.DeckReview(
+                ToDeckReviewPlayer(
+                    PlayerScreenDeckReviewArgs(
                         learningLanguageId = deckWithInfo.info.learningLanguageId,
                         sourceLanguageId = deckWithInfo.info.sourceLanguageId,
                         courseId = deckWithInfo.info.courseId,
                         deckIds = listOf(deckWithInfo.deck.id),
-                        backToRoute = PlayerBackRoute.Home
+                        backToRoute = PlayerBackRoute.Home,
                     )
                 )
             )
         },
         onQuizClick = { deckWithInfo ->
             navigate(
-                ToDeckPlayer(
-                    PlayerScreenArgs.DeckQuiz(
+                ToDeckQuizPlayer(
+                    PlayerScreenDeckQuizArgs(
                         learningLanguageId = deckWithInfo.info.learningLanguageId,
                         sourceLanguageId = deckWithInfo.info.sourceLanguageId,
                         courseId = deckWithInfo.info.courseId,
                         deckIds = listOf(deckWithInfo.deck.id),
-                        backToRoute = PlayerBackRoute.Home
+                        backToRoute = PlayerBackRoute.Home,
                     )
                 )
             )

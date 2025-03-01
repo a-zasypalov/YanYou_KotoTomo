@@ -16,7 +16,7 @@ import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.domain.SpacedRepetitionCalculation
 import com.gaoyun.yanyou_kototomo.ui.base.BaseViewModel
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
 import com.gaoyun.yanyou_kototomo.util.localDateNow
 import com.gaoyun.yanyou_kototomo.util.localDateTimeNow
@@ -64,22 +64,23 @@ class DeckPlayerViewModel(
                     .associate { it.deckId to it }
 
                 val filteredCards = resultList
-                    .map { it.cards.associate { card -> it.id to card }.entries }
+                    .map { item -> item.cards.map { item.id to it } }
                     .flatten()
-                    .filterNot { settings[it.key]?.pausedCards?.contains(it.value.card.id.identifier) == true }
+                    .filterNot {
+                        val pausedCards = settings[it.first]?.pausedCards ?: listOf()
+                        pausedCards.contains(it.second.card.id.identifier)
+                    }
 
                 val cardForPlayer = when (args) {
                     is PlayerScreenArgs.DeckReview -> filteredCards.filter {
-                        it.value.countForReviewAndNotPausedIds(
-                            settings[it.key]?.pausedCards ?: listOf()
-                        )
+                        it.second.countForReviewAndNotPausedIds(settings[it.first]?.pausedCards ?: listOf())
                     }
 
                     is PlayerScreenArgs.DeckQuiz -> filteredCards.also { quizStart.value = localDateTimeNow() }
                     is PlayerScreenArgs.MixedDeckReview -> filteredCards.also { quizStart.value = localDateTimeNow() }
                 }
 
-                cardsForPlayer.value = cardForPlayer.map { it.key to it.value }.shuffled()
+                cardsForPlayer.value = cardForPlayer.map { it.first to it.second }.shuffled()
                 nextCard()
             }
     }
@@ -114,7 +115,7 @@ class DeckPlayerViewModel(
 
     private fun finishPlayer() {
         when (argsState.value) {
-            PlayerScreenArgs.DeckQuiz -> viewModelScope.launch {
+            is PlayerScreenArgs.DeckQuiz -> viewModelScope.launch {
                 val newSessionId = quizInteractor.addSession(quizStart.value ?: localDateTimeNow(), quizResults.value)
                 finishCallback?.invoke(newSessionId)
             }

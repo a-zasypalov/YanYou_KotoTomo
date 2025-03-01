@@ -32,8 +32,12 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.BackButtonType
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToQuizSessionSummary
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenDeckQuizArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenDeckReviewArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenMixedDeckReviewArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.toSealed
 import com.gaoyun.yanyou_kototomo.ui.player.components.CardPlayerFront
 import com.gaoyun.yanyou_kototomo.ui.player.components.CatAnimation
 import com.gaoyun.yanyou_kototomo.ui.player.components.QuizButtons
@@ -41,10 +45,21 @@ import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
 import com.gaoyun.yanyou_kototomo.ui.player.components.ResultAnimation
 import com.gaoyun.yanyou_kototomo.ui.player.components.SpaceRepetitionButtons
 import org.koin.compose.viewmodel.koinViewModel
-import kotlin.reflect.KClass
 
 @Composable
-fun DeckPlayerScreen(
+fun DeckPlayerScreen(args: PlayerScreenDeckReviewArgs, navigate: (NavigationSideEffect) -> Unit) =
+    DeckPlayerScreen(args = args.toSealed(), navigate = navigate)
+
+@Composable
+fun DeckPlayerScreen(args: PlayerScreenDeckQuizArgs, navigate: (NavigationSideEffect) -> Unit) =
+    DeckPlayerScreen(args = args.toSealed(), navigate = navigate)
+
+@Composable
+fun DeckPlayerScreen(args: PlayerScreenMixedDeckReviewArgs, navigate: (NavigationSideEffect) -> Unit) =
+    DeckPlayerScreen(args = args.toSealed(), navigate = navigate)
+
+@Composable
+private fun DeckPlayerScreen(
     args: PlayerScreenArgs,
     navigate: (NavigationSideEffect) -> Unit,
 ) {
@@ -58,6 +73,7 @@ fun DeckPlayerScreen(
                     args is PlayerScreenArgs.DeckQuiz && sessionId != null -> {
                         navigate(ToQuizSessionSummary(args.toQuizSummaryArgs(sessionId), args.backToRoute))
                     }
+
                     else -> navigate(BackNavigationEffect)
                 }
             }
@@ -84,7 +100,7 @@ fun DeckPlayerScreen(
             viewState?.let {
                 DeckPlayerScreenContent(
                     currentCardState = viewState,
-                    args = args::class as KClass<PlayerScreenArgs>,
+                    args = args,
                     onCardOpenClick = viewModel::openCard,
                     onNextCardClick = viewModel::nextCard,
                     onRepetitionClick = viewModel::repetitionAnswer,
@@ -98,7 +114,7 @@ fun DeckPlayerScreen(
 @Composable
 private fun DeckPlayerScreenContent(
     currentCardState: PlayerCardViewState,
-    args: KClass<PlayerScreenArgs>,
+    args: PlayerScreenArgs,
     onCardOpenClick: () -> Unit,
     onAnswerClick: (String) -> Unit,
     onNextCardClick: () -> Unit,
@@ -152,15 +168,15 @@ private fun DeckPlayerScreenContent(
             }
             CatAnimation(modifier = Modifier.padding(top = 24.dp))
             when (args) {
-                PlayerScreenArgs.DeckReview,
-                PlayerScreenArgs.MixedDeckReview,
+                is PlayerScreenArgs.DeckReview,
+                is PlayerScreenArgs.MixedDeckReview,
                     -> SpaceRepetitionButtons(
                     currentCardState = currentCardState,
                     onCardOpenClick = onCardOpenClick,
                     onRepetitionClick = onRepetitionClick,
                 )
 
-                PlayerScreenArgs.DeckQuiz -> QuizButtons(
+                is PlayerScreenArgs.DeckQuiz -> QuizButtons(
                     currentCardState = currentCardState,
                     onAnswerClick = onAnswerClick,
                     onNextCardClick = onNextCardClick,

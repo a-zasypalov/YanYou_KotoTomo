@@ -24,11 +24,13 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.AppRoutes.ONBOARDING_ROUTE
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigatorAction
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.QuizSessionSummaryArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSectionsArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.StatisticsModeArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.appTypeMap
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenDeckQuizArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenDeckReviewArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenMixedDeckReviewArgs
 import com.gaoyun.yanyou_kototomo.ui.base.theme.AppTheme
 import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColorsProvider
 import com.gaoyun.yanyou_kototomo.ui.bookmarks.BookmarksScreen
@@ -144,14 +146,14 @@ fun NavigationGraph(navController: NavHostController, viewModel: AppViewModel) {
         composable<DeckScreenArgs>(typeMap = appTypeMap) { stackEntry ->
             DeckOverviewScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
         }
-        composable<PlayerScreenArgs.DeckQuiz>(typeMap = appTypeMap) { stackEntry ->
-            DeckPlayerScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
+        composable<PlayerScreenDeckQuizArgs>(typeMap = appTypeMap) { stackEntry ->
+            DeckPlayerScreen(args = stackEntry.toRoute<PlayerScreenDeckQuizArgs>(), navigate = viewModel::navigate)
         }
-        composable<PlayerScreenArgs.DeckReview>(typeMap = appTypeMap) { stackEntry ->
-            DeckPlayerScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
+        composable<PlayerScreenDeckReviewArgs>(typeMap = appTypeMap) { stackEntry ->
+            DeckPlayerScreen(args = stackEntry.toRoute<PlayerScreenDeckReviewArgs>(), navigate = viewModel::navigate)
         }
-        composable<PlayerScreenArgs.MixedDeckReview>(typeMap = appTypeMap) { stackEntry ->
-            DeckPlayerScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
+        composable<PlayerScreenMixedDeckReviewArgs>(typeMap = appTypeMap) { stackEntry ->
+            DeckPlayerScreen(args = stackEntry.toRoute<PlayerScreenMixedDeckReviewArgs>(), navigate = viewModel::navigate)
         }
         composable<QuizSessionSummaryArgs>(typeMap = appTypeMap) { stackEntry ->
             QuizSessionSummaryScreen(args = stackEntry.toRoute(), navigate = viewModel::navigate)
