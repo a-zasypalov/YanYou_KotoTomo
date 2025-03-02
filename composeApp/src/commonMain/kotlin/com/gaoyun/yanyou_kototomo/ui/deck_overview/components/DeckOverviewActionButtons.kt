@@ -19,7 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerMode
 
 @Composable
 fun BoxScope.DeckOverviewActionButtons(dueCards: Int, onPlayDeckClick: (PlayerMode) -> Unit) {

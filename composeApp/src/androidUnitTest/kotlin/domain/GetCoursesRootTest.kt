@@ -42,7 +42,7 @@ class GetCoursesRootTest {
         every { preferences.getString(PreferencesKeys.PRIMARY_LANGUAGE_ID, "cn") } returns "cn"
         coEvery { repository.getCoursesRoot(false) } returns rootStructureDTO
         every { bookmarksInteractor.getBookmarkedDecks() } returns listOf(courseDeck)
-        every { bookmarksInteractor.getLearningCourse() } returns listOf(courseDeck)
+        coEvery { bookmarksInteractor.getLearningCourse() } returns courseDto.toLocal()
         every { bookmarksInteractor.saveBookmarkedDecks(any()) } just Runs
 
         val result = getCoursesRoot.getCourses()

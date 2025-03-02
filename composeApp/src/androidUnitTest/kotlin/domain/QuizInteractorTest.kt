@@ -11,9 +11,8 @@ import com.gaoyun.yanyou_kototomo.domain.GetDeck
 import com.gaoyun.yanyou_kototomo.domain.QuizInteractor
 import com.gaoyun.yanyou_kototomo.repository.CardsAndProgressRepository
 import com.gaoyun.yanyou_kototomo.repository.QuizSessionRepository
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.QuizSessionSummaryArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerBackRoute
 import com.gaoyun.yanyoukototomo.data.persistence.GetDeckNames
 import courseDto
 import courseId
@@ -126,7 +125,6 @@ class QuizInteractorTest {
             learningLanguageId = learningLanguageId,
             sourceLanguageId = sourceLanguageId,
             backToRoute = PlayerBackRoute.Home,
-            playerMode = PlayerMode.Quiz,
         )
         val session = QuizSession(
             sessionId = sessionId,

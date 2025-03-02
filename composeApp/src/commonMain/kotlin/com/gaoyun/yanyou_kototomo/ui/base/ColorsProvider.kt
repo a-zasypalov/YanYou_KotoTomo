@@ -5,9 +5,9 @@ import androidx.compose.material3.ColorScheme
 import androidx.compose.runtime.Composable
 import com.gaoyun.yanyou_kototomo.data.persistence.Preferences
 import com.gaoyun.yanyou_kototomo.data.persistence.PreferencesKeys
-import com.gaoyun.yanyou_kototomo.ui.base.theme.BlueColors
-import com.gaoyun.yanyou_kototomo.ui.base.theme.GreenColors
-import com.gaoyun.yanyou_kototomo.ui.base.theme.OriginalColors
+import com.gaoyun.yanyou_kototomo.ui.base.theme.colors.BlueColors
+import com.gaoyun.yanyou_kototomo.ui.base.theme.colors.GreenColors
+import com.gaoyun.yanyou_kototomo.ui.base.theme.colors.OriginalColors
 import com.gaoyun.yanyou_kototomo.util.AppTheme
 import org.koin.core.component.KoinComponent
 

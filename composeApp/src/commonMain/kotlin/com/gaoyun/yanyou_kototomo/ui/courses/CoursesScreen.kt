@@ -71,15 +71,6 @@ private fun CoursesScreenContent(
                     )
                 }
                 language.sourceLanguages.forEach { sourceLanguage ->
-
-//                TODO: Unblock when new source languages will come
-//                item {
-//                    Text(
-//                        text = stringResource(sourceLanguage.id.toStringRes()),
-//                        style = MaterialTheme.typography.titleLarge
-//                    )
-//                }
-
                     items(sourceLanguage.courses) { course ->
                         CourseCard(course = course) {
                             toCourse(

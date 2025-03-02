@@ -72,6 +72,24 @@ private val cnImages = listOf(
     Res.drawable.wonton,
 )
 
+object CourseMascots {
+    val mascots = mapOf(
+        "hsk1" to Res.drawable.tea,
+        "hsk2" to Res.drawable.rice,
+        "hsk3" to Res.drawable.lantern,
+        "hsk4" to Res.drawable.knot,
+        "hsk5" to Res.drawable.wonton,
+        "hsk6" to Res.drawable.temple,
+        "kana" to Res.drawable.sakura,
+        "genki1" to Res.drawable.bamboo,
+        "jlpt5" to Res.drawable.bamboo,
+        "jlpt4" to Res.drawable.koinobori,
+        "jlpt3" to Res.drawable.fuji_mountain,
+        "jlpt2" to Res.drawable.maneki_neko,
+        "jlpt1" to Res.drawable.shrine
+    )
+}
+
 fun LanguageId.getRandomMascotImage(): DrawableResource {
     return when (this.identifier) {
         "jp" -> jpImages.random()
@@ -81,40 +99,9 @@ fun LanguageId.getRandomMascotImage(): DrawableResource {
 }
 
 fun CourseId.getCourseMascot(): DrawableResource {
-    return when {
-        identifier.contains("hsk1") -> Res.drawable.tea
-        identifier.contains("hsk2") -> Res.drawable.rice
-        identifier.contains("hsk3") -> Res.drawable.lantern
-        identifier.contains("hsk4") -> Res.drawable.knot
-        identifier.contains("hsk5") -> Res.drawable.wonton
-        identifier.contains("hsk6") -> Res.drawable.temple
-        identifier.contains("kana") -> Res.drawable.sakura
-        identifier.contains("genki1") -> Res.drawable.bamboo
-        identifier.contains("jlpt5") -> Res.drawable.bamboo
-        identifier.contains("jlpt4") -> Res.drawable.koinobori
-        identifier.contains("jlpt3") -> Res.drawable.fuji_mountain
-        identifier.contains("jlpt2") -> Res.drawable.maneki_neko
-        identifier.contains("jlpt1") -> Res.drawable.shrine
-        else -> Res.drawable.sakura
-    }
+    return CourseMascots.mascots.entries.find { identifier.contains(it.key) }?.value ?: Res.drawable.sakura
 }
 
 fun DeckId.getDeckMascot(): DrawableResource {
-    return when {
-        identifier.contains("hsk1") -> Res.drawable.tea
-        identifier.contains("hsk2") -> Res.drawable.rice
-        identifier.contains("hsk3") -> Res.drawable.lantern
-        identifier.contains("hsk4") -> Res.drawable.knot
-        identifier.contains("hsk5") -> Res.drawable.wonton
-        identifier.contains("hsk6") -> Res.drawable.temple
-        identifier.contains("hiragana") -> Res.drawable.sakura
-        identifier.contains("katakana") -> Res.drawable.sakura
-        identifier.contains("genki1") -> Res.drawable.bamboo
-        identifier.contains("jlpt5") -> Res.drawable.bamboo
-        identifier.contains("jlpt4") -> Res.drawable.koinobori
-        identifier.contains("jlpt3") -> Res.drawable.fuji_mountain
-        identifier.contains("jlpt2") -> Res.drawable.maneki_neko
-        identifier.contains("jlpt1") -> Res.drawable.shrine
-        else -> Res.drawable.sakura
-    }
+    return CourseMascots.mascots.entries.find { identifier.contains(it.key) }?.value ?: Res.drawable.sakura
 }

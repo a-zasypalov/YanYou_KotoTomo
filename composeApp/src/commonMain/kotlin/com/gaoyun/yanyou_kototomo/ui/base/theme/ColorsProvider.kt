@@ -14,7 +14,7 @@ data class YanYouColorScheme(
     val redButtonContainer: Color,
     val onButtonContainer: Color,
     val greenCorrect: Color = Color(0xFF70B657),
-    val redWrong: Color = Color(0xFFB91A1A)
+    val redWrong: Color = Color(0xFFB91A1A),
 )
 
 object ColorPairs {

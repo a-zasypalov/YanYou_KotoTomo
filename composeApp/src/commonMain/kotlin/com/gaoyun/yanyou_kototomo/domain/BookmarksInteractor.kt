@@ -19,7 +19,6 @@ import kotlinx.serialization.json.Json
 class BookmarksInteractor(
     internal val preferences: Preferences,
     internal val coursesRootComponentRepository: CoursesRootComponentRepository,
-    internal val repository: CoursesRootComponentRepository,
 ) {
     internal val courseDecks = MutableStateFlow<List<CourseDeck>?>(null)
 
@@ -52,7 +51,7 @@ class BookmarksInteractor(
     }
 
     suspend fun getLearningCourse(): Course? {
-        return getLearningCourseId()?.let { repository.getCourse(it).toLocal() }
+        return getLearningCourseId()?.let { coursesRootComponentRepository.getCourse(it).toLocal() }
     }
 
     fun saveLearningCourse(courseId: CourseId?) = courseId?.let {

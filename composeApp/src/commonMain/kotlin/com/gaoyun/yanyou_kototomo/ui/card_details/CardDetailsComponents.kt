@@ -21,6 +21,31 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
 
 @Composable
+internal fun ColumnScope.CardDetailsFront(
+    front: String,
+    fontSizeMax: TextUnit = 150.sp,
+    modifier: Modifier = Modifier,
+    leftAttachment: @Composable BoxScope.() -> Unit = {},
+    rightAttachment: @Composable BoxScope.() -> Unit = {},
+) {
+    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxWidth()) {
+        leftAttachment()
+        AutoResizeText(
+            text = front,
+            fontSizeRange = FontSizeRange(min = 16.sp, max = fontSizeMax),
+            style = MaterialTheme.typography.displayLarge.copy(
+                fontWeight = FontWeight.Normal,
+                fontSize = fontSizeMax
+            ),
+            textAlign = TextAlign.Center,
+            maxLines = 1,
+            modifier = modifier.fillMaxWidth().wrapContentHeight(align = Alignment.CenterVertically)
+        )
+        rightAttachment()
+    }
+}
+
+@Composable
 internal fun CardDetailsTranscription(
     transcription: String,
     modifier: Modifier = Modifier,
@@ -51,32 +76,6 @@ internal fun CardDetailsAdditionalInfo(info: String) {
         text = info,
         style = MaterialTheme.typography.bodyLarge
     )
-}
-
-
-@Composable
-internal fun ColumnScope.CardDetailsFront(
-    front: String,
-    fontSizeMax: TextUnit = 150.sp,
-    modifier: Modifier = Modifier,
-    leftAttachment: @Composable BoxScope.() -> Unit = {},
-    rightAttachment: @Composable BoxScope.() -> Unit = {},
-) {
-    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxWidth()) {
-        leftAttachment()
-        AutoResizeText(
-            text = front,
-            fontSizeRange = FontSizeRange(min = 16.sp, max = fontSizeMax),
-            style = MaterialTheme.typography.displayLarge.copy(
-                fontWeight = FontWeight.Normal,
-                fontSize = fontSizeMax
-            ),
-            textAlign = TextAlign.Center,
-            maxLines = 1,
-            modifier = modifier.fillMaxWidth().wrapContentHeight(align = Alignment.CenterVertically)
-        )
-        rightAttachment()
-    }
 }
 
 @Composable

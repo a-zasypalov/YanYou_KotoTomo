@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -18,6 +17,8 @@ import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.outlined.LocalLibrary
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -31,29 +32,23 @@ import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.data.local.course.CourseWithInfo
-import com.gaoyun.yanyou_kototomo.data.local.deck.DeckWithCourseInfo
-import com.gaoyun.yanyou_kototomo.data.ui_state.CardCategoryType
-import com.gaoyun.yanyou_kototomo.data.ui_state.CardOverviewPart
 import com.gaoyun.yanyou_kototomo.data.ui_state.PersonalSpaceState
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FullScreenLoader
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToBookmarks
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckQuizPlayer
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToMixedDeckReviewPlayer
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenDeckQuizArgs
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerBackRoute
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenMixedDeckReviewArgs
-import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.DeckOverviewCategories
 import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.DeckProgressStatus
 import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.HorizontalCourseCard
+import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.StartLearningState
 import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
 import com.gaoyun.yanyou_kototomo.ui.home.components.CurrentlyLearningCourse
-import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenEmptyState
-import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenSectionTitle
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenTitle
+import com.gaoyun.yanyou_kototomo.ui.home.components.PersonalSegmentedArea
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -106,19 +101,6 @@ fun HomeScreen(
                 )
             )
         },
-        onQuizClick = { deckWithInfo ->
-            navigate(
-                ToDeckQuizPlayer(
-                    PlayerScreenDeckQuizArgs(
-                        learningLanguageId = deckWithInfo.info.learningLanguageId,
-                        sourceLanguageId = deckWithInfo.info.sourceLanguageId,
-                        courseId = deckWithInfo.info.courseId,
-                        deckIds = listOf(deckWithInfo.deck.id),
-                        backToRoute = PlayerBackRoute.Home,
-                    )
-                )
-            )
-        },
         onBookmarksEdit = { navigate(ToBookmarks) },
         onCoursesClick = onCoursesClick,
         updateShowToReviewCards = viewModel::updateShowToReviewCards,
@@ -144,7 +126,6 @@ private fun HomeScreenContent(
     onCardDetailsClick: (DeckId, CardWithProgress<*>, LanguageId) -> Unit,
     onCourseClick: (DeckId, CourseId, LanguageId, LanguageId) -> Unit,
     onReviewClick: (CourseWithInfo) -> Unit,
-    onQuizClick: (DeckWithCourseInfo) -> Unit,
     onBookmarksEdit: () -> Unit,
     onCoursesClick: () -> Unit,
     updateShowToReviewCards: (Boolean) -> Unit,
@@ -154,7 +135,7 @@ private fun HomeScreenContent(
 ) {
     content?.let { viewState ->
         if (viewState.bookmarks.isEmpty() && viewState.learningCourse == null) {
-            HomeScreenEmptyState(onCoursesClick)
+            StartLearningState(onCoursesClick)
         } else {
             val state = rememberLazyListState()
             val listState = rememberLazyListState()
@@ -193,7 +174,7 @@ private fun HomeScreenContent(
                 if (cardsDueToReviewNotEmpty || newCardsNotEmpty) item {
                     val reviewLabel = listOfNotNull(
                         viewState.cardsDueToReview.takeIf { cardsDueToReviewNotEmpty }?.size?.let { "$it cards to review" },
-                        viewState.newCards.takeIf { newCardsNotEmpty }?.size?.let { if (cardsDueToReviewNotEmpty) "$it new cards" else "$it new" }
+                        viewState.newCards.takeIf { newCardsNotEmpty }?.size?.let { if (cardsDueToReviewNotEmpty) "$it new" else "$it new cards" }
                     ).joinToString(", ")
 
                     PrimaryElevatedButton(
@@ -209,7 +190,11 @@ private fun HomeScreenContent(
                 if (viewState.bookmarks.isNotEmpty()) {
                     item {
                         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp), horizontalArrangement = Arrangement.SpaceBetween) {
-                            HomeScreenSectionTitle("Bookmarks")
+                            Text(
+                                text = "Bookmarks",
+                                style = MaterialTheme.typography.headlineLarge,
+                                modifier = Modifier.padding(bottom = 8.dp).padding(horizontal = 16.dp)
+                            )
                             IconButton(onClick = onBookmarksEdit) { Icon(Icons.Default.Edit, "edit") }
                         }
                     }
@@ -259,50 +244,4 @@ private fun HomeScreenContent(
             }
         }
     } ?: FullScreenLoader()
-}
-
-fun LazyListScope.PersonalSegmentedArea(
-    viewState: PersonalSpaceState,
-    onCardClick: (DeckId, CardWithProgress<*>, LanguageId) -> Unit,
-    updateShowNewCards: (Boolean) -> Unit,
-    updateShowToReviewCards: (Boolean) -> Unit,
-    updateShowPausedCards: (Boolean) -> Unit,
-    updateShowCompletedCards: (Boolean) -> Unit,
-    showToReviewCards: Boolean,
-    showNewCards: Boolean,
-    showPausedCards: Boolean,
-    showCompletedCards: Boolean,
-) {
-    val categories = listOf(
-        CardOverviewPart.List(
-            name = "To Review",
-            cards = viewState.cardsToReview,
-            type = CardCategoryType.ToReview,
-            isShown = showToReviewCards,
-            visibilityToggle = updateShowToReviewCards
-        ),
-        CardOverviewPart.List(
-            name = "New",
-            cards = viewState.newCards,
-            type = CardCategoryType.New,
-            isShown = showNewCards,
-            visibilityToggle = updateShowNewCards
-        ),
-        CardOverviewPart.List(
-            name = "Paused",
-            cards = viewState.pausedCards,
-            type = CardCategoryType.Paused,
-            isShown = showPausedCards,
-            visibilityToggle = updateShowPausedCards
-        ),
-        CardOverviewPart.List(
-            name = "✓ Completed",
-            cards = viewState.completedCards,
-            type = CardCategoryType.Completed,
-            isShown = showCompletedCards,
-            visibilityToggle = updateShowCompletedCards
-        )
-    )
-
-    DeckOverviewCategories(categories, Modifier.padding(horizontal = 16.dp), onCardClick)
 }

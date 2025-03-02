@@ -4,7 +4,7 @@ import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.QuizSessionSummaryArgs
 import kotlinx.serialization.Polymorphic
 import kotlinx.serialization.SerialName
@@ -88,6 +88,20 @@ sealed interface PlayerScreenArgs {
             )
         }
     }
+}
+
+@Serializable
+enum class PlayerMode {
+    SpacialRepetition, Quiz, MixedDeckReview
+}
+
+@Serializable
+sealed class PlayerBackRoute {
+    @Serializable
+    object Home : PlayerBackRoute()
+
+    @Serializable
+    data class Deck(val args: DeckScreenArgs) : PlayerBackRoute()
 }
 
 fun PlayerScreenDeckReviewArgs.toSealed(): PlayerScreenArgs.DeckReview {

@@ -5,8 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -15,18 +13,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Undo
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.EventRepeat
-import androidx.compose.material.icons.filled.Pause
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -39,13 +32,10 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.DialogProperties
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.card.Card
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.domain.mapIntervalToColor
-import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
-import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.util.toReviewRelativeShortFormat
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.pluralStringResource
@@ -71,7 +61,7 @@ internal fun CardDetailsView(
         val showCompletionButton = paused.value != true && onCardComplete != null
         val mascotForCard = remember { languageId.getRandomMascotImage() } //Should be here to generate every time new mascot
 
-        CardCompleteDialog(cardCompleteDialogVisibleState) {
+        CompleteCardConfirmationDialog(cardCompleteDialogVisibleState) {
             onCardComplete?.invoke(cardWithProgress, !completed.value)
             completed.value = !completed.value
         }
@@ -181,118 +171,5 @@ internal fun CardDetailsView(
                 Spacer(modifier = Modifier.size(32.dp))
             }
         }
-    }
-}
-
-@Composable
-private fun CardPauseButton(paused: Boolean, modifier: Modifier = Modifier, onClick: () -> Unit) {
-    if (paused) {
-        PrimaryElevatedButton(
-            text = "Bring back to deck",
-            contentPadding = PaddingValues(8.dp),
-            onClick = onClick,
-            leadingIcon = Icons.AutoMirrored.Default.Undo,
-            modifier = modifier
-        )
-    } else {
-        PrimaryElevatedButton(
-            text = "Pause card",
-            contentPadding = PaddingValues(8.dp),
-            onClick = onClick,
-            leadingIcon = Icons.Default.Pause,
-            modifier = modifier
-        )
-    }
-}
-
-@Composable
-private fun CardCompleteButton(completed: Boolean, modifier: Modifier = Modifier, onClick: () -> Unit) {
-    if (completed) {
-        PrimaryElevatedButton(
-            text = "Reset card",
-            contentPadding = PaddingValues(8.dp),
-            onClick = onClick,
-            leadingIcon = Icons.AutoMirrored.Default.Undo,
-            modifier = modifier
-        )
-    } else {
-        PrimaryElevatedButton(
-            text = "Complete card",
-            onClick = onClick,
-            contentPadding = PaddingValues(8.dp),
-            leadingIcon = Icons.Default.Check,
-            colors = ButtonDefaults.elevatedButtonColors(
-                containerColor = MaterialTheme.colorScheme.tertiary,
-                contentColor = MaterialTheme.colorScheme.onTertiary
-            ),
-            modifier = modifier
-        )
-    }
-}
-
-@Composable
-private fun ColumnScope.CardDetailsWord(card: Card.WordCard) {
-    CardDetailsFront(card.front, modifier = Modifier.fillMaxWidth())
-    CardDetailsTranscription(card.transcription, modifier = Modifier.fillMaxWidth())
-    Divider(2.dp, Modifier.padding(vertical = 4.dp))
-    CardDetailsTranslation(card.translation, modifier = Modifier.fillMaxWidth())
-    card.additionalInfo?.let { CardDetailsAdditionalInfo(it) }
-}
-
-@Composable
-private fun ColumnScope.CardDetailsKanaCard(card: Card.KanaCard) {
-    CardDetailsFront(front = card.front)
-    CardDetailsTranscription(
-        transcription = "[${card.transcription}] ${card.mirror.front}",
-        preformatted = true,
-        modifier = Modifier.fillMaxWidth()
-    )
-}
-
-@Composable
-private fun ColumnScope.CardDetailsKanjiCard(card: Card.KanjiCard) {
-    CardDetailsFront(
-        front = card.front,
-        modifier = Modifier.weight(1f).padding(horizontal = 24.dp),
-        leftAttachment = { CardDetailsReading(card.reading.on, Modifier.align(Alignment.CenterStart)) },
-        rightAttachment = { CardDetailsReading(card.reading.kun, Modifier.align(Alignment.CenterEnd)) }
-    )
-    CardDetailsTranscription(card.transcription(), modifier = Modifier.fillMaxWidth())
-    Divider(2.dp, Modifier.padding(vertical = 4.dp))
-    CardDetailsTranslation(card.translation, modifier = Modifier.fillMaxWidth())
-    card.additionalInfo?.let { CardDetailsAdditionalInfo(it) }
-}
-
-@Composable
-private fun ColumnScope.CardDetailsPhraseCard(card: Card.PhraseCard) {
-    CardDetailsFront(card.front)
-    CardDetailsTranscription(card.transcription, modifier = Modifier.fillMaxWidth())
-    Divider(2.dp, Modifier.padding(vertical = 4.dp))
-    CardDetailsTranslation(card.translation, modifier = Modifier.fillMaxWidth())
-    card.additionalInfo?.let { CardDetailsAdditionalInfo(it) }
-}
-
-@Composable
-fun CardCompleteDialog(showDialog: MutableState<Boolean>, onCompleteConfirmed: () -> Unit) {
-    if (showDialog.value) {
-        AlertDialog(
-            onDismissRequest = { showDialog.value = false },
-            confirmButton = {
-                TextButton(onClick = {
-                    showDialog.value = false
-                    onCompleteConfirmed()
-                }) {
-                    Text("Complete")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = { showDialog.value = false }) {
-                    Text("Cancel")
-                }
-            },
-            title = { Text("Confirm card completion") },
-            text = { Text("After completing the card, review progress will be reset, but you can always start learning it again.") },
-            properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
-        )
     }
 }

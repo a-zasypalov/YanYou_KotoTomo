@@ -1,4 +1,4 @@
-package com.gaoyun.yanyou_kototomo.ui.home.components
+package com.gaoyun.yanyou_kototomo.ui.base.shared_elements
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -18,12 +18,13 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenTitle
 import org.jetbrains.compose.resources.painterResource
 import yanyou_kototomo.composeapp.generated.resources.Res
 import yanyou_kototomo.composeapp.generated.resources.maneki_neko
 
 @Composable
-fun HomeScreenEmptyState(onCoursesClick: () -> Unit) {
+fun StartLearningState(onCoursesClick: () -> Unit) {
     Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize()) {
         HomeScreenTitle()
         Spacer(modifier = Modifier.weight(1f))

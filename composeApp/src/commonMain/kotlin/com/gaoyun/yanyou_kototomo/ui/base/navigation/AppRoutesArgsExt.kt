@@ -6,6 +6,8 @@ import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionId
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerBackRoute
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenDeckQuizArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenDeckReviewArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerScreenMixedDeckReviewArgs
@@ -52,20 +54,6 @@ data class DeckScreenArgs(
             backToRoute = backToRoute
         )
     }
-}
-
-@Serializable
-enum class PlayerMode {
-    SpacialRepetition, Quiz, MixedDeckReview
-}
-
-@Serializable
-sealed class PlayerBackRoute {
-    @Serializable
-    object Home : PlayerBackRoute()
-
-    @Serializable
-    data class Deck(val args: DeckScreenArgs) : PlayerBackRoute()
 }
 
 @Serializable

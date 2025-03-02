@@ -20,19 +20,19 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FullScreenLoader
 import com.gaoyun.yanyou_kototomo.ui.base.composables.SurfaceScaffold
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerBackRoute
-import com.gaoyun.yanyou_kototomo.ui.base.navigation.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckQuizPlayer
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeckReviewPlayer
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerBackRoute
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerMode
 import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOptionsMenu
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOverviewActionButtons
@@ -58,15 +58,8 @@ fun DeckOverviewScreen(
     val pausedCardsSettingState = remember { mutableStateOf<List<CardWithProgress<*>>?>(null) }
     val pausedCardsState = remember { mutableStateOf<List<CardWithProgress<*>>?>(null) }
 
-    val lifecycleOwner = LocalLifecycleOwner.current
-    val lifecycleState = lifecycleOwner.lifecycle.currentStateFlow.collectAsState()
-
-    LaunchedEffect(lifecycleState.value) {
-        when (lifecycleState.value) {
-            Lifecycle.State.RESUMED -> viewModel.getDeck(args)
-            else -> {}
-        }
-    }
+    val lifecycleState = LocalLifecycleOwner.current.lifecycle.currentStateFlow.collectAsState()
+    LaunchedEffect(lifecycleState.value) { if (lifecycleState.value == Lifecycle.State.RESUMED) viewModel.getDeck(args) }
 
     val viewState = viewModel.viewState.collectAsState().value
 

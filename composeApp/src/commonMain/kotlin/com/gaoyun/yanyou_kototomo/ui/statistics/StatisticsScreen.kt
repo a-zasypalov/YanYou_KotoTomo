@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.StatisticsModeArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToStatisticsFullList
-import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenEmptyState
+import com.gaoyun.yanyou_kototomo.ui.base.shared_elements.StartLearningState
 import com.gaoyun.yanyou_kototomo.ui.statistics.components.CardProgressStatisticsItem
 import com.gaoyun.yanyou_kototomo.ui.statistics.components.QuizSessionStatisticsItem
 import com.gaoyun.yanyou_kototomo.ui.statistics.components.SectionDividerShowMore
@@ -57,7 +57,7 @@ private fun StatisticsScreenContent(
 ) {
     val state = rememberLazyListState()
     if (content?.sessions.isNullOrEmpty() && content?.cardsProgress?.isEmpty() == true) {
-        HomeScreenEmptyState(onCoursesClick)
+        StartLearningState(onCoursesClick)
     } else {
         LazyColumn(
             state = state,
