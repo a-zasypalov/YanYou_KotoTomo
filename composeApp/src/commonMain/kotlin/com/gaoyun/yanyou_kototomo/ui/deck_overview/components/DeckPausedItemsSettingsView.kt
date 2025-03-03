@@ -37,6 +37,13 @@ import com.gaoyun.yanyou_kototomo.data.local.card.CardWithProgress
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.util.toReviewRelativeShortFormat
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.active
+import yanyou_kototomo.composeapp.generated.resources.completed
+import yanyou_kototomo.composeapp.generated.resources.kanji
+import yanyou_kototomo.composeapp.generated.resources.phrases
+import yanyou_kototomo.composeapp.generated.resources.words
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -76,7 +83,7 @@ fun DeckPausedItemsSettingsView(
                     .fillMaxHeight(0.9f)
             ) {
                 if (kanji.isNotEmpty()) {
-                    item { SectionHeader("Kanji") }
+                    item { SectionHeader(stringResource(Res.string.kanji)) }
                     items(kanji) { cardWithProgress ->
                         PausedItemCard(
                             cardWithProgress = cardWithProgress,
@@ -86,7 +93,7 @@ fun DeckPausedItemsSettingsView(
                     }
                 }
                 if (words.isNotEmpty()) {
-                    item { SectionHeader("Words", "Active") }
+                    item { SectionHeader(stringResource(Res.string.words), stringResource(Res.string.active)) }
                     items(words) { cardWithProgress ->
                         PausedItemCard(
                             cardWithProgress = cardWithProgress,
@@ -96,7 +103,13 @@ fun DeckPausedItemsSettingsView(
                     }
                 }
                 if (phrases.isNotEmpty()) {
-                    item { SectionHeader("Phrases", "Active", modifier = Modifier.padding(top = 8.dp)) }
+                    item {
+                        SectionHeader(
+                            stringResource(Res.string.phrases),
+                            stringResource(Res.string.active),
+                            modifier = Modifier.padding(top = 8.dp)
+                        )
+                    }
                     items(phrases) { cardWithProgress ->
                         PausedItemCard(
                             cardWithProgress = cardWithProgress,
@@ -106,7 +119,12 @@ fun DeckPausedItemsSettingsView(
                     }
                 }
                 if (completed.isNotEmpty()) {
-                    item { SectionHeader("Completed", modifier = Modifier.padding(top = 8.dp)) }
+                    item {
+                        SectionHeader(
+                            stringResource(Res.string.completed),
+                            modifier = Modifier.padding(top = 8.dp)
+                        )
+                    }
                     items(completed) { cardWithProgress ->
                         PausedItemCard(
                             cardWithProgress = cardWithProgress,

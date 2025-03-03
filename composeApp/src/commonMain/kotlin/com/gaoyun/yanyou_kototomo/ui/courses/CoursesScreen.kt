@@ -24,6 +24,8 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToCourse
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.courses
 
 @Composable
 fun CoursesScreen(
@@ -58,7 +60,7 @@ private fun CoursesScreenContent(
         ) {
             item {
                 Text(
-                    text = "Courses",
+                    text = stringResource(Res.string.courses),
                     style = MaterialTheme.typography.displayLarge,
                     modifier = Modifier.padding(top = 24.dp)
                 )

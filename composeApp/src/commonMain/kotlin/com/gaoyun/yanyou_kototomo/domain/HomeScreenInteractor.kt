@@ -27,7 +27,7 @@ class HomeScreenInteractor(
             val cardsWithDeckInfo = deckWithCourse.deck.cards.map {
                 it.withDeckInfo(
                     deckWithCourse.deck.id,
-                    deckWithCourse.deck.name,
+                    deckWithCourse.deck.getChapterName(learningCourse?.courseName ?: ""),
                     deckWithCourse.info.learningLanguageId
                 )
             }

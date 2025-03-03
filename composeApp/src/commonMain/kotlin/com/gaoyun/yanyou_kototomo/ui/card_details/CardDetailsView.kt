@@ -39,7 +39,10 @@ import com.gaoyun.yanyou_kototomo.domain.mapIntervalToColor
 import com.gaoyun.yanyou_kototomo.util.toReviewRelativeShortFormat
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.pluralStringResource
+import org.jetbrains.compose.resources.stringResource
 import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.card_review_datetime
+import yanyou_kototomo.composeapp.generated.resources.completed
 import yanyou_kototomo.composeapp.generated.resources.current_interval_days
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -87,7 +90,7 @@ internal fun CardDetailsView(
                         if (completed.value) {
                             Spacer(modifier = Modifier.weight(1f))
                             Text(
-                                text = "Completed",
+                                text = stringResource(Res.string.completed),
                                 style = MaterialTheme.typography.bodyMedium.copy(
                                     fontStyle = FontStyle.Italic,
                                     color = MaterialTheme.colorScheme.onSurface
@@ -115,7 +118,7 @@ internal fun CardDetailsView(
 
                             progress.nextReview?.let { nextReviewDate ->
                                 Text(
-                                    text = "Review ${nextReviewDate.toReviewRelativeShortFormat()}",
+                                    text = stringResource(Res.string.card_review_datetime, nextReviewDate.toReviewRelativeShortFormat()),
                                     style = MaterialTheme.typography.bodyMedium.copy(
                                         fontStyle = FontStyle.Italic,
                                         color = MaterialTheme.colorScheme.onSurface

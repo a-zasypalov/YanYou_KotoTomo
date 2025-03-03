@@ -11,12 +11,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.bring_back_to_deck
+import yanyou_kototomo.composeapp.generated.resources.complete_card
+import yanyou_kototomo.composeapp.generated.resources.pause_card
+import yanyou_kototomo.composeapp.generated.resources.reset_card
 
 @Composable
 internal fun CardPauseButton(paused: Boolean, modifier: Modifier = Modifier, onClick: () -> Unit) {
     if (paused) {
         PrimaryElevatedButton(
-            text = "Bring back to deck",
+            text = stringResource(Res.string.bring_back_to_deck),
             contentPadding = PaddingValues(8.dp),
             onClick = onClick,
             leadingIcon = Icons.AutoMirrored.Default.Undo,
@@ -24,7 +30,7 @@ internal fun CardPauseButton(paused: Boolean, modifier: Modifier = Modifier, onC
         )
     } else {
         PrimaryElevatedButton(
-            text = "Pause card",
+            text = stringResource(Res.string.pause_card),
             contentPadding = PaddingValues(8.dp),
             onClick = onClick,
             leadingIcon = Icons.Default.Pause,
@@ -37,7 +43,7 @@ internal fun CardPauseButton(paused: Boolean, modifier: Modifier = Modifier, onC
 internal fun CardCompleteButton(completed: Boolean, modifier: Modifier = Modifier, onClick: () -> Unit) {
     if (completed) {
         PrimaryElevatedButton(
-            text = "Reset card",
+            text = stringResource(Res.string.reset_card),
             contentPadding = PaddingValues(8.dp),
             onClick = onClick,
             leadingIcon = Icons.AutoMirrored.Default.Undo,
@@ -45,7 +51,7 @@ internal fun CardCompleteButton(completed: Boolean, modifier: Modifier = Modifie
         )
     } else {
         PrimaryElevatedButton(
-            text = "Complete card",
+            text = stringResource(Res.string.complete_card),
             onClick = onClick,
             contentPadding = PaddingValues(8.dp),
             leadingIcon = Icons.Default.Check,

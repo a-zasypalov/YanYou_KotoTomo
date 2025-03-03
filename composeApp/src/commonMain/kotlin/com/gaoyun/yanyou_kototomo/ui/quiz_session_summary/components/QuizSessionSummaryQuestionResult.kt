@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizCardResult
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import yanyou_kototomo.composeapp.generated.resources.Res
 import yanyou_kototomo.composeapp.generated.resources.correct
 import yanyou_kototomo.composeapp.generated.resources.wrong
@@ -52,13 +53,13 @@ fun QuizSessionSummaryQuestionResult(index: Int, lastIndex: Int, result: QuizCar
             if (result.isCorrect) {
                 Image(
                     painter = painterResource(Res.drawable.correct),
-                    contentDescription = "",
+                    contentDescription = stringResource(Res.string.correct),
                     modifier = Modifier.size(32.dp).align(Alignment.CenterEnd)
                 )
             } else {
                 Image(
                     painter = painterResource(Res.drawable.wrong),
-                    contentDescription = "",
+                    contentDescription = stringResource(Res.string.wrong),
                     modifier = Modifier.size(32.dp).padding(4.dp).align(Alignment.CenterEnd)
                 )
             }

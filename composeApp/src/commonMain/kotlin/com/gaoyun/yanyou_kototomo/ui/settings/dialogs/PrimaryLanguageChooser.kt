@@ -20,6 +20,10 @@ import com.gaoyun.yanyou_kototomo.data.local.LanguageId
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.ui.card_details.getRandomMascotImage
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.cancel
+import yanyou_kototomo.composeapp.generated.resources.select_primary_language
 
 @Composable
 fun PrimaryLanguageChooser(
@@ -31,7 +35,7 @@ fun PrimaryLanguageChooser(
     if (showDialog.value) {
         AlertDialog(
             onDismissRequest = { showDialog.value = false },
-            title = { Text("Select Primary Language") },
+            title = { Text(stringResource(Res.string.select_primary_language)) },
             text = {
                 Column {
                     availableLanguages.forEach { (id, languageName) ->
@@ -60,7 +64,7 @@ fun PrimaryLanguageChooser(
             },
             confirmButton = {
                 TextButton(onClick = { showDialog.value = false }) {
-                    Text("Cancel")
+                    Text(stringResource(Res.string.cancel))
                 }
             }
         )

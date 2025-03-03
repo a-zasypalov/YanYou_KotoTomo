@@ -20,13 +20,33 @@ import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.util.AppTheme
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.color_theme_blue_description
+import yanyou_kototomo.composeapp.generated.resources.color_theme_blue_title
+import yanyou_kototomo.composeapp.generated.resources.color_theme_green_description
+import yanyou_kototomo.composeapp.generated.resources.color_theme_green_title
+import yanyou_kototomo.composeapp.generated.resources.color_theme_main_description
+import yanyou_kototomo.composeapp.generated.resources.color_theme_main_title
 
 @Composable
 fun ColumnScope.ColorThemeSettingScreenContent(onThemeSet: (AppTheme) -> Unit) {
     val themes = listOf(
-        ColorThemeVariants(AppTheme.Original, Color(0xFFFFF8F3), "Paper", "Original inspiration"),
-        ColorThemeVariants(AppTheme.Blue, Color(0xFFb1d8f2), "Cold screen", "Modern and fresh"),
-        ColorThemeVariants(AppTheme.Green, Color(0xFFd6f2b1), "Fresh green", "Soft and cozy"),
+        ColorThemeVariants(
+            AppTheme.Original, Color(0xFFFFF8F3),
+            stringResource(Res.string.color_theme_main_title),
+            stringResource(Res.string.color_theme_main_description),
+        ),
+        ColorThemeVariants(
+            AppTheme.Blue, Color(0xFFb1d8f2),
+            stringResource(Res.string.color_theme_blue_title),
+            stringResource(Res.string.color_theme_blue_description),
+        ),
+        ColorThemeVariants(
+            AppTheme.Green, Color(0xFFd6f2b1),
+            stringResource(Res.string.color_theme_green_title),
+            stringResource(Res.string.color_theme_green_description),
+        ),
     )
 
     themes.forEach { item ->

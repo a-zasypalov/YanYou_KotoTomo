@@ -16,6 +16,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.learn
+import yanyou_kototomo.composeapp.generated.resources.learning
 
 @Composable
 fun LearnButton(
@@ -46,7 +50,7 @@ fun LearnButton(
                 contentDescription = null
             )
             Text(
-                text = if (isLearned) "Learning" else "Learn"
+                text = stringResource(if (isLearned) Res.string.learning else Res.string.learn)
             )
         }
     }

@@ -31,6 +31,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import com.gaoyun.yanyou_kototomo.util.Platform
 import com.gaoyun.yanyou_kototomo.util.PlatformNames
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.back
+import yanyou_kototomo.composeapp.generated.resources.close
 
 enum class BackButtonType {
     Back, Close
@@ -88,7 +92,7 @@ fun SurfaceScaffold(
                                     } else {
                                         Icon(
                                             Icons.AutoMirrored.Filled.ArrowBackIos,
-                                            contentDescription = "", //TODO: content description
+                                            contentDescription = stringResource(Res.string.back),
                                             tint = contentColor
                                         )
                                     }
@@ -96,7 +100,7 @@ fun SurfaceScaffold(
 
                                 BackButtonType.Close -> Icon(
                                     Icons.Default.Close,
-                                    contentDescription = "" //TODO: content description
+                                    contentDescription = stringResource(Res.string.close),
                                 )
                             }
                         }

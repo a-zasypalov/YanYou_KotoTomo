@@ -36,7 +36,9 @@ import com.gaoyun.yanyou_kototomo.ui.card_details.getDeckMascot
 import com.gaoyun.yanyou_kototomo.util.toRelativeFormat
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.pluralStringResource
+import org.jetbrains.compose.resources.stringResource
 import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.card_review_datetime
 import yanyou_kototomo.composeapp.generated.resources.current_interval_days
 
 @Composable
@@ -94,7 +96,7 @@ fun PersonalAreaCardItem(
                             modifier = Modifier.size(16.dp)
                         )
                         Text(
-                            text = "Review ${card.progress.nextReview.toRelativeFormat()}",
+                            text = stringResource(Res.string.card_review_datetime, card.progress.nextReview.toRelativeFormat()),
                             style = MaterialTheme.typography.bodySmall,
                         )
                     }
@@ -110,10 +112,10 @@ fun PersonalAreaCardItem(
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(all = 4.dp)
+                    modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
                 ) {
                     Text(
-                        text = card.deckName,
+                        text = card.chapterName,
                         color = contentColor,
                         style = MaterialTheme.typography.bodySmall.copy(fontWeight = FontWeight.Medium),
                     )

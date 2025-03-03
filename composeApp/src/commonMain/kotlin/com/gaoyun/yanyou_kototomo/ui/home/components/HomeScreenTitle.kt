@@ -22,21 +22,21 @@ fun HomeScreenTitle() {
     Row(modifier = Modifier.fillMaxWidth().padding(8.dp), horizontalArrangement = Arrangement.SpaceBetween) {
         Image(
             painter = painterResource(Res.drawable.border_design),
-            contentDescription = "",
+            contentDescription = null,
             alpha = 0.4f,
             colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
             modifier = Modifier.rotate(90f).size(48.dp)
         )
         Image(
             painter = painterResource(Res.drawable.ic_home_title_cn),
-            contentDescription = "",
+            contentDescription = null,
             alpha = 0.4f,
             colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
             modifier = Modifier.size(48.dp)
         )
         Image(
             painter = painterResource(Res.drawable.border_design),
-            contentDescription = "",
+            contentDescription = null,
             alpha = 0.4f,
             colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
             modifier = Modifier.rotate(180f).size(48.dp)

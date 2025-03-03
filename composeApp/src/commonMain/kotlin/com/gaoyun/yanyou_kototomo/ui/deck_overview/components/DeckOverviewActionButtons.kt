@@ -20,6 +20,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerMode
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.quiz
+import yanyou_kototomo.composeapp.generated.resources.review_cards_number
 
 @Composable
 fun BoxScope.DeckOverviewActionButtons(dueCards: Int, onPlayDeckClick: (PlayerMode) -> Unit) {
@@ -33,7 +37,7 @@ fun BoxScope.DeckOverviewActionButtons(dueCards: Int, onPlayDeckClick: (PlayerMo
     ) {
         if (dueCards > 0) {
             PrimaryElevatedButton(
-                text = "Review: $dueCards",
+                text = stringResource(Res.string.review_cards_number, dueCards),
                 leadingIcon = Icons.Outlined.LocalLibrary,
                 onClick = { onPlayDeckClick(PlayerMode.SpacialRepetition) },
                 contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
@@ -42,7 +46,7 @@ fun BoxScope.DeckOverviewActionButtons(dueCards: Int, onPlayDeckClick: (PlayerMo
         }
 
         PrimaryElevatedButton(
-            text = "Quiz",
+            text = stringResource(Res.string.quiz),
             leadingIcon = Icons.Outlined.Quiz,
             onClick = { onPlayDeckClick(PlayerMode.Quiz) },
             modifier = Modifier.weight(1f),

@@ -16,6 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.expand
 
 @Composable
 fun DeckOverviewCategoryHeader(name: String, isOpen: Boolean, modifier: Modifier = Modifier, onOpenToggle: ((Boolean) -> Unit)?) {
@@ -25,7 +28,7 @@ fun DeckOverviewCategoryHeader(name: String, isOpen: Boolean, modifier: Modifier
             Text(name, style = MaterialTheme.typography.headlineMedium)
             onOpenToggle?.let {
                 IconButton(onClick = { onOpenToggle(!isOpen) }) {
-                    Icon(Icons.Default.ExpandMore, "", modifier = Modifier.rotate(expandIconAngle.value))
+                    Icon(Icons.Default.ExpandMore, stringResource(Res.string.expand), modifier = Modifier.rotate(expandIconAngle.value))
                 }
             }
         }

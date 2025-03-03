@@ -9,9 +9,28 @@ import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Repeat
 import androidx.compose.material.icons.filled.RestartAlt
 import androidx.compose.material.icons.filled.Translate
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.settings_section_about_app_subtitle
+import yanyou_kototomo.composeapp.generated.resources.settings_section_about_app_title
+import yanyou_kototomo.composeapp.generated.resources.settings_section_app_icon_subtitle
+import yanyou_kototomo.composeapp.generated.resources.settings_section_app_icon_title
+import yanyou_kototomo.composeapp.generated.resources.settings_section_color_theme_subtitle
+import yanyou_kototomo.composeapp.generated.resources.settings_section_color_theme_title
+import yanyou_kototomo.composeapp.generated.resources.settings_section_primary_language_title
+import yanyou_kototomo.composeapp.generated.resources.settings_section_reload_courses_subtitle
+import yanyou_kototomo.composeapp.generated.resources.settings_section_reload_courses_title
+import yanyou_kototomo.composeapp.generated.resources.settings_section_reset_subtitle
+import yanyou_kototomo.composeapp.generated.resources.settings_section_reset_title
+import yanyou_kototomo.composeapp.generated.resources.settings_section_show_onboarding_subtitle
+import yanyou_kototomo.composeapp.generated.resources.settings_section_show_onboarding_title
+import yanyou_kototomo.composeapp.generated.resources.settings_section_spacial_repetition_subtitle
+import yanyou_kototomo.composeapp.generated.resources.settings_section_spacial_repetition_title
 
 data class SettingsSection(
+    val id: String,
     val title: String,
     val subtitle: String,
     val icon: ImageVector,
@@ -19,6 +38,7 @@ data class SettingsSection(
     val isDestructive: Boolean = false,
 )
 
+@Composable
 internal fun settingsSections(
     primaryLanguage: String,
     onPrimaryLanguageChangeClick: () -> Unit,
@@ -31,50 +51,58 @@ internal fun settingsSections(
     onSpacialRepetitionSettingsClick: () -> Unit,
 ) = listOf(
     SettingsSection(
-        title = "App Icon",
-        subtitle = "Change the app icon",
+        id = "app_icon",
+        title = stringResource(Res.string.settings_section_app_icon_title),
+        subtitle = stringResource(Res.string.settings_section_app_icon_subtitle),
         icon = Icons.Default.Photo,
         onClick = onAppIconClick
     ),
     SettingsSection(
-        title = "Color Theme",
-        subtitle = "Customize your theme",
+        id = "color_theme",
+        title = stringResource(Res.string.settings_section_color_theme_title),
+        subtitle = stringResource(Res.string.settings_section_color_theme_subtitle),
         icon = Icons.Default.Palette,
         onClick = onColorThemeClick
     ),
     SettingsSection(
-        title = "Primary Language",
+        id = "primary_language",
+        title = stringResource(Res.string.settings_section_primary_language_title),
         subtitle = primaryLanguage,
         icon = Icons.Default.Translate,
         onClick = onPrimaryLanguageChangeClick
     ),
     SettingsSection(
-        title = "Spacial repetition",
-        subtitle = "Adjust review algorithm settings",
+        id = "spaced_repetition",
+        title = stringResource(Res.string.settings_section_spacial_repetition_title),
+        subtitle = stringResource(Res.string.settings_section_spacial_repetition_subtitle),
         icon = Icons.Default.Repeat,
         onClick = onSpacialRepetitionSettingsClick
     ),
     SettingsSection(
-        title = "Show Onboarding",
-        subtitle = "If you want to see the tutorial again",
+        id = "show_onboarding",
+        title = stringResource(Res.string.settings_section_show_onboarding_title),
+        subtitle = stringResource(Res.string.settings_section_show_onboarding_subtitle),
         icon = Icons.Default.LocalLibrary,
         onClick = onOnboardingClick
     ),
     SettingsSection(
-        title = "Reload courses",
-        subtitle = "Force update courses",
+        id = "reload_courses",
+        title = stringResource(Res.string.settings_section_reload_courses_title),
+        subtitle = stringResource(Res.string.settings_section_reload_courses_subtitle),
         icon = Icons.Default.Refresh,
         onClick = onReloadCoursesClick
     ),
     SettingsSection(
-        title = "About App",
-        subtitle = "Learn more about this app",
+        id = "about_app",
+        title = stringResource(Res.string.settings_section_about_app_title),
+        subtitle = stringResource(Res.string.settings_section_about_app_subtitle),
         icon = Icons.Default.Info,
         onClick = onAboutAppClick
     ),
     SettingsSection(
-        title = "Reset",
-        subtitle = "Reset all settings to default",
+        id = "reset",
+        title = stringResource(Res.string.settings_section_reset_title),
+        subtitle = stringResource(Res.string.settings_section_reset_subtitle),
         icon = Icons.Default.RestartAlt,
         onClick = onResetClick,
         isDestructive = true

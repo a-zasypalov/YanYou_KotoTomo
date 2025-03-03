@@ -41,6 +41,9 @@ import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOverviewKanaDe
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOverviewMixedKanaDeck
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckOverviewNormalSegmentedDeck
 import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.DeckPausedItemsSettingsView
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.deckOverviewKanaCategories
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.deckOverviewMixedKanaCategories
+import com.gaoyun.yanyou_kototomo.ui.deck_overview.components.deckOverviewNormalSegmentedCategories
 import org.koin.compose.viewmodel.koinViewModel
 
 
@@ -151,6 +154,24 @@ private fun DeckOverviewContent(
             else -> 16.dp
         }
 
+        val deckOverviewNormalSegmentedCategories = deckOverviewNormalSegmentedCategories(
+            viewState = viewState,
+            updateShowNewWords = updateShowNewWords,
+            updateShowNewPhrases = updateShowNewPhrases,
+            updateShowToReviewCards = updateShowToReviewCards,
+            updateShowPausedCards = updateShowPausedCards,
+            updateShowKanji = updateShowKanjiCards,
+            updateShowCompletedCards = updateShowCompletedCards
+        )
+        val deckOverviewMixedKanaCategories = deckOverviewMixedKanaCategories(
+            viewState = viewState,
+            updateShowNewWords = updateShowNewWords,
+            updateShowToReviewCards = updateShowToReviewCards,
+            updateShowPausedCards = updateShowPausedCards,
+            updateShowCompletedCards = updateShowCompletedCards,
+        )
+        val deckOverviewKanaCategories = deckOverviewKanaCategories(viewState)
+
         Box(modifier = Modifier.fillMaxSize()) {
             LazyVerticalGrid(
                 state = state,
@@ -173,30 +194,24 @@ private fun DeckOverviewContent(
 
                 when {
                     viewState.deckId.isKanaDeck() -> DeckOverviewKanaDeck(
+                        categories = deckOverviewKanaCategories,
                         viewState = viewState,
                         cellsNumber = cellsNumber,
-                        onCardClick = { onCardClick(it, false) })
+                        onCardClick = { onCardClick(it, false) }
+                    )
 
                     viewState.deckId.isMixedKanaDeck() -> DeckOverviewMixedKanaDeck(
+                        categories = deckOverviewMixedKanaCategories,
                         viewState = viewState,
                         cellsNumber = cellsNumber,
                         onCardClick = { onCardClick(it, viewState.pausedCards.contains(it)) },
-                        updateShowNewWords = updateShowNewWords,
-                        updateShowToReviewCards = updateShowToReviewCards,
-                        updateShowPausedCards = updateShowPausedCards,
-                        updateShowCompletedCards = updateShowCompletedCards,
                     )
 
                     else -> DeckOverviewNormalSegmentedDeck(
+                        categories = deckOverviewNormalSegmentedCategories,
                         viewState = viewState,
                         cellsNumber = cellsNumber,
                         onCardClick = { onCardClick(it, viewState.isCardPaused(it.card.id)) },
-                        updateShowNewWords = updateShowNewWords,
-                        updateShowNewPhrases = updateShowNewPhrases,
-                        updateShowToReviewCards = updateShowToReviewCards,
-                        updateShowPausedCards = updateShowPausedCards,
-                        updateShowKanji = updateShowKanjiCards,
-                        updateShowCompletedCards = updateShowCompletedCards
                     )
                 }
 

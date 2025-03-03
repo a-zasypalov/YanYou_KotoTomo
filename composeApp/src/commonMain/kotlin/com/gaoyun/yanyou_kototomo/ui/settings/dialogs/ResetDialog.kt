@@ -6,6 +6,12 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.window.DialogProperties
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.cancel
+import yanyou_kototomo.composeapp.generated.resources.reset
+import yanyou_kototomo.composeapp.generated.resources.reset_dialog_description
+import yanyou_kototomo.composeapp.generated.resources.reset_dialog_title
 
 @Composable
 fun ResetDialog(showDialog: MutableState<Boolean>, onResetConfirmed: () -> Unit) {
@@ -17,16 +23,16 @@ fun ResetDialog(showDialog: MutableState<Boolean>, onResetConfirmed: () -> Unit)
                     showDialog.value = false
                     onResetConfirmed()
                 }) {
-                    Text("Reset")
+                    Text(stringResource(Res.string.reset))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDialog.value = false }) {
-                    Text("Cancel")
+                    Text(stringResource(Res.string.cancel))
                 }
             },
-            title = { Text("Confirm Reset") },
-            text = { Text("Are you sure you want to reset all data in the app? This action cannot be undone.") },
+            title = { Text(stringResource(Res.string.reset_dialog_title)) },
+            text = { Text(stringResource(Res.string.reset_dialog_description)) },
             properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
         )
     }

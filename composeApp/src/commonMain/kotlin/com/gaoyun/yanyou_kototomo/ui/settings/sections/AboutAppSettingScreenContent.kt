@@ -20,8 +20,12 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import yanyou_kototomo.composeapp.generated.resources.Res
 import yanyou_kototomo.composeapp.generated.resources.app_icon_variant_1
+import yanyou_kototomo.composeapp.generated.resources.app_name
+import yanyou_kototomo.composeapp.generated.resources.app_name_inspiration
+import yanyou_kototomo.composeapp.generated.resources.app_name_jp
 import yanyou_kototomo.composeapp.generated.resources.wave
 
 @Composable
@@ -44,14 +48,14 @@ fun AboutAppSettingScreenContent() {
             Spacer(modifier = Modifier.size(32.dp))
 
             Text(
-                text = "言友",
+                text = stringResource(Res.string.app_name_jp),
                 style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.SemiBold),
             )
 
             Spacer(modifier = Modifier.size(4.dp))
 
             Text(
-                text = "HieroFlash",
+                text = stringResource(Res.string.app_name),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface
             )
@@ -65,7 +69,7 @@ fun AboutAppSettingScreenContent() {
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = "The original idea for the name of this app was YangYou or KotoTomo. It combines two hieroglyphs and in both Chinese and Japanese they have the same meaning.\n\n言 means \"words\" or \"language\".\n\n友 means \"friend\".\n\nTogether, they represent the idea of a trusted companion to help you master words and characters in Chinese and Japanese alongside with official HSK and JLPT books.",
+                    text = stringResource(Res.string.app_name_inspiration),
                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium),
                     color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.fillMaxWidth().padding(16.dp),

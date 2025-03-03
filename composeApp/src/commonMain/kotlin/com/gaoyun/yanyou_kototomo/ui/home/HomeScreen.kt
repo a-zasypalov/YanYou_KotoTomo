@@ -49,7 +49,12 @@ import com.gaoyun.yanyou_kototomo.ui.card_details.CardDetailsView
 import com.gaoyun.yanyou_kototomo.ui.home.components.CurrentlyLearningCourse
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenTitle
 import com.gaoyun.yanyou_kototomo.ui.home.components.PersonalSegmentedArea
+import com.gaoyun.yanyou_kototomo.ui.home.components.personalSegmentedCategories
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.bookmarks
+import yanyou_kototomo.composeapp.generated.resources.edit
 
 @Composable
 fun HomeScreen(
@@ -141,6 +146,17 @@ private fun HomeScreenContent(
             val listState = rememberLazyListState()
             val lastIndex = viewState.learningCourse?.decks?.indexOfLast { it.id in viewState.learningDecks } ?: -1
             var previousIndex = rememberSaveable { mutableStateOf(-1) }
+            val categories = personalSegmentedCategories(
+                viewState = viewState,
+                updateShowToReviewCards = updateShowToReviewCards,
+                updateShowNewCards = updateShowNewCards,
+                updateShowPausedCards = updateShowPausedCards,
+                updateShowCompletedCards = updateShowCompletedCards,
+                showToReviewCards = viewState.showToReviewCards,
+                showNewCards = viewState.showNewCards,
+                showPausedCards = viewState.showPausedCards,
+                showCompletedCards = viewState.showCompletedCards,
+            )
 
             LaunchedEffect(lastIndex) {
                 if (lastIndex != -1 && lastIndex != previousIndex.value) {
@@ -191,11 +207,16 @@ private fun HomeScreenContent(
                     item {
                         Row(modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp), horizontalArrangement = Arrangement.SpaceBetween) {
                             Text(
-                                text = "Bookmarks",
+                                text = stringResource(Res.string.bookmarks),
                                 style = MaterialTheme.typography.headlineLarge,
                                 modifier = Modifier.padding(bottom = 8.dp).padding(horizontal = 16.dp)
                             )
-                            IconButton(onClick = onBookmarksEdit) { Icon(Icons.Default.Edit, "edit") }
+                            IconButton(onClick = onBookmarksEdit) {
+                                Icon(
+                                    Icons.Default.Edit,
+                                    stringResource(Res.string.edit)
+                                )
+                            }
                         }
                     }
 
@@ -226,16 +247,8 @@ private fun HomeScreenContent(
                 }
 
                 PersonalSegmentedArea(
-                    viewState = viewState,
+                    categories = categories,
                     onCardClick = onCardDetailsClick,
-                    updateShowToReviewCards = updateShowToReviewCards,
-                    updateShowNewCards = updateShowNewCards,
-                    updateShowPausedCards = updateShowPausedCards,
-                    updateShowCompletedCards = updateShowCompletedCards,
-                    showToReviewCards = viewState.showToReviewCards,
-                    showNewCards = viewState.showNewCards,
-                    showPausedCards = viewState.showPausedCards,
-                    showCompletedCards = viewState.showCompletedCards,
                 )
 
                 item {

@@ -27,6 +27,9 @@ import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedMarqueeButton
 import com.gaoyun.yanyou_kototomo.ui.player.PlayerCardViewState
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.next_card
 
 @Composable
 internal fun BoxScope.QuizButtons(
@@ -84,7 +87,7 @@ internal fun BoxScope.QuizButtons(
                 Column {
                     Spacer(modifier = Modifier.height(56.dp))
                     PrimaryElevatedButton(
-                        text = "Next card",
+                        text = stringResource(Res.string.next_card),
                         colors = quizButtonColors,
                         modifier = Modifier.fillMaxWidth().padding(bottom = 64.dp).padding(horizontal = 24.dp),
                         onClick = onNextCardClick

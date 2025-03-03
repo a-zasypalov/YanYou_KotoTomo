@@ -36,6 +36,8 @@ import com.gaoyun.yanyou_kototomo.ui.settings.dialogs.PrimaryLanguageChooser
 import com.gaoyun.yanyou_kototomo.ui.settings.dialogs.ResetDialog
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.settings
 
 @Composable
 fun SettingsScreen(
@@ -103,28 +105,27 @@ private fun SettingsScreenContent(
     onSpacialRepetitionSettingsClick: () -> Unit,
 ) {
     val state = rememberLazyListState()
+    val settingsSections = settingsSections(
+        primaryLanguage,
+        onPrimaryLanguageChange,
+        onAppIconClick,
+        onColorThemeClick,
+        onAboutAppClick,
+        onOnboardingClick,
+        onReloadCoursesClick,
+        onResetClick,
+        onSpacialRepetitionSettingsClick
+    )
     LazyColumn(state = state, modifier = modifier.fillMaxWidth()) {
         item {
             Text(
-                text = "Settings",
+                text = stringResource(Res.string.settings),
                 style = MaterialTheme.typography.displayLarge,
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 24.dp)
             )
         }
 
-        items(
-            settingsSections(
-                primaryLanguage,
-                onPrimaryLanguageChange,
-                onAppIconClick,
-                onColorThemeClick,
-                onAboutAppClick,
-                onOnboardingClick,
-                onReloadCoursesClick,
-                onResetClick,
-                onSpacialRepetitionSettingsClick
-            )
-        ) { section ->
+        items(settingsSections, key = { it.id }) { section ->
             SettingsSectionItem(section = section)
         }
 

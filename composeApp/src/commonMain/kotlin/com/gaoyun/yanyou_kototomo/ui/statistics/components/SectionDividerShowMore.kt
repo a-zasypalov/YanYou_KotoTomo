@@ -11,12 +11,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.show_more
 
 @Composable
 fun LazyItemScope.SectionDividerShowMore(onClick: () -> Unit) {
     Box(Modifier.fillMaxWidth()) {
         TextButton(onClick = onClick, modifier = Modifier.align(Alignment.CenterEnd)) {
-            Text("Show more...")
+            Text(stringResource(Res.string.show_more))
         }
         Spacer(Modifier.size(8.dp))
     }

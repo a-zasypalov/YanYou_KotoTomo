@@ -18,6 +18,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.cancel
+import yanyou_kototomo.composeapp.generated.resources.confirm
+import yanyou_kototomo.composeapp.generated.resources.edit
+import yanyou_kototomo.composeapp.generated.resources.options
+import yanyou_kototomo.composeapp.generated.resources.reset_deck_dialog_description
+import yanyou_kototomo.composeapp.generated.resources.reset_deck_dialog_title
 
 @Composable
 fun DeckOptionsMenu(
@@ -35,14 +43,14 @@ fun DeckOptionsMenu(
                     modifier = Modifier.padding(horizontal = 4.dp),
                     onClick = onEditDeck
                 ) {
-                    Icon(Icons.Default.Edit, contentDescription = "edit")
+                    Icon(Icons.Default.Edit, contentDescription = stringResource(Res.string.edit))
                 }
             }
             IconButton(
                 modifier = Modifier.padding(horizontal = 4.dp),
                 onClick = { expanded.value = true }
             ) {
-                Icon(Icons.Default.MoreVert, contentDescription = "options")
+                Icon(Icons.Default.MoreVert, contentDescription = stringResource(Res.string.options))
             }
         }
 
@@ -51,7 +59,7 @@ fun DeckOptionsMenu(
             onDismissRequest = { expanded.value = false }
         ) {
             DropdownMenuItem(
-                text = { Text("Reset Deck") },
+                text = { Text(stringResource(Res.string.reset_deck_dialog_title)) },
                 onClick = {
                     expanded.value = false
                     showDialog.value = true
@@ -63,8 +71,8 @@ fun DeckOptionsMenu(
     if (showDialog.value) {
         AlertDialog(
             onDismissRequest = { showDialog.value = false },
-            title = { Text("Reset Deck") },
-            text = { Text("Are you sure you want to reset the deck? This action cannot be undone.") },
+            title = { Text(stringResource(Res.string.reset_deck_dialog_title)) },
+            text = { Text(stringResource(Res.string.reset_deck_dialog_description)) },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -72,14 +80,14 @@ fun DeckOptionsMenu(
                         onResetDeck()
                     }
                 ) {
-                    Text("Confirm")
+                    Text(stringResource(Res.string.confirm))
                 }
             },
             dismissButton = {
                 TextButton(
                     onClick = { showDialog.value = false }
                 ) {
-                    Text("Cancel")
+                    Text(stringResource(Res.string.cancel))
                 }
             }
         )

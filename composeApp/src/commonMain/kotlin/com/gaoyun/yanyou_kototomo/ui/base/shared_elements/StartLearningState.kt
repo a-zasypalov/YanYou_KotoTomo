@@ -20,8 +20,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.ui.home.components.HomeScreenTitle
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import yanyou_kototomo.composeapp.generated.resources.Res
 import yanyou_kototomo.composeapp.generated.resources.maneki_neko
+import yanyou_kototomo.composeapp.generated.resources.to_courses_button
+import yanyou_kototomo.composeapp.generated.resources.to_courses_label
 
 @Composable
 fun StartLearningState(onCoursesClick: () -> Unit) {
@@ -29,14 +32,14 @@ fun StartLearningState(onCoursesClick: () -> Unit) {
         HomeScreenTitle()
         Spacer(modifier = Modifier.weight(1f))
         Text(
-            text = "Start learning a course,\nadd bookmarks and review cards",
+            text = stringResource(Res.string.to_courses_label),
             textAlign = TextAlign.Center,
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(32.dp)
         )
         TextButton(onClick = onCoursesClick) {
             Text(
-                text = "To Courses",
+                text = stringResource(Res.string.to_courses_button),
                 style = MaterialTheme.typography.titleMedium
             )
         }

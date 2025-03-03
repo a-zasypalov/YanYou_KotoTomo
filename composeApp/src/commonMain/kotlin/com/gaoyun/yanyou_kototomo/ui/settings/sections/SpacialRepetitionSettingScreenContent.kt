@@ -28,6 +28,18 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColors
 import com.gaoyun.yanyou_kototomo.ui.player.SpacedRepetitionIntervalsInDays
 import com.gaoyun.yanyou_kototomo.ui.player.components.RepetitionAnswer
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.ease_factor
+import yanyou_kototomo.composeapp.generated.resources.easy
+import yanyou_kototomo.composeapp.generated.resources.easy_answer_weight
+import yanyou_kototomo.composeapp.generated.resources.good
+import yanyou_kototomo.composeapp.generated.resources.good_answer_weight
+import yanyou_kototomo.composeapp.generated.resources.hard
+import yanyou_kototomo.composeapp.generated.resources.hard_answer_weight
+import yanyou_kototomo.composeapp.generated.resources.interval_base
+import yanyou_kototomo.composeapp.generated.resources.n_days_short
+import yanyou_kototomo.composeapp.generated.resources.reset
 
 @Composable
 fun ColumnScope.SpacedRepetitionSettingScreenContent(
@@ -50,11 +62,11 @@ fun ColumnScope.SpacedRepetitionSettingScreenContent(
             },
 
             title = when (i) {
-                0 -> "Ease factor"
-                1 -> "Interval base"
-                2 -> "\"Easy\" answer weight"
-                3 -> "\"Good\" answer weight"
-                4 -> "\"Hard\" answer weight"
+                0 -> stringResource(Res.string.ease_factor)
+                1 -> stringResource(Res.string.interval_base)
+                2 -> stringResource(Res.string.easy_answer_weight)
+                3 -> stringResource(Res.string.good_answer_weight)
+                4 -> stringResource(Res.string.hard_answer_weight)
                 else -> ""
             }
         )
@@ -69,7 +81,7 @@ fun ColumnScope.SpacedRepetitionSettingScreenContent(
         },
         modifier = Modifier.align(Alignment.CenterHorizontally)
     ) {
-        Text(text = "Reset")
+        Text(text = stringResource(Res.string.reset))
     }
 }
 
@@ -112,18 +124,33 @@ internal fun SampleButtons(
             modifier = modifier.fillMaxWidth().padding(16.dp)
         ) {
             val easyButtonLabel = buildAnnotatedString {
-                withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) { append("Easy") }
-                withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) { append("\n${intervalsInDays.easy}d") }
+                withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) {
+                    append(stringResource(Res.string.easy))
+                }
+                withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) {
+                    append("\n")
+                    append(stringResource(Res.string.n_days_short, intervalsInDays.easy))
+                }
             }
 
             val goodButtonLabel = buildAnnotatedString {
-                withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) { append("Good") }
-                withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) { append("\n${intervalsInDays.good}d") }
+                withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) {
+                    append(stringResource(Res.string.good))
+                }
+                withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) {
+                    append("\n")
+                    append(stringResource(Res.string.n_days_short, intervalsInDays.good))
+                }
             }
 
             val hardButtonLabel = buildAnnotatedString {
-                withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) { append("Hard") }
-                withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) { append("\n${intervalsInDays.hard}d") }
+                withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) {
+                    append(stringResource(Res.string.hard))
+                }
+                withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) {
+                    append("\n")
+                    append(stringResource(Res.string.n_days_short, intervalsInDays.hard))
+                }
             }
 
             PrimaryElevatedButton(

@@ -25,7 +25,13 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSections
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.SettingsSectionsArgs
 import com.gaoyun.yanyou_kototomo.ui.player.SpacedRepetitionIntervalsInDays
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.settings_section_about_app_title
+import yanyou_kototomo.composeapp.generated.resources.settings_section_app_icon_title
+import yanyou_kototomo.composeapp.generated.resources.settings_section_color_theme_title
+import yanyou_kototomo.composeapp.generated.resources.settings_section_spacial_repetition_title
 
 @Composable
 fun SectionSettingsScreen(
@@ -117,9 +123,10 @@ fun SectionSettingsScreen(
     }
 }
 
+@Composable
 private fun SettingsSections.title() = when (this) {
-    SettingsSections.AppIcon -> "App icon"
-    SettingsSections.ColorTheme -> "Color theme"
-    SettingsSections.AboutApp -> "About app"
-    SettingsSections.SpacialRepetition -> "Spacial repetition"
+    SettingsSections.AppIcon -> stringResource(Res.string.settings_section_app_icon_title)
+    SettingsSections.ColorTheme -> stringResource(Res.string.settings_section_color_theme_title)
+    SettingsSections.AboutApp -> stringResource(Res.string.settings_section_about_app_title)
+    SettingsSections.SpacialRepetition -> stringResource(Res.string.settings_section_spacial_repetition_title)
 }

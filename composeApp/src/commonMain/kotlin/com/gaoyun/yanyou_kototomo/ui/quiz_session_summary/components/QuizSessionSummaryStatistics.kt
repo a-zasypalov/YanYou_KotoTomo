@@ -22,6 +22,10 @@ import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.quiz.QuizSessionWithCards
 import com.gaoyun.yanyou_kototomo.ui.base.composables.Divider
 import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColors
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.number_correct
+import yanyou_kototomo.composeapp.generated.resources.number_wrong
 
 @Composable
 fun QuizSessionSummaryStatistics(session: QuizSessionWithCards) {
@@ -34,10 +38,10 @@ fun QuizSessionSummaryStatistics(session: QuizSessionWithCards) {
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp)
     ) {
-        Icon(Icons.Default.DataUsage, "", Modifier.size(40.dp).padding(top = 3.dp))
+        Icon(Icons.Default.DataUsage, null, Modifier.size(40.dp).padding(top = 3.dp))
 
         Text(
-            text = "${correctAnswersPercentage}%",
+            text = "$correctAnswersPercentage%",
             style = MaterialTheme.typography.displayMedium.copy(fontWeight = FontWeight.SemiBold)
         )
 
@@ -45,7 +49,7 @@ fun QuizSessionSummaryStatistics(session: QuizSessionWithCards) {
 
         Column(modifier = Modifier.padding(top = 3.dp)) {
             Text(
-                text = "$correctAnswers correct",
+                text = stringResource(Res.string.number_correct, correctAnswers),
                 style = MaterialTheme.typography.titleMedium.copy(
                     color = YanYouColors.current.greenCorrect,
                     fontWeight = FontWeight.Medium
@@ -58,7 +62,7 @@ fun QuizSessionSummaryStatistics(session: QuizSessionWithCards) {
             )
 
             Text(
-                text = "$wrongAnswers wrong",
+                text = stringResource(Res.string.number_wrong, wrongAnswers),
                 style = MaterialTheme.typography.titleMedium.copy(
                     color = YanYouColors.current.redWrong,
                     fontWeight = FontWeight.Medium

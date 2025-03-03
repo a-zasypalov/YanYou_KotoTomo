@@ -24,7 +24,12 @@ import com.gaoyun.yanyou_kototomo.ui.statistics.components.CardProgressStatistic
 import com.gaoyun.yanyou_kototomo.ui.statistics.components.QuizSessionStatisticsItem
 import com.gaoyun.yanyou_kototomo.ui.statistics.components.SectionDividerShowMore
 import com.gaoyun.yanyou_kototomo.ui.statistics.full_list.StatisticsListMode
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.quizzes
+import yanyou_kototomo.composeapp.generated.resources.spacial_repetition
+import yanyou_kototomo.composeapp.generated.resources.statistics
 
 @Composable
 fun StatisticsScreen(
@@ -66,7 +71,7 @@ private fun StatisticsScreenContent(
         ) {
             item {
                 Text(
-                    text = "Statistics",
+                    text = stringResource(Res.string.statistics),
                     style = MaterialTheme.typography.displayLarge,
                     modifier = Modifier.padding(top = 24.dp, bottom = 8.dp)
                 )
@@ -74,7 +79,7 @@ private fun StatisticsScreenContent(
             if (!content?.sessions.isNullOrEmpty()) {
                 item {
                     Text(
-                        text = "Quizzes",
+                        text = stringResource(Res.string.quizzes),
                         style = MaterialTheme.typography.headlineLarge,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )
@@ -102,7 +107,7 @@ private fun StatisticsScreenContent(
             if (!content?.cardsProgress.isNullOrEmpty()) {
                 item {
                     Text(
-                        text = "Spacial repetition",
+                        text = stringResource(Res.string.spacial_repetition),
                         style = MaterialTheme.typography.headlineLarge,
                         modifier = Modifier.padding(bottom = 8.dp)
                     )

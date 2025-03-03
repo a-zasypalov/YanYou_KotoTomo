@@ -6,6 +6,12 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.window.DialogProperties
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.cancel
+import yanyou_kototomo.composeapp.generated.resources.card_completion_dialog_description
+import yanyou_kototomo.composeapp.generated.resources.card_completion_dialog_title
+import yanyou_kototomo.composeapp.generated.resources.complete
 
 @Composable
 fun CompleteCardConfirmationDialog(showDialog: MutableState<Boolean>, onCompleteConfirmed: () -> Unit) {
@@ -17,16 +23,16 @@ fun CompleteCardConfirmationDialog(showDialog: MutableState<Boolean>, onComplete
                     showDialog.value = false
                     onCompleteConfirmed()
                 }) {
-                    Text("Complete")
+                    Text(stringResource(Res.string.complete))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDialog.value = false }) {
-                    Text("Cancel")
+                    Text(stringResource(Res.string.cancel))
                 }
             },
-            title = { Text("Confirm card completion") },
-            text = { Text("After completing the card, review progress will be reset, but you can always start learning it again.") },
+            title = { Text(stringResource(Res.string.card_completion_dialog_title)) },
+            text = { Text(stringResource(Res.string.card_completion_dialog_description)) },
             properties = DialogProperties(dismissOnBackPress = true, dismissOnClickOutside = true)
         )
     }

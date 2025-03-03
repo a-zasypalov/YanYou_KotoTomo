@@ -21,17 +21,39 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.util.AppIcon
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import yanyou_kototomo.composeapp.generated.resources.Res
 import yanyou_kototomo.composeapp.generated.resources.app_icon_variant_1
 import yanyou_kototomo.composeapp.generated.resources.app_icon_variant_2
 import yanyou_kototomo.composeapp.generated.resources.app_icon_variant_3
+import yanyou_kototomo.composeapp.generated.resources.clip_icon_description
+import yanyou_kototomo.composeapp.generated.resources.clip_icon_title
+import yanyou_kototomo.composeapp.generated.resources.main_icon_description
+import yanyou_kototomo.composeapp.generated.resources.main_icon_title
+import yanyou_kototomo.composeapp.generated.resources.simple_icon_description
+import yanyou_kototomo.composeapp.generated.resources.simple_icon_title
 
 @Composable
 fun ColumnScope.AppIconSettingScreenContent(onIconSetClick: (AppIcon) -> Unit) {
     val icons = listOf(
-        AppIconVariants(AppIcon.Original, Res.drawable.app_icon_variant_1, "Main icon", "Original inspiration"),
-        AppIconVariants(AppIcon.Clip, Res.drawable.app_icon_variant_2, "Notebook clip", "When stickers not needed"),
-        AppIconVariants(AppIcon.VerticalHalf, Res.drawable.app_icon_variant_3, "Vertical", "If your day needs a turn"),
+        AppIconVariants(
+            AppIcon.Original,
+            Res.drawable.app_icon_variant_1,
+            stringResource(Res.string.main_icon_title),
+            stringResource(Res.string.main_icon_description),
+        ),
+        AppIconVariants(
+            AppIcon.Clip,
+            Res.drawable.app_icon_variant_2,
+            stringResource(Res.string.clip_icon_title),
+            stringResource(Res.string.clip_icon_description),
+        ),
+        AppIconVariants(
+            AppIcon.VerticalHalf,
+            Res.drawable.app_icon_variant_3,
+            stringResource(Res.string.simple_icon_title),
+            stringResource(Res.string.simple_icon_description),
+        ),
     )
 
     icons.forEach { item ->

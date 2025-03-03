@@ -38,6 +38,13 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.courses.CoursesScreen
 import com.gaoyun.yanyou_kototomo.ui.settings.SettingsScreen
 import com.gaoyun.yanyou_kototomo.ui.statistics.StatisticsScreen
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.courses
+import yanyou_kototomo.composeapp.generated.resources.home
+import yanyou_kototomo.composeapp.generated.resources.settings
+import yanyou_kototomo.composeapp.generated.resources.statistics
 
 @Composable
 fun HomeScreenHost(navigate: (NavigationSideEffect) -> Unit) {
@@ -108,19 +115,19 @@ private fun BottomNavigationBar(
                 selected = item.route == currentRoute,
                 onClick = { navigate(item.route) },
                 icon = {
-                    Icon(imageVector = item.icon, contentDescription = item.title)
+                    Icon(imageVector = item.icon, contentDescription = stringResource(item.title))
                 },
                 label = {
-                    Text(item.title)
+                    Text(stringResource(item.title))
                 }
             )
         }
     }
 }
 
-sealed class BottomNavItem(val route: String, val title: String, val icon: ImageVector) {
-    object Home : BottomNavItem(HOME_ROUTE, "Home", Icons.Filled.Home)
-    object Courses : BottomNavItem(COURSES_ROUTE, "Courses", Icons.Filled.Book)
-    object Statistics : BottomNavItem(STATISTICS_ROUTE, "Statistics", Icons.Filled.BarChart)
-    object Settings : BottomNavItem(SETTINGS_ROUTE, "Settings", Icons.Filled.Settings)
+sealed class BottomNavItem(val route: String, val title: StringResource, val icon: ImageVector) {
+    object Home : BottomNavItem(HOME_ROUTE, Res.string.home, Icons.Filled.Home)
+    object Courses : BottomNavItem(COURSES_ROUTE, Res.string.courses, Icons.Filled.Book)
+    object Statistics : BottomNavItem(STATISTICS_ROUTE, Res.string.statistics, Icons.Filled.BarChart)
+    object Settings : BottomNavItem(SETTINGS_ROUTE, Res.string.settings, Icons.Filled.Settings)
 }

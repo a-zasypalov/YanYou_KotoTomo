@@ -25,6 +25,13 @@ import com.gaoyun.yanyou_kototomo.data.local.CardId
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
 import com.gaoyun.yanyou_kototomo.ui.base.theme.YanYouColors
 import com.gaoyun.yanyou_kototomo.ui.player.PlayerCardViewState
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.easy
+import yanyou_kototomo.composeapp.generated.resources.good
+import yanyou_kototomo.composeapp.generated.resources.hard
+import yanyou_kototomo.composeapp.generated.resources.n_days_short
+import yanyou_kototomo.composeapp.generated.resources.open_card
 
 @Composable
 internal fun BoxScope.SpaceRepetitionButtons(
@@ -55,7 +62,7 @@ internal fun BoxScope.SpaceRepetitionButtons(
         ) { isAnswerOpened ->
             if (!isAnswerOpened) {
                 PrimaryElevatedButton(
-                    text = "Open card",
+                    text = stringResource(Res.string.open_card),
                     modifier = Modifier.fillMaxWidth().padding(bottom = 64.dp).padding(horizontal = 24.dp),
                     onClick = onCardOpenClick
                 )
@@ -65,23 +72,32 @@ internal fun BoxScope.SpaceRepetitionButtons(
                     modifier = Modifier.fillMaxWidth().padding(bottom = 64.dp).padding(horizontal = 24.dp)
                 ) {
                     val easyButtonLabel = buildAnnotatedString {
-                        withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) { append("Easy") }
+                        withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) { append(stringResource(Res.string.easy)) }
                         currentCardState.intervalsInDays?.let {
-                            withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) { append("\n${it.easy}d") }
+                            withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) {
+                                append("\n")
+                                append(stringResource(Res.string.n_days_short, it.easy))
+                            }
                         }
                     }
 
                     val goodButtonLabel = buildAnnotatedString {
-                        withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) { append("Good") }
+                        withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) { append(stringResource(Res.string.good)) }
                         currentCardState.intervalsInDays?.let {
-                            withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) { append("\n${it.good}d") }
+                            withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) {
+                                append("\n")
+                                append(stringResource(Res.string.n_days_short, it.good))
+                            }
                         }
                     }
 
                     val hardButtonLabel = buildAnnotatedString {
-                        withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) { append("Hard") }
+                        withStyle(style = SpanStyle(fontWeight = FontWeight.Medium)) { append(stringResource(Res.string.hard)) }
                         currentCardState.intervalsInDays?.let {
-                            withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) { append("\n${it.hard}d") }
+                            withStyle(style = SpanStyle(fontWeight = FontWeight.Normal)) {
+                                append("\n")
+                                append(stringResource(Res.string.n_days_short, it.hard))
+                            }
                         }
                     }
 

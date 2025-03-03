@@ -44,7 +44,15 @@ import com.gaoyun.yanyou_kototomo.ui.base.courseCardColor
 import com.gaoyun.yanyou_kototomo.ui.card_details.getCourseMascot
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import sh.calvin.reorderable.ReorderableCollectionItemScope
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.cancel
+import yanyou_kototomo.composeapp.generated.resources.cards_number
+import yanyou_kototomo.composeapp.generated.resources.confirm_delete_bookmark_description
+import yanyou_kototomo.composeapp.generated.resources.confirm_delete_title
+import yanyou_kototomo.composeapp.generated.resources.delete
+import yanyou_kototomo.composeapp.generated.resources.reorder
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -88,7 +96,7 @@ fun ReorderableCollectionItemScope.SwipeToDismissBookmarkItem(
                         }
                     }
                 ) {
-                    Text("Delete")
+                    Text(stringResource(Res.string.delete))
                 }
             },
             dismissButton = {
@@ -100,11 +108,11 @@ fun ReorderableCollectionItemScope.SwipeToDismissBookmarkItem(
                         }
                     }
                 ) {
-                    Text("Cancel")
+                    Text(stringResource(Res.string.cancel))
                 }
             },
-            title = { Text("Confirm Delete") },
-            text = { Text("Are you sure you want to delete this bookmark?") }
+            title = { Text(stringResource(Res.string.confirm_delete_title)) },
+            text = { Text(stringResource(Res.string.confirm_delete_bookmark_description)) }
         )
     }
 
@@ -122,7 +130,7 @@ fun ReorderableCollectionItemScope.SwipeToDismissBookmarkItem(
             ) {
                 Icon(
                     imageVector = Icons.Default.Delete,
-                    contentDescription = "Delete",
+                    contentDescription = stringResource(Res.string.delete),
                     tint = MaterialTheme.colorScheme.onError
                 )
             }
@@ -141,7 +149,7 @@ fun ReorderableCollectionItemScope.SwipeToDismissBookmarkItem(
                         colors = IconButtonDefaults.iconButtonColors(contentColor = courseTextColor),
                         modifier = Modifier.draggableHandle().weight(1f).align(Alignment.CenterVertically)
                     ) {
-                        Icon(Icons.Rounded.DragHandle, contentDescription = "Reorder")
+                        Icon(Icons.Rounded.DragHandle, contentDescription = stringResource(Res.string.reorder))
                     }
 
                     Column(modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp).weight(8f)) {
@@ -163,7 +171,7 @@ fun ReorderableCollectionItemScope.SwipeToDismissBookmarkItem(
                         )
 
                         Text(
-                            text = "Cards: ${bookmark.deck.cards.count()}",
+                            text = stringResource(Res.string.cards_number, bookmark.deck.cards.count()),
                             color = courseTextColor,
                             style = MaterialTheme.typography.bodyLarge,
                         )

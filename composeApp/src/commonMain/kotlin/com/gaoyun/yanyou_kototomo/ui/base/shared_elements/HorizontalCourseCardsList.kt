@@ -25,6 +25,9 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.AutoResizeText
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FontSizeRange
 import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.ui.base.courseCardColor
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.cards_number
 
 @Composable
 fun HorizontalCourseCard(bookmark: DeckWithCourseInfo, onCourseClick: (DeckWithCourseInfo) -> Unit) {
@@ -38,7 +41,7 @@ fun HorizontalCourseCard(bookmark: DeckWithCourseInfo, onCourseClick: (DeckWithC
     ) {
         Column(modifier = Modifier.fillMaxSize().background(Color(0x33000000)).padding(vertical = 4.dp)) {
             AutoResizeText(
-                text = bookmark.deck.name.formatDeckName(bookmark.info.courseName),
+                text = bookmark.deck.formatDeckChaptersWithLineSeparator(bookmark.info.courseName),
                 fontSizeRange = FontSizeRange(min = 14.sp, max = MaterialTheme.typography.titleLarge.fontSize),
                 color = courseTextColor,
                 maxLines = 2,
@@ -59,28 +62,12 @@ fun HorizontalCourseCard(bookmark: DeckWithCourseInfo, onCourseClick: (DeckWithC
                 style = MaterialTheme.typography.bodyMedium
             )
             Text(
-                text = "Cards: ${bookmark.deck.cards.size}",
+                text = stringResource(Res.string.cards_number, bookmark.deck.cards.size),
                 color = courseTextColor,
                 maxLines = 1,
                 modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
                 style = MaterialTheme.typography.bodyLarge
             )
-        }
-    }
-}
-
-private fun String.formatDeckName(courseName: String): String {
-    return if (startsWith(courseName)) {
-        val rest = removePrefix(courseName).trim()
-        if (rest.isNotEmpty()) "$courseName\n$rest" else courseName
-    } else {
-        val firstDelimiterIndex = indexOfAny(charArrayOf(' ', ','))
-        if (firstDelimiterIndex != -1) {
-            val firstWord = substring(0, firstDelimiterIndex)
-            val rest = substring(firstDelimiterIndex).trim()
-            "$firstWord\n$rest"
-        } else {
-            this
         }
     }
 }

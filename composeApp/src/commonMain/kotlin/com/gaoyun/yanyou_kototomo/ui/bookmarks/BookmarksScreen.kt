@@ -28,9 +28,12 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.BackNavigationEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyListState
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.bookmarks
 
 @Composable
 fun BookmarksScreen(
@@ -95,7 +98,7 @@ fun BookmarksScreenContent(
     ) {
         item {
             Text(
-                text = "Bookmarks",
+                text = stringResource(Res.string.bookmarks),
                 style = MaterialTheme.typography.displayLarge,
                 maxLines = 1,
                 modifier = Modifier.padding(bottom = 16.dp).padding(horizontal = 16.dp)

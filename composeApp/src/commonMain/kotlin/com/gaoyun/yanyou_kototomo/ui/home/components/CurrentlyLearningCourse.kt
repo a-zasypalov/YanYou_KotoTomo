@@ -43,6 +43,9 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.ui.base.courseCardColor
 import com.gaoyun.yanyou_kototomo.ui.card_details.getCourseMascot
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.learning
 
 @Composable
 fun CurrentlyLearningCourse(
@@ -141,7 +144,7 @@ fun CurrentlyLearningCourseDeck(
             if (isLearned) {
                 Icon(
                     imageVector = Icons.Default.Star,
-                    contentDescription = "",
+                    contentDescription = stringResource(Res.string.learning),
                     tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
                     modifier = Modifier.size(24.dp).align(Alignment.TopEnd).padding(4.dp)
                 )

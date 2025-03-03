@@ -16,7 +16,7 @@ sealed interface CardWithProgress<T : Card> {
         override val card: T,
         override val progress: CardProgress?,
         val deckId: DeckId,
-        val deckName: String,
+        val chapterName: String,
         val learningLanguageId: LanguageId,
     ) : CardWithProgress<T>
 
@@ -25,16 +25,16 @@ sealed interface CardWithProgress<T : Card> {
 
     fun withoutProgress() = when (this) {
         is Base -> this.copy(card, null)
-        is WithDeckInfo -> this.copy(card, null, deckId, deckName)
+        is WithDeckInfo -> this.copy(card, null, deckId, chapterName)
     }
 
     fun asCompleted() = when (this) {
         is Base -> this.copy(card, CardProgress.completedCard(card.id))
-        is WithDeckInfo -> this.copy(card, CardProgress.completedCard(card.id), deckId, deckName)
+        is WithDeckInfo -> this.copy(card, CardProgress.completedCard(card.id), deckId, chapterName)
     }
 
-    fun withDeckInfo(deckId: DeckId, deckName: String, learningLanguageId: LanguageId) =
-        WithDeckInfo(card, progress, deckId, deckName, learningLanguageId)
+    fun withDeckInfo(deckId: DeckId, chapterName: String, learningLanguageId: LanguageId) =
+        WithDeckInfo(card, progress, deckId, chapterName, learningLanguageId)
 
     fun base() = Base(card, progress)
 

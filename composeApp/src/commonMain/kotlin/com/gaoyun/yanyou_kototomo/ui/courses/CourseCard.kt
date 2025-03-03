@@ -27,6 +27,9 @@ import com.gaoyun.yanyou_kototomo.ui.base.composables.platformStyleClickable
 import com.gaoyun.yanyou_kototomo.ui.base.courseCardColor
 import com.gaoyun.yanyou_kototomo.ui.card_details.getCourseMascot
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.decks_in_course_number
 
 @Composable
 fun CourseCard(course: Course, toCourse: () -> Unit) {
@@ -48,7 +51,7 @@ fun CourseCard(course: Course, toCourse: () -> Unit) {
                     style = MaterialTheme.typography.headlineMedium,
                 )
                 Text(
-                    text = "Decks in course: ${course.decks.count()}",
+                    text = stringResource(Res.string.decks_in_course_number, course.decks.count()),
                     color = courseTextColor,
                     style = MaterialTheme.typography.bodyLarge,
                 )

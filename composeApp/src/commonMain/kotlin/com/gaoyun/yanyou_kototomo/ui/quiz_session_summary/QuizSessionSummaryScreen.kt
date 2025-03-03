@@ -33,7 +33,12 @@ import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.QuizSessionSummaryArgs
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.components.QuizSessionSummaryQuestionResult
 import com.gaoyun.yanyou_kototomo.ui.quiz_session_summary.components.QuizSessionSummaryStatistics
+import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
+import yanyou_kototomo.composeapp.generated.resources.Res
+import yanyou_kototomo.composeapp.generated.resources.finish
+import yanyou_kototomo.composeapp.generated.resources.questions
+import yanyou_kototomo.composeapp.generated.resources.quiz_complete
 
 @Composable
 fun QuizSessionSummaryScreen(
@@ -77,7 +82,7 @@ fun QuizSessionSummaryScreenContent(
                     ) {
                         item {
                             AutoResizeText(
-                                text = "Quiz complete!",
+                                text = stringResource(Res.string.quiz_complete),
                                 fontSizeRange = FontSizeRange(
                                     max = MaterialTheme.typography.displayMedium.fontSize,
                                     min = 24.sp
@@ -96,7 +101,7 @@ fun QuizSessionSummaryScreenContent(
                         }
                         item {
                             Text(
-                                text = "Questions",
+                                text = stringResource(Res.string.questions),
                                 style = MaterialTheme.typography.displaySmall,
                                 modifier = Modifier.padding(vertical = 8.dp)
                             )
@@ -108,7 +113,7 @@ fun QuizSessionSummaryScreenContent(
                 }
 
                 PrimaryElevatedButton(
-                    text = "Finish",
+                    text = stringResource(Res.string.finish),
                     modifier = Modifier.fillMaxWidth()
                         .padding(horizontal = 24.dp)
                         .padding(WindowInsets.navigationBars.asPaddingValues())
