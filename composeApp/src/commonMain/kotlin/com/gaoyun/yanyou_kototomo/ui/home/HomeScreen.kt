@@ -205,6 +205,9 @@ private fun HomeScreenContent(
                             decksState = listState,
                             onDeckClick = { courseDeck ->
                                 onDeckClick(courseDeck.id, course.id, course.learningLanguageId, course.sourceLanguageId)
+                            },
+                            onCourseClick = {
+                                onCourseClick(course.id, course.learningLanguageId, course.sourceLanguageId)
                             }
                         )
                     }

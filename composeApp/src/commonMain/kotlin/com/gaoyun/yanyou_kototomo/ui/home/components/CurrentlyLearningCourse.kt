@@ -53,6 +53,7 @@ fun CurrentlyLearningCourse(
     learningDecks: List<DeckId>,
     decksState: LazyListState,
     onDeckClick: (CourseDeck) -> Unit,
+    onCourseClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val courseCardColor = course.id.courseCardColor()
@@ -64,7 +65,7 @@ fun CurrentlyLearningCourse(
         colors = CardDefaults.elevatedCardColors(containerColor = courseCardColor)
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().background(Color(0x33000000)).padding(bottom = 16.dp),
+            modifier = Modifier.fillMaxWidth().background(Color(0x33000000)).platformStyleClickable(onClick = onCourseClick),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Row(
@@ -105,6 +106,8 @@ fun CurrentlyLearningCourse(
                 }
                 item { Spacer(Modifier.size(8.dp)) }
             }
+
+            Spacer(modifier = Modifier.size(16.dp))
         }
     }
 }
