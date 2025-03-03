@@ -27,7 +27,7 @@ object SplitDeckToNewReviewPaused {
             when {
                 pausedCardIds.contains(card.card.id.identifier) -> pausedCards.add(card.base())
                 card.hasProgress() && !card.isCompleted() && card.card !is Card.KanaCard -> cardsToReview.add(card.base())
-                card.isCompleted() && card.card !is Card.KanaCard -> completedCards.add(card.base())
+                card.isCompleted() -> completedCards.add(card.base())
                 else -> when (card.card) {
                     is Card.WordCard -> newWords.add(card as CardWithProgress<Card.WordCard>)
                     is Card.PhraseCard -> newPhrases.add(card as CardWithProgress<Card.PhraseCard>)

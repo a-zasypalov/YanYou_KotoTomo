@@ -127,7 +127,7 @@ fun CurrentlyLearningCourseDeck(
                     fontSizeRange = FontSizeRange(min = 14.sp, max = MaterialTheme.typography.titleLarge.fontSize),
                     maxLines = 1,
                     style = MaterialTheme.typography.titleLarge,
-                    modifier = Modifier.padding(horizontal = 8.dp).padding(bottom = 4.dp),
+                    modifier = Modifier.padding(start = 8.dp, end = 16.dp, bottom = 4.dp),
                 )
                 Divider(height = 1.dp, modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp, vertical = 4.dp))
                 Text(

@@ -1,6 +1,7 @@
 package com.gaoyun.yanyou_kototomo.ui.home
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +16,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.outlined.LocalLibrary
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -25,7 +27,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
@@ -35,9 +39,11 @@ import com.gaoyun.yanyou_kototomo.data.local.course.CourseWithInfo
 import com.gaoyun.yanyou_kototomo.data.ui_state.PersonalSpaceState
 import com.gaoyun.yanyou_kototomo.ui.base.composables.FullScreenLoader
 import com.gaoyun.yanyou_kototomo.ui.base.composables.PrimaryElevatedButton
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.CourseScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.DeckScreenArgs
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.NavigationSideEffect
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToBookmarks
+import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToCourse
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToDeck
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.ToMixedDeckReviewPlayer
 import com.gaoyun.yanyou_kototomo.ui.base.navigation.args.PlayerBackRoute
@@ -55,6 +61,11 @@ import org.koin.compose.viewmodel.koinViewModel
 import yanyou_kototomo.composeapp.generated.resources.Res
 import yanyou_kototomo.composeapp.generated.resources.bookmarks
 import yanyou_kototomo.composeapp.generated.resources.edit
+import yanyou_kototomo.composeapp.generated.resources.n_cards_to_review
+import yanyou_kototomo.composeapp.generated.resources.n_new
+import yanyou_kototomo.composeapp.generated.resources.n_to_learn
+import yanyou_kototomo.composeapp.generated.resources.start_learning_deck_button
+import yanyou_kototomo.composeapp.generated.resources.start_learning_deck_text
 
 @Composable
 fun HomeScreen(
@@ -76,12 +87,25 @@ fun HomeScreen(
     HomeScreenContent(
         content = viewModel.viewState.collectAsState().value,
         modifier = modifier,
-        onCardDetailsClick = { deckId, cardToShow, languageId ->
+        onCardDetailsClick = { deckId, cardToShow, languageId, paused ->
             cardDetailLanguageState.value = languageId
             cardDetailDeckIdState.value = deckId
             cardDetailState.value = cardToShow
+            cardDetailCompletedState.value = cardToShow.progress?.completed == true
+            cardDetailPausedState.value = paused
         },
-        onCourseClick = { deckId, courseId, learningLanguageId, sourceLanguageId ->
+        onCourseClick = { courseId, learningLanguageId, sourceLanguageId ->
+            navigate(
+                ToCourse(
+                    CourseScreenArgs(
+                        learningLanguageId = learningLanguageId,
+                        sourceLanguageId = sourceLanguageId,
+                        courseId = courseId,
+                    )
+                )
+            )
+        },
+        onDeckClick = { deckId, courseId, learningLanguageId, sourceLanguageId ->
             navigate(
                 ToDeck(
                     DeckScreenArgs(
@@ -128,8 +152,9 @@ fun HomeScreen(
 private fun HomeScreenContent(
     content: PersonalSpaceState?,
     modifier: Modifier,
-    onCardDetailsClick: (DeckId, CardWithProgress<*>, LanguageId) -> Unit,
-    onCourseClick: (DeckId, CourseId, LanguageId, LanguageId) -> Unit,
+    onCardDetailsClick: (DeckId, CardWithProgress<*>, LanguageId, Boolean) -> Unit,
+    onCourseClick: (CourseId, LanguageId, LanguageId) -> Unit,
+    onDeckClick: (DeckId, CourseId, LanguageId, LanguageId) -> Unit,
     onReviewClick: (CourseWithInfo) -> Unit,
     onBookmarksEdit: () -> Unit,
     onCoursesClick: () -> Unit,
@@ -179,7 +204,7 @@ private fun HomeScreenContent(
                             learningDecks = viewState.learningDecks,
                             decksState = listState,
                             onDeckClick = { courseDeck ->
-                                onCourseClick(courseDeck.id, course.id, course.learningLanguageId, course.sourceLanguageId)
+                                onDeckClick(courseDeck.id, course.id, course.learningLanguageId, course.sourceLanguageId)
                             }
                         )
                     }
@@ -189,8 +214,16 @@ private fun HomeScreenContent(
                 val newCardsNotEmpty = viewState.newCards.isNotEmpty()
                 if (cardsDueToReviewNotEmpty || newCardsNotEmpty) item {
                     val reviewLabel = listOfNotNull(
-                        viewState.cardsDueToReview.takeIf { cardsDueToReviewNotEmpty }?.size?.let { "$it cards to review" },
-                        viewState.newCards.takeIf { newCardsNotEmpty }?.size?.let { if (cardsDueToReviewNotEmpty) "$it new" else "$it new cards" }
+                        viewState.cardsDueToReview.takeIf { cardsDueToReviewNotEmpty }?.size?.let {
+                            stringResource(Res.string.n_cards_to_review, it)
+                        },
+                        viewState.newCards.takeIf { newCardsNotEmpty }?.size?.let {
+                            if (cardsDueToReviewNotEmpty) {
+                                stringResource(Res.string.n_new, it)
+                            } else {
+                                stringResource(Res.string.n_to_learn, it)
+                            }
+                        }
                     ).joinToString(", ")
 
                     PrimaryElevatedButton(
@@ -225,7 +258,7 @@ private fun HomeScreenContent(
                             item { Spacer(Modifier.size(8.dp)) }
                             items(viewState.bookmarks) { bookmark ->
                                 HorizontalCourseCard(bookmark) { deckWithInfo ->
-                                    onCourseClick(
+                                    onDeckClick(
                                         deckWithInfo.deck.id,
                                         deckWithInfo.info.courseId,
                                         deckWithInfo.info.learningLanguageId,
@@ -238,12 +271,23 @@ private fun HomeScreenContent(
                     }
                 }
 
-                item {
-                    DeckProgressStatus(
-                        toReviewCardsCount = viewState.newCards.size + viewState.cardsToReview.size,
-                        completedCardsCount = viewState.completedCards.size,
-                        pausedCardsCount = viewState.pausedCards.size
-                    )
+                if (viewState.hasCardsForProgressStatus()) {
+                    item {
+                        DeckProgressStatus(
+                            toReviewCardsCount = viewState.newOrReviewCards(),
+                            completedCardsCount = viewState.completedCards.size,
+                            pausedCardsCount = viewState.pausedCards.size,
+                            modifier = Modifier.padding(vertical = 12.dp, horizontal = 16.dp)
+                        )
+                    }
+                } else {
+                    item {
+                        StartLearnDeck {
+                            viewState.learningCourse?.let { course ->
+                                onCourseClick(course.id, course.learningLanguageId, course.sourceLanguageId)
+                            }
+                        }
+                    }
                 }
 
                 PersonalSegmentedArea(
@@ -257,4 +301,22 @@ private fun HomeScreenContent(
             }
         }
     } ?: FullScreenLoader()
+}
+
+@Composable
+fun StartLearnDeck(onCourseClick: () -> Unit) {
+    Column(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier.fillMaxSize()) {
+        Text(
+            text = stringResource(Res.string.start_learning_deck_text),
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(top = 64.dp, bottom = 16.dp, start = 32.dp, end = 32.dp)
+        )
+        FilledTonalButton(onClick = onCourseClick) {
+            Text(
+                text = stringResource(Res.string.start_learning_deck_button),
+                style = MaterialTheme.typography.titleMedium
+            )
+        }
+    }
 }

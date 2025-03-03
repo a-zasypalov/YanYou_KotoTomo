@@ -14,23 +14,24 @@ import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
 import yanyou_kototomo.composeapp.generated.resources.Res
 import yanyou_kototomo.composeapp.generated.resources.cards_completed
+import yanyou_kototomo.composeapp.generated.resources.cards_new_or_review
 import yanyou_kototomo.composeapp.generated.resources.cards_paused
-import yanyou_kototomo.composeapp.generated.resources.cards_to_review
 
 @Composable
 fun DeckProgressStatus(
     toReviewCardsCount: Int,
     completedCardsCount: Int,
     pausedCardsCount: Int,
+    modifier: Modifier = Modifier,
 ) {
     Surface(
         tonalElevation = 8.dp,
         shape = MaterialTheme.shapes.medium,
-        modifier = Modifier.padding(vertical = 12.dp, horizontal = 16.dp)
+        modifier = modifier,
     ) {
         Row(modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp), horizontalArrangement = Arrangement.SpaceEvenly) {
             if (toReviewCardsCount > 0) Text(
-                text = stringResource(Res.string.cards_to_review, toReviewCardsCount),
+                text = stringResource(Res.string.cards_new_or_review, toReviewCardsCount),
                 style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Medium)
             )
             if (completedCardsCount > 0) Text(

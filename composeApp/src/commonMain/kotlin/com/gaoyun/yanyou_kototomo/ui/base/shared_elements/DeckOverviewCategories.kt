@@ -48,8 +48,9 @@ fun LazyGridScope.DeckOverviewCategories(
 fun LazyListScope.DeckOverviewCategories(
     categories: List<CardOverviewPart.List>,
     modifier: Modifier = Modifier,
-    onCardClick: (DeckId, CardWithProgress<*>, LanguageId) -> Unit,
+    onCardClick: (DeckId, CardWithProgress<*>, LanguageId, Boolean) -> Unit,
 ) {
+    val pausedCards = categories.find { it.type == CardCategoryType.Paused }?.cards ?: listOf()
     categories.forEach { (name, cards, _, isVisible, onToggle) ->
         if (cards.isNotEmpty()) {
             item {
@@ -67,7 +68,11 @@ fun LazyListScope.DeckOverviewCategories(
                         PersonalAreaCardItem(
                             card = it,
                             modifier = modifier,
-                            onCardClick = { card, languageId -> onCardClick(it.deckId, card, languageId) })
+                            onCardClick = { card, languageId ->
+                                val paused = pausedCards.find { it.card.id == card.card.id } != null
+                                onCardClick(it.deckId, card, languageId, paused)
+                            }
+                        )
                     }
                 }
             }

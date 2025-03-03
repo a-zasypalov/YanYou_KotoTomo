@@ -63,7 +63,7 @@ internal fun personalSegmentedCategories(
 
 fun LazyListScope.PersonalSegmentedArea(
     categories: List<CardOverviewPart.List>,
-    onCardClick: (DeckId, CardWithProgress<*>, LanguageId) -> Unit,
+    onCardClick: (DeckId, CardWithProgress<*>, LanguageId, Boolean) -> Unit,
 ) {
     DeckOverviewCategories(categories, Modifier.padding(horizontal = 16.dp), onCardClick)
 }

@@ -21,4 +21,11 @@ data class PersonalSpaceState(
     val showNewCards: Boolean,
     val showPausedCards: Boolean,
     val showCompletedCards: Boolean,
-)
+) {
+    fun hasCardsForProgressStatus(): Boolean {
+        return newCards.isNotEmpty() || cardsToReview.isNotEmpty() || completedCards.isNotEmpty() || pausedCards.isNotEmpty()
+    }
+    fun newOrReviewCards(): Int {
+        return newCards.size + cardsToReview.size
+    }
+}

@@ -203,4 +203,7 @@ data class DeckOverviewState(
     val isBookmarked: Boolean,
 ) {
     fun isCardPaused(cardId: CardId) = pausedCards.fastAny { it.card.id == cardId }
+    fun newOrReviewCards(): Int {
+        return newCards.kanji.size + newCards.kana.size + newCards.words.size + newCards.phrases.size + cardsToReview.size
+    }
 }

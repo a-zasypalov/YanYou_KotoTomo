@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bookmark
@@ -52,9 +53,10 @@ fun DeckOverviewHeader(
 
         if (viewState.newCards.size() != viewState.allCards.size) {
             DeckProgressStatus(
-                toReviewCardsCount = viewState.newCards.words.size + viewState.newCards.phrases.size + viewState.cardsToReview.size,
+                toReviewCardsCount = viewState.newOrReviewCards(),
                 completedCardsCount = viewState.completedCards.size,
-                pausedCardsCount = viewState.pausedCards.size
+                pausedCardsCount = viewState.pausedCards.size,
+                Modifier.padding(vertical = 12.dp)
             )
         }
 

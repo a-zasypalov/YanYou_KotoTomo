@@ -82,13 +82,16 @@
     <string name="confirm_delete_title">Confirm Delete</string>
     <string name="confirm_delete_bookmark_description">Are you sure you want to delete this bookmark?</string>
 
-    <string name="cards_to_review">%1$s to review</string>
+    <string name="cards_new_or_review">%1$s new/review</string>
     <string name="cards_completed">%1$s completed</string>
     <string name="cards_paused">%1$s paused</string>
     <string name="cards_number">Cards: %1$s</string>
     <string name="review_cards_number">Review: %1$s</string>
     <string name="card_review_datetime">Review %1$s</string>
     <string name="decks_in_course_number">Decks in course: %1$s</string>
+    <string name="n_cards_to_review">%1$s cards to review</string>
+    <string name="n_new">%1$s new</string>
+    <string name="n_to_learn">%1$s cards to learn</string>
 
     <string name="learning">Learning</string>
     <string name="learn">Learn</string>
@@ -192,4 +195,7 @@
     <string name="color_theme_blue_description">Modern and fresh</string>
     <string name="color_theme_green_title">Fresh green</string>
     <string name="color_theme_green_description">Soft and cozy</string>
+
+    <string name="start_learning_deck_text">Start any deck from chosen course</string>"
+    <string name="start_learning_deck_button">Open course decks</string>"
 </resources>
