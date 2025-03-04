@@ -112,7 +112,9 @@ fun PersonalAreaCardItem(
                 Row(
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+                    modifier = Modifier
+                        .background(Color(0x33000000))
+                        .padding(vertical = 4.dp, horizontal = 8.dp)
                 ) {
                     Text(
                         text = card.chapterName,
