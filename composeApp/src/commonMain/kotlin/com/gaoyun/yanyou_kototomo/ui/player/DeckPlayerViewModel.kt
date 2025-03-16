@@ -157,8 +157,9 @@ class DeckPlayerViewModel(
     }
 
     fun answerCard(answer: String) {
+        val isKanaCourse = argsState.value?.courseId?.isKanaCourse() == true
         val currentCard = viewState.value?.card?.card ?: return
-        val isAnswerCorrect = getAnswerFor(currentCard) == answer
+        val isAnswerCorrect = getAnswerFor(currentCard, isKanaCourse) == answer
         viewState.value = viewState.value?.copy(answerOpened = true, answerIsCorrect = isAnswerCorrect)
         quizResults.value.add(QuizCardResultPersisted(currentCard.id.identifier, isAnswerCorrect))
     }
@@ -168,7 +169,8 @@ class DeckPlayerViewModel(
     }
 
     fun getPossibleAnswersFor(card: Card, allCards: List<CardWithProgress<*>>): List<String> {
-        val correctAnswer = getAnswerFor(card)
+        val isKanaCourse = argsState.value?.courseId?.isKanaCourse() == true
+        val correctAnswer = getAnswerFor(card, isKanaCourse)
         val clearedDeck = allCards.map { it.card }.toMutableList().also { it.remove(card) }
 
         val possibleAnswers = when (card) {
@@ -179,11 +181,13 @@ class DeckPlayerViewModel(
                 -> clearedDeck.filterNot { it is Card.KanaCard }
         }
 
-        val allAnswers = possibleAnswers.shuffled().take(3).map { getAnswerFor(it) } + correctAnswer
+        val allAnswers = possibleAnswers.shuffled().take(3).map { getAnswerFor(it, isKanaCourse) } + correctAnswer
         return allAnswers.shuffled()
     }
 
-    private fun getAnswerFor(card: Card): String = when (card) {
+    private fun getAnswerFor(card: Card, isKanaCourse: Boolean): String = if (isKanaCourse) {
+        card.transcription()
+    } else when (card) {
         is Card.PhraseCard -> card.translation
         is Card.WordCard -> card.translation
         is Card.KanjiCard -> card.translation

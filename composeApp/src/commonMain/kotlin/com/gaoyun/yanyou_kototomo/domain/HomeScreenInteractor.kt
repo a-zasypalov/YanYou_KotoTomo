@@ -37,8 +37,8 @@ class HomeScreenInteractor(
         val allNewCards = deckSplitResults.flatMap { it.newCards }
         val allPausedCards = deckSplitResults.flatMap { it.pausedCards }
         val allCompletedCards = deckSplitResults.flatMap { it.completedCards }
-        val cardsToReview = deckSplitResults.flatMap { it.cardsToReview }
-        val cardsDueToReview = cardsToReview.filter { it.countForReviewAndNotPaused(allPausedCards) }
+        val cardsToReview = deckSplitResults.flatMap { it.cardsToReview }.sortedBy { it.progress?.nextReview }
+        val cardsDueToReview = cardsToReview.filter { it.countForReviewAndNotPaused(allPausedCards) }.sortedBy { it.progress?.nextReview }
 
         val hiddenSections = preferences.getStringSet(HOME_SCREEN_HIDDEN_SECTIONS).mapNotNull {
             try {

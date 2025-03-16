@@ -7,7 +7,10 @@ import kotlinx.serialization.Serializable
 data class LanguageId(val identifier: String)
 
 @Serializable
-data class CourseId(val identifier: String)
+data class CourseId(val identifier: String) {
+    private val kanaCourses = listOf("kana_en")
+    fun isKanaCourse() = kanaCourses.contains(identifier)
+}
 
 @Serializable
 data class DeckId(val identifier: String) {
