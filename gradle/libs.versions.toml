@@ -5,23 +5,23 @@ android-compileSdk = "35"
 android-minSdk = "26"
 android-targetSdk = "35"
 
-kotlin = "2.1.0"
-compose-multiplatform = "1.8.0-alpha02"
+kotlin = "2.1.20"
+compose-multiplatform = "1.8.0-beta02"
 
-androidx-activityCompose = "1.10.0"
+androidx-activityCompose = "1.10.1"
 androidx-lifecycle = "2.8.4"
-kotlinSerialization = "1.7.3"
-ktor = "3.0.3"
-koin = "4.0.0"
+kotlinSerialization = "1.8.0"
+ktor = "3.1.2"
+koin = "4.1.0-Beta6"
 koin-extension = "3.0.2"
 kotlinDatetime = "0.6.2"
 sqldelight = "1.5.5"
 material = "1.12.0"
-compottie = "2.0.0-rc04" #Update to stable as rc02 crashes iOS
-navigation = "2.8.0-alpha12"
+compottie = "2.0.0-rc04"
+navigation = "2.9.0-alpha16"
 reorderable = "2.4.3"
 
-mockk = "1.13.16"
+mockk = "1.13.17"
 kotest = "5.9.1"
 
 [libraries]
@@ -61,10 +61,10 @@ navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", 
 reorderable = { module = "sh.calvin.reorderable:reorderable", version.ref = "reorderable" }
 #Testing
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
-kotest = { module = "io.kotest:kotest-framework-engine", version.ref = "kotest"}
-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest"}
-kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest"}
-kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest"}
+kotest = { module = "io.kotest:kotest-framework-engine", version.ref = "kotest" }
+kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
+kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -74,4 +74,4 @@ composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "k
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqldelight = { id = "com.squareup.sqldelight", version.ref = "sqldelight" }
-kotest = { id = "io.kotest.multiplatform", version.ref = "kotest"}
+kotest = { id = "io.kotest.multiplatform", version.ref = "kotest" }

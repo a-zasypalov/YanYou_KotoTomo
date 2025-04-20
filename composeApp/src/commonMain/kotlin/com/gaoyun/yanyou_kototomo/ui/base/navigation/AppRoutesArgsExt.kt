@@ -1,7 +1,9 @@
 package com.gaoyun.yanyou_kototomo.ui.base.navigation
 
-import androidx.core.bundle.Bundle
 import androidx.navigation.NavType
+import androidx.savedstate.SavedState
+import androidx.savedstate.read
+import androidx.savedstate.write
 import com.gaoyun.yanyou_kototomo.data.local.CourseId
 import com.gaoyun.yanyou_kototomo.data.local.DeckId
 import com.gaoyun.yanyou_kototomo.data.local.LanguageId
@@ -86,8 +88,8 @@ inline fun <reified T> serializableNavType(
         else -> serializer()
     }
 
-    override fun get(bundle: Bundle, key: String): T? {
-        return bundle.getString(key)?.let { stringValue ->
+    override fun get(bundle: SavedState, key: String): T? {
+        return bundle.read { this.getStringOrNull(key) }?.let { stringValue ->
             try {
                 json.decodeFromString(innerSerializer, stringValue)
             } catch (e: SerializationException) {
@@ -96,9 +98,9 @@ inline fun <reified T> serializableNavType(
         }
     }
 
-    override fun put(bundle: Bundle, key: String, value: T) {
+    override fun put(bundle: SavedState, key: String, value: T) {
         try {
-            bundle.putString(key, json.encodeToString(innerSerializer, value))
+            bundle.write { this.putString(key, json.encodeToString(innerSerializer, value)) }
         } catch (e: SerializationException) {
             throw IllegalArgumentException("Failed to serialize ${T::class.simpleName}", e)
         }

@@ -9,13 +9,11 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowBackIos
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
@@ -40,7 +38,6 @@ enum class BackButtonType {
     Back, Close
 }
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun SurfaceScaffold(
     modifier: Modifier = Modifier,
@@ -76,8 +73,7 @@ fun SurfaceScaffold(
                         Box(
                             modifier = Modifier
                                 .minimumInteractiveComponentSize()
-                                .size(IconButtonDefaults.smallContainerSize())
-                                .clip(IconButtonDefaults.standardShape)
+                                .clip(IconButtonDefaults.outlinedShape)
                                 .platformStyleClickable(true, onClick = backHandler),
                             contentAlignment = Alignment.Center
                         ) {
@@ -86,7 +82,7 @@ fun SurfaceScaffold(
                                     if (Platform.name == PlatformNames.Android) {
                                         Icon(
                                             Icons.AutoMirrored.Filled.ArrowBack,
-                                            contentDescription = "", //TODO: content description
+                                            contentDescription = stringResource(Res.string.back),
                                             tint = contentColor
                                         )
                                     } else {
